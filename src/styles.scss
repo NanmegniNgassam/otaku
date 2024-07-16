@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap");
+:root {
+  --primary-color: #2869ca;
+  --primary-accent-color: #2b4ea2;
+  --box-container-color: #d4cfce;
+  --dark-color: #353434;
+  --secondary-color: #f9c23c;
+  --title-text-color: #222222;
+  --normal-text-color: #444444;
+  --normal-text-font: "Roboto Serif";
+  --title-text-font: "Montserrat";
+  --special-text-font: "Inter";
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: var(--normal-text-font);
+}
+html {
+  min-height: 100vh;
+}
+body {
+  min-height: 100vh;
+}

@@ -1,5 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { addDoc, collection, doc, DocumentReference, Firestore, setDoc } from '@angular/fire/firestore';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -10,5 +9,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-
+  
 }

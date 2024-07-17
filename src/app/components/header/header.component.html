@@ -1,1 +1,37 @@
-<p>header works!</p>
+<header>
+  <div class="container">
+    <a href="/">
+      <img
+        src="../../../assets/images/otaku_app_logo.png"
+        alt="Logo de l'application web"
+        class="logo"
+      />
+    </a>
+    @if (isNavMenuOpen) {
+    <ul class="links-container">
+      <li><a href="/animes">Animes</a></li>
+      <li><a href="/discovery">Découvertes</a></li>
+      @if (isUserConnected) {
+      <app-sign-in-links />
+      } @else {
+      <app-sign-out-links />
+      }
+    </ul>
+    }
+    <div class="action-buttons">
+      @if (isNavMenuOpen) {
+      <ion-icon
+        name="ios-close"
+        class="action-button close-menu-button"
+        (click)="closeNavMenu()"
+      />
+      } @else {
+      <ion-icon
+        name="ios-menu"
+        class="action-button open-menu-button"
+        (click)="openNavMenu()"
+      />
+      }
+    </div>
+  </div>
+</header>

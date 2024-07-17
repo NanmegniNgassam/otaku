@@ -1,0 +1,10 @@
+@if (avatarUrl) {
+<div
+  class="container container-avatar"
+  [ngStyle]="{ 'background-image': 'url(' + avatarUrl + ')' }"
+></div>
+} @else {
+<div class="container container-initials">
+  {{ generateNameInitials(userName) }}
+</div>
+}

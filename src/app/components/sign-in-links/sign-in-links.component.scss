@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  li {
+    display: inline-block;
+    margin-inline-start: 15px;
+    a {
+      color: #fff;
+    }
+    :hover {
+      color: var(--box-container-color);
+    }
+  }
+}
+
+@media all and (max-width: 500px) {
+  .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media all and (max-width: 250px) {
+  .container {
+    gap: 10px;
+  }
+}

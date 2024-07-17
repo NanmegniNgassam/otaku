@@ -1,0 +1,3 @@
+export const MAX_SMALL_DEVICE_SCREEN_WIDTH = 250;
+export const MAX_MOBILE_SCREEN_WIDTH = 500;
+export const MAX_TOUCH_PAD_SCREEN_WIDTH = 800;

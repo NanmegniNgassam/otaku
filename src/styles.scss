@@ -4,7 +4,7 @@
   --primary-accent-color: #2b4ea2;
   --box-container-color: #d4cfce;
   --dark-color: #353434;
-  --secondary-color: #f9c23c;
+  --secondary-color: #ebb325;
   --title-text-color: #222222;
   --normal-text-color: #444444;
   --normal-text-font: "Roboto Serif";
@@ -23,4 +23,23 @@ html {
 }
 body {
   min-height: 100vh;
+}
+a {
+  text-decoration: none;
+  color: var(--normal-text-color);
+}
+
+/* Some special stylish components */
+.button {
+  display: block;
+  color: #fff;
+  padding: 10px 20px;
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+@media all and (max-width: 800px) {
+  .button {
+    padding: 10px 15px;
+  }
 }

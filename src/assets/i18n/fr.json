@@ -1,5 +1,39 @@
 {
   "general": {
-    "hello": "Bienvenu.e.s sur notre site"
+  },
+  "components": {
+    "header": {
+      "links": {
+        "animes": "Animes",
+        "discovery": "Découvertes",
+        "signup": "Créer un compte",
+        "animeList": "Ma liste" 
+      }
+    },
+    "footer": {
+      "tributes": {
+        "showcase": {
+          "apiService": "Le service que nous utilisons pour les animes.",
+          "currentService": "L'application web que nous vous proposons."
+        },
+        "message": "Merci à Jikan !"
+      },
+      "links": {
+        "visit": "Site officiel de pisoftLite",
+        "about": "A propos du service"
+      },
+      "credentials": {
+        "version": "Version 0.0.1",
+        "copyrights": "Développé par PisoftLite. © Tous droits reservés."
+      }
+    }
+  },
+  "pages": {
+    "landing": {
+
+    }
+  },
+  "others": {
+
   }
 }

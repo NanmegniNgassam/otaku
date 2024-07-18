@@ -9,8 +9,16 @@
     </a>
     @if (isNavMenuOpen) {
     <ul class="links-container">
-      <li><a href="/animes">Animes</a></li>
-      <li><a href="/discovery">Découvertes</a></li>
+      <li>
+        <a href="/animes">
+          {{ "components.header.links.animes" | translate }}
+        </a>
+      </li>
+      <li>
+        <a href="/discovery">
+          {{ "components.header.links.discovery" | translate }}
+        </a>
+      </li>
       @if (isUserConnected) {
       <app-sign-in-links />
       } @else {

@@ -8,6 +8,7 @@
             alt="Le service que nous utilisons pour les animes."
             class="logo"
           />
+          <!-- TODO: Translate the alt texts -->
         </a>
         <a href="/">
           <img
@@ -17,15 +18,17 @@
           />
         </a>
       </div>
-      <p class="text-content">Merci à Jikan</p>
+      <p class="text-content">
+        {{ "components.footer.tributes.message" | translate }}
+      </p>
     </div>
     <div class="links">
       <a target="_blank" href="https://pisoftlite.com/">
-        <span>Site officiel de pisoftLite</span>
+        <span> {{ "components.footer.links.visit" | translate }} </span>
         <ion-icon name="arrow-redo"></ion-icon>
       </a>
       <a href="/about">
-        <span>A propos du service</span>
+        <span> {{ "components.footer.links.about" | translate }} </span>
         <ion-icon name="information-circle-sharp"></ion-icon>
       </a>
     </div>
@@ -33,13 +36,17 @@
     <app-language-switcher class="switcher" />
 
     <div class="credentials">
-      <p class="version">Version 0.0.1</p>
+      <p class="version">
+        {{ "components.footer.credentials.version" | translate }}
+      </p>
       <p class="copyright">
         <img
           src="../../../assets/images/pisoft_logo.png"
           alt="Start-up de developpement applicatif"
         />
-        <span>Powered by PisoftLite. © All rights reserved.</span>
+        <span>
+          {{ "components.footer.credentials.copyrights" | translate }}
+        </span>
       </p>
     </div>
   </div>

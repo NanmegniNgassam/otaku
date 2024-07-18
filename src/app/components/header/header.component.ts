@@ -12,7 +12,7 @@ import { MAX_MOBILE_SCREEN_WIDTH } from '../../../configs/screen-sizes';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HeaderComponent implements OnInit {
-  isUserConnected:boolean = true;
+  isUserConnected:boolean = false;
   isNavMenuOpen!:boolean;
 
   ngOnInit ():void {

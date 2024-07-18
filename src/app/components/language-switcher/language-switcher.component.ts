@@ -12,17 +12,40 @@ import { AVAILABLE_LANGUAGES, DEFAULT_APP_LANGUAGE, DEVICE_CHOSEN_LANGUAGE_KEY }
 export class LanguageSwitcherComponent implements OnInit {
   _chosenLanguage!:string|null;
   _prefNavigatorLanguages!:string[];
-
+  _availableLanguages = [
+    {value: 'fr', viewValue: 'Français'},
+    {value: 'en', viewValue: 'English'},
+  ];;
 
   constructor(private translate: TranslateService) {
     translate.setDefaultLang(DEFAULT_APP_LANGUAGE);
   }
 
   ngOnInit(): void {
+    this._chosenLanguage = localStorage.getItem(DEVICE_CHOSEN_LANGUAGE_KEY);
     this._prefNavigatorLanguages = [...window.navigator.languages];
+
+    // Define the app local files to load 
     this.translate.setDefaultLang(this.getAppropriateLanguage());
   }
 
+  /**
+   * Triggered whenever a user change the language from the UI
+   * 
+   * @param event changeEvent occuring on the language selector
+   */
+  onLanguageSelect(event: Event):void {
+    const language = (event.target as HTMLSelectElement).value;
+
+    this.saveLanguageAsChosen(language);
+    this.translate.setDefaultLang(language);
+  }
+
+  /**
+   * Decide the app language according to saved language and browser preferences
+   * 
+   * @returns app language ISO code
+   */
   getAppropriateLanguage():string {
     if(this._chosenLanguage) {
       if(this.checkLanguageLocalFiles(this._chosenLanguage)) {
@@ -45,16 +68,26 @@ export class LanguageSwitcherComponent implements OnInit {
     }
   }
 
+  /**
+   * are translations available for the specified languages ?
+   * 
+   * @param language to look for in the local files
+   * @returns if the param language is available in i18n
+   */
   checkLanguageLocalFiles(language:string):boolean {
     return AVAILABLE_LANGUAGES.includes(language);
   }
 
+  /**
+   * Save the ISO code as user choice in browser LocalStorage
+   * 
+   * @param language Iso code to set as user choice
+   */
   saveLanguageAsChosen(language:string):void {
     if(AVAILABLE_LANGUAGES.includes(language)) {
       localStorage.setItem(DEVICE_CHOSEN_LANGUAGE_KEY, language);
     } else {
       throw Error("Selected language isn't supported by our app");
     }
-    
   }
 }

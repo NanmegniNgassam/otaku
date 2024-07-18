@@ -1,0 +1,13 @@
+select {
+  border: 1px solid var(--box-container-color);
+  background-color: var(--primary-color);
+  color: #ffffff;
+  outline: none;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  option {
+    background-color: #ffffff;
+    color: var(--normal-text-color);
+  }
+}

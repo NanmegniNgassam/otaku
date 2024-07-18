@@ -1,1 +1,10 @@
-<p>language-switcher works!</p>
+<select name="language" id="language" (change)="onLanguageSelect($event)">
+  @for (language of _availableLanguages; track language) {
+  <option
+    [value]="language.value"
+    [selected]="language.value === _chosenLanguage"
+  >
+    {{ language.viewValue }}
+  </option>
+  }
+</select>

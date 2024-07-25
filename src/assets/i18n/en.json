@@ -26,6 +26,12 @@
         "version": "version 0.0.1",
         "copyrights": "Powered by PisoftLite. © All rights reserved."
       }
+    },
+    "login": {
+      "emailField": "Email address",
+      "passwordField": "Password",
+      "login": "Login",
+      "googleLogin": "Google Login"
     }
   },
   "pages": {

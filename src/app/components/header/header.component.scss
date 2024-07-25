@@ -1,6 +1,9 @@
 header {
   box-shadow: 1px 2px 4px var(--dark-color);
 }
+.top-header {
+  padding: 10px 30px;
+}
 .container {
   position: relative;
   display: flex;
@@ -35,6 +38,9 @@ header {
 }
 
 @media all and (max-width: 800px) {
+  .top-header {
+    padding: 10px 20px;
+  }
   .container {
     padding: 10px 20px;
     .logo {
@@ -68,6 +74,9 @@ header {
 }
 
 @media all and (max-width: 250px) {
+  .top-header {
+    padding: 10px;
+  }
   .container {
     padding: 10px;
     .links-container {

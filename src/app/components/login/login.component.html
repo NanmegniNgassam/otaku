@@ -1,0 +1,29 @@
+<form [formGroup]="_loginForm" [className]="_isLoginErrors ? 'form-error' : ''">
+  <span class="divider inputs">
+    <input
+      type="email"
+      formControlName="email"
+      id="email"
+      [email]="true"
+      placeholder="{{ 'components.login.emailField' | translate }}"
+    />
+    <input
+      type="password"
+      formControlName="password"
+      id="password"
+      placeholder="{{ 'components.login.passwordField' | translate }}"
+    />
+  </span>
+
+  <span class="divider validation">
+    <button (click)="onLogin()" type="submit" class="button login-button">
+      <ion-icon name="log-in-outline"></ion-icon>
+      {{ "components.login.login" | translate }}
+    </button>
+
+    <button class="button" (click)="onLoginWithGoogle()">
+      <ion-icon name="logo-google"></ion-icon>
+      {{ "components.login.googleLogin" | translate }}
+    </button>
+  </span>
+</form>

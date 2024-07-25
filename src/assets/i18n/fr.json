@@ -26,6 +26,12 @@
         "version": "Version 0.0.1",
         "copyrights": "Développé par PisoftLite. © Tous droits reservés."
       }
+    },
+    "login": {
+      "emailField": "Adresse email",
+      "passwordField": "Mot de passe",
+      "login": "Se connecter",
+      "googleLogin": "Connexion Google"
     }
   },
   "pages": {

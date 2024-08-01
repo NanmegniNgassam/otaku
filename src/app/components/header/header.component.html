@@ -3,7 +3,7 @@
     <app-login />
   </div>
   <div class="container">
-    <a href="/">
+    <a routerLink="/">
       <img
         src="../../../assets/images/otaku_app_logo.png"
         alt="Logo de l'application web"
@@ -13,12 +13,12 @@
     @if (isNavMenuOpen) {
     <ul class="links-container">
       <li>
-        <a href="/animes">
+        <a routerLink="/animes" routerLinkActive="active">
           {{ "components.header.links.animes" | translate }}
         </a>
       </li>
-      <li>
-        <a href="/discovery">
+      <li routerLinkActive="active">
+        <a routerLink="/discovery">
           {{ "components.header.links.discovery" | translate }}
         </a>
       </li>

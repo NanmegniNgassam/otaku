@@ -21,8 +21,12 @@ header {
       margin-inline-start: 15px;
       a {
         color: #fff;
+        &.active {
+          cursor: default;
+        }
       }
-      :hover {
+      :hover,
+      a.active {
         color: var(--box-container-color);
       }
     }

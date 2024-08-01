@@ -11,6 +11,9 @@
     :hover {
       color: var(--box-container-color);
     }
+    &.active {
+      color: var(--box-container-color);
+    }
   }
 }
 

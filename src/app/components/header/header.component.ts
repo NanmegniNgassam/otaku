@@ -4,17 +4,18 @@ import { SignOutLinksComponent } from "../sign-out-links/sign-out-links.componen
 import { MAX_MOBILE_SCREEN_WIDTH } from '../../../configs/screen-sizes';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoginComponent } from "../login/login.component";
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [SignInLinksComponent, SignOutLinksComponent, TranslateModule, LoginComponent],
+  imports: [SignInLinksComponent, SignOutLinksComponent, TranslateModule, LoginComponent, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HeaderComponent implements OnInit {
-  isUserConnected:boolean = false;
+  isUserConnected:boolean = true;
   isNavMenuOpen!:boolean;
 
   ngOnInit ():void {

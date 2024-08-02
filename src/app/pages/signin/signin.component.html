@@ -13,7 +13,7 @@
     </div>
     <div class="input-group">
       <input
-        type="password"
+        [type]="_showPassword ? 'text' : 'password'"
         id="signin-password"
         autocomplete="new-password"
         formControlName="signinPassword"
@@ -21,10 +21,14 @@
         required
       />
       <label for="signin-password">Entrez votre mot de passe</label>
+      <ion-icon
+        (click)="toggleShowPassword()"
+        [name]="_showPassword ? 'eye-outline' : 'eye-off-outline'"
+      />
     </div>
     <div class="input-group">
       <input
-        type="password"
+        [type]="_showPasswordConfirm ? 'text' : 'password'"
         id="signin-password-confirm"
         autocomplete="new-password"
         formControlName="signinPasswordConfirm"
@@ -32,6 +36,10 @@
         required
       />
       <label for="signin-password-confirm">Confirmez votre mot de passe</label>
+      <ion-icon
+        (click)="toggleShowPasswordConfirm()"
+        [name]="_showPasswordConfirm ? 'eye-outline' : 'eye-off-outline'"
+      />
     </div>
     <div class="general-conditions">
       <input
@@ -39,9 +47,10 @@
         id="general-conditions"
         formControlName="generalConditions"
       />
-      <label for="general-conditions"
-        >J'ai lu et j'accepte les conditions générales d'utilisations</label
-      >
+      <label for="general-conditions">
+        J'ai lu et j'accepte les
+        <a href="" target="_blank"> conditions générales d'utilisations </a>
+      </label>
     </div>
     <button
       (click)="onSignin()"

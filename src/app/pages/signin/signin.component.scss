@@ -51,6 +51,13 @@
         transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
         padding: 0 5px;
       }
+      ion-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
     }
     .signin-button {
       max-width: 400px;
@@ -77,6 +84,9 @@
         cursor: pointer;
         text-wrap: wrap;
         line-height: 1.5rem;
+        a {
+          color: royalblue;
+        }
       }
     }
   }

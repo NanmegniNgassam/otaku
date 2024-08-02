@@ -12,11 +12,14 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class SigninComponent implements OnInit {
   _signinForm!:FormGroup;
+  _showPassword!:boolean;
+  _showPasswordConfirm!:boolean;
 
   constructor(
     private formBuilder: FormBuilder
   ) {
-
+    this._showPassword = false;
+    this._showPasswordConfirm = false;
   }
 
   ngOnInit(): void {
@@ -30,7 +33,6 @@ export class SigninComponent implements OnInit {
     });
 
     this._signinForm.valueChanges.subscribe(() => {
-      console.log("Updated signin data");
     })
   }
 
@@ -38,5 +40,12 @@ export class SigninComponent implements OnInit {
     console.log(this._signinForm.errors);
     console.log("Validation du formulaire : ", this._signinForm.value)
     
+  }
+
+  toggleShowPassword():void {
+    this._showPassword = !this._showPassword;
+  }
+  toggleShowPasswordConfirm():void {
+    this._showPasswordConfirm = !this._showPasswordConfirm;
   }
 }

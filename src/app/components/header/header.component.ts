@@ -15,7 +15,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HeaderComponent implements OnInit {
-  isUserConnected:boolean = true;
+  isUserConnected:boolean = false;
   isNavMenuOpen!:boolean;
 
   ngOnInit ():void {

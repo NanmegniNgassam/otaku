@@ -6,11 +6,11 @@ export const routes: Routes = [
   {
     path: '',
     component: LandingComponent,
-    title: 'landing'
+    title: 'Landing'
   },
   {
     path: 'sign-in',
     component: SigninComponent,
-    title: 'authentication'
+    title: 'Authentication'
   },
 ];

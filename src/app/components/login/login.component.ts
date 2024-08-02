@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this._loginForm = this.formBuilder.group({
-      email: [null, Validators.required],
-      password: [null, Validators.required]
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(8)]]
     }, {
       updateOn: 'change'
     });
@@ -46,6 +46,6 @@ export class LoginComponent implements OnInit {
   }
 
   async onLoginWithGoogle(): Promise<void> {
-
+    console.log('Login attempt with google');
   }
 }

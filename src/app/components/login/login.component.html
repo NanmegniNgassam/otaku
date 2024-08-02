@@ -16,7 +16,12 @@
   </span>
 
   <span class="divider validation">
-    <button (click)="onLogin()" type="submit" class="button login-button">
+    <button
+      (click)="onLogin()"
+      type="submit"
+      class="button login-button"
+      [disabled]="_loginForm.invalid"
+    >
       <ion-icon name="log-in-outline"></ion-icon>
       {{ "components.login.login" | translate }}
     </button>

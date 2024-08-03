@@ -42,6 +42,7 @@
     "signin": {
       "title": "Créez-vous un compte",
       "signinEmailLabel": "Entrez votre adresse e-mail",
+      "signinNickNameLabel": "Entrez votre pseudo",
       "signinPasswordLabel": "Entrez votre mot de passe",
       "confirmPasswordLabel": "Confirmez votre mot de passe",
       "generalConditions": {

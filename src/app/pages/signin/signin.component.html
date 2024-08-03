@@ -15,6 +15,18 @@
     </div>
     <div class="input-group">
       <input
+        type="text"
+        id="signin-nickname"
+        formControlName="signinNickName"
+        [className]="_signinForm.value.signinNickName ? 'filled' : ''"
+        required
+      />
+      <label for="signin-nickname">
+        {{ "pages.signin.signinNickNameLabel" | translate }}
+      </label>
+    </div>
+    <div class="input-group">
+      <input
         [type]="_showPassword ? 'text' : 'password'"
         id="signin-password"
         autocomplete="new-password"

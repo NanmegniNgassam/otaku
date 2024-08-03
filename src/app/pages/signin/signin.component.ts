@@ -25,8 +25,9 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
     this._signinForm = this.formBuilder.group({
       signinEmail: [null, [Validators.required, Validators.email]],
-      signinPassword: [null, Validators.required],
-      signinPasswordConfirm: [null, Validators.required],
+      signinPassword: [null, [Validators.required, Validators.minLength(8)]],
+      signinNickName: [null, [Validators.required, Validators.minLength(3)]],
+      signinPasswordConfirm: [null, [Validators.required, Validators.minLength(8)]],
       generalConditions: [false, Validators.requiredTrue]
     }, {
       updateOn: 'change'

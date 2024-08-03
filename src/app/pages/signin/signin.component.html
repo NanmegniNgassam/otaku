@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <h2>Créer-vous un compte</h2>
+  <h2>{{ "pages.signin.title" | translate }}</h2>
   <form [formGroup]="_signinForm">
     <div class="input-group">
       <input
@@ -9,7 +9,9 @@
         [className]="_signinForm.value.signinEmail ? 'filled' : ''"
         required
       />
-      <label for="signin-email">Entrez votre adresse e-mail</label>
+      <label for="signin-email">
+        {{ "pages.signin.signinEmailLabel" | translate }}
+      </label>
     </div>
     <div class="input-group">
       <input
@@ -20,7 +22,9 @@
         [className]="_signinForm.value.signinPassword ? 'filled' : ''"
         required
       />
-      <label for="signin-password">Entrez votre mot de passe</label>
+      <label for="signin-password">
+        {{ "pages.signin.signinPasswordLabel" | translate }}
+      </label>
       <ion-icon
         (click)="toggleShowPassword()"
         [name]="_showPassword ? 'eye-outline' : 'eye-off-outline'"
@@ -35,7 +39,9 @@
         [className]="_signinForm.value.signinPasswordConfirm ? 'filled' : ''"
         required
       />
-      <label for="signin-password-confirm">Confirmez votre mot de passe</label>
+      <label for="signin-password-confirm">
+        {{ "pages.signin.confirmPasswordLabel" | translate }}
+      </label>
       <ion-icon
         (click)="toggleShowPasswordConfirm()"
         [name]="_showPasswordConfirm ? 'eye-outline' : 'eye-off-outline'"
@@ -48,8 +54,10 @@
         formControlName="generalConditions"
       />
       <label for="general-conditions">
-        J'ai lu et j'accepte les
-        <a href="" target="_blank"> conditions générales d'utilisations </a>
+        {{ "pages.signin.generalConditions.first" | translate }}
+        <a href="" target="_blank">
+          {{ "pages.signin.generalConditions.last" | translate }}
+        </a>
       </label>
     </div>
     <button
@@ -58,7 +66,15 @@
       type="submit"
       class="button signin-button"
     >
-      Create an account
+      {{ "pages.signin.createAccount" | translate }}
     </button>
   </form>
+  <div class="separator">
+    <hr class="line" />
+    <span class="text"> {{ "pages.signin.separatorText" | translate }} </span>
+    <hr class="line" />
+  </div>
+  <span class="google-login">
+    {{ "pages.signin.googleLogin" | translate }}
+  </span>
 </div>

@@ -38,6 +38,19 @@
   "pages": {
     "landing": {
 
+    },
+    "signin": {
+      "title": "Créez-vous un compte",
+      "signinEmailLabel": "Entrez votre adresse e-mail",
+      "signinPasswordLabel": "Entrez votre mot de passe",
+      "confirmPasswordLabel": "Confirmez votre mot de passe",
+      "generalConditions": {
+        "first": "J'ai lu et j'accepte les",
+        "last": "conditions générales d'utilisations"
+      },
+      "createAccount": "Créer un compte",
+      "separatorText": "Ou",
+      "googleLogin": "Utilisez votre compte google"
     }
   },
   "others": {

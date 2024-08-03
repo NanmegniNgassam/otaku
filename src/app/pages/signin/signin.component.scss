@@ -11,6 +11,7 @@
   box-shadow: lightgray 4px 4px 20px;
   padding: 40px;
   h2 {
+    font-size: 2.2rem;
     margin-bottom: 20px;
     font-family: var(--special-text-font);
   }
@@ -89,5 +90,28 @@
         }
       }
     }
+  }
+  .separator {
+    max-width: 400px;
+    width: 70%;
+    margin: 20px auto;
+    color: var(--box-container-color);
+    display: flex;
+    align-items: center;
+    .line {
+      border: 0.5px solid var(--box-container-color);
+      display: block;
+      flex: 1;
+      height: 0px;
+    }
+    .text {
+      margin: 0 20px;
+    }
+  }
+  .google-login {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    color: royalblue;
   }
 }

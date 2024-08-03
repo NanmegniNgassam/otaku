@@ -2,11 +2,13 @@
   flex: 1;
   display: flex;
   align-items: center;
+  max-width: 100%;
 }
 
 .wrapper {
   max-width: 500px;
-  width: 500px;
+  min-width: 400px;
+  width: 80%;
   margin: 100px auto;
   box-shadow: lightgray 4px 4px 20px;
   padding: 40px;
@@ -110,8 +112,46 @@
   }
   .google-login {
     display: block;
-    text-align: center;
+    width: fit-content;
+    margin: 0 auto;
     cursor: pointer;
     color: royalblue;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .wrapper {
+    h2 {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+@media all and (max-width: 500px) {
+  .wrapper {
+    min-width: 0;
+    max-width: 100%;
+    width: 90%;
+    padding: 20px;
+
+    form {
+      .input-group {
+        margin-bottom: 20px;
+        height: 40px;
+        min-width: 0;
+        input {
+          &:focus ~ label,
+          &.filled ~ label {
+            font-size: 0.6rem;
+          }
+        }
+        label {
+          font-size: 0.8rem;
+        }
+      }
+      .general-conditions {
+        margin-bottom: 10px;
+      }
+    }
   }
 }

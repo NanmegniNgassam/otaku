@@ -16,6 +16,7 @@ header {
     list-style-type: none;
     display: flex;
     align-items: center;
+    z-index: 2;
     li {
       display: block;
       margin-inline-start: 15px;

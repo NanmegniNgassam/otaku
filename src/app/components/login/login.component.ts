@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import AuthService from '../../services/auth.service';
+import { OAuthCredential } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,15 +19,20 @@ export class LoginComponent implements OnInit {
   _loginForm!: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    protected auth: AuthService,
+    private router: Router
   ) {
     this._isLoginErrors = false;
   }
 
+  /**
+   * Initialize current component
+   */
   ngOnInit(): void {
     this._loginForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.minLength(8)]]
+      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]]
     }, {
       updateOn: 'change'
     });
@@ -34,18 +42,24 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  /**
+   * Use the form values to log the user
+   * 
+   * @returns none
+   */
   async onLogin():Promise<void> {
     if(this._isLoginErrors) {
-      console.log("Le remplissage du formulaire n'est pas conforme");
+      console.error("Form filling doesn't meet all the requirements");
       return;
     }
 
-    this._isLoginErrors = true;
-    console.log("Le remplissage du formulaire est valide, nous initions la connexion : ", this._loginForm.value);
-    
-  }
-
-  async onLoginWithGoogle(): Promise<void> {
-    console.log('Login attempt with google');
+    try {
+      await this.auth.login(this._loginForm.value);    
+      
+      this.router.navigateByUrl('/');
+    } catch (error: any) {
+      this._isLoginErrors = true;
+      console.error("An error occured when logging : ", error.code);
+    }
   }
 }

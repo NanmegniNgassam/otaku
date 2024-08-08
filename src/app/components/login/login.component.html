@@ -26,7 +26,7 @@
       {{ "components.login.login" | translate }}
     </button>
 
-    <button class="button" (click)="onLoginWithGoogle()">
+    <button class="button" (click)="this.auth.loginWithGoogle()">
       <ion-icon name="logo-google"></ion-icon>
       {{ "components.login.googleLogin" | translate }}
     </button>

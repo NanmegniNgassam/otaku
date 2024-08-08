@@ -86,7 +86,7 @@
     <span class="text"> {{ "pages.signin.separatorText" | translate }} </span>
     <hr class="line" />
   </div>
-  <span class="google-login">
+  <span class="google-login" (click)="this.auth.loginWithGoogle()">
     {{ "pages.signin.googleLogin" | translate }}
   </span>
 </div>

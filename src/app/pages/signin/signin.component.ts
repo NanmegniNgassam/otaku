@@ -1,6 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import AuthService from '../../services/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -16,12 +17,16 @@ export class SigninComponent implements OnInit {
   _showPasswordConfirm!:boolean;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    protected auth: AuthService
   ) {
     this._showPassword = false;
     this._showPasswordConfirm = false;
   }
 
+  /**
+   * Initialize current component
+   */
   ngOnInit(): void {
     this._signinForm = this.formBuilder.group({
       signinEmail: [null, [Validators.required, Validators.email]],
@@ -37,15 +42,22 @@ export class SigninComponent implements OnInit {
     })
   }
 
+
   async onSignin(): Promise<void> {
     console.log(this._signinForm.errors);
     console.log("Validation du formulaire : ", this._signinForm.value)
     
   }
 
+  /**
+   * Shows/hides the current password value
+   */
   toggleShowPassword():void {
     this._showPassword = !this._showPassword;
   }
+  /**
+   * Shows/hides the current password confirmation value
+   */
   toggleShowPasswordConfirm():void {
     this._showPasswordConfirm = !this._showPasswordConfirm;
   }

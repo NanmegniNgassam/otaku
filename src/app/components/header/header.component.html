@@ -1,7 +1,9 @@
 <header>
+  @if (!(user$ | async)) {
   <div class="top-header">
     <app-login />
   </div>
+  }
   <div class="container">
     <a routerLink="/">
       <img
@@ -22,8 +24,8 @@
           {{ "components.header.links.discovery" | translate }}
         </a>
       </li>
-      @if (isUserConnected) {
-      <app-sign-in-links />
+      @if (user$ | async; as user) {
+      <app-sign-in-links [user]="user" />
       } @else {
       <app-sign-out-links />
       }
@@ -34,13 +36,13 @@
       <ion-icon
         name="close"
         class="action-button close-menu-button"
-        (click)="closeNavMenu()"
+        (click)="openNavMenuDisplay()"
       />
       } @else {
       <ion-icon
         name="menu"
         class="action-button open-menu-button"
-        (click)="openNavMenu()"
+        (click)="openNavMenuDisplay()"
       />
       }
     </div>

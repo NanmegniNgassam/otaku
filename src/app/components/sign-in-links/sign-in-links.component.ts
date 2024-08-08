@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CircleAvatarComponent } from "../circle-avatar/circle-avatar.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-sign-in-links',
@@ -11,4 +12,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './sign-in-links.component.scss'
 })
 export class SignInLinksComponent {
+  @Input() user!: User;
 }

@@ -42,11 +42,11 @@ export class SigninComponent implements OnInit {
     })
   }
 
-
+  /**
+   * Create a user account
+   */
   async onSignin(): Promise<void> {
-    console.log(this._signinForm.errors);
-    console.log("Validation du formulaire : ", this._signinForm.value)
-    
+    await this.auth.createAccount(this._signinForm.value);
   }
 
   /**

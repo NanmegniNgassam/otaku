@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Auth, getRedirectResult, GoogleAuthProvider, OAuthCredential, signInWithPopup, signOut, User, user, UserCredential } from "@angular/fire/auth";
+import { Auth, createUserWithEmailAndPassword, getRedirectResult, GoogleAuthProvider, OAuthCredential, signInWithPopup, signOut, updateProfile, User, user, UserCredential } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 
@@ -58,5 +58,21 @@ export default class AuthService {
     } catch(error: any) {
       console.error("Error occurs when signing out : ", error.message);
     }
+  }
+
+  /**
+   * Create a new account
+   * 
+   * @param credentials Account to create informations
+   */
+  async createAccount(credentials: {signinEmail: string, signinPassword: string, signinNickName: string}): Promise<void> {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(this.auth, credentials.signinEmail, credentials.signinPassword);
+      await updateProfile(userCredential.user, {displayName: credentials.signinNickName});
+      this.router.navigateByUrl('/');
+    } catch(error:any) {
+      console.error("Error occuring when creating user profile : ", error.message);
+    }
+    
   }
 }

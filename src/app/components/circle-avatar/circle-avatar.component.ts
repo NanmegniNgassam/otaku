@@ -24,7 +24,7 @@ export class CircleAvatarComponent {
 
     
     initials+= firstName && firstName[0];
-    initials+= lastName && lastName[0];
+    initials+= lastName ? lastName[0] : '';
 
     return initials.toUpperCase();
   }

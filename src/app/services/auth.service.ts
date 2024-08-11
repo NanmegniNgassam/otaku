@@ -20,7 +20,8 @@ export default class AuthService implements OnInit {
   ) {
     this.user$.subscribe((currentUser: User | null) => {
       this.currentUser = currentUser;
-    })
+    });
+    this.auth.useDeviceLanguage();
   }
 
   /**
@@ -89,7 +90,7 @@ export default class AuthService implements OnInit {
       return this.router.navigateByUrl('/');
     } catch(error:any) {
       console.error("Error occuring when creating user profile : ", error.message);
-      return false;
+      throw(error);
     }
     
   }

@@ -81,20 +81,16 @@
             border-color: var(--error-color);
           }
           &.low {
-            background-color: var(--error-color);
-            border-color: var(--error-color);
+            background-color: #ff8800;
+            border-color: #ff8800;
           }
           &.medium {
-            background-color: var(--error-color);
-            border-color: var(--error-color);
-          }
-          &.high {
-            background-color: var(--error-color);
-            border-color: var(--error-color);
+            background-color: #34c724;
+            border-color: #34c724;
           }
           &.excellent {
-            background-color: var(--error-color);
-            border-color: var(--error-color);
+            background-color: green;
+            border-color: green;
           }
         }
       }
@@ -112,6 +108,11 @@
         color: var(--normal-text-color);
         cursor: default;
       }
+    }
+    .signin-error {
+      margin: 10px auto;
+      margin-top: 20px;
+      color: var(--error-color);
     }
     .general-conditions {
       display: flex;

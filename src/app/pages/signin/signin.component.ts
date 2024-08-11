@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit {
   _showPassword!:boolean;
   _showPasswordConfirm!:boolean;
   _passwordLevel!: number;
-  _signinErrors!: string[];
+  _signinErrors: string[] = [];
   protected PASSWORD_LEVELS = ['very-low', 'low', 'medium', 'excellent'];
 
   constructor(
@@ -43,6 +43,8 @@ export class SigninComponent implements OnInit {
     });
 
     this._signinForm.valueChanges.subscribe(() => {
+      this._signinErrors = [];
+      this._passwordLevel = this.evaluatePasswordStrength(this._signinForm.value.signinPassword);
     })
   }
 
@@ -51,11 +53,44 @@ export class SigninComponent implements OnInit {
    */
   async onSignin(): Promise<void> {
     if(this._signinForm.value.signinPassword === this._signinForm.value.signinPasswordConfirm) {
-      await this.auth.createAccount(this._signinForm.value);
+      try {
+        await this.auth.createAccount(this._signinForm.value);
+      } catch(error : any) {
+        console.error(error.message);
+        this._signinErrors.push(error.message);
+      }
     } else {
       this._signinErrors.push("Les mots de passes utilisés ne sont pas identiques !");
       return;
     }
+  }
+
+  // TODO: Create a specific enum
+  // must return the strenght and recommanded improvements
+  evaluatePasswordStrength(password: string): number {
+    let passwordStrength: number = 0;
+    const specialCharRegex = /[^A-Za-z0-9]/;
+
+    // length
+    password.length >= 8 && passwordStrength++;
+
+    // special character
+    specialCharRegex.test(password) && passwordStrength++;
+    
+
+    // at least one figure
+    password.split('')
+      .map((digit: string) => Number.isInteger(Number(digit)))
+      .some((result) => result) 
+    && passwordStrength++;
+
+    // at least one capital letter
+    password.split('')
+      .map((digit: string) => !Number.isInteger(Number(digit)) && digit === digit.toUpperCase())
+      .some((result) => result)
+    && passwordStrength++;
+
+    return Math.min( Math.max(passwordStrength, 0), 3);
   }
 
   /**

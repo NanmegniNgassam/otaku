@@ -42,6 +42,15 @@
         [name]="_showPassword ? 'eye-outline' : 'eye-off-outline'"
       />
     </div>
+    <p class="password-indicator">{{ PASSWORD_LEVELS[_passwordLevel] }}</p>
+    <div class="input-group password-indicator">
+      @for (level of PASSWORD_LEVELS; track $index) { @if ($index <
+      _passwordLevel) {
+      <div [class]="'password-level ' + PASSWORD_LEVELS[$index]"></div>
+      } @else {
+      <div class="password-level"></div>
+      } }
+    </div>
     <div class="input-group">
       <input
         [type]="_showPasswordConfirm ? 'text' : 'password'"
@@ -80,6 +89,7 @@
     >
       {{ "pages.signin.createAccount" | translate }}
     </button>
+    <p>Display some errors using i18n</p>
   </form>
   <div class="separator">
     <hr class="line" />

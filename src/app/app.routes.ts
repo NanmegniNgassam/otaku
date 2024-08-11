@@ -14,3 +14,5 @@ export const routes: Routes = [
     title: 'Authentication'
   },
 ];
+
+// TODO: rename the routes title with 'otaku | pathName'

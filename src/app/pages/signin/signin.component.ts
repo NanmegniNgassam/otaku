@@ -15,6 +15,9 @@ export class SigninComponent implements OnInit {
   _signinForm!:FormGroup;
   _showPassword!:boolean;
   _showPasswordConfirm!:boolean;
+  _passwordLevel!: number;
+  _signinErrors!: string[];
+  protected PASSWORD_LEVELS = ['very-low', 'low', 'medium', 'excellent'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,6 +25,7 @@ export class SigninComponent implements OnInit {
   ) {
     this._showPassword = false;
     this._showPasswordConfirm = false;
+    this._passwordLevel = 0;
   }
 
   /**
@@ -30,9 +34,9 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
     this._signinForm = this.formBuilder.group({
       signinEmail: [null, [Validators.required, Validators.email]],
-      signinPassword: [null, [Validators.required, Validators.minLength(8)]],
-      signinNickName: [null, [Validators.required, Validators.minLength(3)]],
-      signinPasswordConfirm: [null, [Validators.required, Validators.minLength(8)]],
+      signinNickName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      signinPassword: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
+      signinPasswordConfirm: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
       generalConditions: [false, Validators.requiredTrue]
     }, {
       updateOn: 'change'
@@ -46,7 +50,12 @@ export class SigninComponent implements OnInit {
    * Create a user account
    */
   async onSignin(): Promise<void> {
-    await this.auth.createAccount(this._signinForm.value);
+    if(this._signinForm.value.signinPassword === this._signinForm.value.signinPasswordConfirm) {
+      await this.auth.createAccount(this._signinForm.value);
+    } else {
+      this._signinErrors.push("Les mots de passes utilisés ne sont pas identiques !");
+      return;
+    }
   }
 
   /**

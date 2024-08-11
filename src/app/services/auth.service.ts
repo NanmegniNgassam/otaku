@@ -1,13 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Auth, createUserWithEmailAndPassword, getRedirectResult, GoogleAuthProvider, OAuthCredential, signInWithPopup, signOut, updateProfile, User, user, UserCredential } from "@angular/fire/auth";
+import { Injectable, OnInit } from "@angular/core";
+import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVerification, signInWithPopup, signOut, updateProfile, User, user, UserCredential } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { signInWithEmailAndPassword } from "@firebase/auth";
+import { browserSessionPersistence, setPersistence } from "firebase/auth";
 
 @Injectable({
   providedIn: 'root'
 }) 
 
-export default class AuthService {
+export default class AuthService implements OnInit {
   user$ = user(this.auth);
   currentUser: User | null = this.auth.currentUser;
   provider = new GoogleAuthProvider();
@@ -20,8 +21,14 @@ export default class AuthService {
     this.user$.subscribe((currentUser: User | null) => {
       this.currentUser = currentUser;
     })
-    // Applying browser preferences language
-    auth.languageCode = "it";
+  }
+
+  /**
+   * Perform some general action right after the constructor
+   */
+  async ngOnInit(): Promise<void> {
+    // Set the persistence to session stage
+    await setPersistence(this.auth, browserSessionPersistence);
   }
 
   /**
@@ -40,9 +47,11 @@ export default class AuthService {
    * @returns Google account Credential
    */
   async loginWithGoogle() {
+    // generate the popup for the login
     const result = await signInWithPopup(this.auth, this.provider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
 
+    // Redirect the newly login user
     this.router.navigateByUrl('/');
     return credential;
   }
@@ -61,17 +70,26 @@ export default class AuthService {
   }
 
   /**
-   * Create a new account
+   * Create a new user account
    * 
-   * @param credentials Account to create informations
+   * @param credentials new user informations
+   * @returns Whether if the creation was successful or not
    */
-  async createAccount(credentials: {signinEmail: string, signinPassword: string, signinNickName: string}): Promise<void> {
+  async createAccount(credentials: {signinEmail: string, signinPassword: string, signinNickName: string}): Promise<boolean> {
     try {
+      // Create user account and update its informations
       const userCredential = await createUserWithEmailAndPassword(this.auth, credentials.signinEmail, credentials.signinPassword);
       await updateProfile(userCredential.user, {displayName: credentials.signinNickName});
-      this.router.navigateByUrl('/');
+
+      // send verification email
+      await sendEmailVerification(userCredential.user);
+
+      // Create a user document to store all its data
+
+      return this.router.navigateByUrl('/');
     } catch(error:any) {
       console.error("Error occuring when creating user profile : ", error.message);
+      return false;
     }
     
   }

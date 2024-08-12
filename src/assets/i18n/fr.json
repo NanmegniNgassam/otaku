@@ -51,7 +51,11 @@
       },
       "createAccount": "Créer un compte",
       "separatorText": "Ou",
-      "googleLogin": "Utilisez votre compte google"
+      "googleLogin": "Utilisez votre compte google",
+      "errors": {
+        "weakPassword": "Mots de passe faibles !",
+        "unidenticalPassword": "Mots de passe non-indentiques !"
+      }
     }
   },
   "others": {

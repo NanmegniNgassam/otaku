@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
     this.setNavLinksDisplay(window.innerWidth);
     this.user$.subscribe((user) => {
       if(user !== null) {
-        console.log(user)
+        console.log("Current user : ", user)
       }
     })
   }

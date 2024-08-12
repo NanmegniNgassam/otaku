@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import AuthService from '../../services/auth.service';
 
 @Component({
@@ -19,16 +19,23 @@ export class SigninComponent implements OnInit {
   _signinErrors: string[] = [];
   _isAuthLoading!: boolean;
   protected PASSWORD_LEVELS = ['very-low', 'low', 'medium', 'high', 'excellent'];
+  _weakPasswordError!: string;
+  _nonIdenticalPasswords!: string;
 
   constructor(
     private formBuilder: FormBuilder,
     protected auth: AuthService,
-    private translate: TranslateModule
+    private translate: TranslateService
   ) {
     this._showPassword = false;
     this._showPasswordConfirm = false;
     this._passwordLevel = 0;
     this._isAuthLoading = false;
+    translate.stream("pages.signin.errors").subscribe((signinErrors) => {
+      let {weakPassword , unidenticalPassword } = signinErrors;
+      this._weakPasswordError = weakPassword;
+      this._nonIdenticalPasswords = unidenticalPassword;
+    })
   }
 
   /**
@@ -49,7 +56,6 @@ export class SigninComponent implements OnInit {
       this._signinErrors = [];
       if(this._signinForm.value.signinPassword) {
         this._passwordLevel = this.generatePasswordStrength(this._signinForm.value.signinPassword);
-        console.log("Password strength : ", this._passwordLevel);
       }
     })
   }
@@ -69,12 +75,11 @@ export class SigninComponent implements OnInit {
         this._isAuthLoading = false;
       }
     } else {
-      console.log(this._signinErrors);
       if(this._passwordLevel < 3) {
-        this._signinErrors.unshift("Mots de passe faibles !");
+        this._signinErrors.unshift(this._weakPasswordError);
       }
       if(this._signinForm.value.signinPassword !== this._signinForm.value.signinPasswordConfirm) {
-        this._signinErrors.unshift("Mots de passe non-indentiques !");
+        this._signinErrors.unshift(this._nonIdenticalPasswords);
       }
       
       this._isAuthLoading = false;

@@ -35,7 +35,7 @@
         required
       />
       <label for="signin-password">
-        {{ "pages.signin.signinPasswordLabel" | translate }}
+        {{ "pages.signin.signinPasswordLabel" | translate }} (min 8 chars)
       </label>
       <ion-icon
         (click)="toggleShowPassword()"
@@ -45,7 +45,9 @@
     <!-- TODO: Make it a component -->
     @if(_signinForm.value.signinPassword) {
     <div class="password-strength">
-      <p class="password-indicator">{{ PASSWORD_LEVELS[_passwordLevel] }}</p>
+      <p class="password-strength-label">
+        {{ PASSWORD_LEVELS[_passwordLevel] }}
+      </p>
       <div class="input-group password-indicator">
         @for (level of PASSWORD_LEVELS; track $index) { @if ($index <=
         _passwordLevel) {
@@ -95,7 +97,11 @@
       type="submit"
       class="button signin-button"
     >
+      @if (_isAuthLoading) {
+      <div class="spinner"></div>
+      } @else {
       {{ "pages.signin.createAccount" | translate }}
+      }
     </button>
     @if (_signinErrors && _signinErrors.length > 0) {
     <p class="signin-error">{{ _signinErrors[0] }}</p>

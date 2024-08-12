@@ -24,6 +24,12 @@
     .password-indicator {
       margin-bottom: 5px;
     }
+    .password-strength {
+      .password-strength-label {
+        font-size: 1rem;
+        margin-bottom: 2px;
+      }
+    }
     .input-group {
       position: relative;
       border: 1px solid grey;
@@ -81,10 +87,14 @@
             border-color: var(--error-color);
           }
           &.low {
+            background-color: #e04809;
+            border-color: #e04809;
+          }
+          &.medium {
             background-color: #ff8800;
             border-color: #ff8800;
           }
-          &.medium {
+          &.high {
             background-color: #34c724;
             border-color: #34c724;
           }
@@ -103,10 +113,19 @@
       border-radius: 25px;
       border: none;
       font-size: 1rem;
+      .spinner {
+        border: 5px solid var(--box-container-color);
+        border-bottom-color: #fff;
+        width: 10%;
+      }
+      &:hover {
+        filter: brightness(105%);
+      }
       &:disabled {
         background-color: var(--box-container-color);
         color: var(--normal-text-color);
         cursor: default;
+        filter: brightness(1);
       }
     }
     .signin-error {
@@ -162,6 +181,13 @@
     h2 {
       font-size: 1.7rem;
     }
+    form {
+      .password-strength {
+        .password-strength-label {
+          font-size: 0.9rem;
+        }
+      }
+    }
   }
 }
 
@@ -173,6 +199,11 @@
     padding: 20px;
 
     form {
+      .password-strength {
+        .password-strength-label {
+          font-size: 0.7rem;
+        }
+      }
       .input-group {
         margin-bottom: 20px;
         height: 40px;

@@ -22,11 +22,19 @@
       class="button login-button"
       [disabled]="_loginForm.invalid"
     >
+      @if (_isAuthLoading) {
+      <div class="spinner"></div>
+      } @else {
       <ion-icon name="log-in-outline"></ion-icon>
       {{ "components.login.login" | translate }}
+      }
     </button>
 
-    <button class="button" (click)="this.auth.loginWithGoogle()">
+    <button
+      class="button"
+      [disabled]="!auth.googleProvider"
+      (click)="this.auth.loginWithGoogle()"
+    >
       <ion-icon name="logo-google"></ion-icon>
       {{ "components.login.googleLogin" | translate }}
     </button>

@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   _isLoginErrors!: boolean;
   _loginForm!: FormGroup;
+  _isAuthLoading!:boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this._isLoginErrors = false;
+    this._isAuthLoading = false;
   }
 
   /**
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this._loginForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]]
+      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(50)]]
     }, {
       updateOn: 'change'
     });
@@ -43,23 +45,28 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Use the form values to log the user
+   * Use the form values to log the user with email-password
    * 
    * @returns none
    */
   async onLogin():Promise<void> {
+    this._isAuthLoading = true;
     if(this._isLoginErrors) {
       console.error("Form filling doesn't meet all the requirements");
+      this._isAuthLoading = false;
       return;
     }
 
     try {
+      this._isAuthLoading = true;
       await this.auth.login(this._loginForm.value);    
       
       this.router.navigateByUrl('/');
     } catch (error: any) {
       this._isLoginErrors = true;
       console.error("An error occured when logging : ", error.code);
+    } finally {
+      this._isAuthLoading = false;
     }
   }
 }

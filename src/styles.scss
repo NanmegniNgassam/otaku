@@ -44,3 +44,23 @@ a {
     padding: 10px 15px;
   }
 }
+
+/* Spinner global styles */
+@keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  border: 0.8rem solid #fff;
+  border-bottom-color: var(--secondary-color);
+  width: 20%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  animation: 1s linear infinite spinner;
+  margin: auto;
+}

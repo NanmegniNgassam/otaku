@@ -8,10 +8,10 @@ import { browserSessionPersistence, setPersistence } from "firebase/auth";
   providedIn: 'root'
 }) 
 
-export default class AuthService implements OnInit {
+export default class AuthService {
   user$ = user(this.auth);
   currentUser: User | null = this.auth.currentUser;
-  provider = new GoogleAuthProvider();
+  googleProvider = new GoogleAuthProvider();
 
 
   constructor(
@@ -20,17 +20,9 @@ export default class AuthService implements OnInit {
   ) {
     this.user$.subscribe((currentUser: User | null) => {
       this.currentUser = currentUser;
-    });
-    this.auth.useDeviceLanguage();
+    })
   }
 
-  /**
-   * Perform some general action right after the constructor
-   */
-  async ngOnInit(): Promise<void> {
-    // Set the persistence to session stage
-    await setPersistence(this.auth, browserSessionPersistence);
-  }
 
   /**
    * Check if the loginCrendential already exits and log user in
@@ -39,6 +31,9 @@ export default class AuthService implements OnInit {
    * @returns UserCredential or throw an Error 
    */
   async login(loginCredentials : {email: string, password: string}): Promise<UserCredential> {
+    // Set the persistence to session stage
+    await setPersistence(this.auth, browserSessionPersistence);
+
     return signInWithEmailAndPassword(this.auth, loginCredentials.email, loginCredentials.password);
   }
 
@@ -48,8 +43,11 @@ export default class AuthService implements OnInit {
    * @returns Google account Credential
    */
   async loginWithGoogle() {
+    // Set the persistence to session stage
+    await setPersistence(this.auth, browserSessionPersistence);
+
     // generate the popup for the login
-    const result = await signInWithPopup(this.auth, this.provider);
+    const result = await signInWithPopup(this.auth, this.googleProvider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
 
     // Redirect the newly login user
@@ -78,6 +76,9 @@ export default class AuthService implements OnInit {
    */
   async createAccount(credentials: {signinEmail: string, signinPassword: string, signinNickName: string}): Promise<boolean> {
     try {
+      // Set the persistence to session stage
+      await setPersistence(this.auth, browserSessionPersistence);
+
       // Create user account and update its informations
       const userCredential = await createUserWithEmailAndPassword(this.auth, credentials.signinEmail, credentials.signinPassword);
       await updateProfile(userCredential.user, {displayName: credentials.signinNickName});

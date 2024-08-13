@@ -89,9 +89,9 @@ export default class AuthService {
 
       // Create a user document to store all its data
 
-      return this.router.navigateByUrl('/');
+      return this.router.navigateByUrl('/email-verification');
     } catch(error:any) {
-      console.error("Error occuring when creating user profile : ", error.message);
+      console.error("Error occuring when creating new user account : ", error.message);
       throw(error);
     }
   }

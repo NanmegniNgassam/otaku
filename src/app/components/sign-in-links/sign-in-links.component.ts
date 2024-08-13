@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { CircleAvatarComponent } from "../circle-avatar/circle-avatar.component";
-import { TranslateModule } from '@ngx-translate/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { User } from '@angular/fire/auth';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { CircleAvatarComponent } from "../circle-avatar/circle-avatar.component";
 
 @Component({
   selector: 'app-sign-in-links',

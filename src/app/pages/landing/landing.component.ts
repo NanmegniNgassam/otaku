@@ -12,6 +12,5 @@ export class LandingComponent {
   constructor(
     protected auth: AuthService
   ) {
-
   }
 }

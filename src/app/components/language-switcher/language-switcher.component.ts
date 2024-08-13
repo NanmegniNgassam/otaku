@@ -18,9 +18,13 @@ export class LanguageSwitcherComponent implements OnInit {
   ];;
 
   constructor(private translate: TranslateService) {
+    // Set a default app language
     translate.setDefaultLang(DEFAULT_APP_LANGUAGE);
   }
 
+  /**
+   * Performs some actions right after the constructor
+   */
   ngOnInit(): void {
     this._chosenLanguage = localStorage.getItem(DEVICE_CHOSEN_LANGUAGE_KEY);
     this._prefNavigatorLanguages = [...window.navigator.languages];

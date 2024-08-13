@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import AuthService from '../../services/auth.service';
-import { OAuthCredential } from '@angular/fire/auth';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Initialize current component
+   * Performs some actions right after the constructor
    */
   ngOnInit(): void {
     this._loginForm = this.formBuilder.group({
@@ -70,3 +69,5 @@ export class LoginComponent implements OnInit {
     }
   }
 }
+
+// TODO : Improves the feedback gived when an error occured

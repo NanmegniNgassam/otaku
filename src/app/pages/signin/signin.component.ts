@@ -31,6 +31,8 @@ export class SigninComponent implements OnInit {
     this._showPasswordConfirm = false;
     this._passwordLevel = 0;
     this._isAuthLoading = false;
+
+    // Get form errors from i18n in the current app language
     translate.stream("pages.signin.errors").subscribe((signinErrors) => {
       let {weakPassword , unidenticalPassword } = signinErrors;
       this._weakPasswordError = weakPassword;
@@ -39,9 +41,10 @@ export class SigninComponent implements OnInit {
   }
 
   /**
-   * Initialize current component
+   * Performs some actions right after the constructor
    */
   ngOnInit(): void {
+    // Init the reactive signin form
     this._signinForm = this.formBuilder.group({
       signinEmail: [null, [Validators.required, Validators.email]],
       signinNickName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
@@ -52,6 +55,7 @@ export class SigninComponent implements OnInit {
       updateOn: 'change'
     });
 
+    // Listening to form fields changes
     this._signinForm.valueChanges.subscribe(() => {
       this._signinErrors = [];
       if(this._signinForm.value.signinPassword) {
@@ -61,16 +65,18 @@ export class SigninComponent implements OnInit {
   }
 
   /**
-   * Create a user account
+   * Create a new user account
    */
   async onSignin(): Promise<void> {
     this._isAuthLoading = true;
+
+    // Check if the passwords are identical and strong enough
     if(this._signinForm.value.signinPassword === this._signinForm.value.signinPasswordConfirm && this._passwordLevel >= 3) {
       try {
         await this.auth.createAccount(this._signinForm.value);
       } catch(error : any) {
         console.error(error.message);
-        this._signinErrors.push(error.code);
+        this._signinErrors.unshift(error.code);
       } finally {
         this._isAuthLoading = false;
       }
@@ -99,14 +105,14 @@ export class SigninComponent implements OnInit {
    */
   generatePasswordStrength(password: string): number {
     let passwordStrength: number = 0;
-    const specialCharRegex = /[^A-Za-z0-9]/;
-    const upperCaseRegex = /[A-Z]/;
+    const SPECIAL_CHAR_REGEX = /[^A-Za-z0-9]/;
+    const UPPERCASEREGEX = /[A-Z]/;
 
-    // Control the password length
+    // Look for the password length
     password.length >= 8 && passwordStrength++;
 
     // Look for at least one special character
-    specialCharRegex.test(password) && passwordStrength++;
+    SPECIAL_CHAR_REGEX.test(password) && passwordStrength++;
     
     // Look for at least one figure
     password.split('')
@@ -116,10 +122,11 @@ export class SigninComponent implements OnInit {
 
     // Look for at least one uppercase
     password.split('')
-      .map((digit: string) => upperCaseRegex.test(digit))
+      .map((digit: string) => UPPERCASEREGEX.test(digit))
       .some((result) => result)
     && passwordStrength++;
 
+    // return a [0-4] Integer value
     return Math.min( Math.max(passwordStrength, 0), 4);
   }
 

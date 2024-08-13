@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 import { SigninComponent } from './pages/signin/signin.component';
-import { Inject } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 
 export const routes: Routes = [
   {

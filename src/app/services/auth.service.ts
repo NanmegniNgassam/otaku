@@ -3,6 +3,7 @@ import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVeri
 import { Router } from "@angular/router";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { browserSessionPersistence, setPersistence } from "firebase/auth";
+import { LoginCredential, SigninCredential } from "../models/others";
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export default class AuthService {
    * @param loginCredentials (email/password)
    * @returns UserCredential or throw an Error 
    */
-  async login(loginCredentials : {email: string, password: string}): Promise<UserCredential> {
+  async login(loginCredentials : LoginCredential): Promise<UserCredential> {
     // Set the persistence to session stage
     await setPersistence(this.auth, browserSessionPersistence);
 
@@ -50,7 +51,7 @@ export default class AuthService {
     const result = await signInWithPopup(this.auth, this.googleProvider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
 
-    // Redirect the newly login user
+    // Redirect the newly login user after login
     this.router.navigateByUrl('/');
     return credential;
   }
@@ -74,7 +75,7 @@ export default class AuthService {
    * @param credentials new user informations
    * @returns Whether if the creation was successful or not
    */
-  async createAccount(credentials: {signinEmail: string, signinPassword: string, signinNickName: string}): Promise<boolean> {
+  async createAccount(credentials: SigninCredential ): Promise<boolean> {
     try {
       // Set the persistence to session stage
       await setPersistence(this.auth, browserSessionPersistence);
@@ -93,6 +94,7 @@ export default class AuthService {
       console.error("Error occuring when creating user profile : ", error.message);
       throw(error);
     }
-    
   }
 }
+
+// TODO: Create a page to remind the newly user to validate its account by email

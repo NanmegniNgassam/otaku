@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 import { SigninComponent } from './pages/signin/signin.component';
+import { AccountComponent } from './pages/account/account.component';
 
 export const routes: Routes = [
   {
@@ -13,4 +14,9 @@ export const routes: Routes = [
     component: SigninComponent,
     title: 'otaku | authentication'
   },
+  {
+    path: 'account',
+    component: AccountComponent,
+    title: 'otaku | account'
+  }
 ];

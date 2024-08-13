@@ -3,7 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import AuthService from '../../services/auth.service';
+import AuthService from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',

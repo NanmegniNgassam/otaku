@@ -4,9 +4,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { MAX_MOBILE_SCREEN_WIDTH } from '../../../configs/screen-sizes';
 import AuthService from '../../services/auth.service';
-import { LoginComponent } from "../login/login.component";
-import { SignInLinksComponent } from "../sign-in-links/sign-in-links.component";
-import { SignOutLinksComponent } from "../sign-out-links/sign-out-links.component";
+import { SignInLinksComponent } from "./sign-in-links/sign-in-links.component";
+import { SignOutLinksComponent } from "./sign-out-links/sign-out-links.component";
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-header',

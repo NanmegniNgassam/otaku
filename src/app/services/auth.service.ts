@@ -85,7 +85,7 @@ export default class AuthService {
       await updateProfile(userCredential.user, {displayName: credentials.signinNickName});
 
       // send verification email
-      await sendEmailVerification(userCredential.user);
+      await this.sendVerificationEmail(userCredential.user);
 
       // Create a user document to store all its data
 
@@ -95,6 +95,8 @@ export default class AuthService {
       throw(error);
     }
   }
-}
 
-// TODO: Create a page to remind the newly user to validate its account by email
+  async sendVerificationEmail(user: User): Promise<void> {
+    await sendEmailVerification(user, {url: "http://localhost:4200/account"});
+  }
+}

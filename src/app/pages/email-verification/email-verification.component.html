@@ -1,10 +1,11 @@
 <div class="wrapper">
+  @if ((user$ | async); as user ) {
   <h1 class="title">Finaliser votre inscription</h1>
   <div class="body">
     <strong>Un email vient de vous être envoyé !</strong>
     <p class="message-content">
-      (Gilles Pavel), Pour finaliser votre inscription, rendez-vous dans votre
-      boîte mail pour activer votre compte.
+      {{ user.displayName }}, Pour finaliser votre inscription, rendez-vous dans
+      votre boîte mail pour activer votre compte.
     </p>
     <a
       class="button open-inbox"
@@ -15,17 +16,22 @@
         <ion-icon class="icon" name="mail-unread-outline"></ion-icon>
         <p>Ouvrir ma boîte mail</p>
       </div>
-      <em>(nanmegningassam&#64;gmail.com)</em>
+      <em>( {{ user.email }} )</em>
     </a>
     <div class="alternative">
       <p>Pas d'e-mail reçu dans votre boîte de reception ou vos spams ?</p>
-      <span>Renvoyer l'e-mail</span>
+      <span (click)="resendValidationEmail(user)">Renvoyer l'e-mail</span>
     </div>
     <div class="actions">
-      <button class="button">Compte Activé</button>
-      <button class="button secondary">Me rappeler plus tard</button>
+      <button (click)="checkVerifiedEmail()" class="button">
+        Compte Activé
+      </button>
+      <button routerLink="/account" class="button secondary">
+        Me rappeler plus tard
+      </button>
     </div>
   </div>
+  }
 </div>
 
 <!-- TODO: Skippez cette page immédiatement dès que la verification du compte est passée. -->

@@ -3,11 +3,12 @@ import AuthService from '../../services/auth.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { updateProfile, User } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-email-verification',
   standalone: true,
-  imports: [AsyncPipe, RouterLink],
+  imports: [AsyncPipe, RouterLink, TranslateModule],
   templateUrl: './email-verification.component.html',
   styleUrl: './email-verification.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

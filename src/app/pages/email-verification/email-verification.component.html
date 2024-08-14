@@ -1,37 +1,42 @@
 <div class="wrapper">
-  @if ((user$ | async); as user ) {
-  <h1 class="title">Finaliser votre inscription</h1>
+  <h1 class="title">{{ "pages.emailVerification.title" | translate }}</h1>
   <div class="body">
-    <strong>Un email vient de vous être envoyé !</strong>
+    <strong>
+      {{ "pages.emailVerification.content.subTitle" | translate }}
+    </strong>
+    @if ((user$ | async); as user ) {
     <p class="message-content">
-      {{ user.displayName }}, Pour finaliser votre inscription, rendez-vous dans
-      votre boîte mail pour activer votre compte.
+      {{ user.displayName }},
+      {{ "pages.emailVerification.content.message" | translate }}
     </p>
     <a
-      class="button open-inbox"
+      class="button open-mailbox"
       href="https://mail.google.com/mail/u/0/#inbox"
       target="_blank"
     >
       <div>
         <ion-icon class="icon" name="mail-unread-outline"></ion-icon>
-        <p>Ouvrir ma boîte mail</p>
+        <p>{{ "pages.emailVerification.content.mailbox" | translate }}</p>
       </div>
       <em>( {{ user.email }} )</em>
     </a>
     <div class="alternative">
-      <p>Pas d'e-mail reçu dans votre boîte de reception ou vos spams ?</p>
-      <span (click)="resendValidationEmail(user)">Renvoyer l'e-mail</span>
+      <p>{{ "pages.emailVerification.content.noEmail" | translate }}</p>
+      <span (click)="resendValidationEmail(user)">
+        {{ "pages.emailVerification.content.resendEmail" | translate }}
+      </span>
     </div>
     <div class="actions">
       <button (click)="checkVerifiedEmail()" class="button">
-        Compte Activé
+        {{ "pages.emailVerification.content.completion" | translate }}
       </button>
       <button routerLink="/account" class="button secondary">
-        Me rappeler plus tard
+        {{ "pages.emailVerification.content.reminder" | translate }}
       </button>
     </div>
+    }
   </div>
-  }
 </div>
 
 <!-- TODO: Skippez cette page immédiatement dès que la verification du compte est passée. -->
+<!-- TODO: Mettre à jour les différents template d'emails -->

@@ -56,6 +56,18 @@
         "weakPassword": "Mots de passe faibles !",
         "unidenticalPassword": "Mots de passe non-indentiques !"
       }
+    },
+    "emailVerification": {
+      "title": "Finaliser votre inscription",
+      "content": {
+        "subTitle": "Un email vient de vous être envoyé !",
+        "message": "Pour finaliser votre inscription, rendez-vous dans votre boîte mail pour activer votre compte.",
+        "mailbox": "Ouvrir ma boîte mail",
+        "noEmail": "Pas d'e-mail reçu dans votre boîte de reception ou vos spams ?",
+        "resendEmail": "Renvoyer l'e-mail",
+        "completion": "Compte Activé",
+        "reminder": "Me rappeler plus tard" 
+      }
     }
   },
   "others": {

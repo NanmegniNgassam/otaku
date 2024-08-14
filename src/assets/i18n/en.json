@@ -56,6 +56,18 @@
         "weakPassword": "Weak passwords !",
         "unidenticalPassword": "Non-Identical passwords !"
       }
+    },
+    "emailVerification": {
+      "title": "Complete your registration",
+      "content": {
+        "subTitle": "An email has just been sent to you!",
+        "message": "To complete your registration, go to your mailbox to activate your account.",
+        "mailbox": "Open my mailbox",
+        "noEmail": "No email received in your inbox or spam ?",
+        "resendEmail": "Resend E-mail",
+        "completion": "Account activated",
+        "reminder": "Remind me later" 
+      }
     }
   },
   "others": {

@@ -33,6 +33,12 @@
       "passwordField": "Password",
       "login": "Login",
       "googleLogin": "Google Login"
+    },
+    "toast": {
+      "success": "Congratulations!",
+      "fail": "Sorry!",
+      "warning": "Pay attention!",
+      "info": "For your information!"
     }
   },
   "pages": {

@@ -1,4 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { title } from 'process';
 
 type ToastType = 'success' | 'fail' | 'warning' | 'info'
@@ -6,7 +7,7 @@ type ToastType = 'success' | 'fail' | 'warning' | 'info'
 @Component({
   selector: 'app-toast',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

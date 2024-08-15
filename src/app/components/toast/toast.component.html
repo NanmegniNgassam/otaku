@@ -4,7 +4,9 @@
   </div>
 
   <div class="toast-content">
-    <strong class="title">Congratulations!</strong>
+    <strong class="title">
+      {{ "components.toast." + notificationType | translate }}
+    </strong>
     <p class="message">
       {{ message }}
     </p>

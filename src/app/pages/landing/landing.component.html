@@ -1,1 +1,6 @@
 <button class="button" (click)="this.auth.logout()">Logout</button>
+<app-toast
+  [notificationType]="'info'"
+  [message]="'Votre compte a été activé'"
+  [handleDismiss]="onDismiss"
+/>

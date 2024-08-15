@@ -1,0 +1,77 @@
+.wrapper {
+  margin-left: 50px;
+  box-shadow: 3px 5px 6px gray;
+  max-width: 90%;
+  width: fit-content;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 500px;
+  // Linked to toast icon dimensions
+  border-radius: 32.5px 10px 10px 0;
+  overflow: hidden;
+  .toast-icon {
+    height: 100%;
+    aspect-ratio: 1/1;
+    background-color: green;
+    border-radius: 50% 50% 50% 0;
+    &.success {
+      background: #4caf50;
+    }
+    &.fail {
+      background: #f44336;
+    }
+    &.warning {
+      background: #ffc107;
+    }
+    &.info {
+      background: #2196f3;
+    }
+    ion-icon {
+      padding: 15px;
+      font-size: 30px;
+      color: #fff;
+    }
+  }
+
+  .toast-content {
+    flex: 1;
+    margin: 0 0 0 15px;
+    max-width: calc(80% - 10px);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    .title {
+      word-wrap: break-word;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      line-clamp: 1;
+      -webkit-line-clamp: 1;
+      margin-bottom: 5px;
+    }
+    .message {
+      font-size: 0.8rem;
+      word-wrap: break-word;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      line-clamp: 1;
+      -webkit-line-clamp: 1;
+      line-height: 150%;
+    }
+  }
+  .toast-close {
+    padding: 10px;
+    ion-icon {
+      padding: 5px;
+      font-size: 20px;
+      transition: 0.42s all cubic-bezier(0.075, 0.82, 0.165, 1);
+      cursor: pointer;
+      border-radius: 50%;
+      &:hover {
+        box-shadow: 1px 3px 5px gray;
+      }
+    }
+  }
+}

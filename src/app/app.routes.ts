@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { LandingComponent } from './pages/landing/landing.component';
-import { SigninComponent } from './pages/signin/signin.component';
+import { AuthGuard, EmailVerificationGuard, NoAuthGuard } from './guards/auth.guard';
 import { AccountComponent } from './pages/account/account.component';
 import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
-import { AuthGuard, NoAuthGuard } from './guards/auth.guard';
+import { LandingComponent } from './pages/landing/landing.component';
+import { SigninComponent } from './pages/signin/signin.component';
 
 export const routes: Routes = [
   {
@@ -25,7 +25,7 @@ export const routes: Routes = [
   },
   {
     path: 'email-verification',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, EmailVerificationGuard],
     component: EmailVerificationComponent,
     title: 'otaku | email verification'
   }

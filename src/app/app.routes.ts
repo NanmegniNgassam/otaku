@@ -3,7 +3,7 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { AccountComponent } from './pages/account/account.component';
 import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard, NoAuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -13,6 +13,7 @@ export const routes: Routes = [
   },
   {
     path: 'sign-in',
+    canActivate: [NoAuthGuard],
     component: SigninComponent,
     title: 'otaku | authentication'
   },

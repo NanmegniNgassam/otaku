@@ -74,6 +74,12 @@
         "completion": "Account activated",
         "reminder": "Remind me later" 
       }
+    },
+    "notFound": {
+      "title": "Accept our appologies!",
+      "message": "The page you were looking for doesn't exist. You may have misstyped the address or the page may have moved.",
+      "linkLabel": "Go to Home page",
+      "imageAlt": "The page you are looking for isn't here!"
     }
   },
   "others": {

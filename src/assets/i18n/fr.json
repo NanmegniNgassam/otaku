@@ -74,6 +74,12 @@
         "completion": "Compte Activé",
         "reminder": "Me rappeler plus tard" 
       }
+    },
+    "notFound": {
+      "title": "Veuillez accepter nos excuses !",
+      "message": "La page que vous recherchez n'existe pas. Vous avez peut-être mal orthographié l'adresse ou la page a peut-être été déplacée.",
+      "linkLabel": "Aller à l'accueil",
+      "imageAlt": "La page que vous recherchez ne se trouve pas ici."
     }
   },
   "others": {

@@ -1,19 +1,18 @@
 <div class="wrapper">
   <div class="text">
-    <h1 class="title">Veuillez accepter nos excuses !</h1>
+    <h1 class="title">{{ "pages.notFound.title" | translate }}</h1>
     <p class="message">
-      La page que vous recherchez n'existe pas. Vous avez peut-être mal
-      orthographié l'adresse ou la page a peut-être été déplacée.
+      {{ "pages.notFound.message" | translate }}
     </p>
     <a routerLink="/" class="link">
       <ion-icon name="home-outline"></ion-icon>
-      <span>Aller à l'accueil</span>
+      <span>{{ "pages.notFound.linkLabel" | translate }}</span>
     </a>
   </div>
   <div class="image">
     <img
       src="../../../assets/images/resource-not-found.png"
-      alt="La page que vous recherchez ne se trouve pas ici."
+      alt="{{ 'pages.notFound.imageAlt' | translate }}"
     />
   </div>
 </div>

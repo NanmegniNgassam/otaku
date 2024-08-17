@@ -9,7 +9,7 @@
   gap: 20px;
   &::after {
     content: "";
-    border: 1px solid var(--normal-text-color);
+    border: 1px solid lightgray;
     position: absolute;
     width: 90%;
     bottom: 0;

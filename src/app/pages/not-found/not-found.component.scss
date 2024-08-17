@@ -1,0 +1,50 @@
+.wrapper {
+  position: relative;
+  margin: 100px auto;
+  padding: 40px 0;
+  max-width: min(1000px, 80%);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  gap: 20px;
+  &::after {
+    content: "";
+    border: 1px solid var(--normal-text-color);
+    position: absolute;
+    width: 90%;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  .title {
+    font-weight: 600;
+    font-size: 1.7rem;
+    margin-bottom: 40px;
+  }
+  .message {
+    word-wrap: break-word;
+    line-height: 150%;
+    text-indent: 15%;
+    margin-bottom: 60px;
+    color: var(--normal-text-color);
+  }
+  .link {
+    border: 2px solid var(--secondary-color);
+    padding: 10px 20px;
+    width: fit-content;
+    display: flex;
+    transition: 0.42s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 3px 2px 6px lightgray;
+    &:hover {
+      box-shadow: none;
+    }
+
+    span {
+      padding-inline-start: 5px;
+      vertical-align: middle;
+    }
+    ion-icon {
+      vertical-align: middle;
+    }
+  }
+}

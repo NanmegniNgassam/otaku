@@ -17,9 +17,11 @@
     transform: translate(-50%, 0);
   }
   .text {
+    max-width: 50%;
     .title {
       font-weight: 600;
       font-size: 1.7rem;
+      line-height: 150%;
       margin-bottom: 40px;
     }
     .message {
@@ -53,6 +55,71 @@
     max-width: 60%;
     img {
       width: 100%;
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+  .wrapper {
+    gap: 10px;
+    .text {
+      max-width: 60%;
+      .title {
+        margin-bottom: 30px;
+      }
+      .message {
+        font-size: 0.9rem;
+        margin-bottom: 40px;
+      }
+      .link {
+        font-size: 0.9rem;
+      }
+    }
+    .image {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+@media all and (max-width: 500px) {
+  .wrapper {
+    flex-direction: column-reverse;
+    gap: 20px;
+    padding-top: 0;
+    .text {
+      max-width: 100%;
+      .title {
+        text-align: center;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+      }
+      .message {
+        font-size: 0.8rem;
+        line-height: 200%;
+        margin-bottom: 30px;
+      }
+      .link {
+        margin: 0 auto;
+        font-size: 0.8rem;
+      }
+    }
+    .image {
+      max-width: 100%;
+      transform: translateY(0);
+      position: relative;
+    }
+  }
+}
+
+@media all and (max-width: 300px) {
+  .wrapper {
+    max-width: 100%;
+    width: 100%;
+    .text {
+      padding: 0 10px;
     }
   }
 }

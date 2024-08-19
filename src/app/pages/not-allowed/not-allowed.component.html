@@ -1,0 +1,17 @@
+<div class="wrapper">
+  <h1 class="title">{{ "pages.notAllowed.title" | translate }}</h1>
+  <ion-icon class="image" name="key-sharp"></ion-icon>
+  <p class="message">
+    {{ "pages.notAllowed.message" | translate }}
+  </p>
+  <div class="actions">
+    <a routerLink="/" class="link">
+      <ion-icon name="home"></ion-icon>
+      <span>{{ "pages.notAllowed.homeLinkLabel" | translate }}</span>
+    </a>
+    <a routerLink="/sign-in" class="link">
+      <ion-icon name="person"></ion-icon>
+      <span>{{ "pages.notAllowed.authentication" | translate }}</span>
+    </a>
+  </div>
+</div>

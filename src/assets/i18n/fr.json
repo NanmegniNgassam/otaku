@@ -80,6 +80,12 @@
       "message": "La page que vous recherchez n'existe pas. Vous avez peut-être mal orthographié l'adresse ou la page a peut-être été déplacée.",
       "linkLabel": "Aller à l'accueil",
       "imageAlt": "La page que vous recherchez ne se trouve pas ici."
+    },
+    "notAllowed": {
+      "title": "Autorisations requises pour accéder à la resource !",
+      "message": "N'étant pas connecté, vous n'avez donc pas les autorisations requises pour accéder à cette page. Vous pouvez soit, repartir d'où vous venez ou sélectionner l'une des options ci-dessous ...",
+      "homeLinkLabel": "Aller à l'accueil",
+      "authentication": "S'authentifier"
     }
   },
   "others": {

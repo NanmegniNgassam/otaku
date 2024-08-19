@@ -5,6 +5,7 @@ import { EmailVerificationComponent } from './pages/email-verification/email-ver
 import { LandingComponent } from './pages/landing/landing.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,12 @@ export const routes: Routes = [
     canActivate: [AuthGuard, EmailVerificationGuard],
     component: EmailVerificationComponent,
     title: 'otaku | email verification'
+  },
+  {
+    path: 'missing-permissions',
+    canActivate: [NoAuthGuard],
+    component: NotAllowedComponent,
+    title: "otaku | missing permissions"
   },
   {
     path: '**',

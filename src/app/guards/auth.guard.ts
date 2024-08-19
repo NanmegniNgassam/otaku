@@ -20,7 +20,7 @@ export class AuthGuard {
   canActivate() {
     return this._auth.user$.pipe(
       map((user) => {
-        return (!user) ? this._router.navigateByUrl('/sign-in') : true
+        return (!user) ? this._router.navigateByUrl('/missing-permissions') : true
       })
     )
   }

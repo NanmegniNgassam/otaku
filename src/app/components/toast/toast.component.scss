@@ -1,14 +1,19 @@
 .wrapper {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
   box-shadow: 3px 5px 6px gray;
-  max-width: 90%;
+  max-width: min(600px, 90%);
   width: fit-content;
   display: flex;
   gap: 10px;
   align-items: center;
   min-width: 500px;
+  overflow: hidden;
+  background: #fff;
+  z-index: 2;
   // Linked to toast icon dimensions
   border-radius: 32.5px 10px 10px 0;
-  overflow: hidden;
   .toast-icon {
     height: 100%;
     aspect-ratio: 1/1;
@@ -78,25 +83,29 @@
 @media screen and (max-width: 800px) {
   .wrapper {
     min-width: 400px;
+    width: 80%;
   }
 }
 
 @media screen and (max-width: 500px) {
   .wrapper {
     min-width: 0;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
     gap: 5px;
+    // Linked to toast icon dimensions
+    border-radius: 27.5px 10px 10px 0;
     .toast-icon {
       ion-icon {
-        // font-size: 15px;
+        font-size: 25px;
       }
     }
     .toast-content {
+      max-width: calc(100% - 20px);
       margin: 0;
       .title {
-        font-size: 0.9rem;
-      }
-      .message {
-        font-size: 0.7rem;
+        font-size: 1rem;
       }
     }
     .toast-close {
@@ -108,9 +117,9 @@
   }
 }
 
-@media screen and (max-width: 250px) {
+@media screen and (max-width: 350px) {
   .wrapper {
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 5px;
     justify-content: space-between;
     gap: 5px;
@@ -119,7 +128,8 @@
     }
     .toast-content {
       .title {
-        font-size: 0.8rem;
+        font-size: 1.1rem;
+        font-weight: 600;
         &.success {
           color: #4caf50;
         }
@@ -134,13 +144,13 @@
         }
       }
       .message {
-        font-size: 0.6rem;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
       }
     }
     .toast-close {
       padding: 2px;
       ion-icon {
-        font-size: 15px;
         padding: 2px;
       }
     }

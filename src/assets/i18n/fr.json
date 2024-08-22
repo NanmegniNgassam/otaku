@@ -65,7 +65,10 @@
       "googleLogin": "Utilisez votre compte google",
       "errors": {
         "weakPassword": "Mots de passe faibles !",
-        "unidenticalPassword": "Mots de passe non-indentiques !"
+        "unidenticalPassword": "Mots de passe non-indentiques !",
+        "emailAlreadyInUse": "Cet email est déjà lié à un compte !",
+        "tooManyRequests": "Trop de requêtes. Attendez et réessayez plus tard !",
+        "unknowError":"Erreur inconnue. Veuillez réessayer plus tard !"
       }
     },
     "emailVerification": {

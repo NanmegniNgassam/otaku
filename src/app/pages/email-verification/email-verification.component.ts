@@ -19,7 +19,7 @@ export class EmailVerificationComponent implements OnInit {
   user$ = this.auth.user$;
   currentUser!: User | null;
   notification!: Toast | null;
-  notificationMessages!: any;
+  notificationMessages!: { [name: string] : string };
 
   constructor(
     private auth: AuthService,

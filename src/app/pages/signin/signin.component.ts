@@ -1,12 +1,14 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ToastComponent } from "../../components/toast/toast.component";
+import { Toast } from '../../models/toast';
 import AuthService from '../../services/auth.service';
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [ TranslateModule, ReactiveFormsModule],
+  imports: [TranslateModule, ReactiveFormsModule, ToastComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss'
@@ -16,11 +18,10 @@ export class SigninComponent implements OnInit {
   _showPassword!:boolean;
   _showPasswordConfirm!:boolean;
   _passwordLevel!: number;
-  _signinErrors: string[] = [];
   _isAuthLoading!: boolean;
   protected PASSWORD_LEVELS = ['very-low', 'low', 'medium', 'high', 'excellent'];
-  _weakPasswordError!: string;
-  _nonIdenticalPasswords!: string;
+  _errors!: {[name: string] : string}
+  _notification!: Toast | null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,9 +35,8 @@ export class SigninComponent implements OnInit {
 
     // Get form errors from i18n in the current app language
     translate.stream("pages.signin.errors").subscribe((signinErrors) => {
-      let {weakPassword , unidenticalPassword } = signinErrors;
-      this._weakPasswordError = weakPassword;
-      this._nonIdenticalPasswords = unidenticalPassword;
+      this._errors = signinErrors;
+      console.log(this._errors);
     })
   }
 
@@ -57,7 +57,7 @@ export class SigninComponent implements OnInit {
 
     // Listening to form fields changes
     this._signinForm.valueChanges.subscribe(() => {
-      this._signinErrors = [];
+      this._notification = null;
       if(this._signinForm.value.signinPassword) {
         this._passwordLevel = this.generatePasswordStrength(this._signinForm.value.signinPassword);
       }
@@ -75,17 +75,42 @@ export class SigninComponent implements OnInit {
       try {
         await this.auth.createAccount(this._signinForm.value);
       } catch(error : any) {
-        console.error(error.message);
-        this._signinErrors.unshift(error.code);
+        console.error(error.code);
+
+        switch(error.code) {
+          case "auth/email-already-in-use": 
+            this._notification = {
+              type: 'warning',
+              message: this._errors['emailAlreadyInUse']
+            }
+            break;
+          case "auth/too-many-requests":
+            this._notification = {
+              type: 'warning',
+              message: this._errors['tooManyRequests']
+            }
+            break;
+          default: 
+            this._notification = {
+              type: 'warning',
+              message: this._errors['unknowError']
+            }
+        }
       } finally {
         this._isAuthLoading = false;
       }
     } else {
       if(this._passwordLevel < 3) {
-        this._signinErrors.unshift(this._weakPasswordError);
+        this._notification = {
+          type: 'warning',
+          message: this._errors['weakPassword'],
+        };
       }
       if(this._signinForm.value.signinPassword !== this._signinForm.value.signinPasswordConfirm) {
-        this._signinErrors.unshift(this._nonIdenticalPasswords);
+        this._notification = {
+          type: 'warning',
+          message: this._errors['unidenticalPassword']
+        };
       }
       
       this._isAuthLoading = false;

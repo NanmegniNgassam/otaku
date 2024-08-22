@@ -103,9 +103,6 @@
       {{ "pages.signin.createAccount" | translate }}
       }
     </button>
-    @if (_signinErrors && _signinErrors.length > 0) {
-    <p class="signin-error">{{ _signinErrors[0] }}</p>
-    }
   </form>
   <div class="separator">
     <hr class="line" />
@@ -115,4 +112,5 @@
   <span class="google-login" (click)="this.auth.loginWithGoogle()">
     {{ "pages.signin.googleLogin" | translate }}
   </span>
+  <app-toast [notification]="_notification" />
 </div>

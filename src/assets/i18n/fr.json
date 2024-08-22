@@ -32,7 +32,12 @@
       "emailField": "Adresse email",
       "passwordField": "Mot de passe",
       "login": "Se connecter",
-      "googleLogin": "Connexion Google"
+      "googleLogin": "Connexion Google",
+      "messages": {
+        "invalidCredentials": "Vos identifiants sont invalides !",
+        "tooManyRequests": "Trop de requêtes. Attendez et réessayez plus tard !",
+        "unknowError": "Erreur inconnue. Veuillez réessayer plus tard !"
+      }
     },
     "toast": {
       "success": "Félicitations !",

@@ -2,13 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import AuthService from '../../../services/auth.service';
+import { ToastComponent } from '../../toast/toast.component';
+import { Toast } from '../../../models/toast';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule, ToastComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -17,14 +19,21 @@ export class LoginComponent implements OnInit {
   _isLoginErrors!: boolean;
   _loginForm!: FormGroup;
   _isAuthLoading!:boolean;
+  _notification!: Toast | null;
+  _errors!: { [name: string]: string };
 
   constructor(
     private formBuilder: FormBuilder,
     protected auth: AuthService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
     this._isLoginErrors = false;
     this._isAuthLoading = false;
+    this._notification = null;
+    translate.stream("components.login.messages").subscribe((errors) => {
+      this._errors = errors;
+    })
   }
 
   /**
@@ -39,6 +48,7 @@ export class LoginComponent implements OnInit {
     });
 
     this._loginForm.valueChanges.subscribe(() => {
+      this._notification = null;
       this._isLoginErrors = false;
     })
   }
@@ -59,9 +69,28 @@ export class LoginComponent implements OnInit {
     try {
       this._isAuthLoading = true;
       await this.auth.login(this._loginForm.value);    
-      
-      this.router.navigateByUrl('/');
+
+      if(this.router.url === '/sign-in') {
+        this.router.navigateByUrl('/account');
+      }
     } catch (error: any) {
+      if(error.code === "auth/invalid-credential") {
+        this._notification = {
+          type: 'fail',
+          message: this._errors["invalidCredentials"]
+        }
+      } else if (error.code === "auth/too-many-requests") {
+        this._notification = {
+          type: 'warning',
+          message: this._errors["tooManyRequests"]
+        }
+      } else {
+        this._notification = {
+          type: 'warning',
+          message: this._errors["unknowError"]
+        }
+      }
+      
       this._isLoginErrors = true;
       console.error("An error occured when logging : ", error.code);
     } finally {
@@ -69,5 +98,3 @@ export class LoginComponent implements OnInit {
     }
   }
 }
-
-// TODO : Improves the feedback gived when an error occured

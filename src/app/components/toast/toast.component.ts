@@ -18,7 +18,9 @@ export class ToastComponent implements OnInit, OnChanges {
    * Performs some global actions right after the constructor
    */
   ngOnInit(): void {
-    this.iconName = this.generateToastIconName(this.notification!.type);
+    if(this.notification) {
+      this.iconName = this.generateToastIconName(this.notification.type);
+    }
   }
 
   /**
@@ -27,8 +29,8 @@ export class ToastComponent implements OnInit, OnChanges {
    * @param changes occuring changes
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['notification'].previousValue?.type !== changes['notification'].currentValue?.type) {
-      this.iconName = this.generateToastIconName(this.notification!.type);
+    if(changes['notification'].previousValue?.type !== changes['notification'].currentValue?.type && this.notification) {
+      this.iconName = this.generateToastIconName(this.notification.type);
     }
   }
 

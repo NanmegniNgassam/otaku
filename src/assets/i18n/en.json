@@ -73,7 +73,13 @@
         "resendEmail": "Resend E-mail",
         "completion": "Account activated",
         "reminder": "Remind me later" 
-      }
+      },
+      "notifications": {
+        "success": "Your account has been verified !",
+        "warning": "You haven't validate your email yet !",
+        "info": "An email has been sent to you !",
+        "fail": "The email can't be sent to you !"
+      } 
     },
     "notFound": {
       "title": "Accept our appologies!",

@@ -1,8 +1,6 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { title } from 'process';
-
-type ToastType = 'success' | 'fail' | 'warning' | 'info'
+import { Toast, ToastType } from '../../models/toast';
 
 @Component({
   selector: 'app-toast',
@@ -12,52 +10,51 @@ type ToastType = 'success' | 'fail' | 'warning' | 'info'
   styleUrl: './toast.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class ToastComponent implements OnInit {
-  @Input() notificationType!: ToastType;
-  @Input() message!: string;
-  @Input() handleDismiss?: () => void;
-
+export class ToastComponent implements OnInit, OnChanges {
+  @Input() notification!: Toast | null;
   iconName!: string;
-  titleLabel!: string;
 
   /**
    * Performs some global actions right after the constructor
    */
   ngOnInit(): void {
-    const {iconName, titleLabel} = this.generateToastIconNameAndTitle(this.notificationType);
-    this.iconName = iconName;
-    this.titleLabel = titleLabel;
+    this.iconName = this.generateToastIconName(this.notification!.type);
+  }
+
+  /**
+   * Performs some actions when a change occurs
+   * 
+   * @param changes occuring changes
+   */
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['notification'].previousValue?.type !== changes['notification'].currentValue?.type) {
+      this.iconName = this.generateToastIconName(this.notification!.type);
+    }
   }
 
   /**
    * Derive from the notification type the iconName and the title to show
    * 
    * @param type Type of the received notification
-   * @returns an object made of matching iconName and title to display
+   * @returns the name of the icon to display
    */
-  generateToastIconNameAndTitle (type : ToastType): {iconName: string, titleLabel: string} {
+  generateToastIconName (type : ToastType): string {
     switch(type) {
       case 'success':
-        return {
-          iconName: 'happy-outline',
-          titleLabel: type,
-        }
+        return 'happy-outline' 
       case 'fail':
-        return {
-          iconName: 'sad-outline',
-          titleLabel: type,
-        }
+        return 'sad-outline' 
       case 'warning':
-        return {
-          iconName: 'warning-outline',
-          titleLabel: type,
-        }
+        return 'warning-outline' 
       default:
-        return {
-          iconName: 'information-outline',
-          titleLabel: type,
-        }
+        return 'information-outline' 
     }
   } 
 
+  /**
+   * Remove the current toast from the screen
+   */
+  closeToast() {
+    this.notification = null;
+  }
 }

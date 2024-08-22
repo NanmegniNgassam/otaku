@@ -73,7 +73,13 @@
         "resendEmail": "Renvoyer l'e-mail",
         "completion": "Compte Activé",
         "reminder": "Me rappeler plus tard" 
-      }
+      },
+      "notifications": {
+        "success": "Votre compte a été vérifié !",
+        "warning": "Votre e-mail n'a pas été validé !",
+        "info": "Un email vous a été envoyé !",
+        "fail": "L'email ne peut pas être envoyé !"
+      } 
     },
     "notFound": {
       "title": "Veuillez accepter nos excuses !",

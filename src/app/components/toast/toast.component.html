@@ -1,20 +1,20 @@
+@if (notification) {
 <div class="wrapper">
-  <div class="toast-icon {{ notificationType }}">
+  <div class="toast-icon {{ notification.type }}">
     <ion-icon name="{{ iconName }}"></ion-icon>
   </div>
 
   <div class="toast-content">
-    <strong class="title {{ notificationType }}">
-      {{ "components.toast." + notificationType | translate }}
+    <strong class="title {{ notification.type }}">
+      {{ "components.toast." + notification.type | translate }}
     </strong>
     <p class="message">
-      {{ message }}
+      {{ notification.message }}
     </p>
   </div>
 
   <div class="toast-close">
-    @if (handleDismiss) {
-    <ion-icon (click)="handleDismiss()" name="close-outline"></ion-icon>
-    }
+    <ion-icon (click)="closeToast()" name="close-outline" />
   </div>
 </div>
+}

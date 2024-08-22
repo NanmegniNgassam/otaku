@@ -36,7 +36,9 @@
     </div>
     }
   </div>
+  @if (notification) {
+  <app-toast [notification]="notification" />
+  }
 </div>
 
-<!-- TODO: Skippez cette page immédiatement dès que la verification du compte est passée. -->
 <!-- TODO: Mettre à jour les différents template d'emails -->

@@ -1,14 +1,16 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import AuthService from '../../services/auth.service';
-import { AsyncPipe, CommonModule } from '@angular/common';
-import { updateProfile, User } from '@angular/fire/auth';
+import { AsyncPipe } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { User } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ToastComponent } from '../../components/toast/toast.component';
+import { Toast } from '../../models/toast';
+import AuthService from '../../services/auth.service';
 
 @Component({
   selector: 'app-email-verification',
   standalone: true,
-  imports: [AsyncPipe, RouterLink, TranslateModule],
+  imports: [AsyncPipe, RouterLink, TranslateModule, ToastComponent],
   templateUrl: './email-verification.component.html',
   styleUrl: './email-verification.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -16,11 +18,19 @@ import { TranslateModule } from '@ngx-translate/core';
 export class EmailVerificationComponent implements OnInit {
   user$ = this.auth.user$;
   currentUser!: User | null;
+  notification!: Toast | null;
+  notificationMessages!: any;
 
   constructor(
     private auth: AuthService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private translate: TranslateService,
+  ) {
+    // Get i18n notification messages
+    translate.stream("pages.emailVerification.notifications").subscribe((messages) => {
+      this.notificationMessages = messages;
+    })
+  }
 
   /**
    * Performs some general actions right after the constructor
@@ -28,7 +38,7 @@ export class EmailVerificationComponent implements OnInit {
   ngOnInit(): void {
     this.user$.subscribe((user) => {
       this.currentUser = user;
-    })
+    });
   }
 
   /**
@@ -37,22 +47,43 @@ export class EmailVerificationComponent implements OnInit {
    * @param user the logged in user
    */
   async resendValidationEmail(user: User) {
-    // send a verification email to logged in user
-    await this.auth.sendVerificationEmail(user);
+    try {
+      // send a verification email to logged in user
+      await this.auth.sendVerificationEmail(user);
 
-    // shows a toast to give user a feed-back on its action
+      // shows a toast to give user a feed-back on its action
+      this.notification = {
+        type: 'info',
+        message: this.notificationMessages['info'],
+      }
+    } catch(error: any) {
+      this.notification = {
+        type: 'fail',
+        message: this.notificationMessages['fail'],
+      }
+      console.error(error.code, error.message)
+    }
   }
 
   /**
    * Control the email validation and enhance navigation
    */
   async checkVerifiedEmail() {
-    // Made some modifications on user
+    // Refresh the current user data
+    await this.currentUser?.reload();
+
     if(!this.currentUser?.emailVerified) {
       // show the toast to send feedback
+      this.notification = {
+        type: 'warning',
+        message: this.notificationMessages['warning'],
+      }
     } else {
       // show the toast to send success feedback
-      console.log("Your email have been verified");
+      this.notification = {
+        type: 'success',
+        message: this.notificationMessages['success'],
+      }
 
       // Redirect the user to account page with a delay
       setTimeout(() => {

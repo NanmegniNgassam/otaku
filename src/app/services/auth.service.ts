@@ -1,8 +1,8 @@
-import { Injectable, OnInit } from "@angular/core";
-import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVerification, signInWithPopup, signOut, updateProfile, User, user, UserCredential } from "@angular/fire/auth";
+import { Injectable } from "@angular/core";
+import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVerification, signInWithPopup, signOut, updateProfile, User, user, UserCredential } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { signInWithEmailAndPassword } from "@firebase/auth";
-import { browserSessionPersistence, setPersistence } from "firebase/auth";
+import { setPersistence } from "firebase/auth";
 import { LoginCredential, SigninCredential } from "../models/others";
 
 @Injectable({
@@ -33,7 +33,7 @@ export default class AuthService {
    */
   async login(loginCredentials : LoginCredential): Promise<UserCredential> {
     // Set the persistence to session stage
-    await setPersistence(this.auth, browserSessionPersistence);
+    await setPersistence(this.auth, browserLocalPersistence);
 
     return signInWithEmailAndPassword(this.auth, loginCredentials.email, loginCredentials.password);
   }
@@ -45,7 +45,7 @@ export default class AuthService {
    */
   async loginWithGoogle() {
     // Set the persistence to session stage
-    await setPersistence(this.auth, browserSessionPersistence);
+    await setPersistence(this.auth, browserLocalPersistence);
 
     // generate the popup for the login
     const result = await signInWithPopup(this.auth, this.googleProvider);
@@ -78,7 +78,7 @@ export default class AuthService {
   async createAccount(credentials: SigninCredential ): Promise<boolean> {
     try {
       // Set the persistence to session stage
-      await setPersistence(this.auth, browserSessionPersistence);
+      await setPersistence(this.auth, browserLocalPersistence);
 
       // Create user account and update its informations
       const userCredential = await createUserWithEmailAndPassword(this.auth, credentials.signinEmail, credentials.signinPassword);

@@ -100,6 +100,9 @@
       "message": "As you're not logged in, you don't have required permissions to visit that page. You can either go back where you come from Or select one action below ...",
       "homeLinkLabel": "Go to Home page",
       "authentication": "Authenticate"
+    },
+    "account": {
+      "creationDateLabel": "Member since"
     }
   },
   "others": {

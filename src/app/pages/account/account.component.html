@@ -1,3 +1,98 @@
 <div class="wrapper">
-  <p>account works!</p>
+  @if ((user$ | async); as user) {
+  <div class="user-section">
+    <div class="user-data">
+      <div class="edit-zone">
+        <ion-icon name="pencil-outline"></ion-icon>
+      </div>
+
+      <img
+        [src]="user.photoURL ?? '../../assets/images/avatar.png'"
+        [alt]="user.displayName + '\'s avatar'"
+      />
+      <div class="user-infos">
+        <p class="user-pseudo">{{ user.displayName?.toUpperCase() }}</p>
+        <div class="email-status">
+          <p class="user-email">{{ user.email }}</p>
+          <div class="email-validation">
+            @if (user.emailVerified) {
+            <ion-icon class="verified" name="checkmark-done-outline"></ion-icon>
+            } @else {
+            <ion-icon class="unverified" name="hourglass-outline"></ion-icon>
+            }
+          </div>
+        </div>
+        <p class="sign-up-date">
+          {{ "pages.account.creationDateLabel" | translate }}
+          {{ convertTimeStampInDate(user.metadata.creationTime!) }}
+        </p>
+      </div>
+    </div>
+    <div class="break-line"></div>
+    <div class="user-stats">
+      <h2 class="title">Achievements</h2>
+      <div class="cards-container">
+        <div class="card user-level s-grade">A</div>
+        <div class="card user-xp">
+          <p class="insight-value">11 765</p>
+          <div class="insight-label">XP</div>
+        </div>
+        <div class="card user-quests">
+          <p class="insight-value">271</p>
+          <p class="insight-label">Quests</p>
+        </div>
+      </div>
+    </div>
+    <div class="break-line"></div>
+    <div class="user-streak">
+      <h2 class="title">Coffre au tresor</h2>
+      <p>
+        Une fois le coffre ouvert, cliquez dessus pour récupérer son contenu
+      </p>
+      <div class="steps">
+        @for (step of STREAK_STEPS; track $index) { @if (streakDays >= step) {
+        <div class="step">
+          <img
+            class="fire-icon"
+            src="../../../assets/images/feu.png"
+            alt="Attribut feu permettant de suivre la progression"
+          />
+          <ion-icon
+            class="finished-streak"
+            name="checkmark-done-outline"
+          ></ion-icon>
+        </div>
+        } @else {
+        <div class="step">
+          <img
+            class="fire-icon uncompleted"
+            src="../../../assets/images/feu.png"
+            alt="Attribut feu permettant de suivre la progression"
+          />
+          <div class="streak-count">{{ step }}</div>
+        </div>
+        } }
+        <div class="step chest">
+          <img
+            [class]="streakDays < 7 ? 'uncompleted' : ''"
+            class="chest-icon"
+            [src]="
+              streakDays < 7
+                ? '../../../assets/images/tresor.png'
+                : '../../../assets/images/coffre-ouvert.png'
+            "
+            alt="Attribut feu permettant de suivre la progression"
+          />
+        </div>
+      </div>
+      <a href="" class="button">Voir plus de stats</a>
+    </div>
+  </div>
+  <div class="user-section">
+    <button class="button" (click)="this.auth.logout()">Logout</button>
+  </div>
+  }
 </div>
+<!-- TODO: Customize the circle-avatar component -->
+<!-- TODO: Create a function initialize stat -->
+<!-- TODO: Formalize error returns using response status code. -->

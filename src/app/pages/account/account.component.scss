@@ -1,0 +1,151 @@
+.wrapper {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 50px;
+  .user-section {
+    .title {
+      text-align: center;
+      font-size: 1.6rem;
+    }
+    .break-line {
+      border-bottom: 1px solid gray;
+      width: 50%;
+      margin: 20px auto;
+    }
+    .user-data {
+      position: relative;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding: 20px 0;
+      .edit-zone {
+        position: absolute;
+        cursor: pointer;
+        top: 20px;
+        right: 20px;
+        background-color: var(--box-container-color);
+        border: 1px solid #aaa;
+        width: 40px;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        ion-icon {
+          color: #fff;
+          font-size: 1.5rem;
+        }
+      }
+      img {
+        width: 150px;
+      }
+      .user-infos {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .user-pseudo {
+          font-size: 1.5rem;
+          font-weight: 500;
+        }
+        .email-status {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          .user-email {
+            font-style: italic;
+          }
+          .email-validation {
+            font-size: 1.5rem;
+            .verified {
+              color: green;
+            }
+            .unverified {
+              color: rgb(195, 128, 3);
+            }
+          }
+        }
+      }
+    }
+    .user-stats {
+      .cards-container {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+        .card {
+          border: 1px solid black;
+          max-width: 125px;
+          aspect-ratio: 1/1;
+          flex-grow: 1;
+          border-radius: 5px;
+          box-shadow: 3px 2px 7px gray;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &.user-level {
+            font-size: 5rem;
+            font-family: Hylia;
+            &.s-grade {
+              color: goldenrod;
+            }
+          }
+          &.user-xp {
+            flex-direction: column;
+          }
+          &.user-quests {
+            flex-direction: column;
+          }
+          .insight-label {
+            border-top: 1px solid gray;
+            font-size: 1.5rem;
+            margin-top: 10px;
+            padding-top: 5px;
+          }
+          .insight-value {
+            font-weight: 600;
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+    .user-streak {
+      .steps {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 20px auto;
+        width: fit-content;
+        .step {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          &.chest {
+            margin-inline-start: 30px;
+          }
+          .fire-icon {
+            width: 2.5rem;
+            &.uncompleted {
+              filter: grayscale(1);
+            }
+          }
+          .streak-count {
+            text-align: center;
+          }
+          .finished-streak {
+            font-size: 1.2rem;
+            color: green;
+          }
+          .chest-icon {
+            width: 3rem;
+            &.uncompleted {
+              filter: grayscale(1);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.button {
+  margin: 0 auto;
+  border: 0;
+}

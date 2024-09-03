@@ -36,7 +36,6 @@ export class SigninComponent implements OnInit {
     // Get form errors from i18n in the current app language
     translate.stream("pages.signin.errors").subscribe((signinErrors) => {
       this._errors = signinErrors;
-      console.log(this._errors);
     })
   }
 

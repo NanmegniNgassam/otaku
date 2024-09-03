@@ -32,13 +32,18 @@
     <div class="user-stats">
       <h2 class="title">Achievements</h2>
       <div class="cards-container">
-        <div class="card user-level s-grade">A</div>
+        <div
+          class="card user-level s-grade"
+          [class]="userData.level + '-grade'"
+        >
+          {{ userData.level.toUpperCase() }}
+        </div>
         <div class="card user-xp">
-          <p class="insight-value">11 765</p>
+          <p class="insight-value">{{ userData.xp }}</p>
           <div class="insight-label">XP</div>
         </div>
         <div class="card user-quests">
-          <p class="insight-value">271</p>
+          <p class="insight-value">{{ userData.quests }}</p>
           <p class="insight-label">Quests</p>
         </div>
       </div>

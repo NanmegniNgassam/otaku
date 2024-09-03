@@ -136,8 +136,10 @@
           }
           .chest-icon {
             width: 3rem;
+            cursor: pointer;
             &.uncompleted {
               filter: grayscale(1);
+              cursor: default;
             }
           }
         }

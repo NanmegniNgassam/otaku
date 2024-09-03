@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { setPersistence } from "firebase/auth";
 import { LoginCredential, SigninCredential } from "../models/others";
+import { UserService } from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export default class AuthService {
 
   constructor(
     private auth: Auth,
-    private router: Router
+    private router: Router,
+    private db: UserService 
   ) {
     this.user$.subscribe((currentUser: User | null) => {
       this.currentUser = currentUser;
@@ -88,6 +90,7 @@ export default class AuthService {
       await this.sendVerificationEmail(userCredential.user);
 
       // Create a user document to store all its data
+      await this.db.createUserDocument(userCredential.user.uid);
 
       return this.router.navigateByUrl('/email-verification');
     } catch(error:any) {

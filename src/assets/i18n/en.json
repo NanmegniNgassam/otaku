@@ -102,7 +102,12 @@
       "authentication": "Authenticate"
     },
     "account": {
-      "creationDateLabel": "Member since"
+      "creationDateLabel": "Member since",
+      "achievementsTitle": "Achievements",
+      "QuestsCountLabel": "Quests",
+      "chestRaceTitle": "Treasure hunt", 
+      "chestRaceHint": "Once the chest is open, click on it to collect its content.",
+      "moreStatsButtonLabel": "See more stats"
     }
   },
   "others": {

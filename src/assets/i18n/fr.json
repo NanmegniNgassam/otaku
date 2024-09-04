@@ -102,7 +102,12 @@
       "authentication": "S'authentifier"
     },
     "account": {
-      "creationDateLabel": "Membre depuis"
+      "creationDateLabel": "Membre depuis",
+      "achievementsTitle": "Accomplissements",
+      "QuestsCountLabel": "Quêtes",
+      "chestRaceTitle": "Chasse au trésor", 
+      "chestRaceHint": "Une fois le coffre ouvert, cliquez dessus pour récupérer son contenu.",
+      "moreStatsButtonLabel": "Voir plus de stats"
     }
   },
   "others": {

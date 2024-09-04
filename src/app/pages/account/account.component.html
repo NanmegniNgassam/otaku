@@ -30,12 +30,9 @@
     </div>
     <div class="break-line"></div>
     <div class="user-stats">
-      <h2 class="title">Achievements</h2>
+      <h2 class="title">{{ "pages.account.achievementsTitle" | translate }}</h2>
       <div class="cards-container">
-        <div
-          class="card user-level s-grade"
-          [class]="userData.level + '-grade'"
-        >
+        <div class="card user-level" [class]="userData.level + '-grade'">
           {{ userData.level.toUpperCase() }}
         </div>
         <div class="card user-xp">
@@ -44,15 +41,17 @@
         </div>
         <div class="card user-quests">
           <p class="insight-value">{{ userData.quests }}</p>
-          <p class="insight-label">Quests</p>
+          <p class="insight-label">
+            {{ "pages.account.QuestsCountLabel" | translate }}
+          </p>
         </div>
       </div>
     </div>
     <div class="break-line"></div>
     <div class="user-streak">
-      <h2 class="title">Coffre au tresor</h2>
-      <p>
-        Une fois le coffre ouvert, cliquez dessus pour récupérer son contenu
+      <h2 class="title">{{ "pages.account.chestRaceTitle" | translate }}</h2>
+      <p class="hint">
+        {{ "pages.account.chestRaceHint" | translate }}
       </p>
       <div class="steps">
         @for (step of STREAK_STEPS; track $index) { @if (streakDays >= step) {
@@ -90,7 +89,9 @@
           />
         </div>
       </div>
-      <a href="" class="button">Voir plus de stats</a>
+      <a href="" class="button">
+        {{ "pages.account.moreStatsButtonLabel" | translate }}
+      </a>
     </div>
   </div>
   <div class="user-section">

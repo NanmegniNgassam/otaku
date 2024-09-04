@@ -55,4 +55,3 @@ export class AccountComponent implements OnInit {
 }
 
 // TODO: Adjust the display of numbers (xp and quests)
-// TODO: Write a function to track the streak

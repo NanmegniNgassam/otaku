@@ -49,7 +49,7 @@ export class UserService {
 
       return userData as UserData
     } catch (error) {
-      console.log("Error while trying to read document : ", error);
+      console.error("Error while trying to read document : ", error);
       throw(error);
     }
   }
@@ -94,7 +94,6 @@ export class UserService {
    */
   async updateUserStreak(streak: string[]): Promise<string[]> {
     const lastStreakDay = new Date(streak[0]);
-    console.log(lastStreakDay, new Date());
 
     // Check if the user streak is up to date
     if(lastStreakDay.toLocaleDateString('en-EN') !== new Date().toLocaleDateString('en-EN')) {

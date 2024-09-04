@@ -4,6 +4,6 @@ export interface UserData {
   quests: number;
   favoriteGenres: number[];
   animeListIds: number[];
-  streak: Date[];
+  streak: string[];
   params: {};
 }

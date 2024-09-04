@@ -17,7 +17,7 @@ import { UserData } from '../../models/user';
 export class AccountComponent implements OnInit {
   user$ = this.auth.user$;
   STREAK_STEPS = [1, 2, 3, 4, 5, 6, 7]
-  streakDays: number = 7;
+  streakDays!: number;
   userData: UserData = {
     level: 'f',
     xp: 0,
@@ -31,12 +31,15 @@ export class AccountComponent implements OnInit {
   constructor(
     protected auth: AuthService,
     private translate: TranslateService,
-    private db: UserService
+    private user: UserService
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.userData = await this.db.fetchUserData();
-    console.log("Current user Data : ", this.userData)
+    this.userData = await this.user.fetchUserData();
+    console.log("Current user Data : ", this.userData);
+    const currentStreak = await this.user.updateUserStreak(this.userData.streak);
+    this.streakDays = this.user.getUserStreak(currentStreak);
+    
   }
 
   convertTimeStampInDate(timeStamp: string): string {

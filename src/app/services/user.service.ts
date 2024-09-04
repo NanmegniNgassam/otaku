@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Auth, User } from '@angular/fire/auth';
-import { doc, Firestore, getDoc, setDoc } from '@angular/fire/firestore';
+import { Auth } from '@angular/fire/auth';
+import { doc, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { UserData } from '../models/user';
 
 const USERS_COLLECTIONS = "users";
@@ -15,7 +15,12 @@ export class UserService {
     private auth: Auth
   ) {}
 
-  async createUserDocument(userUID: string) {
+  /**
+   * Create a document for the current user/player
+   * 
+   * @param userUID the UID of the current user
+   */
+  async createUserDocument(userUID: string): Promise<void> {
     try {
       await setDoc(doc(this.db, USERS_COLLECTIONS, userUID), {
         level: 'f',
@@ -23,7 +28,7 @@ export class UserService {
         quests: 0,
         favoriteGenres: [],
         animeListIds: [],
-        streak: [new Date()],
+        streak: [new Date().toLocaleDateString("en-EN")],
         params: {},
       })
     } catch (error) {
@@ -32,6 +37,11 @@ export class UserService {
     }
   }
 
+  /**
+   * Get the user document containing all its game stats and more
+   * 
+   * @returns the document of the current user/player
+   */
   async fetchUserData(): Promise<UserData> {
     try {
       const userDoc = await getDoc(doc(this.db, USERS_COLLECTIONS, this.auth.currentUser?.uid!))
@@ -42,7 +52,70 @@ export class UserService {
       console.log("Error while trying to read document : ", error);
       throw(error);
     }
-  } 
-}
+  }
 
-// TODO: Do something about user Data and ranking
+  /**
+   * Determine the newest number of consecutives loggedIn days
+   * 
+   * @param streak an array of game loggedIn days
+   * @returns the newest number of consecutives days
+   */
+  getUserStreak(streak: string[]):number {
+    const currentStreak = streak.reverse();
+    let userStreak = 0;
+    let lastStreakDay = new Date(currentStreak[0]);
+
+    // Determine if the streak has an entry day
+    if(lastStreakDay) {
+      userStreak++;
+      for(let i = 1; i < currentStreak.length; i++) {
+        const assumedNextStreakDay = new Date(lastStreakDay.setDate(lastStreakDay.getDate() + 1));
+        if(currentStreak[i] === assumedNextStreakDay.toLocaleDateString('en-EN')) {
+          userStreak++;
+          // Going forward with the streak
+          lastStreakDay = assumedNextStreakDay;
+        } else {
+          userStreak = 1;
+          // Change the streak entry point
+          lastStreakDay = new Date(currentStreak[i]);
+        }
+      }
+    } else {
+      return 0;
+    }
+
+    return Math.min(7, Math.max(userStreak, 0));
+  }
+
+  /**
+   * Make the streak stat up-to-date
+   * 
+   * @param streak an array of game loggedIn days
+   */
+  async updateUserStreak(streak: string[]): Promise<string[]> {
+    const lastStreakDay = new Date(streak[0]);
+    console.log(lastStreakDay, new Date());
+
+    // Check if the user streak is up to date
+    if(lastStreakDay.toLocaleDateString('en-EN') !== new Date().toLocaleDateString('en-EN')) {
+      // not the case, then add the current day
+      const formatedStreakDay = new Date().toLocaleDateString('en-EN');
+      const currentStreak = streak;
+      currentStreak.unshift(formatedStreakDay);
+
+      // update the streak stat on firestore
+      try {
+        updateDoc(doc(this.db, USERS_COLLECTIONS, this.auth.currentUser!.uid), {
+          streak: currentStreak.slice(0, 7)
+        })
+        return currentStreak.slice(0, 7);
+      } catch(error) {
+        console.error("Error while updating the streak stat : ", error);
+        throw(error);
+      }
+    } else {
+      // Your streak is up-to-date
+      return streak;
+    }
+  }
+}

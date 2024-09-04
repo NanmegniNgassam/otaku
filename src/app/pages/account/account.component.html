@@ -11,9 +11,11 @@
         [alt]="user.displayName + '\'s avatar'"
       />
       <div class="user-infos">
-        <p class="user-pseudo">{{ user.displayName?.toUpperCase() }}</p>
+        <p class="user-pseudo line-info">
+          {{ user.displayName!.toUpperCase() }}
+        </p>
         <div class="email-status">
-          <p class="user-email">{{ user.email }}</p>
+          <p class="user-email line-info">{{ user.email }}</p>
           <div class="email-validation">
             @if (user.emailVerified) {
             <ion-icon class="verified" name="checkmark-done-outline"></ion-icon>

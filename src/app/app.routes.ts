@@ -6,6 +6,11 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
+import { StatsComponent } from './pages/stats/stats.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { EditComponent } from './pages/edit/edit.component';
+import { RankingComponent } from './pages/ranking/ranking.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +28,36 @@ export const routes: Routes = [
     path: 'account',
     canActivate: [AuthGuard],
     component: AccountComponent,
+    title: 'otaku | account'
+  },
+  {
+    path: 'account/stats',
+    canActivate: [AuthGuard],
+    component: StatsComponent,
+    title: 'otaku | account'
+  },
+  {
+    path: 'account/notifications',
+    canActivate: [AuthGuard],
+    component: NotificationsComponent,
+    title: 'otaku | account'
+  },
+  {
+    path: 'account/settings',
+    canActivate: [AuthGuard],
+    component: SettingsComponent,
+    title: 'otaku | account'
+  },
+  {
+    path: 'account/edit',
+    canActivate: [AuthGuard],
+    component: EditComponent,
+    title: 'otaku | account'
+  },
+  {
+    path: 'account/ranking',
+    canActivate: [AuthGuard],
+    component: RankingComponent,
     title: 'otaku | account'
   },
   {

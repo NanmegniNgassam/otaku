@@ -3,6 +3,9 @@
   margin: 100px auto;
   display: flex;
   .user-section {
+    align-items: center;
+    flex: 1;
+    padding: 10px 20px;
     .title {
       text-align: center;
       font-size: 1.6rem;
@@ -210,16 +213,6 @@
       }
     }
   }
-  .user-section {
-    border: 1px dashed gray;
-    align-items: center;
-    flex: 1;
-    padding: 10px 20px;
-  }
-}
-.button {
-  margin: 0 auto;
-  border: 0;
 }
 
 @media screen and (max-width: 800px) {
@@ -236,6 +229,12 @@
           width: 125px;
         }
       }
+    }
+    .features {
+      margin: 0 10px;
+      border: 1px solid gray;
+      border-radius: 5px;
+      box-shadow: 3px 3px 6px gray;
     }
   }
 }
@@ -305,6 +304,18 @@
         }
         .button {
           padding: 10px 15px;
+        }
+      }
+    }
+    .features {
+      .options {
+        .option {
+          .option-label {
+            font-size: 1rem;
+          }
+          .option-icon {
+            font-size: 1.3rem;
+          }
         }
       }
     }

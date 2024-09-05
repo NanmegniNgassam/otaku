@@ -1,10 +1,10 @@
 <div class="wrapper">
   @if ((user$ | async); as user) {
-  <div class="user-section">
+  <div class="user-section user">
     <div class="user-data">
-      <div class="edit-zone">
+      <a routerLink="edit" class="edit-zone">
         <ion-icon name="pencil-outline"></ion-icon>
-      </div>
+      </a>
 
       <img
         [src]="user.photoURL ?? '../../assets/images/avatar.png'"
@@ -91,7 +91,7 @@
           />
         </div>
       </div>
-      <a href="" class="button">
+      <a routerLink="stats" class="button">
         {{ "pages.account.moreStatsButtonLabel" | translate }}
       </a>
     </div>
@@ -99,31 +99,45 @@
   <div class="user-section features">
     <div class="options">
       <a routerLink="stats" class="option">
-        <p class="option-label">Statistiques</p>
+        <p class="option-label">
+          {{ "pages.account.features.stats" | translate }}
+        </p>
         <ion-icon class="option-icon" name="analytics-outline"></ion-icon>
       </a>
       <a routerLink="notifications" class="option">
-        <p class="option-label">Notifications</p>
+        <p class="option-label">
+          {{ "pages.account.features.notifications" | translate }}
+        </p>
         <ion-icon class="option-icon" name="notifications-outline"></ion-icon>
       </a>
       <a routerLink="settings" class="option">
-        <p class="option-label">Paramètres</p>
+        <p class="option-label">
+          {{ "pages.account.features.settings" | translate }}
+        </p>
         <ion-icon class="option-icon" name="settings-outline"></ion-icon>
       </a>
       <a routerLink="edit" class="option">
-        <p class="option-label">Edition</p>
+        <p class="option-label">
+          {{ "pages.account.features.edition" | translate }}
+        </p>
         <ion-icon class="option-icon" name="pencil-outline"></ion-icon>
       </a>
       <a routerLink="ranking" class="option">
-        <p class="option-label">Classement</p>
+        <p class="option-label">
+          {{ "pages.account.features.ranking" | translate }}
+        </p>
         <ion-icon class="option-icon" name="cellular-outline"></ion-icon>
       </a>
       <div (click)="this.auth.logout()" class="option">
-        <p class="option-label">Deconnexion</p>
+        <p class="option-label">
+          {{ "pages.account.features.logout" | translate }}
+        </p>
         <ion-icon class="option-icon" name="log-out-outline"></ion-icon>
       </div>
       <div class="option">
-        <p class="option-label">Suppression</p>
+        <p class="option-label">
+          {{ "pages.account.features.delete" | translate }}
+        </p>
         <ion-icon class="option-icon" name="trash-outline"></ion-icon>
       </div>
     </div>

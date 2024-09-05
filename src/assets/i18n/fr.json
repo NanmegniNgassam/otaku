@@ -107,7 +107,16 @@
       "QuestsCountLabel": "Quêtes",
       "chestRaceTitle": "Chasse au trésor", 
       "chestRaceHint": "Une fois le coffre ouvert, cliquez dessus pour récupérer son contenu.",
-      "moreStatsButtonLabel": "Voir plus de stats"
+      "moreStatsButtonLabel": "Voir plus de stats",
+      "features": {
+        "stats": "Statistiques",
+        "notifications": "Notifications",
+        "settings": "Paramètres",
+        "edition": "Edition",
+        "ranking": "Classement",
+        "logout": "Deconnexion",
+        "delete": "Suppression"
+      }
     }
   },
   "others": {

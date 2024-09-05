@@ -5,11 +5,12 @@ import AuthService from '../../services/auth.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserService } from '../../services/user.service';
 import { UserData } from '../../models/user';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [AsyncPipe, CircleAvatarComponent, TranslateModule],
+  imports: [AsyncPipe, CircleAvatarComponent, TranslateModule, RouterLink],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -96,11 +96,39 @@
       </a>
     </div>
   </div>
-  <div class="user-section">
-    <button class="button" (click)="this.auth.logout()">Logout</button>
+  <div class="user-section features">
+    <div class="options">
+      <a routerLink="stats" class="option">
+        <p class="option-label">Statistiques</p>
+        <ion-icon class="option-icon" name="analytics-outline"></ion-icon>
+      </a>
+      <a routerLink="notifications" class="option">
+        <p class="option-label">Notifications</p>
+        <ion-icon class="option-icon" name="notifications-outline"></ion-icon>
+      </a>
+      <a routerLink="settings" class="option">
+        <p class="option-label">Paramètres</p>
+        <ion-icon class="option-icon" name="settings-outline"></ion-icon>
+      </a>
+      <a routerLink="edit" class="option">
+        <p class="option-label">Edition</p>
+        <ion-icon class="option-icon" name="pencil-outline"></ion-icon>
+      </a>
+      <a routerLink="ranking" class="option">
+        <p class="option-label">Classement</p>
+        <ion-icon class="option-icon" name="cellular-outline"></ion-icon>
+      </a>
+      <div (click)="this.auth.logout()" class="option">
+        <p class="option-label">Deconnexion</p>
+        <ion-icon class="option-icon" name="log-out-outline"></ion-icon>
+      </div>
+      <div class="option">
+        <p class="option-label">Suppression</p>
+        <ion-icon class="option-icon" name="trash-outline"></ion-icon>
+      </div>
+    </div>
   </div>
   }
 </div>
 <!-- TODO: Customize the circle-avatar component -->
-<!-- TODO: Create a function initialize stat -->
 <!-- TODO: Formalize error returns using response status code. -->

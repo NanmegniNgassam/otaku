@@ -1,0 +1,146 @@
+.wrapper {
+  margin: 100px auto;
+  max-width: 1200px;
+  .break-line {
+    border: 1px solid gray;
+    width: 50%;
+    margin: 40px auto;
+  }
+  .search {
+    margin: 30px auto;
+    max-width: 70%;
+    border-radius: 5px;
+    height: 60px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 3px 3px 4px grey;
+    color: gray;
+    .icon-box {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      &.remove-search {
+        ion-icon {
+          cursor: pointer;
+        }
+      }
+    }
+    form {
+      flex-grow: 3;
+      input {
+        border: none;
+        outline: none;
+        height: 100%;
+        width: 100%;
+        color: #111;
+      }
+    }
+  }
+  .ranking {
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 3px 3px 6px lightgray;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 10px 50px;
+    align-items: center;
+    font-size: 1.2rem;
+    &.for-you {
+      margin: 0 auto;
+      max-width: 70%;
+    }
+    &.s-grade {
+      border-left: 15px solid goldenrod;
+      .grade {
+        color: goldenrod;
+      }
+    }
+    &.a-grade,
+    &.b-grade {
+      border-left: 15px solid #21a80b;
+      .grade {
+        color: #21a80b;
+      }
+    }
+    &.c-grade,
+    &.d-grade {
+      border-left: 15px solid #9ec257;
+      .grade {
+        color: #9ec257;
+      }
+    }
+    &.e-grade {
+      border-left: 15px solid #ffb800;
+      .grade {
+        color: #ffb800;
+      }
+    }
+    &.f-grade {
+      border-left: 15px solid #ef1f1f;
+      .grade {
+        color: #ef1f1f;
+      }
+    }
+    .position {
+      font-size: 2.5rem;
+      font-family: var(--special-text-font);
+      font-weight: 500;
+    }
+    .player-name {
+      flex-grow: 3;
+      max-width: 60%;
+      word-wrap: break-word;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      line-clamp: 1;
+      -webkit-line-clamp: 1;
+    }
+    .experience {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .grade {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+    .trend {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(30%, -30%);
+      background: #fff;
+      width: 30px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &.up ion-icon {
+        color: green;
+      }
+      &.down ion-icon {
+        color: orange;
+      }
+    }
+  }
+  .title {
+    font-family: Hylia;
+    text-align: center;
+    font-size: 3rem;
+    margin: 40px auto;
+    color: var(--primary-color);
+  }
+  .rankings {
+    max-width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

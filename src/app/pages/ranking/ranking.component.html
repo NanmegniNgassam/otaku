@@ -1,1 +1,72 @@
-<p>ranking works!</p>
+<div class="wrapper">
+  <a routerLink="/account" class="ranking s-grade for-you">
+    <span class="position">17</span>
+    <span class="player-name">Me</span>
+    <span class="experience">12 736 Xp</span>
+    <span class="grade">B</span>
+    <span class="trend">
+      <ion-icon name="remove"></ion-icon>
+    </span>
+  </a>
+  <div class="break-line"></div>
+  <div class="search">
+    <div class="icon-box">
+      <ion-icon name="search-outline"></ion-icon>
+    </div>
+    <form>
+      <input
+        type="text"
+        placeholder="Search players ..."
+        name="search-value"
+        id="searchValue"
+      />
+    </form>
+
+    @if (true) {
+    <div class="icon-box remove-search">
+      <ion-icon name="close-circle" class=""></ion-icon>
+    </div>
+    }
+  </div>
+  <div class="hall-of-fame">
+    <h1 class="title">HALL OF FAME</h1>
+    <div class="rankings">
+      <div class="ranking s-grade">
+        <span class="position">1</span>
+        <span class="player-name">Gilles NGASSAM</span>
+        <span class="experience">12 736 Xp</span>
+        <span class="grade">S</span>
+        <span class="trend up">
+          <ion-icon name="caret-up-outline"></ion-icon>
+        </span>
+      </div>
+      <div class="ranking a-grade">
+        <span class="position">2</span>
+        <span class="player-name">Gilles NGASSAM</span>
+        <span class="experience">12 736 Xp</span>
+        <span class="grade">A</span>
+        <span class="trend down">
+          <ion-icon name="caret-down-outline"></ion-icon>
+        </span>
+      </div>
+      <div class="ranking c-grade">
+        <span class="position">3</span>
+        <span class="player-name"> Gilles NGASSAM FREEEEEEEEEEEEEEEEEE </span>
+        <span class="experience">12 736 Xp</span>
+        <span class="grade">C</span>
+        <span class="trend">
+          <ion-icon name="remove"></ion-icon>
+        </span>
+      </div>
+      <div class="ranking e-grade">
+        <span class="position">4</span>
+        <span class="player-name">Gilles NGASSAM</span>
+        <span class="experience">12 736 Xp</span>
+        <span class="grade">E</span>
+        <span class="trend">
+          <ion-icon name="remove"></ion-icon>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 .wrapper {
-  margin: 100px auto;
+  margin: 200px auto;
   max-width: 1200px;
   .break-line {
     border: 1px solid gray;
@@ -17,7 +17,7 @@
     color: gray;
     .icon-box {
       width: 60px;
-      height: 60px;
+      aspect-ratio: 1/1;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -46,45 +46,26 @@
     height: 60px;
     display: flex;
     justify-content: space-between;
-    gap: 40px;
-    padding: 10px 50px;
+    gap: 30px;
+    padding: 10px 40px;
     align-items: center;
     font-size: 1.2rem;
     &.for-you {
       margin: 0 auto;
-      max-width: 70%;
+      max-width: 80%;
+      height: 80px;
     }
-    &.s-grade {
-      border-left: 15px solid goldenrod;
-      .grade {
-        color: goldenrod;
-      }
+    border-left-width: 15px;
+    border-left-color: transparent;
+    border-left-style: solid;
+    &.top-three {
+      border-left-color: var(--primary-color);
     }
-    &.a-grade,
-    &.b-grade {
-      border-left: 15px solid #21a80b;
-      .grade {
-        color: #21a80b;
-      }
+    &.top-ten {
+      border-left-color: skyblue;
     }
-    &.c-grade,
-    &.d-grade {
-      border-left: 15px solid #9ec257;
-      .grade {
-        color: #9ec257;
-      }
-    }
-    &.e-grade {
-      border-left: 15px solid #ffb800;
-      .grade {
-        color: #ffb800;
-      }
-    }
-    &.f-grade {
-      border-left: 15px solid #ef1f1f;
-      .grade {
-        color: #ef1f1f;
-      }
+    &.top-fifty {
+      border-left-color: lightgrey;
     }
     .position {
       font-size: 2.5rem;
@@ -93,7 +74,7 @@
     }
     .player-name {
       flex-grow: 3;
-      max-width: 60%;
+      max-width: 50%;
       word-wrap: break-word;
       overflow: hidden;
       display: -webkit-box;
@@ -108,6 +89,23 @@
     .grade {
       font-size: 2rem;
       font-weight: 500;
+      &.s-grade {
+        color: goldenrod;
+      }
+      &.a-grade,
+      &.b-grade {
+        color: #21a80b;
+      }
+      &.c-grade,
+      &.d-grade {
+        color: #9ec257;
+      }
+      &.e-grade {
+        color: #ffb800;
+      }
+      &.f-grade {
+        color: #ef1f1f;
+      }
     }
     .trend {
       position: absolute;
@@ -125,6 +123,9 @@
         color: green;
       }
       &.down ion-icon {
+        color: #ef1f1f;
+      }
+      &.steady ion-icon {
         color: orange;
       }
     }
@@ -135,12 +136,78 @@
     font-size: 3rem;
     margin: 40px auto;
     color: var(--primary-color);
+    letter-spacing: 5px;
+    word-spacing: 15px;
+    text-transform: uppercase;
   }
   .rankings {
-    max-width: 70%;
+    max-width: 80%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .wrapper {
+    .ranking {
+      padding: 20px;
+      gap: 10px;
+      border-left-width: 10px;
+      &.for-you {
+        height: 70px;
+      }
+      .position {
+        font-size: 2rem;
+      }
+      .player-name {
+        font-size: 1rem;
+        max-width: 50%;
+      }
+      .experience {
+        font-size: 1.2rem;
+      }
+      .grade {
+        font-size: 1.5rem;
+      }
+    }
+    .title {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    .ranking {
+      height: 50px;
+      &.for-you {
+        max-width: 90%;
+        height: 60px;
+      }
+      .position {
+        font-size: 1.5rem;
+      }
+      .experience {
+        font-size: 1.1rem;
+      }
+      .grade {
+        font-size: 1.3rem;
+      }
+    }
+    .search {
+      max-width: 80%;
+      height: 50px;
+      .icon-box {
+        width: 50px;
+      }
+    }
+    .title {
+      font-size: 2rem;
+    }
+    .rankings {
+      max-width: 90%;
+    }
   }
 }

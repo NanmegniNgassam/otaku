@@ -7,4 +7,5 @@ export interface UserData {
   streak: string[];
   params: {};
   position: number;
+  playerName: string
 }

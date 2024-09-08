@@ -8,29 +8,30 @@
       {{ _userData.level.toUpperCase() }}
     </span>
   </a>
-  } @else {
-  <p class="no-ranking">
+  @if(!_userData.position) {
+  <p class="unfound-message">
     {{ "pages.ranking.noRanking" | translate }}
   </p>
-  }
+  } }
+  <!-- TODO: Si la position est 'null' pensez à ajouter un message ou un toast pour prévenir l'utilisateur qu'il n'a pas encore été ajouté au classement et qu'il doit attendre -->
 
   <div class="break-line"></div>
   <div class="search">
     <div class="icon-box">
       <ion-icon name="search-outline"></ion-icon>
     </div>
-    <form>
+    <form [formGroup]="this._searchForm">
       <input
         type="text"
         placeholder="Search players ..."
-        name="search-value"
+        formControlName="searchValue"
         id="searchValue"
       />
     </form>
 
     @if (true) {
     <div class="icon-box remove-search">
-      <ion-icon name="close-circle" class=""></ion-icon>
+      <ion-icon name="close-circle" (click)="emptySearchField()" class="" />
     </div>
     }
   </div>
@@ -38,13 +39,14 @@
     <h1 class="title">{{ "pages.ranking.title" | translate }}</h1>
 
     <div class="rankings">
-      @if (_ranking.length) { @for (player of _ranking; track $index) {
+      @if ( _stableRanking && _stableRanking.length) { @if (_ranking &&
+      _ranking.length) { @for (player of _ranking; track $index) {
       <div [class]="'ranking ' + player.decoration">
         <span class="position">{{ player.position }}</span>
         <span class="player-name">{{ player.playerName }}</span>
         <span class="experience">{{ player.xp.toLocaleString() }} Xp</span>
         <span [class]="'grade ' + player.level + '-grade'">
-          {{ player.level }}
+          {{ (player.level + "").toUpperCase() }}
         </span>
         <span [class]="'trend ' + player.trend">
           @if (player.trend === "up") {
@@ -57,21 +59,19 @@
         </span>
       </div>
       <!-- Set break-line between stages -->
-      @if (player.position === 3) {
-      <div class="break-line"></div>
-      } @if (player.position === 10) {
-      <div class="break-line"></div>
-      } @if (player.position === 50) {
+      @if ([3, 10, 50].includes(player.position) && !_isSearching) {
       <div class="break-line"></div>
       } } } @else {
-      <p class="no-ranking">
-        {{ "pages.ranking.noRanking" | translate }}
+      <p class="unfound-message">
+        {{ _userNotFoundMessage }}
+      </p>
+      <div class="break-line"></div>
+      } } @else {
+      <p class="unfound-message">
+        {{ "pages.ranking.noGlobalRanking" | translate }}
       </p>
       <div class="break-line"></div>
       }
     </div>
   </div>
 </div>
-
-<!-- TODO: Limiter les noms des joueurs à 20 caractères -->
-<!-- TODO: Ajouter un bouton 'voir la suite du classement' -->

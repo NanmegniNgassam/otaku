@@ -122,7 +122,8 @@
       "title": "Hall of Fame",
       "seeMoreRankingLabel": "See more ranking",
       "noGlobalRanking": "The ranking is not yet available!",
-      "noRanking": "You haven't been officially ranked yet!"
+      "noRanking": "You haven't been officially ranked yet!",
+      "userNotFound": "The player '{{player}}' you're looking for wasn't found!"
     }
   },
   "others": {

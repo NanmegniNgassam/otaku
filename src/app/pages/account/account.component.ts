@@ -27,7 +27,8 @@ export class AccountComponent implements OnInit {
     animeListIds: [],
     streak: [],
     params: {},
-    position: 0
+    position: 0,
+    playerName: this.auth.currentUser?.displayName!,
   }; 
 
   constructor(
@@ -55,5 +56,3 @@ export class AccountComponent implements OnInit {
     return new Date(timeStamp).toLocaleDateString(this.translate.defaultLang, options);
   }
 }
-
-// TODO: Adjust the display of numbers (xp and quests)

@@ -6,7 +6,7 @@
     width: 50%;
     margin: 40px auto;
   }
-  .no-ranking {
+  .unfound-message {
     font-size: 1.3rem;
     text-align: center;
   }
@@ -40,6 +40,7 @@
         height: 100%;
         width: 100%;
         color: #111;
+        padding: 0 5px;
       }
     }
   }
@@ -55,7 +56,7 @@
     align-items: center;
     font-size: 1.2rem;
     &.for-you {
-      margin: 0 auto;
+      margin: 20px auto;
       max-width: 80%;
       height: 80px;
     }
@@ -157,7 +158,7 @@
 @media screen and (max-width: 800px) {
   .wrapper {
     margin: 100px auto;
-    .no-ranking {
+    .unfound-message {
       font-size: 1.2rem;
     }
     .ranking {
@@ -189,7 +190,7 @@
 
 @media screen and (max-width: 500px) {
   .wrapper {
-    .no-ranking {
+    .unfound-message {
       font-size: 1rem;
     }
     .ranking {

@@ -122,7 +122,8 @@
       "title": "Mur de la gloire",
       "seeMoreRankingLabel": "Voir la suite du classement",
       "noGlobalRanking": "Le classement n'est pas encore disponible !",
-      "noRanking": "Vous n'avez pas encore été officiellement classé !"
+      "noRanking": "Vous n'avez pas encore été officiellement classé !",
+      "userNotFound": "Le joueur '{{player}}' que vous recherchez n'a pas été trouvé !"
     }
   },
   "others": {

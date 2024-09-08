@@ -38,11 +38,11 @@
           {{ userData.level.toUpperCase() }}
         </div>
         <div class="card user-xp">
-          <p class="insight-value">{{ userData.xp }}</p>
+          <p class="insight-value">{{ userData.xp.toLocaleString() }}</p>
           <div class="insight-label">XP</div>
         </div>
         <div class="card user-quests">
-          <p class="insight-value">{{ userData.quests }}</p>
+          <p class="insight-value">{{ userData.quests.toLocaleString() }}</p>
           <p class="insight-label">
             {{ "pages.account.QuestsCountLabel" | translate }}
           </p>

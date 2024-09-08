@@ -32,7 +32,8 @@ export class UserService {
         animeListIds: [],
         streak: [new Date().toLocaleDateString("en-EN")],
         params: {},
-        position: null
+        position: null,
+        playerName: this.auth.currentUser?.displayName
       })
     } catch (error) {
       console.error("Error while creating userDoc : ", error);
@@ -124,7 +125,7 @@ export class UserService {
   async getRanking() {
     const fakeRanking = [
       {
-        playerName: "Gilles NGASSAM",
+        playerName: "Gilles NGASSAM FREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
         userUID: "azertyuiop",
         position: 1,
         trend: "up",
@@ -133,7 +134,7 @@ export class UserService {
         decoration: "top-three" 
       },
       {
-        playerName: "Gilles NGASSAM",
+        playerName: "Pavel NGASSAM",
         userUID: "azertyuiop",
         position: 2,
         trend: "up",
@@ -142,7 +143,7 @@ export class UserService {
         decoration: "top-three" 
       },
       {
-        playerName: "Gilles NGASSAM",
+        playerName: "Givels NgC",
         userUID: "azertyuiop",
         position: 3,
         trend: "up",
@@ -160,7 +161,7 @@ export class UserService {
         decoration: "top-ten" 
       },
       {
-        playerName: "Gilles NGASSAM",
+        playerName: "Pavel WELBECK",
         userUID: "azertyuiop",
         position: 5,
         trend: "up",
@@ -178,7 +179,7 @@ export class UserService {
         decoration: "top-ten" 
       },
       {
-        playerName: "Gilles NGASSAM",
+        playerName: "God Of war",
         userUID: "azertyuiop",
         position: 7,
         trend: "up",
@@ -187,7 +188,7 @@ export class UserService {
         decoration: "top-ten" 
       },
       {
-        playerName: "Gilles NGASSAM",
+        playerName: "Nouane Jr",
         userUID: "azertyuiop",
         position: 8,
         trend: "up",
@@ -205,7 +206,7 @@ export class UserService {
         decoration: "top-ten" 
       },
       {
-        playerName: "Gilles NGASSAM",
+        playerName: "Paredes Santi",
         userUID: "c13bzyYoZAXF4TEICGPsNmndvME2",
         position: 10,
         trend: "up",
@@ -214,7 +215,7 @@ export class UserService {
         decoration: "top-ten" 
       },
       {
-        playerName: "Gilles NGASSAM",
+        playerName: "Gilles NANMEGNI",
         userUID: "azertyuiop",
         position: 11,
         trend: "steady",
@@ -237,3 +238,5 @@ export class UserService {
     return fakeRanking;
   }
 }
+
+// TODO: Pensez à mettre une politique contre les caractères spéciaux pour la création de compte

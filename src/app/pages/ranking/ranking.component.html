@@ -36,7 +36,15 @@
     }
   </div>
   <div class="hall-of-fame">
-    <h1 class="title">{{ "pages.ranking.title" | translate }}</h1>
+    <div class="title-zone">
+      <h1 class="title">{{ "pages.ranking.title" | translate }}</h1>
+      <p class="general-info">Dernière mise à jour : 06/09/2024</p>
+      <p class="hint" style="text-align: center">
+        Prochaine Agora* dans : 3 jours, 02 heures, 45 minutes et 51 secondes
+        <br />
+        <ion-icon class="unverified" name="hourglass-outline"></ion-icon>
+      </p>
+    </div>
 
     <div class="rankings">
       @if ( _stableRanking && _stableRanking.length) { @if (_ranking &&

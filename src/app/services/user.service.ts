@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { doc, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
-import { UserData } from '../models/user';
+import { Ranking, UserData } from '../models/user';
 
 const USERS_COLLECTION = "users";
 const OVERVIEW_COLLECTION = 'overview'
@@ -122,11 +122,10 @@ export class UserService {
     }
   }
 
-  async getRanking() {
-    const fakeRanking = [
+  async getRanking(): Promise<Ranking[]> {
+    const fakeRanking: Ranking[] = [
       {
         playerName: "Gilles NGASSAM FREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
-        userUID: "azertyuiop",
         position: 1,
         trend: "up",
         xp: 21500,
@@ -135,7 +134,6 @@ export class UserService {
       },
       {
         playerName: "Pavel NGASSAM",
-        userUID: "azertyuiop",
         position: 2,
         trend: "up",
         xp: 21500,
@@ -144,7 +142,6 @@ export class UserService {
       },
       {
         playerName: "Givels NgC",
-        userUID: "azertyuiop",
         position: 3,
         trend: "up",
         xp: 21500,
@@ -153,7 +150,6 @@ export class UserService {
       }
       ,  {
         playerName: "Gilles NGASSAM",
-        userUID: "azertyuiop",
         position: 4,
         trend: "down",
         xp: 21500,
@@ -162,7 +158,6 @@ export class UserService {
       },
       {
         playerName: "Pavel WELBECK",
-        userUID: "azertyuiop",
         position: 5,
         trend: "up",
         xp: 21500,
@@ -171,7 +166,6 @@ export class UserService {
       },
       {
         playerName: "Gilles NGASSAM",
-        userUID: "azertyuiop",
         position: 6,
         trend: "steady",
         xp: 21500,
@@ -180,7 +174,6 @@ export class UserService {
       },
       {
         playerName: "God Of war",
-        userUID: "azertyuiop",
         position: 7,
         trend: "up",
         xp: 21500,
@@ -189,7 +182,6 @@ export class UserService {
       },
       {
         playerName: "Nouane Jr",
-        userUID: "azertyuiop",
         position: 8,
         trend: "up",
         xp: 21500,
@@ -198,7 +190,6 @@ export class UserService {
       },
       {
         playerName: "Gilles NGASSAM",
-        userUID: "azertyuiop",
         position: 9,
         trend: "up",
         xp: 21500,
@@ -207,7 +198,6 @@ export class UserService {
       },
       {
         playerName: "Paredes Santi",
-        userUID: "c13bzyYoZAXF4TEICGPsNmndvME2",
         position: 10,
         trend: "up",
         xp: 21500,
@@ -216,7 +206,6 @@ export class UserService {
       },
       {
         playerName: "Gilles NANMEGNI",
-        userUID: "azertyuiop",
         position: 11,
         trend: "steady",
         xp: 21500,

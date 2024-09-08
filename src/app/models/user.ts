@@ -9,3 +9,12 @@ export interface UserData {
   position: number;
   playerName: string
 }
+
+export interface Ranking {
+  playerName: string;
+  position: number;
+  trend: "up" | "down" | "steady";
+  xp: number;
+  level: 's'|'a'|'b'|'c'|'d'|'e'|'f';
+  decoration: "top-three" | "top-ten" | "top-fifty"
+}

@@ -1,3 +1,12 @@
+@keyframes hourglass {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
 .wrapper {
   margin: 200px auto;
   max-width: 1200px;
@@ -135,17 +144,32 @@
       }
     }
   }
-  .title {
-    font-family: Hylia;
-    text-align: center;
-    font-size: 3rem;
+  .title-zone {
     margin: 40px auto;
-    color: var(--primary-color);
-    letter-spacing: 5px;
-    word-spacing: 15px;
-    line-height: 150%;
-    text-transform: uppercase;
+    text-align: center;
+    .title {
+      font-family: Hylia;
+      font-size: 3rem;
+      color: var(--primary-color);
+      letter-spacing: 5px;
+      word-spacing: 15px;
+      line-height: 150%;
+      text-transform: uppercase;
+    }
+    .general-info {
+      margin: 20px auto;
+    }
+    .hint {
+      font-size: 1.1rem;
+      ion-icon {
+        font-size: 2rem;
+        color: var(--secondary-color);
+        margin: 10px auto;
+        animation: 1s linear infinite hourglass;
+      }
+    }
   }
+
   .rankings {
     max-width: 80%;
     margin: 0 auto;

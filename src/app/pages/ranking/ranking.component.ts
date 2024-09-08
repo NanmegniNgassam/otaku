@@ -3,7 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserService } from '../../services/user.service';
-import { UserData } from '../../models/user';
+import { Ranking, UserData } from '../../models/user';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -16,8 +16,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class RankingComponent implements OnInit {
   _isSearching:boolean = false;
-  _ranking!: any[];
-  _stableRanking!: any[];
+  _ranking!: Ranking[];
+  _stableRanking!: Ranking[];
   _userData!:  UserData;
   _searchForm!: FormGroup;
   _userNotFoundMessage!: string;
@@ -39,8 +39,8 @@ export class RankingComponent implements OnInit {
       const searchValue: string = this._searchForm.value.searchValue;
       if( searchValue.length >= 3 ) {
         this._isSearching = true;
-        this._ranking = this._stableRanking.filter((rank) => 
-          rank.playerName.toLowerCase().includes(searchValue.toLowerCase())
+        this._ranking = this._stableRanking.filter((player: Ranking) => 
+          player.playerName.toLowerCase().includes(searchValue.toLowerCase())
         )
         if(!this._ranking.length) {
           translate.get("pages.ranking.userNotFound", { player : searchValue }).subscribe((text: string) => {
@@ -65,7 +65,7 @@ export class RankingComponent implements OnInit {
     }
 
     this._ranking = await this.user.getRanking();
-    this._ranking = this._ranking.map((player) => {
+    this._ranking = this._ranking.map((player: Ranking) => {
       return {
         ...player,
         playerName: player.playerName.slice(0,20) + (player.playerName.length > 20 ? '...': '')

@@ -3,7 +3,9 @@ import { Auth } from '@angular/fire/auth';
 import { doc, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { UserData } from '../models/user';
 
-const USERS_COLLECTIONS = "users";
+const USERS_COLLECTION = "users";
+const OVERVIEW_COLLECTION = 'overview'
+const RANKING_DOC = 'players-ranking'
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +24,7 @@ export class UserService {
    */
   async createUserDocument(userUID: string): Promise<void> {
     try {
-      await setDoc(doc(this.db, USERS_COLLECTIONS, userUID), {
+      await setDoc(doc(this.db, USERS_COLLECTION, userUID), {
         level: 'f',
         xp: 0,
         quests: 0,
@@ -30,6 +32,7 @@ export class UserService {
         animeListIds: [],
         streak: [new Date().toLocaleDateString("en-EN")],
         params: {},
+        position: null
       })
     } catch (error) {
       console.error("Error while creating userDoc : ", error);
@@ -44,7 +47,7 @@ export class UserService {
    */
   async fetchUserData(): Promise<UserData> {
     try {
-      const userDoc = await getDoc(doc(this.db, USERS_COLLECTIONS, this.auth.currentUser?.uid!))
+      const userDoc = await getDoc(doc(this.db, USERS_COLLECTION, this.auth.currentUser?.uid!))
       const userData = userDoc.data();
 
       return userData as UserData
@@ -104,7 +107,7 @@ export class UserService {
 
       // update the streak stat on firestore
       try {
-        updateDoc(doc(this.db, USERS_COLLECTIONS, this.auth.currentUser!.uid), {
+        updateDoc(doc(this.db, USERS_COLLECTION, this.auth.currentUser!.uid), {
           streak: currentStreak.slice(0, 7)
         })
         return currentStreak.slice(0, 7);
@@ -116,5 +119,121 @@ export class UserService {
       // Your streak is up-to-date
       return streak;
     }
+  }
+
+  async getRanking() {
+    const fakeRanking = [
+      {
+        playerName: "Gilles NGASSAM",
+        userUID: "azertyuiop",
+        position: 1,
+        trend: "up",
+        xp: 21500,
+        level: "s",
+        decoration: "top-three" 
+      },
+      {
+        playerName: "Gilles NGASSAM",
+        userUID: "azertyuiop",
+        position: 2,
+        trend: "up",
+        xp: 21500,
+        level: "s",
+        decoration: "top-three" 
+      },
+      {
+        playerName: "Gilles NGASSAM",
+        userUID: "azertyuiop",
+        position: 3,
+        trend: "up",
+        xp: 21500,
+        level: "s",
+        decoration: "top-three" 
+      }
+      ,  {
+        playerName: "Gilles NGASSAM",
+        userUID: "azertyuiop",
+        position: 4,
+        trend: "down",
+        xp: 21500,
+        level: "s",
+        decoration: "top-ten" 
+      },
+      {
+        playerName: "Gilles NGASSAM",
+        userUID: "azertyuiop",
+        position: 5,
+        trend: "up",
+        xp: 21500,
+        level: "s",
+        decoration: "top-ten" 
+      },
+      {
+        playerName: "Gilles NGASSAM",
+        userUID: "azertyuiop",
+        position: 6,
+        trend: "steady",
+        xp: 21500,
+        level: "s",
+        decoration: "top-ten" 
+      },
+      {
+        playerName: "Gilles NGASSAM",
+        userUID: "azertyuiop",
+        position: 7,
+        trend: "up",
+        xp: 21500,
+        level: "s",
+        decoration: "top-ten" 
+      },
+      {
+        playerName: "Gilles NGASSAM",
+        userUID: "azertyuiop",
+        position: 8,
+        trend: "up",
+        xp: 21500,
+        level: "s",
+        decoration: "top-ten" 
+      },
+      {
+        playerName: "Gilles NGASSAM",
+        userUID: "azertyuiop",
+        position: 9,
+        trend: "up",
+        xp: 21500,
+        level: "s",
+        decoration: "top-ten" 
+      },
+      {
+        playerName: "Gilles NGASSAM",
+        userUID: "c13bzyYoZAXF4TEICGPsNmndvME2",
+        position: 10,
+        trend: "up",
+        xp: 21500,
+        level: "s",
+        decoration: "top-ten" 
+      },
+      {
+        playerName: "Gilles NGASSAM",
+        userUID: "azertyuiop",
+        position: 11,
+        trend: "steady",
+        xp: 21500,
+        level: "s",
+        decoration: "top-fifty" 
+      }
+    ];
+
+    try {
+      const rankingDoc = await getDoc(doc(this.db, OVERVIEW_COLLECTION, RANKING_DOC))
+      const rankingData = rankingDoc.data();
+
+      console.log("Fetched ranking : ", rankingData)
+    } catch(error) {
+      console.error("Error while getting the ranking : ", error)
+      throw(error)
+    }
+
+    return fakeRanking;
   }
 }

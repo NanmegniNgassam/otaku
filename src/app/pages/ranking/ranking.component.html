@@ -1,13 +1,19 @@
 <div class="wrapper">
+  @if (_userData) {
   <a routerLink="/account" class="ranking for-you">
-    <span class="position">17</span>
+    <span class="position"> {{ _userData.position }} </span>
     <span class="player-name">Me</span>
-    <span class="experience">12 736 Xp</span>
-    <span class="grade b-grade">B</span>
-    <span class="trend">
-      <ion-icon name="remove"></ion-icon>
+    <span class="experience">{{ _userData.xp.toLocaleString() }} Xp</span>
+    <span class="grade" [class]="_userData.level + '-grade'">
+      {{ _userData.level.toUpperCase() }}
     </span>
   </a>
+  } @else {
+  <p class="no-ranking">
+    {{ "pages.ranking.noRanking" | translate }}
+  </p>
+  }
+
   <div class="break-line"></div>
   <div class="search">
     <div class="icon-box">
@@ -30,44 +36,39 @@
   </div>
   <div class="hall-of-fame">
     <h1 class="title">{{ "pages.ranking.title" | translate }}</h1>
+
     <div class="rankings">
-      <div class="ranking top-three">
-        <span class="position">1</span>
-        <span class="player-name">Gilles NGASSAM</span>
-        <span class="experience">12 736 Xp</span>
-        <span class="grade s-grade">S</span>
-        <span class="trend up">
+      @if (_ranking.length) { @for (player of _ranking; track $index) {
+      <div [class]="'ranking ' + player.decoration">
+        <span class="position">{{ player.position }}</span>
+        <span class="player-name">{{ player.playerName }}</span>
+        <span class="experience">{{ player.xp.toLocaleString() }} Xp</span>
+        <span [class]="'grade ' + player.level + '-grade'">
+          {{ player.level }}
+        </span>
+        <span [class]="'trend ' + player.trend">
+          @if (player.trend === "up") {
           <ion-icon name="caret-up-outline"></ion-icon>
-        </span>
-      </div>
-      <div class="ranking top-ten">
-        <span class="position">2</span>
-        <span class="player-name">Gilles NGASSAM</span>
-        <span class="experience">12 736 Xp</span>
-        <span class="grade a-grade">A</span>
-        <span class="trend down">
+          } @else if (player.trend === "down") {
           <ion-icon name="caret-down-outline"></ion-icon>
-        </span>
-      </div>
-      <div class="ranking">
-        <span class="position">3</span>
-        <span class="player-name"> Gilles NGASSAM FAAAAAA</span>
-        <span class="experience">12 736 Xp</span>
-        <span class="grade c-grade">C</span>
-        <span class="trend steady">
+          } @else {
           <ion-icon name="remove"></ion-icon>
+          }
         </span>
       </div>
+      <!-- Set break-line between stages -->
+      @if (player.position === 3) {
       <div class="break-line"></div>
-      <div class="ranking top-fifty">
-        <span class="position">4</span>
-        <span class="player-name">Gilles NGASSAM</span>
-        <span class="experience">12 736 Xp</span>
-        <span class="grade e-grade">E</span>
-        <span class="trend steady">
-          <ion-icon name="remove"></ion-icon>
-        </span>
-      </div>
+      } @if (player.position === 10) {
+      <div class="break-line"></div>
+      } @if (player.position === 50) {
+      <div class="break-line"></div>
+      } } } @else {
+      <p class="no-ranking">
+        {{ "pages.ranking.noRanking" | translate }}
+      </p>
+      <div class="break-line"></div>
+      }
     </div>
   </div>
 </div>

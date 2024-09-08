@@ -26,7 +26,8 @@ export class AccountComponent implements OnInit {
     favoriteGenres: [],
     animeListIds: [],
     streak: [],
-    params: {}
+    params: {},
+    position: 0
   }; 
 
   constructor(

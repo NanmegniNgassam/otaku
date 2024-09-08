@@ -120,7 +120,9 @@
     },
     "ranking": {
       "title": "Mur de la gloire",
-      "seeMoreRankingLabel": "Voir la suite du classement"
+      "seeMoreRankingLabel": "Voir la suite du classement",
+      "noGlobalRanking": "Le classement n'est pas encore disponible !",
+      "noRanking": "Vous n'avez pas encore été officiellement classé !"
     }
   },
   "others": {

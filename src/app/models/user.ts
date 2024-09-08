@@ -6,4 +6,5 @@ export interface UserData {
   animeListIds: number[];
   streak: string[];
   params: {};
+  position: number;
 }

@@ -6,6 +6,10 @@
     width: 50%;
     margin: 40px auto;
   }
+  .no-ranking {
+    font-size: 1.3rem;
+    text-align: center;
+  }
   .search {
     margin: 30px auto;
     max-width: 70%;
@@ -138,6 +142,7 @@
     color: var(--primary-color);
     letter-spacing: 5px;
     word-spacing: 15px;
+    line-height: 150%;
     text-transform: uppercase;
   }
   .rankings {
@@ -151,8 +156,12 @@
 
 @media screen and (max-width: 800px) {
   .wrapper {
+    margin: 100px auto;
+    .no-ranking {
+      font-size: 1.2rem;
+    }
     .ranking {
-      padding: 20px;
+      padding: 0 20px;
       gap: 10px;
       border-left-width: 10px;
       &.for-you {
@@ -180,8 +189,13 @@
 
 @media screen and (max-width: 500px) {
   .wrapper {
+    .no-ranking {
+      font-size: 1rem;
+    }
     .ranking {
       height: 50px;
+      border-left-width: 5px;
+      padding: 0 10px;
       &.for-you {
         max-width: 90%;
         height: 60px;
@@ -194,6 +208,9 @@
       }
       .grade {
         font-size: 1.3rem;
+      }
+      .trend {
+        width: 20px;
       }
     }
     .search {

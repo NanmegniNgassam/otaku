@@ -103,3 +103,5 @@ export default class AuthService {
     await sendEmailVerification(user, {url: "http://localhost:4200/account"});
   }
 }
+
+// TODO: Implement userDocument creation when logging with a provider

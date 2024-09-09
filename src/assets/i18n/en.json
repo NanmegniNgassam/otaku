@@ -123,6 +123,7 @@
       "seeMoreRankingLabel": "See more ranking",
       "noGlobalRanking": "The ranking is not yet available!",
       "noRanking": "You haven't been officially ranked yet!",
+      "rankingHint": "Complete quests and challenges to move up the rankings.",
       "userNotFound": "The player '{{player}}' you're looking for wasn't found!"
     }
   },

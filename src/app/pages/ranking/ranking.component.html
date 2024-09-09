@@ -13,7 +13,9 @@
     {{ "pages.ranking.noRanking" | translate }}
   </p>
   } }
-  <!-- TODO: Si la position est 'null' pensez à ajouter un message ou un toast pour prévenir l'utilisateur qu'il n'a pas encore été ajouté au classement et qu'il doit attendre -->
+  <p style="text-align: center; margin-top: 15px; font-style: italic">
+    {{ "pages.ranking.rankingHint" | translate }}
+  </p>
 
   <div class="break-line"></div>
   <div class="search">
@@ -29,7 +31,7 @@
       />
     </form>
 
-    @if (true) {
+    @if (_searchForm.value.searchValue) {
     <div class="icon-box remove-search">
       <ion-icon name="close-circle" (click)="emptySearchField()" class="" />
     </div>
@@ -38,9 +40,14 @@
   <div class="hall-of-fame">
     <div class="title-zone">
       <h1 class="title">{{ "pages.ranking.title" | translate }}</h1>
-      <p class="general-info">Dernière mise à jour : 06/09/2024</p>
+      <p class="general-info">
+        Dernière mise à jour : {{ _lastRankingUpdate }}
+      </p>
       <p class="hint" style="text-align: center">
-        Prochaine Agora* dans : 3 jours, 02 heures, 45 minutes et 51 secondes
+        Prochaine Agora* dans : {{ _agoraDownCounter.days }} jours,
+        {{ _agoraDownCounter.hours }} heures,
+        {{ _agoraDownCounter.minutes }} minutes et
+        {{ _agoraDownCounter.seconds }} secondes
         <br />
         <ion-icon class="unverified" name="hourglass-outline"></ion-icon>
       </p>
@@ -51,7 +58,9 @@
       _ranking.length) { @for (player of _ranking; track $index) {
       <div [class]="'ranking ' + player.decoration">
         <span class="position">{{ player.position }}</span>
-        <span class="player-name">{{ player.playerName }}</span>
+        <span class="player-name">
+          {{ formatPlayerName(player.playerName) }}
+        </span>
         <span class="experience">{{ player.xp.toLocaleString() }} Xp</span>
         <span [class]="'grade ' + player.level + '-grade'">
           {{ (player.level + "").toUpperCase() }}
@@ -71,7 +80,7 @@
       <div class="break-line"></div>
       } } } @else {
       <p class="unfound-message">
-        {{ _userNotFoundMessage }}
+        {{ _playerNotFoundMessage }}
       </p>
       <div class="break-line"></div>
       } } @else {

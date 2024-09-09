@@ -122,110 +122,61 @@ export class UserService {
     }
   }
 
+  /**
+   * Fetch and return the game rankings
+   * 
+   * @returns all the ranking 
+   */
   async getRanking(): Promise<Ranking[]> {
-    const fakeRanking: Ranking[] = [
-      {
-        playerName: "Gilles NGASSAM FREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
-        position: 1,
-        trend: "up",
-        xp: 21500,
-        level: "s",
-        decoration: "top-three" 
-      },
-      {
-        playerName: "Pavel NGASSAM",
-        position: 2,
-        trend: "up",
-        xp: 21500,
-        level: "s",
-        decoration: "top-three" 
-      },
-      {
-        playerName: "Givels NgC",
-        position: 3,
-        trend: "up",
-        xp: 21500,
-        level: "s",
-        decoration: "top-three" 
-      }
-      ,  {
-        playerName: "Gilles NGASSAM",
-        position: 4,
-        trend: "down",
-        xp: 21500,
-        level: "s",
-        decoration: "top-ten" 
-      },
-      {
-        playerName: "Pavel WELBECK",
-        position: 5,
-        trend: "up",
-        xp: 21500,
-        level: "s",
-        decoration: "top-ten" 
-      },
-      {
-        playerName: "Gilles NGASSAM",
-        position: 6,
-        trend: "steady",
-        xp: 21500,
-        level: "s",
-        decoration: "top-ten" 
-      },
-      {
-        playerName: "God Of war",
-        position: 7,
-        trend: "up",
-        xp: 21500,
-        level: "s",
-        decoration: "top-ten" 
-      },
-      {
-        playerName: "Nouane Jr",
-        position: 8,
-        trend: "up",
-        xp: 21500,
-        level: "s",
-        decoration: "top-ten" 
-      },
-      {
-        playerName: "Gilles NGASSAM",
-        position: 9,
-        trend: "up",
-        xp: 21500,
-        level: "s",
-        decoration: "top-ten" 
-      },
-      {
-        playerName: "Paredes Santi",
-        position: 10,
-        trend: "up",
-        xp: 21500,
-        level: "s",
-        decoration: "top-ten" 
-      },
-      {
-        playerName: "Gilles NANMEGNI",
-        position: 11,
-        trend: "steady",
-        xp: 21500,
-        level: "s",
-        decoration: "top-fifty" 
-      }
-    ];
-
     try {
       const rankingDoc = await getDoc(doc(this.db, OVERVIEW_COLLECTION, RANKING_DOC))
       const rankingData = rankingDoc.data();
 
-      console.log("Fetched ranking : ", rankingData)
+      return rankingData!["ranking"] as Ranking[]
     } catch(error) {
       console.error("Error while getting the ranking : ", error)
       throw(error)
     }
-
-    return fakeRanking;
   }
-}
+
+  /**
+   * get the date when the ranking was lately updated
+   * 
+   * @returns the last update date
+   */
+  async getLastRankingUpdateDate(): Promise<Date> {
+    try {
+      const rankingDoc = await getDoc(doc(this.db, OVERVIEW_COLLECTION, RANKING_DOC))
+      const rankingData = rankingDoc.data();
+
+      return new Date(rankingData!["lastUpdate"])
+    } catch(error) {
+      console.error("Error while getting the date of the last ranking update : ", error)
+      throw(error)
+    }
+  }
+
+  /**
+   * Get the next day when the ranking will be update
+   * 
+   * @returns the next ranking update date
+   */
+  getNextRankingUpdateDate(): Date {
+    const currentDate = new Date();
+
+    // Start by the next calendar day
+    let eventualNextRankingDate= new Date(new Date().setDate(currentDate.getDate() + 1))
+
+    while(eventualNextRankingDate.getDay() !== 6) {
+      // go to the next day
+      eventualNextRankingDate = new Date(new Date(eventualNextRankingDate).setDate(eventualNextRankingDate.getDate() + 1))
+    }
+
+    // Set the update ranking time to midnight
+    const nextRankingDate = new Date(eventualNextRankingDate.toLocaleDateString("en-EN"));
+
+    return nextRankingDate;
+  }
+ }
 
 // TODO: Pensez à mettre une politique contre les caractères spéciaux pour la création de compte

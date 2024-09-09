@@ -13,3 +13,10 @@ export interface SigninCredential {
   // Pseudo to assign on the newly created account
   signinNickName: string
 }
+
+export interface TimeCounter {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}

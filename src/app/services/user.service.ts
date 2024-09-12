@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { Auth, User, user } from '@angular/fire/auth';
 import { doc, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Ranking, UserData } from '../models/user';
 
@@ -54,6 +54,28 @@ export class UserService {
       return userData as UserData
     } catch (error) {
       console.error("Error while trying to read document : ", error);
+      throw(error);
+    }
+  }
+
+  async updateUserDoc(data: Partial<UserData>): Promise<UserData> {
+    try {
+      // Fetch user data
+      const userData = await this.fetchUserData();
+
+      // generate new data from previous user data
+      const newUserData: UserData = {
+        ...userData,
+        ...data
+      }
+
+      // upload newly generated user data
+      await updateDoc(doc(this.db, USERS_COLLECTION, this.auth.currentUser?.uid!), {...newUserData})
+
+      return newUserData;
+    } 
+    catch(error) {
+      console.error("Error while trying to update user document : ", error);
       throw(error);
     }
   }
@@ -180,3 +202,4 @@ export class UserService {
  }
 
 // TODO: Pensez à mettre une politique contre les caractères spéciaux pour la création de compte
+// TODO: Instaurer une politique de gestion de la performance par la mise en cache de certains éléments.

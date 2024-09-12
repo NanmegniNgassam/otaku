@@ -53,6 +53,12 @@ export default class AuthService {
     const result = await signInWithPopup(this.auth, this.googleProvider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
 
+    // Check if the account is newly created (created less than 1 minutes earlier)
+    if(Date.now().valueOf() - Number(result.user.metadata.creationTime) < 1*60*1000) {
+      // Create a user document to store all its data
+      await this.db.createUserDocument(result.user.uid);
+    }
+
     // Redirect the newly login user after login
     this.router.navigateByUrl('/');
     return credential;
@@ -65,7 +71,7 @@ export default class AuthService {
     try {
       await signOut(this.auth);
 
-      this.router.navigateByUrl('/sign-in');
+      this.router.navigateByUrl('/');
     } catch(error: any) {
       console.error("Error occurs when signing out : ", error.message);
     }

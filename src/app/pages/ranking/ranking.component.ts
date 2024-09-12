@@ -58,9 +58,6 @@ export class RankingComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     // Fetch user data
     this._userData = await this.user.fetchUserData();
-    if(this._userData.position === null) {
-      this._userData.position = 0;
-    }
 
     // Get the last ranking update Date
     const lastUpdateDate = await this.user.getLastRankingUpdateDate()
@@ -113,7 +110,7 @@ export class RankingComponent implements OnInit {
 
     const seconds = Math.floor(remainingTime)
 
-    
+
     return {
       days, hours, minutes, seconds
     }
@@ -152,5 +149,19 @@ export class RankingComponent implements OnInit {
    */
   emptySearchField() {
     this._searchForm.setValue({searchValue : ""})
+  }
+
+
+  // TODO: Move this fonction to the right place
+  async collectTreasure(): Promise<void> {
+    const userStreak = 10; //this.user.getUserStreak(this._userData.streak);
+    if(userStreak >= 7) {
+      // Randomly generate a xp amount between a range
+      const xpEarned = Math.ceil(Math.random() * 100) * 10;
+
+      // update the player stats accordingly
+      this._userData = await this.user.updateUserDoc({xp: this._userData.xp + xpEarned})
+    }
+
   }
 }

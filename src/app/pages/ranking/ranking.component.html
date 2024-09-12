@@ -1,7 +1,7 @@
 <div class="wrapper">
   @if (_userData) {
   <a routerLink="/account" class="ranking for-you">
-    <span class="position"> {{ _userData.position }} </span>
+    <span class="position"> {{ _userData.position || 0 }} </span>
     <span class="player-name">Me</span>
     <span class="experience">{{ _userData.xp.toLocaleString() }} Xp</span>
     <span class="grade" [class]="_userData.level + '-grade'">

@@ -68,3 +68,22 @@ a {
   animation: 1s linear infinite spinner;
   margin: auto;
 }
+
+// User grade colors
+.s-grade {
+  color: goldenrod;
+}
+.a-grade,
+.b-grade {
+  color: #21a80b;
+}
+.c-grade,
+.d-grade {
+  color: #9ec257;
+}
+.e-grade {
+  color: #ffb800;
+}
+.f-grade {
+  color: #ef1f1f;
+}

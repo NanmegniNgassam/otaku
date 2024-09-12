@@ -103,23 +103,7 @@
     .grade {
       font-size: 2rem;
       font-weight: 500;
-      &.s-grade {
-        color: goldenrod;
-      }
-      &.a-grade,
-      &.b-grade {
-        color: #21a80b;
-      }
-      &.c-grade,
-      &.d-grade {
-        color: #9ec257;
-      }
-      &.e-grade {
-        color: #ffb800;
-      }
-      &.f-grade {
-        color: #ef1f1f;
-      }
+      // Using grade colors defined in general styles
     }
     .trend {
       position: absolute;

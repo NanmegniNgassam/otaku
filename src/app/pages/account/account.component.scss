@@ -41,6 +41,8 @@
       }
       img {
         width: 150px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
       }
       .user-infos {
         display: flex;
@@ -95,23 +97,7 @@
           &.user-level {
             font-size: 5rem;
             font-family: Hylia;
-            &.s-grade {
-              color: goldenrod;
-            }
-            &.a-grade,
-            &.b-grade {
-              color: #21a80b;
-            }
-            &.c-grade,
-            &.d-grade {
-              color: #9ec257;
-            }
-            &.e-grade {
-              color: #ffb800;
-            }
-            &.f-grade {
-              color: #ef1f1f;
-            }
+            // Using grade colors defined in general styles
           }
           &.user-xp {
             flex-direction: column;

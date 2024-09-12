@@ -150,18 +150,4 @@ export class RankingComponent implements OnInit {
   emptySearchField() {
     this._searchForm.setValue({searchValue : ""})
   }
-
-
-  // TODO: Move this fonction to the right place
-  async collectTreasure(): Promise<void> {
-    const userStreak = 10; //this.user.getUserStreak(this._userData.streak);
-    if(userStreak >= 7) {
-      // Randomly generate a xp amount between a range
-      const xpEarned = Math.ceil(Math.random() * 100) * 10;
-
-      // update the player stats accordingly
-      this._userData = await this.user.updateUserDoc({xp: this._userData.xp + xpEarned})
-    }
-
-  }
 }

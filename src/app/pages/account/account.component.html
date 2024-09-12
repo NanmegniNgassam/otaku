@@ -6,10 +6,15 @@
         <ion-icon name="pencil-outline"></ion-icon>
       </a>
 
+      @if (user.photoURL) {
+      <img [src]="user.photoURL" [alt]="user.displayName + '\'s avatar'" />
+      } @else {
       <img
-        [src]="user.photoURL ?? '../../assets/images/avatar.png'"
+        src="../../assets/images/avatar.png"
         [alt]="user.displayName + '\'s avatar'"
       />
+      }
+
       <div class="user-infos">
         <p class="user-pseudo line-info">
           {{ user.displayName!.toUpperCase() }}
@@ -34,15 +39,15 @@
     <div class="user-stats">
       <h2 class="title">{{ "pages.account.achievementsTitle" | translate }}</h2>
       <div class="cards-container">
-        <div class="card user-level" [class]="userData.level + '-grade'">
-          {{ userData.level.toUpperCase() }}
+        <div class="card user-level" [class]="_userData.level + '-grade'">
+          {{ _userData.level.toUpperCase() }}
         </div>
         <div class="card user-xp">
-          <p class="insight-value">{{ userData.xp.toLocaleString() }}</p>
+          <p class="insight-value">{{ _userData.xp.toLocaleString() }}</p>
           <div class="insight-label">XP</div>
         </div>
         <div class="card user-quests">
-          <p class="insight-value">{{ userData.quests.toLocaleString() }}</p>
+          <p class="insight-value">{{ _userData.quests.toLocaleString() }}</p>
           <p class="insight-label">
             {{ "pages.account.QuestsCountLabel" | translate }}
           </p>
@@ -56,7 +61,7 @@
         {{ "pages.account.chestRaceHint" | translate }}
       </p>
       <div class="steps">
-        @for (step of STREAK_STEPS; track $index) { @if (streakDays >= step) {
+        @for (step of STREAK_STEPS; track $index) { @if (_streakDays >= step) {
         <div class="step">
           <img
             class="fire-icon"
@@ -80,10 +85,11 @@
         } }
         <div class="step chest">
           <img
-            [class]="streakDays < 7 ? 'uncompleted' : ''"
+            [class]="_streakDays < 7 ? 'uncompleted' : ''"
             class="chest-icon"
+            (click)="collectTreasure()"
             [src]="
-              streakDays < 7
+              _streakDays < 7
                 ? '../../../assets/images/tresor.png'
                 : '../../../assets/images/coffre-ouvert.png'
             "
@@ -142,7 +148,8 @@
       </div>
     </div>
   </div>
+  } @if (_notification) {
+  <app-toast [notification]="_notification" />
   }
 </div>
 <!-- TODO: Customize the circle-avatar component -->
-<!-- TODO: Formalize error returns using response status code. -->

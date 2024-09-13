@@ -7,7 +7,8 @@ export interface UserData {
   streak: string[];
   params: {};
   position: number;
-  playerName: string
+  playerName: string;
+  notifications: string[];
 }
 
 export interface Ranking {
@@ -16,5 +17,5 @@ export interface Ranking {
   trend: "up" | "down" | "steady";
   xp: number;
   level: 's'|'a'|'b'|'c'|'d'|'e'|'f';
-  decoration: "top-three" | "top-ten" | "top-fifty"
+  decoration: "top-three" | "top-ten" | "top-fifty";
 }

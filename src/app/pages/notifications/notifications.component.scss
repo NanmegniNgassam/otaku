@@ -1,0 +1,96 @@
+.wrapper {
+  max-width: 750px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  .title {
+    text-align: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+  }
+  .filters-box {
+    .indication {
+      text-align: end;
+      font-style: italic;
+    }
+    .filter-options {
+      max-width: fit-content;
+      margin: 10px auto;
+      display: flex;
+      gap: 20px;
+      .filter-option {
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.47, 0, 0.745, 0.715);
+        &:hover {
+          background-color: #ddd;
+        }
+        &.selected {
+          background-color: var(--primary-color);
+          color: #fff;
+          border-color: var(--primary-color);
+        }
+      }
+    }
+  }
+  .notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .notification {
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      border-right: 10px solid crimson;
+      min-height: 80px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      &:hover {
+        border-color: black;
+        border-right-color: crimson;
+      }
+      .notif-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.3rem;
+        color: crimson;
+        vertical-align: middle;
+        span {
+          font-weight: 500;
+        }
+      }
+      .actions {
+        max-width: fit-content;
+        align-self: last baseline;
+        a {
+          display: block;
+          padding: 10px 15px;
+          border: 1px solid #222;
+          color: #222;
+          border-radius: 5px;
+          transition: all 0.42s cubic-bezier(0.075, 0.82, 0.165, 1);
+          &:hover {
+            background-color: #222;
+            color: #fff;
+          }
+        }
+        .appreciations {
+          font-weight: 600;
+          &.good {
+            color: green;
+          }
+          &.medium {
+            color: darkorange;
+          }
+        }
+      }
+    }
+  }
+}

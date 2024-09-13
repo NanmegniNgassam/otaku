@@ -108,13 +108,20 @@
         <p class="option-label">
           {{ "pages.account.features.stats" | translate }}
         </p>
+
         <ion-icon class="option-icon" name="analytics-outline"></ion-icon>
       </a>
       <a routerLink="notifications" class="option">
         <p class="option-label">
           {{ "pages.account.features.notifications" | translate }}
         </p>
-        <ion-icon class="option-icon" name="notifications-outline"></ion-icon>
+
+        <div class="icon-container">
+          <ion-icon class="option-icon" name="notifications-outline"></ion-icon>
+          <span class="count">
+            {{ _userData.notifications.length }}
+          </span>
+        </div>
       </a>
       <a routerLink="settings" class="option">
         <p class="option-label">

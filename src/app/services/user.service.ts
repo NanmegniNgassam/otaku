@@ -33,7 +33,8 @@ export class UserService {
         streak: [new Date().toLocaleDateString("en-EN")],
         params: {},
         position: null,
-        playerName: this.auth.currentUser?.displayName
+        playerName: this.auth.currentUser?.displayName,
+        notifications: ["Votre profil vient d'être creé !"]
       })
     } catch (error) {
       console.error("Error while creating userDoc : ", error);

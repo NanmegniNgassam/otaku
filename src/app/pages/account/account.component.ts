@@ -31,6 +31,7 @@ export class AccountComponent implements OnInit {
     params: {},
     position: 0,
     playerName: this.auth.currentUser?.displayName!,
+    notifications: []
   }; 
 
   /**

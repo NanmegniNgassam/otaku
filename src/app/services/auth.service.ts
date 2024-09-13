@@ -54,7 +54,8 @@ export default class AuthService {
     const credential = GoogleAuthProvider.credentialFromResult(result);
 
     // Check if the account is newly created (created less than 1 minutes earlier)
-    if(Date.now().valueOf() - Number(result.user.metadata.creationTime) < 1*60*1000) {
+    const timeDiff = Date.now().valueOf() - new Date(result.user.metadata.creationTime!).valueOf();
+    if(timeDiff < 30*1000) {
       // Create a user document to store all its data
       await this.db.createUserDocument(result.user.uid);
     }

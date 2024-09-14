@@ -14,13 +14,13 @@ export const SELECTION_OPTIONS = ["ranking", "action", "info"]
 })
 export class NotificationsComponent {
   notifications!: Notification[];
-
+  availableNotifications!: Notification[];
   selectedOptions!: string[];
   selectionsOptions = SELECTION_OPTIONS;
 
   constructor() {
-    this.selectedOptions = ["ranking"];
-    this.notifications = [
+    this.selectedOptions = [];
+    this.availableNotifications = [
       {
         type: 'ranking',
         title: "Upgrading",
@@ -50,9 +50,17 @@ export class NotificationsComponent {
         isPositive: true,
         action: '/account/settings'
       }
-    ]
+    ];
+
+    this.notifications = this.filterNotifications();
   }
 
+  /**
+   * Manage adding/removing selected categories
+   * 
+   * @param option the selected category
+   * @returns none
+   */
   selectOption(option: string) {
     let options = this.selectedOptions;
 
@@ -65,5 +73,24 @@ export class NotificationsComponent {
       options.push(option)
       this.selectedOptions = [...new Set(options)]
     }
+
+    this.notifications = this.filterNotifications();
   }
+
+  /**
+   * Filter the notifications according to selected categories
+   * 
+   * @returns the notifications which match selected options
+   */
+  filterNotifications(): Notification[] {
+    let notifications: Notification[] = [];
+
+    if(!this.selectedOptions.length) {
+      notifications = this.availableNotifications;
+    } else {
+      notifications = this.availableNotifications.filter((notif: Notification) => this.selectedOptions.includes(notif.type))
+    }
+
+    return notifications
+  } 
 }

@@ -11,7 +11,7 @@
   }
   .filters-box {
     .indication {
-      text-align: end;
+      text-align: center;
       font-style: italic;
     }
     .filter-options {
@@ -29,9 +29,19 @@
           background-color: #ddd;
         }
         &.selected {
-          background-color: var(--primary-color);
           color: #fff;
-          border-color: var(--primary-color);
+          &.action {
+            background-color: crimson;
+            border-color: crimson;
+          }
+          &.ranking {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+          }
+          &.info {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+          }
         }
       }
     }
@@ -53,14 +63,31 @@
       cursor: pointer;
       &:hover {
         border-color: black;
-        border-right-color: crimson;
       }
+      &.action {
+        border-right-color: crimson;
+        .notif-title {
+          color: crimson;
+        }
+      }
+      &.info {
+        border-right-color: var(--primary-color);
+        .notif-title {
+          color: var(--primary-color);
+        }
+      }
+      &.ranking {
+        border-right-color: var(--secondary-color);
+        .notif-title {
+          color: var(--secondary-color);
+        }
+      }
+
       .notif-title {
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 1.3rem;
-        color: crimson;
         vertical-align: middle;
         span {
           font-weight: 500;

@@ -19,3 +19,12 @@ export interface Ranking {
   level: 's'|'a'|'b'|'c'|'d'|'e'|'f';
   decoration: "top-three" | "top-ten" | "top-fifty";
 }
+
+export interface Notification {
+  type: 'action' | 'ranking' | 'info';
+  title: string;
+  message: string;
+  isUnread: boolean;
+  isPositive: boolean;
+  action?: string 
+}

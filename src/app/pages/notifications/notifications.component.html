@@ -1,48 +1,42 @@
 <div class="wrapper">
   <h1 class="title">Notifications</h1>
   <div class="filters-box">
-    <p class="indication">Effectuer un tri sur les notifications</p>
+    <p class="indication">Sélectionner une catégorie</p>
     <div class="filter-options">
-      <span class="filter-option">ACTION</span>
-      <span class="filter-option">RANKING</span>
-      <span class="filter-option selected">INFO</span>
+      @for (option of selectionsOptions; track $index) {
+      <span
+        class="filter-option"
+        [class]="
+          selectedOptions.includes(option) ? option + ' selected' : option
+        "
+        (click)="selectOption(option)"
+      >
+        {{ option.toUpperCase() }}
+      </span>
+      }
     </div>
   </div>
+
   <div class="notifications">
-    <div class="notification">
+    @for ( notification of notifications; track $index) {
+    <div class="notification" [class]="notification.type">
       <span class="notif-title">
-        <span>ACTION</span> <ion-icon name="mail-unread-outline"></ion-icon>
+        <span> {{ notification.title.toUpperCase() }} </span>
+        @if(notification.isUnread) {
+        <ion-icon name="mail-unread-outline"></ion-icon>
+        }
       </span>
-      <p class="notif-content">You've just created your account !</p>
+      <p class="notif-content">{{ notification.message }}</p>
       <div class="actions">
-        <a href="/">take action</a>
-      </div>
-    </div>
-    <div class="notification">
-      <span class="notif-title">
-        <span>RANKING</span> <ion-icon name="mail-unread-outline"></ion-icon>
-      </span>
-      <p class="notif-content">You've just created your account !</p>
-      <div class="actions">
-        <span class="appreciations">Congrats !</span>
-      </div>
-    </div>
-    <div class="notification">
-      <span class="notif-title">
-        <span>RANKING</span>
-      </span>
-      <p class="notif-content">You've just created your account !</p>
-      <div class="actions">
+        @if(notification.action) {
+        <a [href]="notification.action">take action</a>
+        } @else if (notification.isPositive) {
+        <span class="appreciations good">Congrats !</span>
+        } @else {
         <span class="appreciations medium">Just some more efforts!</span>
+        }
       </div>
     </div>
-    <div class="notification">
-      <span class="notif-title">
-        <span>INFO</span>
-      </span>
-      <p class="notif-content">
-        You've reached lately the milestones of 10.000 Xp
-      </p>
-    </div>
+    }
   </div>
 </div>

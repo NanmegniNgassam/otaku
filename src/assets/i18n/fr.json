@@ -125,6 +125,15 @@
       "noRanking": "Vous n'avez pas encore été officiellement classé !",
       "rankingHint": "Accomplissez des quêtes et relevez des defis afin de remonter dans le classement.",
       "userNotFound": "Le joueur '{{player}}' que vous recherchez n'a pas été trouvé !"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "filterHintLabel": "Sélectionner une catégorie",
+      "takeActionLabel": "y aller !",
+      "congratsAppreciation": "Felicitations !",
+      "mediumAppreciation": "Encore un peu d'efforts !",
+      "receivedLabel": "Reçu le",
+      "noMoreNotifs": "Plus de notifications disponibles !"
     }
   },
   "others": {

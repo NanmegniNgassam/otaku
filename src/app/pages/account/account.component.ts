@@ -57,6 +57,7 @@ export class AccountComponent implements OnInit {
     
   }
 
+  // TODO: Create a util for this function
   /**
    * Generate from the timestamp, the equivalent string representation
    * 

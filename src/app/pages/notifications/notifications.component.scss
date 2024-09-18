@@ -31,8 +31,8 @@
         &.selected {
           color: #fff;
           &.action {
-            background-color: crimson;
-            border-color: crimson;
+            background-color: var(--error-color);
+            border-color: var(--error-color);
           }
           &.ranking {
             background-color: var(--secondary-color);
@@ -53,7 +53,7 @@
     .notification {
       padding: 5px 10px;
       border: 1px solid #ddd;
-      border-right: 10px solid crimson;
+      border-right: 10px solid var(--error-color);
       min-height: 80px;
       height: 100%;
       display: flex;
@@ -65,9 +65,9 @@
         border-color: black;
       }
       &.action {
-        border-right-color: crimson;
+        border-right-color: var(--error-color);
         .notif-title {
-          color: crimson;
+          color: var(--error-color);
         }
       }
       &.info {
@@ -88,7 +88,6 @@
         justify-content: space-between;
         align-items: center;
         font-size: 1.3rem;
-        vertical-align: middle;
         span {
           font-weight: 500;
         }
@@ -117,6 +116,10 @@
             color: darkorange;
           }
         }
+      }
+      .time {
+        font-size: 0.8rem;
+        font-style: italic;
       }
     }
     .date-line-separation {
@@ -153,6 +156,62 @@
     width: 90%;
     .title {
       font-size: 2rem;
+    }
+    .notifications {
+      .date-line-separation {
+        margin: 15px 0;
+        &::after {
+          border: 0.5px solid grey;
+        }
+        .date {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    width: 95%;
+    gap: 20px;
+    .title {
+      font-size: 1.6rem;
+      gap: 20px;
+    }
+    .filters-box {
+      .filter-options {
+        flex-wrap: wrap;
+        gap: 10px;
+        .filter-option {
+          padding: 8px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+    .notifications {
+      .notification {
+        .notif-title {
+          font-size: 1.1rem;
+        }
+        .notif-content {
+          font-size: 0.9rem;
+        }
+
+        .actions {
+          max-width: fit-content;
+          align-self: last baseline;
+          a {
+            padding: 8px;
+          }
+          .appreciations {
+            font-weight: 500;
+          }
+        }
+        .time {
+          font-size: 0.8rem;
+        }
+      }
     }
   }
 }

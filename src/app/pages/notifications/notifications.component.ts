@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Notification } from '../../models/user';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 export const SELECTION_OPTIONS = ["ranking", "action", "info"]
 
 @Component({
   selector: 'app-notifications',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TranslateModule],
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

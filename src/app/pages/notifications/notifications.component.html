@@ -1,14 +1,14 @@
 <div class="wrapper">
-  <h1 class="title">Notifications</h1>
+  <h1 class="title">{{ "pages.notifications.title" | translate }}</h1>
   <div class="filters-box">
-    <p class="indication">Sélectionner une catégorie</p>
+    <p class="indication">
+      {{ "pages.notifications.filterHintLabel" | translate }}
+    </p>
     <div class="filter-options">
       @for (option of selectionsOptions; track $index) {
       <span
-        class="filter-option"
-        [class]="
-          selectedOptions.includes(option) ? option + ' selected' : option
-        "
+        [class]="'filter-option ' + option"
+        [ngClass]="{ selected: selectedOptions.includes(option) }"
         (click)="selectOption(option)"
       >
         {{ option.toUpperCase() }}
@@ -20,27 +20,34 @@
   <div class="notifications">
     @for (notificationsGroup of notificationsGroups; track $index) { @for (
     notification of notificationsGroup; track $index) {
-    <div class="notification" [class]="notification.type">
+    <div [class]="'notification ' + notification.type">
       <span class="notif-title">
         <span> {{ notification.title.toUpperCase() }} </span>
         @if(notification.isUnread) {
         <ion-icon name="mail-unread-outline"></ion-icon>
         }
       </span>
-      <p [ngClass]="{ acide: false }" class="notif-content">
+      <p class="notif-content">
         {{ notification.message }}
       </p>
       <div class="actions">
         @if(notification.action) {
-        <a [routerLink]="notification.action">take action</a>
+        <a [routerLink]="notification.action">
+          {{ "pages.notifications.takeActionLabel" | translate }}
+        </a>
         } @else if (notification.isPositive) {
-        <span class="appreciations good">Congrats !</span>
+        <span class="appreciations good">
+          {{ "pages.notifications.congratsAppreciation" | translate }}
+        </span>
         } @else {
-        <span class="appreciations medium">Just some more efforts!</span>
+        <span class="appreciations medium">
+          {{ "pages.notifications.mediumAppreciation" | translate }}
+        </span>
         }
       </div>
       <span class="time">
-        reçu le {{ notification.date.toLocaleDateString() }} à
+        {{ "pages.notifications.receivedLabel" | translate }}
+        {{ notification.date.toLocaleDateString() }} à
         {{ notification.date.toLocaleTimeString() }}
       </span>
     </div>
@@ -57,6 +64,8 @@
       </span>
     </div>
     } } }
-    <p class="no-more-notifs">No more notifications to see here !</p>
+    <p class="no-more-notifs">
+      {{ "pages.notifications.noMoreNotifs" | translate }}
+    </p>
   </div>
 </div>

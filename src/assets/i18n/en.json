@@ -125,6 +125,15 @@
       "noRanking": "You haven't been officially ranked yet!",
       "rankingHint": "Complete quests and challenges to move up the rankings.",
       "userNotFound": "The player '{{player}}' you're looking for wasn't found!"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "filterHintLabel": "Select a category",
+      "takeActionLabel": "take action",
+      "congratsAppreciation": "Congrats!",
+      "mediumAppreciation": "Just some more efforts!",
+      "receivedLabel": "Received on",
+      "noMoreNotifs": "No more notifications to see here!"
     }
   },
   "others": {

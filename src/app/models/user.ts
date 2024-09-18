@@ -26,5 +26,6 @@ export interface Notification {
   message: string;
   isUnread: boolean;
   isPositive: boolean;
-  action?: string 
+  action?: string;
+  date: Date
 }

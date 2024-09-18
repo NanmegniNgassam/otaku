@@ -26,21 +26,25 @@ export class NotificationsComponent {
         title: "Upgrading",
         message: "You went from 12th to 9th position",
         isUnread : false,
-        isPositive: true
+        isPositive: true,
+        date: new Date("9/19/2024")
+        
       },
       {
         type: 'ranking',
         title: "Downgrading",
         message: "You went from 9th to 15th",
         isUnread : true,
-        isPositive: true
+        isPositive: true,
+        date: new Date("9/18/2024")
       },
       {
         type: 'info',
         title: "Xp gain",
         message: "You won 6 000 Xp lately",
         isUnread : true,
-        isPositive: true
+        isPositive: true,
+        date: new Date("9/17/2024")
       },
       {
         type: 'action',
@@ -48,9 +52,12 @@ export class NotificationsComponent {
         message: "Please, may you validate your e-mail",
         isUnread : true,
         isPositive: true,
-        action: '/account/settings'
+        action: '/account/settings',
+        date: new Date("8/17/2024")
       }
     ];
+
+    console.log("Notifications : ", this.availableNotifications)
 
     this.notifications = this.filterNotifications();
   }

@@ -18,7 +18,8 @@
   </div>
 
   <div class="notifications">
-    @for ( notification of notifications; track $index) {
+    @for (notificationsGroup of notificationsGroups; track $index) { @for (
+    notification of notificationsGroup; track $index) {
     <div class="notification" [class]="notification.type">
       <span class="notif-title">
         <span> {{ notification.title.toUpperCase() }} </span>
@@ -31,7 +32,7 @@
       </p>
       <div class="actions">
         @if(notification.action) {
-        <a [href]="notification.action">take action</a>
+        <a [routerLink]="notification.action">take action</a>
         } @else if (notification.isPositive) {
         <span class="appreciations good">Congrats !</span>
         } @else {
@@ -44,5 +45,18 @@
       </span>
     </div>
     }
+    <!-- Set the date-line-separator -->
+    @if (notificationsGroup.length) { @if ($index == 0) {
+    <div class="date-line-separation">
+      <span class="date"> unread </span>
+    </div>
+    } @else {
+    <div class="date-line-separation">
+      <span class="date">
+        {{ notificationsGroup[0].date.toLocaleDateString() }}
+      </span>
+    </div>
+    } } }
+    <p class="no-more-notifs">No more notifications to see here !</p>
   </div>
 </div>

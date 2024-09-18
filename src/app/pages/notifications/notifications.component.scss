@@ -119,5 +119,40 @@
         }
       }
     }
+    .date-line-separation {
+      position: relative;
+      margin: 20px 0;
+      text-align: center;
+      z-index: 1;
+      &::after {
+        content: "";
+        position: absolute;
+        border: 1px solid grey;
+        width: 100%;
+        left: 0;
+        top: 50%;
+        z-index: -1;
+      }
+      .date {
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 0 20px;
+      }
+    }
+    .no-more-notifs {
+      text-align: center;
+      color: grey;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .wrapper {
+    width: 90%;
+    .title {
+      font-size: 2rem;
+    }
   }
 }

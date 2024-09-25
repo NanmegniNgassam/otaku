@@ -1,16 +1,21 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { UserData } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import AuthService from '../../services/auth.service';
+import { AsyncPipe } from '@angular/common';
+import { updateProfile } from '@angular/fire/auth';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe, TranslateModule],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EditComponent implements OnInit {
+  user$ = this.auth.user$;
   _isAvatarOptionsDisplayed: boolean = false;
   _avatarOptionsTimer!: NodeJS.Timeout;
   _newAvatarFile!:File|null;
@@ -20,6 +25,7 @@ export class EditComponent implements OnInit {
 
   constructor(
     private user: UserService,
+    private auth: AuthService
   ) {
   }
 
@@ -41,6 +47,27 @@ export class EditComponent implements OnInit {
       this._avatarOptionsTimer = setTimeout(() => {
         this._isAvatarOptionsDisplayed = false;
       }, 10000)
+    }
+  }
+
+  async deleteUserAvatar(): Promise<void> {
+    this.toggleAvatarOptions();
+
+    try {
+      this._isAvatarUploading = true;
+
+      // Delete current avatar in storage
+      await this.user.deleteAvatarDocContent();
+
+      // Update current profile
+      await updateProfile(this.auth.currentUser!, { photoURL: "" })
+
+      this.auth.currentUser!.reload();
+    } catch(error) {
+      console.error("Error while deleting your avatar : ", error)
+    }
+    finally {
+      this._isAvatarUploading = false;
     }
   }
 
@@ -94,4 +121,21 @@ export class EditComponent implements OnInit {
 
     this.toggleAvatarOptions()
   }
+
+    /**
+   * generate from a fullname the derived initials
+   * 
+   * @param username the name of the current service user
+   * @returns the username initials in uppercase (like AW for Alex Wilcox)
+   */
+    generateNameInitials (username:string):string {
+      let initials = '';
+      const [firstName, lastName] = username.split(' ');
+  
+      
+      initials+= firstName && firstName[0];
+      initials+= lastName ? lastName[0] : '';
+  
+      return initials.toUpperCase();
+    }
 }

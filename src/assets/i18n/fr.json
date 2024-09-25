@@ -134,6 +134,10 @@
       "mediumAppreciation": "Encore un peu d'efforts !",
       "receivedLabel": "Reçu le",
       "noMoreNotifs": "Plus de notifications disponibles !"
+    },
+    "edition": {
+      "selectImage": "Selectionner une image",
+      "deleteImage": "Supprimer l'image"
     }
   },
   "others": {

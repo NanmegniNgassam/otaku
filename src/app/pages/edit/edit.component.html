@@ -1,8 +1,15 @@
 <div class="wrapper">
   <h1>Edition du profil</h1>
+  @if ((user$ | async); as user) {
   <div class="avatars-box">
     <div class="avatar-box">
-      <img src="../../../assets/images/avatar.png" alt="old profile pic" />
+      @if (user.photoURL) {
+      <img [src]="user.photoURL" alt="old profile pic" />
+      } @else {
+      <div class="container-initials">
+        {{ generateNameInitials(user.displayName!) }}
+      </div>
+      }
       <div class="avatar-option" (click)="toggleAvatarOptions()">
         <ion-icon name="camera-outline"></ion-icon>
       </div>
@@ -11,7 +18,7 @@
         <div class="option">
           <label for="avatar">
             <ion-icon name="folder-outline"></ion-icon>
-            <span>Selectionner une image</span>
+            <span> {{ "pages.edition.selectImage" | translate }} </span>
           </label>
           <input
             type="file"
@@ -22,10 +29,10 @@
             accept="image/*"
           />
         </div>
-        @if (!_newAvatarFile) {
-        <div class="option">
+        @if (!_newAvatarFile && user.photoURL) {
+        <div class="option" (click)="deleteUserAvatar()">
           <ion-icon name="trash-bin-outline"></ion-icon>
-          <span>Supprimer l'image</span>
+          <span> {{ "pages.edition.deleteImage" | translate }} </span>
         </div>
         }
       </div>
@@ -49,7 +56,7 @@
 
   @if (_isAvatarUploading) {
   <div class="spinner"></div>
-  }
+  } }
 
   <form action="">
     <label for="">Username</label>

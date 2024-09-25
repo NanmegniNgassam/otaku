@@ -211,13 +211,7 @@ export class UserService {
    */
   async storeNewAvatar(avatarFile: File, fileExtension: string): Promise<void> {
     // Delete all the file in the current avatar doc
-    const listRef = ref(this.storage, `avatars/${this.auth.currentUser?.uid}`)
-    const res = await listAll(listRef);
-    
-    res.items.forEach( async (itemRef) => {
-      await deleteObject(itemRef)
-    })
-    
+    await this.deleteAvatarDocContent();
 
     // Store the blob file on firebase.
     const destinationUrl = `avatars/${this.auth.currentUser?.uid}/${this.auth.currentUser?.displayName}.${fileExtension}`
@@ -227,6 +221,20 @@ export class UserService {
     // Get the corresponding url and update user profile
     const avatarUrl = await getDownloadURL(avatarRef);
     await updateProfile(this.auth.currentUser!, {photoURL: avatarUrl})
+  }
+
+  /**
+   * Delete all avatar doc content
+   */
+  async deleteAvatarDocContent() : Promise<void> {
+    // Get all the doc content
+    const listRef = ref(this.storage, `avatars/${this.auth.currentUser?.uid}`)
+    const listResult = await listAll(listRef);
+    
+    // Delete all items
+    listResult.items.forEach( async (itemRef) => {
+      await deleteObject(itemRef)
+    })
   }
  }
 

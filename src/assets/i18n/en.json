@@ -134,6 +134,10 @@
       "mediumAppreciation": "Just some more efforts!",
       "receivedLabel": "Received on",
       "noMoreNotifs": "No more notifications to see here!"
+    },
+    "edition": {
+      "selectImage": "Select an image",
+      "deleteImage": "Delete the profile"
     }
   },
   "others": {

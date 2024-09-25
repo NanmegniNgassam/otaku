@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Auth, User, user } from '@angular/fire/auth';
+import { Auth, updateProfile } from '@angular/fire/auth';
 import { doc, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
+import { deleteObject, getDownloadURL, listAll, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import { Ranking, UserData } from '../models/user';
 
 const USERS_COLLECTION = "users";
@@ -14,7 +15,8 @@ export class UserService {
 
   constructor(
     private db: Firestore,
-    private auth: Auth
+    private auth: Auth,
+    private storage: Storage
   ) {}
 
   /**
@@ -201,8 +203,30 @@ export class UserService {
     return nextRankingDate;
   }
 
-  async storageAvatar(): Promise<void> {
+  /**
+   * save a file with a specific extension in the cloud bucket
+   * 
+   * @param avatarFile the file to store
+   * @param fileExtension file extension
+   */
+  async storeNewAvatar(avatarFile: File, fileExtension: string): Promise<void> {
+    // Delete all the file in the current avatar doc
+    const listRef = ref(this.storage, `avatars/${this.auth.currentUser?.uid}`)
+    const res = await listAll(listRef);
+    
+    res.items.forEach( async (itemRef) => {
+      await deleteObject(itemRef)
+    })
+    
 
+    // Store the blob file on firebase.
+    const destinationUrl = `avatars/${this.auth.currentUser?.uid}/${this.auth.currentUser?.displayName}.${fileExtension}`
+    const avatarRef = ref(this.storage, destinationUrl)
+    await uploadBytesResumable(avatarRef, avatarFile);
+
+    // Get the corresponding url and update user profile
+    const avatarUrl = await getDownloadURL(avatarRef);
+    await updateProfile(this.auth.currentUser!, {photoURL: avatarUrl})
   }
  }
 

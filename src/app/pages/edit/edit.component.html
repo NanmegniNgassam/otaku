@@ -6,7 +6,7 @@
       <div class="avatar-option" (click)="toggleAvatarOptions()">
         <ion-icon name="camera-outline"></ion-icon>
       </div>
-      @if (isAvatarOptionsDisplayed) {
+      @if (_isAvatarOptionsDisplayed) {
       <div class="avatar-options">
         <div class="option">
           <label for="avatar">
@@ -22,7 +22,7 @@
             accept="image/*"
           />
         </div>
-        @if (!newAvatarUrl) {
+        @if (!_newAvatarFile) {
         <div class="option">
           <ion-icon name="trash-bin-outline"></ion-icon>
           <span>Supprimer l'image</span>
@@ -32,11 +32,11 @@
       }
     </div>
 
-    @if (newAvatarUrl) {
+    @if (_newAvatarFile) {
     <ion-icon class="next-arrow" name="chevron-forward-outline"></ion-icon>
 
     <div class="avatar-box">
-      <img [src]="newAvatarUrl" alt="new profile pic" />
+      <img [src]="generateAvatarUrl(_newAvatarFile)" alt="new profile pic" />
       <div class="avatar-option cancel" (click)="dismissNewAvatar()">
         <ion-icon name="close-outline"></ion-icon>
       </div>
@@ -45,9 +45,12 @@
       </div>
     </div>
     }
-
-    <!-- TODO: Mettre un loader pendant l'upload du nouvel avatar -->
   </div>
+
+  @if (_isAvatarUploading) {
+  <div class="spinner"></div>
+  }
+
   <form action="">
     <label for="">Username</label>
     <input type="text" />

@@ -1,0 +1,102 @@
+.wrapper {
+  max-width: 750px;
+  margin: 100px auto;
+  border: 1px dashed grey;
+  h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+  .avatars-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    .avatar-box {
+      position: relative;
+      img {
+        width: 200px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+      }
+      .avatar-option {
+        position: absolute;
+        bottom: 5%;
+        right: 5%;
+        width: 3rem;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        box-shadow: 2px 1px 3px var(--dark-color);
+        cursor: pointer;
+        ion-icon {
+          font-size: 1.8rem;
+          color: var(--secondary-color);
+        }
+        &.left {
+          left: 5%;
+        }
+        &.validate {
+          ion-icon {
+            color: green;
+          }
+        }
+        &.cancel {
+          ion-icon {
+            color: var(--error-color);
+          }
+        }
+      }
+    }
+
+    .avatar-options {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+      padding: 5px 10px;
+      width: 260px;
+      border: 1px solid var(--dark-color);
+      border-radius: 5px;
+      box-shadow: 2px 2px 3px gray;
+      overflow: hidden;
+      background-color: #fff;
+
+      .option {
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.47, 0, 0.745, 0.715);
+        font-size: 1rem;
+        &:hover {
+          background-color: #ddd;
+        }
+        ion-icon {
+          font-size: 1.5rem;
+        }
+        label {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          cursor: pointer;
+          input {
+            display: none;
+          }
+        }
+      }
+    }
+    .next-arrow {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+    }
+  }
+
+  form {
+    margin: 40px auto;
+  }
+}

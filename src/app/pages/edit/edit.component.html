@@ -1,1 +1,55 @@
-<p>edit works!</p>
+<div class="wrapper">
+  <h1>Edition du profil</h1>
+  <div class="avatars-box">
+    <div class="avatar-box">
+      <img src="../../../assets/images/avatar.png" alt="old profile pic" />
+      <div class="avatar-option" (click)="toggleAvatarOptions()">
+        <ion-icon name="camera-outline"></ion-icon>
+      </div>
+      @if (isAvatarOptionsDisplayed) {
+      <div class="avatar-options">
+        <div class="option">
+          <label for="avatar">
+            <ion-icon name="folder-outline"></ion-icon>
+            <span>Selectionner une image</span>
+          </label>
+          <input
+            type="file"
+            id="avatar"
+            (change)="onAvatarChange()"
+            (cancel)="toggleAvatarOptions()"
+            hidden
+            accept="image/*"
+          />
+        </div>
+        @if (!newAvatarUrl) {
+        <div class="option">
+          <ion-icon name="trash-bin-outline"></ion-icon>
+          <span>Supprimer l'image</span>
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    @if (newAvatarUrl) {
+    <ion-icon class="next-arrow" name="chevron-forward-outline"></ion-icon>
+
+    <div class="avatar-box">
+      <img [src]="newAvatarUrl" alt="new profile pic" />
+      <div class="avatar-option cancel" (click)="dismissNewAvatar()">
+        <ion-icon name="close-outline"></ion-icon>
+      </div>
+      <div class="avatar-option left validate" (click)="validateNewAvatar()">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </div>
+    </div>
+    }
+
+    <!-- TODO: Mettre un loader pendant l'upload du nouvel avatar -->
+  </div>
+  <form action="">
+    <label for="">Username</label>
+    <input type="text" />
+  </form>
+</div>

@@ -200,6 +200,10 @@ export class UserService {
 
     return nextRankingDate;
   }
+
+  async storageAvatar(): Promise<void> {
+
+  }
  }
 
 // TODO: Pensez à mettre une politique contre les caractères spéciaux pour la création de compte

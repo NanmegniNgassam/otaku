@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostListener, OnInit } from '@angular/core';
 import { UserData } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import AuthService from '../../services/auth.service';
@@ -25,7 +25,8 @@ export class EditComponent implements OnInit {
 
   constructor(
     private user: UserService,
-    private auth: AuthService
+    private auth: AuthService,
+    private eRef: ElementRef
   ) {
   }
 
@@ -35,6 +36,16 @@ export class EditComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     
   }
+
+  // TODO: Use this for the header to close the navbar when needed
+  // @HostListener('document:click', ['$event'])
+  // clickout(event: Event) {
+  //   if(this.eRef.nativeElement.contains(event.target)) {
+  //     console.log('click inside !')
+  //   } else {
+  //     console.log('click outside !')
+  //   }
+  // }
 
   /**
    * Show/Display all options referring to avatar 
@@ -122,7 +133,7 @@ export class EditComponent implements OnInit {
     this.toggleAvatarOptions()
   }
 
-    /**
+  /**
    * generate from a fullname the derived initials
    * 
    * @param username the name of the current service user

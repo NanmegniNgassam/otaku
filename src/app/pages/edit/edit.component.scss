@@ -124,3 +124,85 @@
     margin: 40px auto;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .wrapper {
+    max-width: 90%;
+    h1 {
+      font-weight: 2rem;
+    }
+    .avatars-box {
+      .container-initials {
+        width: 150px;
+      }
+      .avatar-box {
+        img {
+          width: 150px;
+        }
+        .avatar-option {
+          width: 2.5rem;
+          ion-icon {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    max-width: 95%;
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+    .avatars-box {
+      .container-initials {
+        width: 140px;
+      }
+      .avatar-box {
+        img {
+          width: 140px;
+        }
+        .avatar-option {
+          width: 2.2rem;
+          ion-icon {
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .wrapper {
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .avatars-box {
+      flex-direction: column;
+      gap: 10px;
+      .container-initials {
+        width: 140px;
+      }
+      .avatar-box {
+        img {
+          width: 140px;
+        }
+        .avatar-option {
+          width: 2.2rem;
+          ion-icon {
+            font-size: 1.4rem;
+          }
+        }
+      }
+      .next-arrow {
+        font-size: 2rem;
+        transform: rotate(90deg);
+      }
+    }
+  }
+}

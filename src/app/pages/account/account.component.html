@@ -9,10 +9,9 @@
       @if (user.photoURL) {
       <img [src]="user.photoURL" [alt]="user.displayName + '\'s avatar'" />
       } @else {
-      <img
-        src="../../assets/images/avatar.png"
-        [alt]="user.displayName + '\'s avatar'"
-      />
+      <div class="container-initials">
+        {{ generateNameInitials(user.displayName!) }}
+      </div>
       }
 
       <div class="user-infos">

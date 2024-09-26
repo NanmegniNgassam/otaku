@@ -97,4 +97,22 @@ export class AccountComponent implements OnInit {
       this._streakDays = this.user.getUserStreak(this._userData.streak);
     }
   }
+
+  // TODO: Create a util function here
+  /**
+   * generate from a fullname the derived initials
+   * 
+   * @param username the name of the current service user
+   * @returns the username initials in uppercase (like AW for Alex Wilcox)
+   */
+    generateNameInitials (username:string):string {
+      let initials = '';
+      const [firstName, lastName] = username.split(' ');
+  
+      
+      initials+= firstName && firstName[0];
+      initials+= lastName ? lastName[0] : '';
+  
+      return initials.toUpperCase();
+    }
 }

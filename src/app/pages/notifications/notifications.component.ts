@@ -134,3 +134,5 @@ export class NotificationsComponent {
     return iterableResult;
   }
 }
+
+// TODO: Valider le statut de lecture des notifications

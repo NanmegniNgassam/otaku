@@ -7,7 +7,7 @@
       <img [src]="user.photoURL" alt="old profile pic" />
       } @else {
       <div class="container-initials">
-        {{ generateNameInitials(user.displayName!) }}
+        {{ util.generateNameInitials(user.displayName!) }}
       </div>
       }
       <div class="avatar-option" (click)="toggleAvatarOptions()">

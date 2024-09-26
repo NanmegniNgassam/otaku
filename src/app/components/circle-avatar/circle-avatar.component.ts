@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-circle-avatar',
@@ -12,20 +13,8 @@ export class CircleAvatarComponent {
   @Input() avatarUrl!:string;
   @Input() userName!:string;
 
-  /**
-   * generate from a fullname the derived initials
-   * 
-   * @param username the name of the current service user
-   * @returns the username initials in uppercase (like AW for Alex Wilcox)
-   */
-  generateNameInitials (username:string):string {
-    let initials = '';
-    const [firstName, lastName] = username.split(' ');
-
-    
-    initials+= firstName && firstName[0];
-    initials+= lastName ? lastName[0] : '';
-
-    return initials.toUpperCase();
+  constructor(
+    protected util: UtilsService
+  ) {
   }
 }

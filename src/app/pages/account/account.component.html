@@ -10,7 +10,7 @@
       <img [src]="user.photoURL" [alt]="user.displayName + '\'s avatar'" />
       } @else {
       <div class="container-initials">
-        {{ generateNameInitials(user.displayName!) }}
+        {{ util.generateNameInitials(user.displayName!) }}
       </div>
       }
 
@@ -30,7 +30,7 @@
         </div>
         <p class="sign-up-date">
           {{ "pages.account.creationDateLabel" | translate }}
-          {{ convertTimeStampInDate(user.metadata.creationTime!) }}
+          {{ util.convertTimeStampInDate(user.metadata.creationTime!) }}
         </p>
       </div>
     </div>
@@ -158,4 +158,3 @@
   <app-toast [notification]="_notification" />
   }
 </div>
-<!-- TODO: Customize the circle-avatar component -->

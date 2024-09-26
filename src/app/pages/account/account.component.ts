@@ -7,6 +7,7 @@ import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { ToastComponent } from '../../components/toast/toast.component';
 import { Toast } from '../../models/toast';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-account',
@@ -43,7 +44,8 @@ export class AccountComponent implements OnInit {
   constructor(
     protected auth: AuthService,
     private translate: TranslateService,
-    private user: UserService
+    private user: UserService,
+    protected util: UtilsService
   ) {}
 
   /**
@@ -55,24 +57,6 @@ export class AccountComponent implements OnInit {
     const currentStreak = await this.user.updateUserStreak(this._userData.streak);
     this._streakDays = this.user.getUserStreak(currentStreak);
     
-  }
-
-  // TODO: Create a util for this function
-  /**
-   * Generate from the timestamp, the equivalent string representation
-   * 
-   * @param timeStamp firebase time format
-   * @returns the string representation of timestamp in the actual language
-   */
-  convertTimeStampInDate(timeStamp: string): string {
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }
-
-    return new Date(timeStamp).toLocaleDateString(this.translate.defaultLang, options);
   }
 
   /**
@@ -97,22 +81,4 @@ export class AccountComponent implements OnInit {
       this._streakDays = this.user.getUserStreak(this._userData.streak);
     }
   }
-
-  // TODO: Create a util function here
-  /**
-   * generate from a fullname the derived initials
-   * 
-   * @param username the name of the current service user
-   * @returns the username initials in uppercase (like AW for Alex Wilcox)
-   */
-    generateNameInitials (username:string):string {
-      let initials = '';
-      const [firstName, lastName] = username.split(' ');
-  
-      
-      initials+= firstName && firstName[0];
-      initials+= lastName ? lastName[0] : '';
-  
-      return initials.toUpperCase();
-    }
 }

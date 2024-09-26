@@ -1,10 +1,11 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostListener, OnInit } from '@angular/core';
-import { UserData } from '../../models/user';
-import { UserService } from '../../services/user.service';
-import AuthService from '../../services/auth.service';
 import { AsyncPipe } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit } from '@angular/core';
 import { updateProfile } from '@angular/fire/auth';
 import { TranslateModule } from '@ngx-translate/core';
+import { UserData } from '../../models/user';
+import AuthService from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-edit',
@@ -26,7 +27,8 @@ export class EditComponent implements OnInit {
   constructor(
     private user: UserService,
     private auth: AuthService,
-    private eRef: ElementRef
+    private eRef: ElementRef,
+    protected util: UtilsService
   ) {
   }
 
@@ -132,21 +134,4 @@ export class EditComponent implements OnInit {
 
     this.toggleAvatarOptions()
   }
-
-  /**
-   * generate from a fullname the derived initials
-   * 
-   * @param username the name of the current service user
-   * @returns the username initials in uppercase (like AW for Alex Wilcox)
-   */
-    generateNameInitials (username:string):string {
-      let initials = '';
-      const [firstName, lastName] = username.split(' ');
-  
-      
-      initials+= firstName && firstName[0];
-      initials+= lastName ? lastName[0] : '';
-  
-      return initials.toUpperCase();
-    }
 }

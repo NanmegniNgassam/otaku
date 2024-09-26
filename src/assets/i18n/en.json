@@ -109,13 +109,11 @@
       "chestRaceHint": "Once the chest is open, click on it to collect its content.",
       "moreStatsButtonLabel": "See more stats",
       "features": {
-        "stats": "Statistics",
         "notifications": "Notifications",
         "settings": "Settings",
         "edition": "Edition",
         "ranking": "Ranking",
-        "logout": "Logout",
-        "delete": "Deletion"
+        "logout": "Logout"
       }
     },
     "ranking": {

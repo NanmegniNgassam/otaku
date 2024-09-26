@@ -6,7 +6,6 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
-import { StatsComponent } from './pages/stats/stats.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { EditComponent } from './pages/edit/edit.component';
@@ -31,34 +30,28 @@ export const routes: Routes = [
     title: 'otaku | account'
   },
   {
-    path: 'account/stats',
-    canActivate: [AuthGuard],
-    component: StatsComponent,
-    title: 'otaku | account'
-  },
-  {
     path: 'account/notifications',
     canActivate: [AuthGuard],
     component: NotificationsComponent,
-    title: 'otaku | account'
+    title: 'otaku | notifications'
   },
   {
     path: 'account/settings',
     canActivate: [AuthGuard],
     component: SettingsComponent,
-    title: 'otaku | account'
+    title: 'otaku | settings'
   },
   {
     path: 'account/edit',
     canActivate: [AuthGuard],
     component: EditComponent,
-    title: 'otaku | account'
+    title: 'otaku | edition'
   },
   {
     path: 'account/ranking',
     canActivate: [AuthGuard],
     component: RankingComponent,
-    title: 'otaku | account'
+    title: 'otaku | ranking'
   },
   {
     path: 'email-verification',

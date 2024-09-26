@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { updateProfile } from '@angular/fire/auth';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserData } from '../../models/user';
@@ -27,7 +27,6 @@ export class EditComponent implements OnInit {
   constructor(
     private user: UserService,
     private auth: AuthService,
-    private eRef: ElementRef,
     protected util: UtilsService
   ) {
   }
@@ -38,16 +37,6 @@ export class EditComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     
   }
-
-  // TODO: Use this for the header to close the navbar when needed
-  // @HostListener('document:click', ['$event'])
-  // clickout(event: Event) {
-  //   if(this.eRef.nativeElement.contains(event.target)) {
-  //     console.log('click inside !')
-  //   } else {
-  //     console.log('click outside !')
-  //   }
-  // }
 
   /**
    * Show/Display all options referring to avatar 

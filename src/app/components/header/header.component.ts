@@ -4,9 +4,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { MAX_MOBILE_SCREEN_WIDTH } from '../../../configs/screen-sizes';
 import AuthService from '../../services/auth.service';
+import { LoginComponent } from './login/login.component';
 import { SignInLinksComponent } from "./sign-in-links/sign-in-links.component";
 import { SignOutLinksComponent } from "./sign-out-links/sign-out-links.component";
-import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   user$ = this.auth.user$;
 
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
   ) {
   }
 
@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
   /**
    * Toggle the navigation links
    */
-  openNavMenuDisplay ():void {
+  toggleNavMenuDisplay ():void {
     this.isNavMenuOpen = !this.isNavMenuOpen;
   }
   /**
@@ -60,6 +60,6 @@ export class HeaderComponent implements OnInit {
    * @param deviceScreenWidth the screen size of the current device 
    */
   setNavLinksDisplay (deviceScreenWidth:number):void  {
-    this.isNavMenuOpen = !(deviceScreenWidth < MAX_MOBILE_SCREEN_WIDTH)
+    this.isNavMenuOpen = (deviceScreenWidth >= MAX_MOBILE_SCREEN_WIDTH)
   }
 }

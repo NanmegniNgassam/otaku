@@ -53,13 +53,6 @@ export class UserService {
     try {
       const userDoc = await getDoc(doc(this.db, USERS_COLLECTION, this.auth.currentUser?.uid!))
       const userData = userDoc.data() as UserData;
-
-      userData.notifications = userData.notifications.map((notif) => {
-        return {
-          ...notif,
-          date: new Date(notif.date)
-        }
-      })
       
       return userData 
     } catch (error) {
@@ -68,6 +61,12 @@ export class UserService {
     }
   }
 
+  /**
+   * Update a user doc according to user activities
+   * 
+   * @param data a piece of UserData to modify
+   * @returns a user doc
+   */
   async updateUserDoc(data: Partial<UserData>): Promise<UserData> {
     try {
       // Fetch user data
@@ -83,6 +82,31 @@ export class UserService {
       await updateDoc(doc(this.db, USERS_COLLECTION, this.auth.currentUser?.uid!), {...newUserData})
 
       return newUserData;
+    } 
+    catch(error) {
+      console.error("Error while trying to update user document : ", error);
+      throw(error);
+    }
+  }
+
+  /**
+   * Set all notifications `isUnread` status to false
+   */
+  async setNotificationsRead(): Promise<void> {
+    try {
+      // Fetch user data
+      const userData = await this.fetchUserData();
+
+      // Set all notifications as read
+      const notifications = userData.notifications.map((notif) => {
+        return {
+          ...notif,
+          isUnread: false,
+        }
+      })
+
+      // update user doc
+      await this.updateUserDoc({notifications})
     } 
     catch(error) {
       console.error("Error while trying to update user document : ", error);

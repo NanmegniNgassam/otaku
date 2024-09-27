@@ -39,11 +39,19 @@ export class NotificationsComponent implements OnInit {
    */
   async ngOnInit(): Promise<void> {
     const userData = await this.user.fetchUserData();
-    this.availableNotifications = userData.notifications;
+    this.availableNotifications = userData.notifications.map((notif) => {
+      return {
+        ...notif,
+        date: new Date(notif.date)
+      }
+    });
 
     // Setting the first filtering
     this.notifications = this.filterNotifications();
     this.notificationsGroups = this.addNotificationsInDateSlot(this.notifications)
+
+    // Assume notifications will be read and update their reading status
+    await this.user.setNotificationsRead();
   }
 
   /**
@@ -98,6 +106,7 @@ export class NotificationsComponent implements OnInit {
     const readNotifications = notifications.filter((notif) => !notif.isUnread);
     const unReadNotifications = notifications.filter((notif) => notif.isUnread)
 
+    // Seperate notifications according to issue date
     for(let notification of readNotifications) {
       if(result.hasOwnProperty(notification.date.toLocaleDateString())) {
         result[notification.date.toLocaleDateString()].push(notification)
@@ -106,10 +115,10 @@ export class NotificationsComponent implements OnInit {
       }
     }
 
+    // Add the filtered notifications decreasingly in the final array
     for(const entry in result) {
       iterableResult.push(result[entry])
     }
-
     iterableResult.unshift(unReadNotifications)
 
     return iterableResult;

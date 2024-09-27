@@ -27,5 +27,6 @@ export interface Notification {
   isUnread: boolean;
   isPositive: boolean;
   action?: string;
-  date: Date
+  date: Date;
 }
+

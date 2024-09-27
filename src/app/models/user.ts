@@ -8,7 +8,7 @@ export interface UserData {
   params: {};
   position: number;
   playerName: string;
-  notifications: string[];
+  notifications: Notification[];
 }
 
 export interface Ranking {

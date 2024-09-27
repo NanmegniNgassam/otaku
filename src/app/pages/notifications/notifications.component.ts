@@ -31,7 +31,6 @@ export class NotificationsComponent {
         isUnread : false,
         isPositive: true,
         date: new Date("9/19/2024")
-        
       },
       {
         type: 'ranking',
@@ -45,7 +44,7 @@ export class NotificationsComponent {
         type: 'action',
         title: "Account Validation",
         message: "Please, may you validate your e-mail",
-        isUnread : true,
+        isUnread: true,
         isPositive: true,
         action: '/account/settings',
         date: new Date("9/19/2024")
@@ -54,7 +53,7 @@ export class NotificationsComponent {
         type: 'info',
         title: "Xp gain",
         message: "You won 6 000 Xp lately",
-        isUnread : false,
+        isUnread: false,
         isPositive: true,
         date: new Date("9/17/2024")
       }

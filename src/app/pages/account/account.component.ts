@@ -1,12 +1,12 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { UserData } from '../../models/user';
-import AuthService from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
+import { TranslateModule } from '@ngx-translate/core';
 import { ToastComponent } from '../../components/toast/toast.component';
 import { Toast } from '../../models/toast';
+import { Notification, UserData } from '../../models/user';
+import AuthService from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils.service';
 
 @Component({
@@ -43,7 +43,6 @@ export class AccountComponent implements OnInit {
    */
   constructor(
     protected auth: AuthService,
-    private translate: TranslateService,
     private user: UserService,
     protected util: UtilsService
   ) {}
@@ -56,7 +55,6 @@ export class AccountComponent implements OnInit {
     console.log("Current user Data : ", this._userData);
     const currentStreak = await this.user.updateUserStreak(this._userData.streak);
     this._streakDays = this.user.getUserStreak(currentStreak);
-    
   }
 
   /**
@@ -80,5 +78,17 @@ export class AccountComponent implements OnInit {
       // Update local stats for UI refresh
       this._streakDays = this.user.getUserStreak(this._userData.streak);
     }
+  }
+
+  /**
+   * Get from avalaible notifications the number of unread one
+   * 
+   * @param notifications all received notifications
+   * @returns the number of unread notifications
+   */
+  getUnreadNotificationsNumber(notifications: Notification[]): number {
+    const unReadNotifications = notifications.filter((notif: Notification) => notif.isUnread);
+
+    return unReadNotifications.length;
   }
 }

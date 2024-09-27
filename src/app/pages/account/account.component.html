@@ -110,7 +110,7 @@
         <div class="icon-container">
           <ion-icon class="option-icon" name="notifications-outline"></ion-icon>
           <span class="count">
-            {{ _userData.notifications.length }}
+            {{ getUnreadNotificationsNumber(_userData.notifications) }}
           </span>
         </div>
       </a>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, updateProfile } from '@angular/fire/auth';
+import { Auth, updateProfile, User } from '@angular/fire/auth';
 import { doc, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { deleteObject, getDownloadURL, listAll, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import { Ranking, UserData } from '../models/user';
@@ -52,9 +52,16 @@ export class UserService {
   async fetchUserData(): Promise<UserData> {
     try {
       const userDoc = await getDoc(doc(this.db, USERS_COLLECTION, this.auth.currentUser?.uid!))
-      const userData = userDoc.data();
+      const userData = userDoc.data() as UserData;
 
-      return userData as UserData
+      userData.notifications = userData.notifications.map((notif) => {
+        return {
+          ...notif,
+          date: new Date(notif.date)
+        }
+      })
+      
+      return userData 
     } catch (error) {
       console.error("Error while trying to read document : ", error);
       throw(error);

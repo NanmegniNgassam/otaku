@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Notification } from '../../models/user';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { UserService } from '../../services/user.service';
 
 export const SELECTION_OPTIONS = ["ranking", "action", "info"]
 
@@ -14,52 +15,33 @@ export const SELECTION_OPTIONS = ["ranking", "action", "info"]
   styleUrl: './notifications.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class NotificationsComponent {
+export class NotificationsComponent implements OnInit {
   notifications!: Notification[];
   availableNotifications!: Notification[];
   notificationsGroups!: Notification[][];
   selectedOptions!: string[];
   selectionsOptions = SELECTION_OPTIONS;
 
-  constructor() {
+  /**
+   * Component and services initialization
+   * 
+   * @param user ng service used 
+   */
+  constructor(
+    private user : UserService
+  ) {
     this.selectedOptions = [];
-    this.availableNotifications = [
-      {
-        type: 'ranking',
-        title: "Upgrading",
-        message: "You went from 12th to 9th position",
-        isUnread : false,
-        isPositive: true,
-        date: new Date("9/19/2024")
-      },
-      {
-        type: 'ranking',
-        title: "Downgrading",
-        message: "You went from 9th to 15th",
-        isUnread : true,
-        isPositive: true,
-        date: new Date("9/19/2024")
-      },
-      {
-        type: 'action',
-        title: "Account Validation",
-        message: "Please, may you validate your e-mail",
-        isUnread: true,
-        isPositive: true,
-        action: '/account/settings',
-        date: new Date("9/19/2024")
-      },
-      {
-        type: 'info',
-        title: "Xp gain",
-        message: "You won 6 000 Xp lately",
-        isUnread: false,
-        isPositive: true,
-        date: new Date("9/17/2024")
-      }
-    ];
-    
+    this.availableNotifications = [];
+  }
 
+  /**
+   * Performing some general actions right after initialization
+   */
+  async ngOnInit(): Promise<void> {
+    const userData = await this.user.fetchUserData();
+    this.availableNotifications = userData.notifications;
+
+    // Setting the first filtering
     this.notifications = this.filterNotifications();
     this.notificationsGroups = this.addNotificationsInDateSlot(this.notifications)
   }
@@ -133,5 +115,3 @@ export class NotificationsComponent {
     return iterableResult;
   }
 }
-
-// TODO: Valider le statut de lecture des notifications

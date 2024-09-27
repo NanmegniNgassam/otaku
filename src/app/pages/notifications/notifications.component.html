@@ -47,7 +47,7 @@
       </div>
       <span class="time">
         {{ "pages.notifications.receivedLabel" | translate }}
-        {{ notification.date.toLocaleDateString() }} à
+        {{ notification.date.toLocaleDateString() }} |
         {{ notification.date.toLocaleTimeString() }}
       </span>
     </div>
@@ -55,7 +55,9 @@
     <!-- Set the date-line-separator -->
     @if (notificationsGroup.length) { @if ($index == 0) {
     <div class="date-line-separation">
-      <span class="date"> unread </span>
+      <span class="date">
+        {{ "pages.notifications.unreadLabel" | translate }}
+      </span>
     </div>
     } @else {
     <div class="date-line-separation">

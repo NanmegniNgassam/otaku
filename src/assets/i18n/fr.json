@@ -131,6 +131,7 @@
       "congratsAppreciation": "Felicitations !",
       "mediumAppreciation": "Encore un peu d'efforts !",
       "receivedLabel": "Reçu le",
+      "unreadLabel": "Non lue(s)",
       "noMoreNotifs": "Plus de notifications disponibles !"
     },
     "edition": {

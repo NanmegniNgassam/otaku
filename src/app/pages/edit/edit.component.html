@@ -44,19 +44,22 @@
 
     <div class="avatar-box">
       <img [src]="generateAvatarUrl(_newAvatarFile)" alt="new profile pic" />
+      @if (_isAvatarUploading) {
+      <div class="avatar-option center">
+        <div class="spinner"></div>
+      </div>
+      } @else {
       <div class="avatar-option cancel" (click)="dismissNewAvatar()">
         <ion-icon name="close-outline"></ion-icon>
       </div>
       <div class="avatar-option left validate" (click)="validateNewAvatar()">
         <ion-icon name="checkmark-outline"></ion-icon>
       </div>
+      }
     </div>
     }
   </div>
-
-  @if (_isAvatarUploading) {
-  <div class="spinner"></div>
-  } }
+  }
 
   <form action="">
     <label for="">Username</label>

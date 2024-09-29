@@ -57,6 +57,17 @@
         &.left {
           left: 5%;
         }
+        &.center {
+          left: 50%;
+          transform: translateX(-50%);
+          aspect-ratio: 1/1;
+          .spinner {
+            width: 2rem;
+            margin: 0;
+            border-color: var(--box-container-color);
+            border-bottom-color: var(--secondary-color);
+          }
+        }
         &.validate {
           ion-icon {
             color: green;

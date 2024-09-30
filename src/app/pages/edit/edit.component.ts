@@ -9,6 +9,7 @@ import { UtilsService } from '../../services/utils.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AnimeGenre } from '../../models/anime';
 import { RouterModule } from '@angular/router';
+import { AnimeService } from '../../services/anime.service';
 
 @Component({
   selector: 'app-edit',
@@ -26,22 +27,17 @@ export class EditComponent implements OnInit {
   _userData!: UserData;
   _isAvatarUploading!:boolean;
   _editForm!:FormGroup;
-  _genreSuggestions!:AnimeGenre[];
+  _genreSuggestions!:string[];
   _isSavingData!:boolean;
 
   constructor(
     private user: UserService,
     private auth: AuthService,
     protected util: UtilsService,
+    protected anime: AnimeService,
     protected formBuilder: FormBuilder
   ) {
     this._isSavingData = false;
-    this._genreSuggestions = [
-      {id: 1, name: "Love"},
-      {id: 1, name: "Romance"},
-      {id: 1, name: "Horror"},
-      {id: 1, name: "Hentai"},
-    ]
   }
 
   /**
@@ -50,9 +46,10 @@ export class EditComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this._userData = await this.user.fetchUserData();
 
+    this._genreSuggestions = (await this.anime.suggestAnimeGenres(this._userData.favoriteGenres)).slice(0,8)
+
     this._editForm = this.formBuilder.group({
-      username: [this.auth.currentUser!.displayName, [Validators.required, Validators.minLength(8)]],
-      animeGenres: [this._userData.favoriteGenres, [Validators.required]]
+      username: [this.auth.currentUser!.displayName, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
     }, {
       updateOn: "change"
     })
@@ -144,19 +141,62 @@ export class EditComponent implements OnInit {
     this.toggleAvatarOptions()
   }
 
+  /**
+   * Save new user data
+   */
   async onSaveData(): Promise<void> {
     try {
       this._isSavingData = true;
 
-      setTimeout(() => {
+      // Update new valid Pseudo
+      // TODO: Add a validation pseudo function
+      updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username})
 
-      }, 3000)
+      // Update new avatar
+      if(this._newAvatarFile) {
+        await this.validateNewAvatar();
+      }
+
+      // Save user new data on firebase
+      await this.user.updateUserDoc({ favoriteGenres: this._userData.favoriteGenres, playerName: this._editForm.value.username })
 
     } catch(error) {
-
+      console.error('Error while saving user data : ', error)
     } 
     finally {
-      // this._isSavingData = false;
+      this._isSavingData = false;
+    }
+  }
+
+  /**
+   * Add an anime genre in user favorites
+   * 
+   * @param selectedGenre Anime genre selected
+   */
+  addAnimeGenre(selectedGenre: string) {
+    // Check if the genre is in user favorites
+    if(!this._userData.favoriteGenres.includes(selectedGenre)) {
+      // Add it to favorites
+      this._userData.favoriteGenres.push(selectedGenre);
+
+      // Remove it from suggestions
+      this._genreSuggestions = this._genreSuggestions.filter((genre) => genre !== selectedGenre);
+    }
+  }
+
+  /**
+   * Remove an anime genre from user favorites
+   * 
+   * @param selectedGenre Anime genre selected
+   */
+  removeAnimeGenre(selectedGenre: string) {
+    // Check if the genre is in suggested genre
+    if(!this._genreSuggestions.includes(selectedGenre)) {
+      // Remove it from favorites
+      this._userData.favoriteGenres = this._userData.favoriteGenres.filter((genre) => genre !== selectedGenre)
+
+      // Add to suggestions
+      this._genreSuggestions.push(selectedGenre);
     }
   }
 }

@@ -73,7 +73,7 @@
     </span>
     <div class="animes-genres">
       @for (genre of _userData.favoriteGenres; track $index) {
-      <div class="anime-genre favorite">
+      <div class="anime-genre favorite" (click)="removeAnimeGenre(genre)">
         {{ genre }} <ion-icon name="arrow-down-circle-sharp"></ion-icon>
       </div>
       }
@@ -82,8 +82,8 @@
     <span> {{ "pages.edition.suggestedLabel" | translate }} </span>
     <div class="animes-genres">
       @for (genre of _genreSuggestions; track $index) {
-      <div class="anime-genre">
-        {{ genre.name }} <ion-icon name="arrow-up-circle-sharp"></ion-icon>
+      <div class="anime-genre" (click)="addAnimeGenre(genre)">
+        {{ genre }} <ion-icon name="arrow-up-circle-sharp"></ion-icon>
       </div>
       }
     </div>
@@ -92,7 +92,7 @@
       <a onclick="" routerLink="/account">
         {{ "pages.edition.cancelLabel" | translate }}
       </a>
-      <button type="submit">
+      <button [disabled]="_editForm.invalid" type="submit">
         @if (_isSavingData) {
         <div class="spinner"></div>
         } @else {

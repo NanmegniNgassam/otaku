@@ -2,7 +2,7 @@ export interface UserData {
   level: 's'|'a'|'b'|'c'|'d'|'e'|'f';
   xp: number;
   quests: number;
-  favoriteGenres: number[];
+  favoriteGenres: string[];
   animeListIds: number[];
   streak: string[];
   params: {};

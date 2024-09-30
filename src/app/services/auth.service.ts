@@ -92,6 +92,7 @@ export default class AuthService {
       // Create user account and update its informations
       const userCredential = await createUserWithEmailAndPassword(this.auth, credentials.signinEmail, credentials.signinPassword);
       await updateProfile(userCredential.user, {displayName: credentials.signinNickName});
+      // TODO: Use pseudo validation when needed
 
       // send verification email
       await this.sendVerificationEmail(userCredential.user);

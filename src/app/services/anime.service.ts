@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Anime } from '../models/anime';
+import { Anime, AnimeGenre } from '../models/anime';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +52,34 @@ export class AnimeService {
     const anime = await res.json();
 
     return anime.data as Anime;
+  }
+
+  /**
+   * Fetch all animes genre available
+   * 
+   * @returns anime genres
+   */
+  async getAnimeGenres(): Promise<AnimeGenre[]> {
+    const response = await fetch('https://api.jikan.moe/v4/genres/anime');
+    const genres = await response.json() as {data: AnimeGenre[]};
+
+    return genres.data as AnimeGenre[];
+  }
+
+  /**
+   * Suggest genres to users
+   * 
+   * @param userGenres the current user anime genres
+   * @returns an array of genre suggestions
+   */
+  async suggestAnimeGenres(userGenres: string[]): Promise<string[]> {
+    const allGenres = (await this.getAnimeGenres()).map((genre) => genre.name);
+
+    // Generate suggestions from user favorite genres
+    const shuffleGenres = allGenres.sort(() => 0.5 - Math.random());
+    const selectedGenres = shuffleGenres.slice(0, 20);
+    const suggestedGenres = selectedGenres.filter((genre) => !userGenres.includes(genre));
+
+    return suggestedGenres;
   }
 }

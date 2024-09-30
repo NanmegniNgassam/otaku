@@ -12,7 +12,11 @@ export interface Anime {
   score: number;
   score_by: number;
   synopsis: string;
-  genres: Genre[];
+  genres: AnimeGenre[];
 }
 
-interface Genre {id: number, name: string}
+export interface AnimeGenre {
+  id: number, 
+  name: string, 
+  count?: number
+}

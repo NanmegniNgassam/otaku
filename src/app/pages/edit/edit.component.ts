@@ -6,11 +6,14 @@ import { UserData } from '../../models/user';
 import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AnimeGenre } from '../../models/anime';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [AsyncPipe, TranslateModule],
+  imports: [AsyncPipe, TranslateModule, ReactiveFormsModule, RouterModule],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -22,20 +25,37 @@ export class EditComponent implements OnInit {
   _newAvatarFile!:File|null;
   _userData!: UserData;
   _isAvatarUploading!:boolean;
-
+  _editForm!:FormGroup;
+  _genreSuggestions!:AnimeGenre[];
+  _isSavingData!:boolean;
 
   constructor(
     private user: UserService,
     private auth: AuthService,
-    protected util: UtilsService
+    protected util: UtilsService,
+    protected formBuilder: FormBuilder
   ) {
+    this._isSavingData = false;
+    this._genreSuggestions = [
+      {id: 1, name: "Love"},
+      {id: 1, name: "Romance"},
+      {id: 1, name: "Horror"},
+      {id: 1, name: "Hentai"},
+    ]
   }
 
   /**
    * Performs general actions right after initialization
    */
   async ngOnInit(): Promise<void> {
-    
+    this._userData = await this.user.fetchUserData();
+
+    this._editForm = this.formBuilder.group({
+      username: [this.auth.currentUser!.displayName, [Validators.required, Validators.minLength(8)]],
+      animeGenres: [this._userData.favoriteGenres, [Validators.required]]
+    }, {
+      updateOn: "change"
+    })
   }
 
   /**
@@ -122,5 +142,21 @@ export class EditComponent implements OnInit {
     this._newAvatarFile = avatarBlob;
 
     this.toggleAvatarOptions()
+  }
+
+  async onSaveData(): Promise<void> {
+    try {
+      this._isSavingData = true;
+
+      setTimeout(() => {
+
+      }, 3000)
+
+    } catch(error) {
+
+    } 
+    finally {
+      // this._isSavingData = false;
+    }
   }
 }

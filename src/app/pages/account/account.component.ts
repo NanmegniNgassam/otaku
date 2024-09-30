@@ -92,3 +92,5 @@ export class AccountComponent implements OnInit {
     return unReadNotifications.length;
   }
 }
+
+// TODO: Add a 'you lost your streak' notifications

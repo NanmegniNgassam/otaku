@@ -59,10 +59,37 @@
     </div>
     }
   </div>
-  }
+  } @if (_editForm) {
+  <form [formGroup]="_editForm" (submit)="onSaveData()">
+    <label for="username">Username</label>
+    <input id="username" type="text" formControlName="username" />
+    <label for="animeGenres">Genres</label>
+    <span>favoris</span>
+    <div class="animes-genres">
+      @for (genre of _userData.favoriteGenres; track $index) {
+      <div class="anime-genre favorite">
+        {{ genre }} <ion-icon name="arrow-down-circle-sharp"></ion-icon>
+      </div>
+      }
+    </div>
 
-  <form action="">
-    <label for="">Username</label>
-    <input type="text" />
+    <span>suggérés</span>
+    <div class="animes-genres">
+      @for (genre of _genreSuggestions; track $index) {
+      <div class="anime-genre">
+        {{ genre.name }} <ion-icon name="arrow-up-circle-sharp"></ion-icon>
+      </div>
+      }
+    </div>
+
+    <div class="actions">
+      <a onclick="" routerLink="/account">Retour</a>
+      <button type="submit">
+        @if (_isSavingData) {
+        <div class="spinner"></div>
+        } @else { Sauvegarder }
+      </button>
+    </div>
   </form>
+  }
 </div>

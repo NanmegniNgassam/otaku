@@ -1,6 +1,7 @@
 .wrapper {
   max-width: 750px;
   margin: 100px auto;
+  padding: 20px 0;
   border: 1px solid lightgray;
   box-shadow: 4px 4px 2px gray;
   h1 {
@@ -272,6 +273,9 @@
           }
         }
       }
+    }
+    form {
+      padding: 10px 20px;
     }
   }
 }

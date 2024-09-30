@@ -135,8 +135,15 @@
       "noMoreNotifs": "Plus de notifications disponibles !"
     },
     "edition": {
+      "title": "Edition du profil",
       "selectImage": "Selectionner une image",
-      "deleteImage": "Supprimer l'image"
+      "deleteImage": "Supprimer l'image",
+      "usernameLabel": "Pseudo",
+      "genreLabel": "Genres",
+      "favoriteLabel": "favoris",
+      "suggestedLabel": "suggérés",
+      "cancelLabel": "Retour",
+      "saveLabel": "Sauvegarder"
     }
   },
   "others": {

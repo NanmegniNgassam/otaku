@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <h1>Edition du profil</h1>
+  <h1>{{ "pages.edition.title" | translate }}</h1>
   @if ((user$ | async); as user) {
   <div class="avatars-box">
     <div class="avatar-box">
@@ -61,10 +61,16 @@
   </div>
   } @if (_editForm) {
   <form [formGroup]="_editForm" (submit)="onSaveData()">
-    <label for="username">Username</label>
+    <label for="username">
+      {{ "pages.edition.usernameLabel" | translate }}
+    </label>
     <input id="username" type="text" formControlName="username" />
-    <label for="animeGenres">Genres</label>
-    <span>favoris</span>
+    <label for="animeGenres">
+      {{ "pages.edition.genreLabel" | translate }}
+    </label>
+    <span>
+      {{ "pages.edition.favoriteLabel" | translate }}
+    </span>
     <div class="animes-genres">
       @for (genre of _userData.favoriteGenres; track $index) {
       <div class="anime-genre favorite">
@@ -73,7 +79,7 @@
       }
     </div>
 
-    <span>suggérés</span>
+    <span> {{ "pages.edition.suggestedLabel" | translate }} </span>
     <div class="animes-genres">
       @for (genre of _genreSuggestions; track $index) {
       <div class="anime-genre">
@@ -83,11 +89,15 @@
     </div>
 
     <div class="actions">
-      <a onclick="" routerLink="/account">Retour</a>
+      <a onclick="" routerLink="/account">
+        {{ "pages.edition.cancelLabel" | translate }}
+      </a>
       <button type="submit">
         @if (_isSavingData) {
         <div class="spinner"></div>
-        } @else { Sauvegarder }
+        } @else {
+        {{ "pages.edition.saveLabel" | translate }}
+        }
       </button>
     </div>
   </form>

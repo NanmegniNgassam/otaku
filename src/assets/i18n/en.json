@@ -135,8 +135,15 @@
       "noMoreNotifs": "No more notifications to see here!"
     },
     "edition": {
+      "title": "Profile Edition",
       "selectImage": "Select an image",
-      "deleteImage": "Delete the profile"
+      "deleteImage": "Delete the profile",
+      "usernameLabel": "Username",
+      "genreLabel": "Genres",
+      "favoriteLabel": "favorites",
+      "suggestedLabel": "suggested",
+      "cancelLabel": "Cancel",
+      "saveLabel": "Save"
     }
   },
   "others": {

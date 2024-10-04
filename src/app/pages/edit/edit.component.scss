@@ -206,7 +206,17 @@
         cursor: pointer;
         text-transform: uppercase;
         background-color: #ddd;
+
         &[type="submit"] {
+          &:disabled {
+            background-color: #ddd;
+            color: black;
+            cursor: default;
+            &:hover {
+              background-color: #ddd;
+              color: black;
+            }
+          }
           background-color: var(--secondary-color);
           color: #fff;
           &:hover {

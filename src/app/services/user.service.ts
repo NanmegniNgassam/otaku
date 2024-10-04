@@ -7,6 +7,7 @@ import { Ranking, UserData } from '../models/user';
 const USERS_COLLECTION = "users";
 const OVERVIEW_COLLECTION = 'overview'
 const RANKING_DOC = 'players-ranking'
+const GENERAL_USERS_DOC = 'users';
 
 @Injectable({
   providedIn: 'root'
@@ -266,6 +267,23 @@ export class UserService {
     listResult.items.forEach( async (itemRef) => {
       await deleteObject(itemRef)
     })
+  }
+
+  /**
+   * Get all general users data
+   * 
+   * @returns an object of general data about users
+   */
+  async getGeneralUsersData(): Promise<string[]> {
+    try {
+      const usersDoc = await getDoc(doc(this.db, OVERVIEW_COLLECTION, GENERAL_USERS_DOC))
+      const generalUsersData = usersDoc.data() as { playerNames: string[] };
+
+      return  generalUsersData.playerNames;
+    } catch(error) {
+      console.error("Error while getting the general users data : ", error)
+      throw(error)
+    }
   }
  }
 

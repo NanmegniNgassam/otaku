@@ -10,11 +10,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AnimeGenre } from '../../models/anime';
 import { RouterModule } from '@angular/router';
 import { AnimeService } from '../../services/anime.service';
+import { Toast } from '../../models/toast';
+import { ToastComponent } from '../../components/toast/toast.component';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [AsyncPipe, TranslateModule, ReactiveFormsModule, RouterModule],
+  imports: [AsyncPipe, TranslateModule, ReactiveFormsModule, RouterModule, ToastComponent],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -29,6 +31,7 @@ export class EditComponent implements OnInit {
   _editForm!:FormGroup;
   _genreSuggestions!:string[];
   _isSavingData!:boolean;
+  _notification!: Toast | null;
 
   constructor(
     private user: UserService,
@@ -149,10 +152,17 @@ export class EditComponent implements OnInit {
       this._isSavingData = true;
 
       // Update new valid Pseudo
-      // TODO: Add a validation pseudo function
-      updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username})
-
-      // Update new avatar
+      if(this.auth.verifyPseudoValidity( this._editForm.value.username)) {
+        await updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username})
+      } else {
+        console.log("Déclenchement du toast !")
+        this._notification = {
+          type: 'fail',
+          message: 'Your username is already in-use or not valid. Change it !'
+        }
+      }
+      
+      // Update new avatar if needed
       if(this._newAvatarFile) {
         await this.validateNewAvatar();
       }
@@ -162,6 +172,10 @@ export class EditComponent implements OnInit {
 
     } catch(error) {
       console.error('Error while saving user data : ', error)
+      this._notification = {
+        type: 'warning',
+        message: 'Your data can\'t be saved. Try again later !'
+      }
     } 
     finally {
       this._isSavingData = false;

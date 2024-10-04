@@ -74,7 +74,7 @@ export class SigninComponent implements OnInit {
       try {
         await this.auth.createAccount(this._signinForm.value);
       } catch(error : any) {
-        console.error(error.code);
+        console.error("Error while creating an account : ", error.code);
 
         switch(error.code) {
           case "auth/email-already-in-use": 

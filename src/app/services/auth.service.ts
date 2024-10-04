@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVerification, signInWithPopup, signOut, updateProfile, User, user, UserCredential } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { signInWithEmailAndPassword } from "@firebase/auth";
@@ -10,11 +10,11 @@ import { UserService } from "./user.service";
   providedIn: 'root'
 }) 
 
-export default class AuthService {
+export default class AuthService implements OnInit {
   user$ = user(this.auth);
   currentUser: User | null = this.auth.currentUser;
   googleProvider = new GoogleAuthProvider();
-
+  playerPseudos: string[] =  [];
 
   constructor(
     private auth: Auth,
@@ -24,6 +24,13 @@ export default class AuthService {
     this.user$.subscribe((currentUser: User | null) => {
       this.currentUser = currentUser;
     })
+  }
+
+  /**
+   * Performs some general actions right after initialization
+   */
+  async ngOnInit(): Promise<void> {
+    this.playerPseudos = await this.db.getGeneralUsersData();
   }
 
 
@@ -107,9 +114,47 @@ export default class AuthService {
     }
   }
 
+  /**
+   * Send a verification email to user (if not verified)
+   * 
+   * @param user currently logged in user
+   */
   async sendVerificationEmail(user: User): Promise<void> {
     await sendEmailVerification(user, {url: "http://localhost:4200/account"});
   }
-}
 
-// TODO: Implement userDocument creation when logging with a provider
+  /**
+   * Check the validity of a pseudo according to following standards
+   * 
+   * - A length between 8 and 25 characters
+   * - A max of 02 figures
+   * - A max of 01 special character
+   * 
+   * @param pseudo new proposed username
+   * @returns whether the pseudo is valid or not.
+   */
+  verifyPseudoValidity(pseudo: string): boolean {
+    const SPECIAL_CHAR_REGEX = /[^A-Za-z0-9]/;
+    const FIGURE_REGEX = /[^0-9]/;
+    let figuresOccurences = 0;
+    let specialCharacterOccurences = 0;
+    const playerNames = this.playerPseudos.map((playerName) => playerName.toLowerCase());
+
+    // Cycle through the pseudo and determine special characters and figures
+    pseudo.split('').forEach((letter: string) => {
+      if(SPECIAL_CHAR_REGEX.test(letter)) {
+        specialCharacterOccurences++;
+      }
+      if(FIGURE_REGEX.test(letter)) {
+        figuresOccurences++;
+      }
+    })
+
+    const isLengthValid = pseudo.length >= 8 && pseudo.length <= 25;
+    const isPseudoUnique = !playerNames.includes(pseudo.toLowerCase());
+    const isSpecialCharsValid = specialCharacterOccurences <= 1;
+    const isFiguresValid = figuresOccurences <= 2;
+
+    return isLengthValid && isPseudoUnique && isSpecialCharsValid && isFiguresValid;
+  }
+}

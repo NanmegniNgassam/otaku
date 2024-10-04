@@ -151,13 +151,13 @@ export class EditComponent implements OnInit {
     try {
       this._isSavingData = true;
 
-      if(this.auth.currentUser!.displayName !== this._editForm.value.username) {
+      if(this.auth.currentUser!.displayName !== this._editForm.value.username.trim()) {
         // Update new valid Pseudo
-        if(this.auth.verifyPseudoValidity( this._editForm.value.username)) {
+        if(this.auth.verifyPseudoValidity( this._editForm.value.username.trim())) {
           // modify the pseudo in users doc
-          await this.user.modifyPseudofromUsersData(this.auth.currentUser!.displayName!, this._editForm.value.username);
+          await this.user.modifyPseudofromUsersData(this.auth.currentUser!.displayName!, this._editForm.value.username.trim());
           
-          await updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username})
+          await updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username.trim()})
         } else {
           this._notification = {
             type: 'fail',

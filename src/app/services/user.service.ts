@@ -285,6 +285,28 @@ export class UserService {
       throw(error)
     }
   }
+
+  /**
+   * Modify a user pseudo in the general users doc
+   * 
+   * @param oldPseudo the username to remove from general users doc
+   * @param newPseudo the username to add to general users doc
+   */
+  async modifyPseudofromUsersData(oldPseudo: string, newPseudo: string): Promise<void> {
+    try {
+      let playerNames = await this.getGeneralUsersData();
+
+      // Remove the old password and add the new one.
+      playerNames = playerNames.filter((pseudo) => pseudo !== oldPseudo);
+      playerNames.push(newPseudo);
+
+      // Update the global doc.
+      await updateDoc(doc(this.db, OVERVIEW_COLLECTION, GENERAL_USERS_DOC), {playerNames })
+    } catch (error) {
+      console.error("Error while removing old pseudo in users doc : ", error);
+      throw(error);
+    }
+  }
  }
 
 // TODO: Pensez à mettre une politique contre les caractères spéciaux pour la création de compte

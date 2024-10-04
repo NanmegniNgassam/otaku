@@ -151,12 +151,11 @@ export class EditComponent implements OnInit {
     try {
       this._isSavingData = true;
 
-      if(this.auth.currentUser?.displayName !== this._editForm.value.username) {
+      if(this.auth.currentUser!.displayName !== this._editForm.value.username) {
         // Update new valid Pseudo
         if(this.auth.verifyPseudoValidity( this._editForm.value.username)) {
-          // Remove the last pseudo in users doc
-
-          // add the new pseudo in users doc
+          // modify the pseudo in users doc
+          await this.user.modifyPseudofromUsersData(this.auth.currentUser!.displayName!, this._editForm.value.username);
           
           await updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username})
         } else {
@@ -174,6 +173,12 @@ export class EditComponent implements OnInit {
 
       // Save user new data on firebase
       await this.user.updateUserDoc({ favoriteGenres: this._userData.favoriteGenres })
+
+      // Show a validation when the save is well completed
+      this._notification = {
+        type: 'success',
+        message: 'Vos modifications ont été enregistrées !'
+      } 
 
     } catch(error) {
       console.error('Error while saving user data : ', error)

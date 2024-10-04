@@ -135,13 +135,13 @@ export default class AuthService implements OnInit {
    */
   verifyPseudoValidity(pseudo: string): boolean {
     const SPECIAL_CHAR_REGEX = /[^A-Za-z0-9]/;
-    const FIGURE_REGEX = /[^0-9]/;
+    const FIGURE_REGEX = /[0-9]/;
     let figuresOccurences = 0;
     let specialCharacterOccurences = 0;
     const playerNames = this.playerPseudos.map((playerName) => playerName.toLowerCase());
 
     // Cycle through the pseudo and determine special characters and figures
-    pseudo.split('').forEach((letter: string) => {
+    pseudo.split('').filter((letter) => letter != ' ').forEach((letter: string) => {
       if(SPECIAL_CHAR_REGEX.test(letter)) {
         specialCharacterOccurences++;
       }

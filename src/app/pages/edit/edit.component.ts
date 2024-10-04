@@ -151,14 +151,19 @@ export class EditComponent implements OnInit {
     try {
       this._isSavingData = true;
 
-      // Update new valid Pseudo
-      if(this.auth.verifyPseudoValidity( this._editForm.value.username)) {
-        await updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username})
-      } else {
-        console.log("Déclenchement du toast !")
-        this._notification = {
-          type: 'fail',
-          message: 'Your username is already in-use or not valid. Change it !'
+      if(this.auth.currentUser?.displayName !== this._editForm.value.username) {
+        // Update new valid Pseudo
+        if(this.auth.verifyPseudoValidity( this._editForm.value.username)) {
+          // Remove the last pseudo in users doc
+
+          // add the new pseudo in users doc
+          
+          await updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username})
+        } else {
+          this._notification = {
+            type: 'fail',
+            message: 'Your username is already in-use or not valid. Change it !'
+          }
         }
       }
       
@@ -168,7 +173,7 @@ export class EditComponent implements OnInit {
       }
 
       // Save user new data on firebase
-      await this.user.updateUserDoc({ favoriteGenres: this._userData.favoriteGenres, playerName: this._editForm.value.username })
+      await this.user.updateUserDoc({ favoriteGenres: this._userData.favoriteGenres })
 
     } catch(error) {
       console.error('Error while saving user data : ', error)

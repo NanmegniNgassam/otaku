@@ -11,128 +11,6 @@
     margin-bottom: 40px;
     text-align: center;
   }
-  .avatars-box {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    .container-initials {
-      width: 200px;
-      aspect-ratio: 1/1;
-      border-radius: 50%;
-      border: 1px solid gray;
-      box-shadow: 2px 3px 5px lightgray;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 6rem;
-      font-weight: 500;
-      background-color: #fff;
-      color: var(--primary-color);
-    }
-    .avatar-box {
-      position: relative;
-      img {
-        width: 200px;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        border: 1px solid gray;
-        box-shadow: 2px 3px 5px lightgray;
-      }
-      .avatar-option {
-        position: absolute;
-        bottom: 5%;
-        right: 5%;
-        width: 3rem;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #fff;
-        box-shadow: 2px 1px 3px var(--dark-color);
-        cursor: pointer;
-        ion-icon {
-          font-size: 1.8rem;
-          color: var(--secondary-color);
-        }
-        &.left {
-          left: 5%;
-        }
-        &.center {
-          left: 50%;
-          transform: translateX(-50%);
-          aspect-ratio: 1/1;
-          .spinner {
-            width: 2rem;
-            margin: 0;
-            border-color: var(--box-container-color);
-            border-bottom-color: var(--secondary-color);
-          }
-        }
-        &.validate {
-          ion-icon {
-            color: green;
-          }
-        }
-        &.cancel {
-          ion-icon {
-            color: var(--error-color);
-          }
-        }
-      }
-    }
-
-    .avatar-options {
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%, 0);
-      padding: 5px 10px;
-      width: 260px;
-      border: 1px solid var(--dark-color);
-      border-radius: 5px;
-      box-shadow: 2px 2px 3px gray;
-      overflow: hidden;
-      background-color: #fff;
-
-      .option {
-        padding: 5px 10px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.2s cubic-bezier(0.47, 0, 0.745, 0.715);
-        font-size: 1rem;
-        &:hover {
-          background-color: #ddd;
-        }
-        ion-icon {
-          font-size: 1.5rem;
-        }
-        label {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          cursor: pointer;
-          input {
-            display: none;
-          }
-        }
-      }
-    }
-    .next-arrow {
-      font-size: 2.5rem;
-      color: var(--primary-color);
-    }
-  }
-
-  .spinner {
-    margin: 20px auto;
-    width: 40px;
-    border-width: 5px;
-  }
 }
 
 @media screen and (max-width: 800px) {
@@ -140,22 +18,6 @@
     max-width: 90%;
     h1 {
       font-weight: 2rem;
-    }
-    .avatars-box {
-      .container-initials {
-        width: 150px;
-      }
-      .avatar-box {
-        img {
-          width: 150px;
-        }
-        .avatar-option {
-          width: 2.5rem;
-          ion-icon {
-            font-size: 1.5rem;
-          }
-        }
-      }
     }
   }
 }
@@ -167,22 +29,6 @@
       font-size: 1.8rem;
       font-weight: 500;
     }
-    .avatars-box {
-      .container-initials {
-        width: 140px;
-      }
-      .avatar-box {
-        img {
-          width: 140px;
-        }
-        .avatar-option {
-          width: 2.2rem;
-          ion-icon {
-            font-size: 1.4rem;
-          }
-        }
-      }
-    }
   }
 }
 
@@ -191,28 +37,6 @@
     h1 {
       font-size: 1.5rem;
       font-weight: 500;
-    }
-    .avatars-box {
-      flex-direction: column;
-      gap: 10px;
-      .container-initials {
-        width: 140px;
-      }
-      .avatar-box {
-        img {
-          width: 140px;
-        }
-        .avatar-option {
-          width: 2.2rem;
-          ion-icon {
-            font-size: 1.4rem;
-          }
-        }
-      }
-      .next-arrow {
-        font-size: 2rem;
-        transform: rotate(90deg);
-      }
     }
   }
 }

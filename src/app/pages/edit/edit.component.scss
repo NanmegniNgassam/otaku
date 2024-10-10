@@ -133,107 +133,6 @@
     width: 40px;
     border-width: 5px;
   }
-
-  form {
-    margin: 40px auto;
-    max-width: 450px;
-    padding: 10x 20px;
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: 500;
-      font-family: var(--special-text-font);
-      text-transform: uppercase;
-    }
-    input {
-      width: 100%;
-      height: 40px;
-      outline: none;
-      margin-bottom: 20px;
-      padding: 10px;
-      border: 1px solid gray;
-    }
-    .animes-genres {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-bottom: 20px;
-    }
-    span {
-      display: block;
-      margin-bottom: 5px;
-    }
-    .anime-genre {
-      display: inline-block;
-      width: fit-content;
-      padding: 10px;
-      height: 40px;
-      border-radius: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 5px;
-      border: 1px solid;
-      cursor: pointer;
-      color: #fff;
-      background-color: var(--primary-color);
-      transition: background-color 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      font-size: 14px;
-      &.favorite {
-        background-color: green;
-        &:hover {
-          background-color: darkgreen;
-        }
-      }
-      &:hover {
-        background-color: var(--primary-accent-color);
-      }
-      ion-icon {
-        color: #fff;
-        font-size: 20px;
-      }
-    }
-    .actions {
-      margin: 40px auto 0 auto;
-      max-width: fit-content;
-      display: flex;
-      gap: 20px;
-      button,
-      a {
-        padding: 10px 20px;
-        min-width: 100px;
-        border: none;
-        cursor: pointer;
-        text-transform: uppercase;
-        background-color: #ddd;
-
-        &[type="submit"] {
-          &:disabled {
-            background-color: #ddd;
-            color: black;
-            cursor: default;
-            &:hover {
-              background-color: #ddd;
-              color: black;
-            }
-          }
-          background-color: var(--secondary-color);
-          color: #fff;
-          &:hover {
-            background-color: var(--secondary-color);
-          }
-          .spinner {
-            width: 20px;
-            border-width: 0.2rem;
-            margin: 0 auto;
-          }
-        }
-        &:hover {
-          background-color: var(--box-container-color);
-        }
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 800px) {
@@ -283,9 +182,6 @@
           }
         }
       }
-    }
-    form {
-      padding: 10px 20px;
     }
   }
 }

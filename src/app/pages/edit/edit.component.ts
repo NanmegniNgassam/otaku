@@ -1,22 +1,21 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { updateProfile } from '@angular/fire/auth';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { ToastComponent } from '../../components/toast/toast.component';
+import { UserFormComponent } from '../../components/user-form/user-form.component';
+import { Toast } from '../../models/toast';
 import { UserData } from '../../models/user';
 import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AnimeGenre } from '../../models/anime';
-import { RouterModule } from '@angular/router';
-import { AnimeService } from '../../services/anime.service';
-import { Toast } from '../../models/toast';
-import { ToastComponent } from '../../components/toast/toast.component';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [AsyncPipe, TranslateModule, ReactiveFormsModule, RouterModule, ToastComponent],
+  imports: [AsyncPipe, TranslateModule, ReactiveFormsModule, RouterModule, ToastComponent, UserFormComponent],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -28,19 +27,13 @@ export class EditComponent implements OnInit {
   _newAvatarFile!:File|null;
   _userData!: UserData;
   _isAvatarUploading!:boolean;
-  _editForm!:FormGroup;
-  _genreSuggestions!:string[];
-  _isSavingData!:boolean;
   _notification!: Toast | null;
 
   constructor(
     private user: UserService,
     private auth: AuthService,
     protected util: UtilsService,
-    protected anime: AnimeService,
-    protected formBuilder: FormBuilder
   ) {
-    this._isSavingData = false;
   }
 
   /**
@@ -48,15 +41,9 @@ export class EditComponent implements OnInit {
    */
   async ngOnInit(): Promise<void> {
     this._userData = await this.user.fetchUserData();
-
-    this._genreSuggestions = (await this.anime.suggestAnimeGenres(this._userData.favoriteGenres)).slice(0,8)
-
-    this._editForm = this.formBuilder.group({
-      username: [this.auth.currentUser!.displayName, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
-    }, {
-      updateOn: "change"
-    })
   }
+
+  // TODO: Create an avatar Component and synchronize it with the form through passed functions
 
   /**
    * Show/Display all options referring to avatar 
@@ -142,85 +129,5 @@ export class EditComponent implements OnInit {
     this._newAvatarFile = avatarBlob;
 
     this.toggleAvatarOptions()
-  }
-
-  /**
-   * Save new user data
-   */
-  async onSaveData(): Promise<void> {
-    try {
-      this._isSavingData = true;
-
-      if(this.auth.currentUser!.displayName !== this._editForm.value.username.trim()) {
-        // Update new valid Pseudo
-        if(this.auth.verifyPseudoValidity( this._editForm.value.username.trim())) {
-          // modify the pseudo in users doc
-          await this.user.modifyPseudofromUsersData(this.auth.currentUser!.displayName!, this._editForm.value.username.trim());
-          
-          await updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username.trim()})
-        } else {
-          this._notification = {
-            type: 'fail',
-            message: 'Your username is already in-use or not valid. Change it !'
-          }
-        }
-      }
-      
-      // Update new avatar if needed
-      if(this._newAvatarFile) {
-        await this.validateNewAvatar();
-      }
-
-      // Save user new data on firebase
-      await this.user.updateUserDoc({ favoriteGenres: this._userData.favoriteGenres })
-
-      // Show a validation when the save is well completed
-      this._notification = {
-        type: 'success',
-        message: 'Vos modifications ont été enregistrées !'
-      } 
-
-    } catch(error) {
-      console.error('Error while saving user data : ', error)
-      this._notification = {
-        type: 'warning',
-        message: 'Your data can\'t be saved. Try again later !'
-      }
-    } 
-    finally {
-      this._isSavingData = false;
-    }
-  }
-
-  /**
-   * Add an anime genre in user favorites
-   * 
-   * @param selectedGenre Anime genre selected
-   */
-  addAnimeGenre(selectedGenre: string) {
-    // Check if the genre is in user favorites
-    if(!this._userData.favoriteGenres.includes(selectedGenre)) {
-      // Add it to favorites
-      this._userData.favoriteGenres.push(selectedGenre);
-
-      // Remove it from suggestions
-      this._genreSuggestions = this._genreSuggestions.filter((genre) => genre !== selectedGenre);
-    }
-  }
-
-  /**
-   * Remove an anime genre from user favorites
-   * 
-   * @param selectedGenre Anime genre selected
-   */
-  removeAnimeGenre(selectedGenre: string) {
-    // Check if the genre is in suggested genre
-    if(!this._genreSuggestions.includes(selectedGenre)) {
-      // Remove it from favorites
-      this._userData.favoriteGenres = this._userData.favoriteGenres.filter((genre) => genre !== selectedGenre)
-
-      // Add to suggestions
-      this._genreSuggestions.push(selectedGenre);
-    }
   }
 }

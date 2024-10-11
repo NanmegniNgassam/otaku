@@ -10,6 +10,20 @@
 .wrapper {
   margin: 200px auto;
   max-width: 1200px;
+  .backward-group {
+    display: flex;
+    align-items: center;
+    max-width: 80%;
+    margin: 20px auto;
+    gap: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    &:hover {
+      color: var(--secondary-color);
+      gap: 15px;
+    }
+  }
   .break-line {
     border: 1px solid gray;
     width: 50%;
@@ -103,7 +117,7 @@
     .grade {
       font-size: 2rem;
       font-weight: 500;
-      // Using grade colors defined in general styles
+      // TODO: Define grade color in the general style file
     }
     .trend {
       position: absolute;
@@ -198,6 +212,10 @@
 
 @media screen and (max-width: 500px) {
   .wrapper {
+    .backward-group {
+      max-width: 90%;
+      font-size: 0.9rem;
+    }
     .unfound-message {
       font-size: 1rem;
     }

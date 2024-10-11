@@ -1,4 +1,8 @@
 <div class="wrapper">
+  <div class="backward-group" routerLink="/account">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+    {{ "others.navigation.backwardLabel" | translate }}
+  </div>
   <h1>{{ "pages.edition.title" | translate }}</h1>
   <app-avatar-edit />
   <app-user-form />

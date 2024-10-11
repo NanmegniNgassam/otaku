@@ -4,6 +4,19 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  .backward-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    &:hover {
+      color: var(--secondary-color);
+      gap: 15px;
+    }
+  }
   .title {
     text-align: center;
     font-size: 2.5rem;
@@ -176,6 +189,9 @@
   .wrapper {
     width: 95%;
     gap: 20px;
+    .backward-group {
+      font-size: 0.9rem;
+    }
     .title {
       font-size: 1.6rem;
       gap: 20px;

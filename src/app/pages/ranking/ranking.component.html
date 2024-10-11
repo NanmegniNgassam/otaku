@@ -1,4 +1,8 @@
 <div class="wrapper">
+  <div class="backward-group" routerLink="/account">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+    {{ "others.navigation.backwardLabel" | translate }}
+  </div>
   @if (_userData) {
   <a routerLink="/account" class="ranking for-you">
     <span class="position"> {{ _userData.position || 0 }} </span>
@@ -36,6 +40,7 @@
       <ion-icon name="close-circle" (click)="emptySearchField()" class="" />
     </div>
     }
+    <!-- TODO: Rajouter un message qui montre à l'utilisateur que sa recherche a déjà été prise en compte -->
   </div>
   <div class="hall-of-fame">
     <div class="title-zone">

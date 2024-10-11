@@ -4,6 +4,20 @@
   padding: 20px 0;
   border: 1px solid lightgray;
   box-shadow: 4px 4px 2px gray;
+  .backward-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    margin: 10px auto;
+    max-width: 450px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    &:hover {
+      color: var(--secondary-color);
+      gap: 15px;
+    }
+  }
   h1 {
     color: var(--primary-color);
     font-size: 2.5rem;
@@ -25,6 +39,11 @@
 @media screen and (max-width: 500px) {
   .wrapper {
     max-width: 95%;
+    .backward-group {
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      margin: 0 auto;
+    }
     h1 {
       font-size: 1.8rem;
       font-weight: 500;

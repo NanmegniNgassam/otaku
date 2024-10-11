@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Anime, AnimeGenre } from '../models/anime';
 
+export const EXPLICIT_CONTENT_GENRES = [
+  "Ecchi", "Erotica", "Hentai", "Adult Cast", 
+]
+
 @Injectable({
   providedIn: 'root'
 })
@@ -78,8 +82,11 @@ export class AnimeService {
     // Generate suggestions from user favorite genres
     const shuffleGenres = allGenres.sort(() => 0.5 - Math.random());
     const selectedGenres = shuffleGenres.slice(0, 20);
-    const suggestedGenres = selectedGenres.filter((genre) => !userGenres.includes(genre));
+    const suggestedGenres = selectedGenres.filter((genre) => !userGenres.includes(genre) && !EXPLICIT_CONTENT_GENRES.includes(genre));
 
     return suggestedGenres;
   }
 }
+
+// TODO: Dans une évolution du site (si jamais), rajouter la partie Manga.
+// TODO: Proposer à l'utilisateur (dans une evolve) de spécifier les genres qu'il n'aimerait pas voir lors de sa navigation (option recherche)

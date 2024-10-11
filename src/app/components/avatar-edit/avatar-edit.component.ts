@@ -1,17 +1,18 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { UserService } from '../../services/user.service';
-import AuthService from '../../services/auth.service';
-import { UtilsService } from '../../services/utils.service';
-import { UserData } from '../../models/user';
-import { Toast } from '../../models/toast';
-import { updateProfile } from '@angular/fire/auth';
 import { AsyncPipe } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { updateProfile } from '@angular/fire/auth';
 import { TranslateModule } from '@ngx-translate/core';
+import { Toast } from '../../models/toast';
+import { UserData } from '../../models/user';
+import AuthService from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+import { UtilsService } from '../../services/utils.service';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-avatar-edit',
   standalone: true,
-  imports: [AsyncPipe, TranslateModule],
+  imports: [AsyncPipe, TranslateModule, ToastComponent],
   templateUrl: './avatar-edit.component.html',
   styleUrl: './avatar-edit.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -54,6 +55,8 @@ export class AvatarEditComponent {
 
     try {
       this._isAvatarUploading = true;
+      // Clear latest notification toast
+      this._notification = null;
 
       // Delete current avatar in storage
       await this.user.deleteAvatarDocContent();
@@ -62,8 +65,19 @@ export class AvatarEditComponent {
       await updateProfile(this.auth.currentUser!, { photoURL: "" })
 
       this.auth.currentUser!.reload();
+
+      // Show a UI trigger to show result
+      this._notification = {
+        type: 'success',
+        message: 'Votre avatar a été supprimé avec succès !'
+      }
     } catch(error) {
-      console.error("Error while deleting your avatar : ", error)
+      console.error("Error while deleting your avatar : ", error);
+      // Show a UI trigger to show result
+      this._notification = {
+        type: 'fail',
+        message: 'Un problème est survenu. Veuillez réessayer plus tard !'
+      };
     }
     finally {
       this._isAvatarUploading = false;
@@ -83,18 +97,30 @@ export class AvatarEditComponent {
   async validateNewAvatar(): Promise<void> {
     try {
       if(this._newAvatarFile) {
+        // Clear latest notification toast and set UX/UI
+        this._notification = null;
+
         this._isAvatarUploading = true;
-        const fileExtension = this._newAvatarFile.type.split('/')[1]
+        const fileExtension = this._newAvatarFile.type.split('/')[1];
   
-        await this.user.storeNewAvatar(this._newAvatarFile, fileExtension)
-  
+        await this.user.storeNewAvatar(this._newAvatarFile, fileExtension);
+
         // Dismiss the new avatar as the old new avatar is the avatar now
-        // Display a toast notification
         this.dismissNewAvatar();
+
+        // Show a UI trigger to show result
+        this._notification = {
+          type: 'success',
+          message: 'Votre avatar a été sauvegardé avec succès !'
+        }
       }
     } catch(error) {
       console.error('Error while uploading new avatar : ', error);
       // Display a toast notification
+      this._notification = {
+        type: 'fail',
+        message: 'Un problème est survenu. Veuillez réessayer plus tard !'
+      };
     } finally {
       this._isAvatarUploading = false;
     }

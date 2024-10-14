@@ -157,4 +157,10 @@ export default class AuthService implements OnInit {
 
     return isLengthValid && isPseudoUnique && isSpecialCharsValid && isFiguresValid;
   }
+
+  // TODO: Separate pseudoValidity and pseudoUnicity to provide better return to User.
+  verifyPseudoUnicity(pseudo: string): boolean {
+
+    return false;
+  }
 }

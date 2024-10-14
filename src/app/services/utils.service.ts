@@ -43,4 +43,26 @@ export class UtilsService {
   
     return new Date(timeStamp).toLocaleDateString(this.translate.defaultLang, options);
   }
+
+  /**
+   * Check the equivalence of two arrays of identical content types
+   * 
+   * @param firstArray array to compare
+   * @param secondArray array to compare
+   * @param isPositionRelevant whether if or not the item position in the arrays matter (default to false)
+   * 
+   * @returns whether both arrays are equivalent or not
+   */
+  isArraysIdentical<ContentType>(firstArray: ContentType[], secondArray: ContentType[], isPositionRelevant: boolean = false): boolean {
+    // Just check the lengths and draw a conclusion
+    if (firstArray.length !== secondArray.length) 
+      return false;
+
+    // Discuss the equivalence according to the position importance
+    if(isPositionRelevant) {
+      return JSON.stringify(firstArray) === JSON.stringify(secondArray);
+    } else {
+      return firstArray.every((item) => secondArray.includes(item));
+    }
+  }
 }

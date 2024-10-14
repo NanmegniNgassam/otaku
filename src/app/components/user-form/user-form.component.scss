@@ -76,6 +76,9 @@ form {
       cursor: pointer;
       text-transform: uppercase;
       background-color: #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &[type="submit"] {
         &:disabled {
@@ -96,6 +99,8 @@ form {
           width: 20px;
           border-width: 0.2rem;
           margin: 0 auto;
+          border-color: #fff;
+          border-bottom-color: #bbb;
         }
       }
       &:hover {

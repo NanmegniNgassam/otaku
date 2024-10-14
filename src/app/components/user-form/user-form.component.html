@@ -11,7 +11,7 @@
     {{ "pages.edition.favoriteLabel" | translate }}
   </span>
   <div class="animes-genres">
-    @for (genre of _userData.favoriteGenres; track $index) {
+    @for (genre of _newFavoriteGenres; track $index) {
     <div class="anime-genre favorite" (click)="removeAnimeGenre(genre)">
       {{ genre }} <ion-icon name="arrow-down-circle-sharp"></ion-icon>
     </div>
@@ -31,7 +31,14 @@
     <a onclick="" routerLink="/account">
       {{ "pages.edition.cancelLabel" | translate }}
     </a>
-    <button [disabled]="_editForm.invalid" type="submit">
+    <button
+      [disabled]="
+        _editForm.invalid ||
+        (_editForm.value.username.trim() === _userData.playerName &&
+          !_isGenresUpdated)
+      "
+      type="submit"
+    >
       @if (_isSavingData) {
       <div class="spinner"></div>
       } @else {

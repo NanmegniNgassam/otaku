@@ -303,7 +303,7 @@ export class UserService {
       // Update the global doc.
       await updateDoc(doc(this.db, OVERVIEW_COLLECTION, GENERAL_USERS_DOC), {playerNames })
     } catch (error) {
-      console.error("Error while removing old pseudo in users doc : ", error);
+      console.error("Error while updating pseudo in users doc : ", error);
       throw(error);
     }
   }

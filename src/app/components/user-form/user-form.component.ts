@@ -10,6 +10,7 @@ import { AnimeService } from '../../services/anime.service';
 import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { ToastComponent } from '../toast/toast.component';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-user-form',
@@ -22,17 +23,21 @@ import { ToastComponent } from '../toast/toast.component';
 export class UserFormComponent implements OnInit {
   _userData!:UserData;
   _genreSuggestions!:string[];
+  _newFavoriteGenres!: string[];
   _isSavingData!:boolean;
   _notification!: Toast | null;
   _editForm!:FormGroup;
+  _isGenresUpdated!: boolean;
 
   constructor(
     private user: UserService,
     private anime: AnimeService,
     private formBuilder: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    protected util: UtilsService
   ) {
     this._isSavingData = false;
+    this._isGenresUpdated = false;
   }
 
   /**
@@ -41,7 +46,9 @@ export class UserFormComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this._userData = await this.user.fetchUserData();
 
-    this._genreSuggestions = (await this.anime.suggestAnimeGenres(this._userData.favoriteGenres)).slice(0,8)
+    this._genreSuggestions = (await this.anime.suggestAnimeGenres(this._userData.favoriteGenres)).slice(0,8);
+
+    this._newFavoriteGenres = [...new Set(this._userData.favoriteGenres)];
 
     this._editForm = this.formBuilder.group({
       username: [this.auth.currentUser!.displayName, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
@@ -50,18 +57,24 @@ export class UserFormComponent implements OnInit {
     })
   }
 
+  // TODO: Explore Firebase transaction
   /**
    * Save new user data
    */
   async onSaveData(): Promise<void> {
     try {
       this._isSavingData = true;
+      // Dismiss latest toast validation
+      this._notification = null;
+      
   
       if(this.auth.currentUser!.displayName !== this._editForm.value.username.trim()) {
         // Update new valid Pseudo
         if(this.auth.verifyPseudoValidity( this._editForm.value.username.trim())) {
           // modify the pseudo in users doc
           await this.user.modifyPseudofromUsersData(this.auth.currentUser!.displayName!, this._editForm.value.username.trim());
+          // Modify pseudo in user doc also
+          await this.user.updateUserDoc({playerName: this._editForm.value.username.trim() as string})
             
           await updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username.trim()})
         } else {
@@ -71,20 +84,14 @@ export class UserFormComponent implements OnInit {
           }
         }
       }
-        
-      // Update new avatar if needed
-      // if(this._newAvatarFile) {
-      //   await this.validateNewAvatar();
-      // }
-      // TODO: Received a blob as props to complete avatar change purpose.
   
       // Save user new data on firebase
-      await this.user.updateUserDoc({ favoriteGenres: this._userData.favoriteGenres })
+      await this.user.updateUserDoc({ favoriteGenres: this._newFavoriteGenres })
   
       // Show a validation when the save is well completed
       this._notification = {
         type: 'success',
-        message: 'Vos modifications ont été enregistrées !'
+        message: 'Vos modifications ont bien été enregistrées !'
       } 
   
     } catch(error) {
@@ -106,13 +113,15 @@ export class UserFormComponent implements OnInit {
    */
   addAnimeGenre(selectedGenre: string) {
     // Check if the genre is in user favorites
-    if(!this._userData.favoriteGenres.includes(selectedGenre)) {
+    if(!this._newFavoriteGenres.includes(selectedGenre)) {
       // Add it to favorites
-      this._userData.favoriteGenres.push(selectedGenre);
+      this._newFavoriteGenres.push(selectedGenre);
   
       // Remove it from suggestions
       this._genreSuggestions = this._genreSuggestions.filter((genre) => genre !== selectedGenre);
     }
+    console.log("Genres Diff : ", this.util.isArraysIdentical(this._userData.favoriteGenres, this._newFavoriteGenres, true));
+    this._isGenresUpdated = !this.util.isArraysIdentical(this._userData.favoriteGenres, this._newFavoriteGenres, true);
   }
   
   /**
@@ -124,10 +133,12 @@ export class UserFormComponent implements OnInit {
     // Check if the genre is in suggested genre
     if(!this._genreSuggestions.includes(selectedGenre)) {
       // Remove it from favorites
-      this._userData.favoriteGenres = this._userData.favoriteGenres.filter((genre) => genre !== selectedGenre)
+      this._newFavoriteGenres = this._newFavoriteGenres.filter((genre) => genre !== selectedGenre)
   
       // Add to suggestions
       this._genreSuggestions.push(selectedGenre);
     }
+    console.log("Genres Diff : ", this.util.isArraysIdentical(this._userData.favoriteGenres, this._newFavoriteGenres, true));
+    this._isGenresUpdated = !this.util.isArraysIdentical(this._userData.favoriteGenres, this._newFavoriteGenres, true);
   }
 }

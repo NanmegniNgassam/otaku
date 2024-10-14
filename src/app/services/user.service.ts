@@ -309,5 +309,4 @@ export class UserService {
   }
  }
 
-// TODO: Pensez à mettre une politique contre les caractères spéciaux pour la création de compte
 // TODO: Instaurer une politique de gestion de la performance par la mise en cache de certains éléments.

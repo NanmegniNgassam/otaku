@@ -88,10 +88,26 @@ export default class AuthService{
       // Set the persistence to session stage
       await setPersistence(this.auth, browserLocalPersistence);
 
-      // Create user account and update its informations
+      // Check the signinNickname validity
+      if(!this.verifyPseudoValidity(credentials.signinNickName.trim())) {
+        throw({
+          code: 'invalid-pseudo',
+          message: 'The given pseudo is invalid. Try another one !'
+        });
+      }
+
+      // Check if the signinNickname unicity
+      if(!(await this.verifyPseudoUnicity(credentials.signinNickName.trim()))) {
+        throw({
+          code: 'pseudo-already-used',
+          message: 'The given pseudo is already used by another player.'
+        });
+      }
+
+      // Create user account, update its informations and add new pseudo in users document
       const userCredential = await createUserWithEmailAndPassword(this.auth, credentials.signinEmail, credentials.signinPassword);
       await updateProfile(userCredential.user, {displayName: credentials.signinNickName});
-      // TODO: Use pseudo validation when needed
+      await this.db.modifyPseudofromUsersData("", credentials.signinNickName);
 
       // send verification email
       await this.sendVerificationEmail(userCredential.user);
@@ -112,6 +128,7 @@ export default class AuthService{
    * @param user currently logged in user
    */
   async sendVerificationEmail(user: User): Promise<void> {
+    // TODO: Production change to madee : IMPORTANT
     await sendEmailVerification(user, {url: "http://localhost:4200/account"});
   }
 

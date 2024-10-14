@@ -46,7 +46,7 @@ export class SigninComponent implements OnInit {
     // Init the reactive signin form
     this._signinForm = this.formBuilder.group({
       signinEmail: [null, [Validators.required, Validators.email]],
-      signinNickName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      signinNickName: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
       signinPassword: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(50)]],
       signinPasswordConfirm: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(50)]],
       generalConditions: [false, Validators.requiredTrue]
@@ -68,6 +68,8 @@ export class SigninComponent implements OnInit {
    */
   async onSignin(): Promise<void> {
     this._isAuthLoading = true;
+    // Clear latest notification before processing
+    this._notification = null;
 
     // Check if the passwords are identical and strong enough
     if(this._signinForm.value.signinPassword === this._signinForm.value.signinPasswordConfirm && this._passwordLevel >= 3) {
@@ -88,6 +90,20 @@ export class SigninComponent implements OnInit {
               type: 'warning',
               message: this._errors['tooManyRequests']
             }
+            break;
+          case "invalid-pseudo":
+            this._notification = {
+              type: 'warning',
+              message: error.message
+            }
+            // TODO: Set a UX visual changes to pseudo input
+            break;
+          case "pseudo-already-used":
+            this._notification = {
+              type: 'warning',
+              message: error.message
+            }
+            // TODO: Set a UX visual changes to pseudo input
             break;
           default: 
             this._notification = {

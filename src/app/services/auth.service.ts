@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVerification, signInWithPopup, signOut, updateProfile, User, user, UserCredential } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { signInWithEmailAndPassword } from "@firebase/auth";
@@ -10,11 +10,10 @@ import { UserService } from "./user.service";
   providedIn: 'root'
 }) 
 
-export default class AuthService implements OnInit {
+export default class AuthService{
   user$ = user(this.auth);
   currentUser: User | null = this.auth.currentUser;
   googleProvider = new GoogleAuthProvider();
-  playerPseudos: string[] =  [];
 
   constructor(
     private auth: Auth,
@@ -24,13 +23,6 @@ export default class AuthService implements OnInit {
     this.user$.subscribe((currentUser: User | null) => {
       this.currentUser = currentUser;
     })
-  }
-
-  /**
-   * Performs some general actions right after initialization
-   */
-  async ngOnInit(): Promise<void> {
-    this.playerPseudos = await this.db.getGeneralUsersData();
   }
 
 
@@ -138,7 +130,6 @@ export default class AuthService implements OnInit {
     const FIGURE_REGEX = /[0-9]/;
     let figuresOccurences = 0;
     let specialCharacterOccurences = 0;
-    const playerNames = this.playerPseudos.map((playerName) => playerName.toLowerCase());
 
     // Cycle through the pseudo and determine special characters and figures
     pseudo.split('').filter((letter) => letter != ' ').forEach((letter: string) => {
@@ -151,16 +142,23 @@ export default class AuthService implements OnInit {
     })
 
     const isLengthValid = pseudo.length >= 8 && pseudo.length <= 25;
-    const isPseudoUnique = !playerNames.includes(pseudo.toLowerCase());
     const isSpecialCharsValid = specialCharacterOccurences <= 1;
     const isFiguresValid = figuresOccurences <= 2;
 
-    return isLengthValid && isPseudoUnique && isSpecialCharsValid && isFiguresValid;
+    return isLengthValid && isSpecialCharsValid && isFiguresValid;
   }
 
-  // TODO: Separate pseudoValidity and pseudoUnicity to provide better return to User.
-  verifyPseudoUnicity(pseudo: string): boolean {
+  /**
+   * Check if the new user pseudo isn't already taken
+   * 
+   * @param pseudo the user pseudo to validate
+   * @returns whether the new user pseudo is available or not
+   */
+  async verifyPseudoUnicity(pseudo: string): Promise<boolean> {
+    const playerPseudos = await this.db.getGeneralUsersData();
 
-    return false;
+    const playerNames = playerPseudos.map((playerName) => playerName.toLowerCase());
+
+    return !playerNames.includes(pseudo.toLowerCase());
   }
 }

@@ -69,24 +69,37 @@ export class UserFormComponent implements OnInit {
       
   
       if(this.auth.currentUser!.displayName !== this._editForm.value.username.trim()) {
-        // Update new valid Pseudo
+        // Check if the new pseudo is valid according to our criteria
         if(this.auth.verifyPseudoValidity( this._editForm.value.username.trim())) {
-          // modify the pseudo in users doc
-          await this.user.modifyPseudofromUsersData(this.auth.currentUser!.displayName!, this._editForm.value.username.trim());
-          // Modify pseudo in user doc also
-          await this.user.updateUserDoc({playerName: this._editForm.value.username.trim() as string})
-            
-          await updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username.trim()})
+          // Check is the new pseudo isn't taken by another player
+          if(await this.auth.verifyPseudoUnicity(this._editForm.value.username.trim())) {
+            // modify the pseudo in users doc
+            await this.user.modifyPseudofromUsersData(this.auth.currentUser!.displayName!, this._editForm.value.username.trim());
+            // Modify pseudo in user doc also
+            await this.user.updateUserDoc({playerName: this._editForm.value.username.trim() as string});
+            // Upadte the current profile
+            await updateProfile(this.auth.currentUser!, { displayName: this._editForm.value.username.trim()});
+          } else {
+            this._notification = {
+              type: 'fail',
+              message: 'The pseudo entered is already taken by another player !'
+            };
+            return;
+          }
         } else {
           this._notification = {
             type: 'fail',
-            message: 'Your username is already in-use or not valid. Change it !'
+            message: 'The pseudo proposed is not valid. Change it !'
           }
+          return;
         }
       }
   
-      // Save user new data on firebase
-      await this.user.updateUserDoc({ favoriteGenres: this._newFavoriteGenres })
+      if(!this.util.isArraysIdentical(this._newFavoriteGenres, this._userData.favoriteGenres, true)) {
+        // Save user new data on firebase
+        await this.user.updateUserDoc({ favoriteGenres: this._newFavoriteGenres })
+      }
+
   
       // Show a validation when the save is well completed
       this._notification = {
@@ -120,7 +133,7 @@ export class UserFormComponent implements OnInit {
       // Remove it from suggestions
       this._genreSuggestions = this._genreSuggestions.filter((genre) => genre !== selectedGenre);
     }
-    console.log("Genres Diff : ", this.util.isArraysIdentical(this._userData.favoriteGenres, this._newFavoriteGenres, true));
+
     this._isGenresUpdated = !this.util.isArraysIdentical(this._userData.favoriteGenres, this._newFavoriteGenres, true);
   }
   
@@ -138,7 +151,7 @@ export class UserFormComponent implements OnInit {
       // Add to suggestions
       this._genreSuggestions.push(selectedGenre);
     }
-    console.log("Genres Diff : ", this.util.isArraysIdentical(this._userData.favoriteGenres, this._newFavoriteGenres, true));
+
     this._isGenresUpdated = !this.util.isArraysIdentical(this._userData.favoriteGenres, this._newFavoriteGenres, true);
   }
 }

@@ -146,6 +146,13 @@
       "saveLabel": "Save"
     }
   },
+  "services": {
+    "authentication": {
+      "errors": {
+        "logout": "You can't logout. Please try again later !"
+      }
+    }
+  },
   "others": {
     "navigation": {
       "backwardLabel": "Back"

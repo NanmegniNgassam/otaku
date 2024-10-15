@@ -5,6 +5,8 @@ import { ToastComponent } from "../../components/toast/toast.component";
 import { Toast } from '../../models/toast';
 import AuthService from '../../services/auth.service';
 
+// TODO: All the errors should be handled by the services.
+
 @Component({
   selector: 'app-signin',
   standalone: true,
@@ -96,14 +98,12 @@ export class SigninComponent implements OnInit {
               type: 'warning',
               message: error.message
             }
-            // TODO: Set a UX visual changes to pseudo input
             break;
           case "pseudo-already-used":
             this._notification = {
               type: 'warning',
               message: error.message
             }
-            // TODO: Set a UX visual changes to pseudo input
             break;
           default: 
             this._notification = {

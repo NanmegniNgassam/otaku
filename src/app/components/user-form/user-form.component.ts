@@ -28,6 +28,7 @@ export class UserFormComponent implements OnInit {
   _notification!: Toast | null;
   _editForm!:FormGroup;
   _isGenresUpdated!: boolean;
+  _pseudoFieldStatus!: "invalid-pseudo" | "" | "pseudo-already-taken";
 
   constructor(
     private user: UserService,
@@ -62,6 +63,8 @@ export class UserFormComponent implements OnInit {
    * Save new user data
    */
   async onSaveData(): Promise<void> {
+    // Reset the pseudo field before validation
+    this._pseudoFieldStatus = "";
     try {
       this._isSavingData = true;
       // Dismiss latest toast validation
@@ -82,8 +85,9 @@ export class UserFormComponent implements OnInit {
           } else {
             this._notification = {
               type: 'fail',
-              message: 'The pseudo entered is already taken by another player !'
+              message: 'The pseudo entered is already taken !'
             };
+            this._pseudoFieldStatus = 'pseudo-already-taken';
             return;
           }
         } else {
@@ -91,6 +95,7 @@ export class UserFormComponent implements OnInit {
             type: 'fail',
             message: 'The pseudo proposed is not valid. Change it !'
           }
+          this._pseudoFieldStatus = 'invalid-pseudo';
           return;
         }
       }

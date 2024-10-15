@@ -5,6 +5,9 @@ import { signInWithEmailAndPassword } from "@firebase/auth";
 import { setPersistence } from "firebase/auth";
 import { LoginCredential, SigninCredential } from "../models/others";
 import { UserService } from "./user.service";
+import { TranslateService } from "@ngx-translate/core";
+
+// TODO: Define a allErrors enum may be useful
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +17,22 @@ export default class AuthService{
   user$ = user(this.auth);
   currentUser: User | null = this.auth.currentUser;
   googleProvider = new GoogleAuthProvider();
+  _authErrors!: {[name: string] : string};
 
   constructor(
     private auth: Auth,
     private router: Router,
-    private db: UserService 
+    private db: UserService,
+    private translate: TranslateService
   ) {
     this.user$.subscribe((currentUser: User | null) => {
       this.currentUser = currentUser;
+    })
+
+    // Get form errors from i18n in the current app language
+    translate.stream("services.authentication.errors").subscribe((authErrors) => {
+      console.log(typeof authErrors);
+      this._authErrors = authErrors;
     })
   }
 
@@ -74,6 +85,12 @@ export default class AuthService{
       this.router.navigateByUrl('/');
     } catch(error: any) {
       console.error("Error occurs when signing out : ", error.message);
+      // TODO: Set the error {type: string, message: string} and then throw it.
+      const formattedError = {
+        type: error.type || 'logout-error',
+        message: error.message || this._authErrors['logout']
+      }
+      throw(error);
     }
   }
 
@@ -100,7 +117,7 @@ export default class AuthService{
       if(!(await this.verifyPseudoUnicity(credentials.signinNickName.trim()))) {
         throw({
           code: 'pseudo-already-used',
-          message: 'The given pseudo is already used by another player.'
+          message: 'The given pseudo is already taken !'
         });
       }
 
@@ -128,7 +145,7 @@ export default class AuthService{
    * @param user currently logged in user
    */
   async sendVerificationEmail(user: User): Promise<void> {
-    // TODO: Production change to madee : IMPORTANT
+    // TODO: Production change to made : IMPORTANT
     await sendEmailVerification(user, {url: "http://localhost:4200/account"});
   }
 

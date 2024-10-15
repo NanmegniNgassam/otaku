@@ -146,6 +146,13 @@
       "saveLabel": "Sauvegarder"
     }
   },
+  "services": {
+    "authentication": {
+      "errors": {
+        "logout": "Déconnexion impossible. Réessayez plus tard !"
+      }
+    }
+  },
   "others": {
     "navigation": {
       "backwardLabel": "Retour"

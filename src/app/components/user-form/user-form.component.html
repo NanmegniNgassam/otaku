@@ -3,7 +3,12 @@
   <label for="username">
     {{ "pages.edition.usernameLabel" | translate }}
   </label>
-  <input id="username" type="text" formControlName="username" />
+  <input
+    id="username"
+    type="text"
+    formControlName="username"
+    [className]="_pseudoFieldStatus"
+  />
   <label for="animeGenres">
     {{ "pages.edition.genreLabel" | translate }}
   </label>

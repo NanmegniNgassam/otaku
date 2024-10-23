@@ -10,3 +10,4 @@ import { Component } from '@angular/core';
 export class SettingsComponent {
 
 }
+// TODO: Proposer à l'utilisateur de spécifier les genres qu'il n'aimerait pas voir lors de sa navigation (option recherche)

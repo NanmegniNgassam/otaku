@@ -90,5 +90,3 @@ export class AnimeService {
   }
 }
 
-// TODO: Dans une évolution du site (si jamais), rajouter la partie Manga.
-// TODO: Proposer à l'utilisateur (dans une evolve) de spécifier les genres qu'il n'aimerait pas voir lors de sa navigation (option recherche)

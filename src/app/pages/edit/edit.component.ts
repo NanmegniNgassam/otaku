@@ -14,4 +14,3 @@ import { RouterModule } from '@angular/router';
 })
 export class EditComponent {
 }
-// TODO: Rajouter des modalités comme 'Voir tout - cacher', 'Aucun favori selectionné', 'voir de nouvelles suggestions', ...

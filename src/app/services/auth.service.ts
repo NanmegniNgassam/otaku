@@ -84,7 +84,6 @@ export default class AuthService{
       this.router.navigateByUrl('/');
     } catch(error: any) {
       console.error("Error occurs when signing out : ", error.message);
-      // TODO: Set the error {type: string, message: string} and then throw it.
       const formattedError = {
         type: error.type || 'logout-error',
         message: error.message || this._authErrors['logout']

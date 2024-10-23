@@ -107,7 +107,6 @@
       "QuestsCountLabel": "Quests",
       "chestRaceTitle": "Treasure hunt", 
       "chestRaceHint": "Once the chest is open, click on it to collect its content.",
-      "moreStatsButtonLabel": "See more stats",
       "features": {
         "notifications": "Notifications",
         "settings": "Settings",
@@ -147,7 +146,7 @@
       "othersGenres": "others genres",
       "otherGenre": "other genre",
       "hideGenres": "Hide",
-      "noGenreSelected": "No genre selected!",
+      "noGenreSelected": "No favorite selected!",
       "moreSuggestions": "More suggestions",
       "lessSuggestions": "Less suggestions",
       "noAvailableSuggestions": "No more suggestions available!"

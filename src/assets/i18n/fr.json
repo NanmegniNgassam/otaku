@@ -143,7 +143,14 @@
       "favoriteLabel": "favoris",
       "suggestedLabel": "suggérés",
       "cancelLabel": "Retour",
-      "saveLabel": "Sauvegarder"
+      "saveLabel": "Sauvegarder",
+      "othersGenres": "autres genres",
+      "otherGenre": "autre genre",
+      "hideGenres": "Réduire",
+      "noGenreSelected": "Aucun genre selectionné !",
+      "moreSuggestions": "Plus de suggestions",
+      "lessSuggestions": "Moins de suggestions",
+      "noAvailableSuggestions": "Aucune suggestion disponible !"
     }
   },
   "services": {

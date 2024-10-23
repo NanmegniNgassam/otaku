@@ -24,16 +24,20 @@
     } 
     @if (_newFavoriteGenres.length > _max_anime_genres_shown) {
       <div class="anime-genre more-genres" (click)="modifyGenrePreferencesCount('more')">
-        + {{ _newFavoriteGenres.length - _max_anime_genres_shown }} autres genres
+        + {{ _newFavoriteGenres.length - _max_anime_genres_shown }} 
+        {{ 
+          ((_newFavoriteGenres.length - _max_anime_genres_shown === 1) ? "pages.edition.otherGenre" : "pages.edition.othersGenres") 
+          | translate 
+        }}
       </div>
     }
     @if(_max_anime_genres_shown > _default_max_anime_genres_shown) {
       <div class="anime-genre less-genres" (click)="modifyGenrePreferencesCount('less')">
-        Reduire
+        {{ "pages.edition.hideGenres" | translate }}
       </div>
     }
     } @else {
-      <p class="empty-message">Aucun genre selectionné !</p>
+      <p class="empty-message"> {{ "pages.edition.noGenreSelected" | translate }} </p>
     }
   </div>
 
@@ -47,17 +51,17 @@
     }
     } @else {
       <p class="empty-message">
-        Aucune suggestion disponible !
+        {{ "pages.edition.noAvailableSuggestions" | translate }}
       </p>
     }
     @if (_genreSuggestions.length < _default_max_genres_suggestion ) {
       <div class="anime-genre more-suggestions" (click)="increaseGenresSuggestions()">
-        Plus de suggestions
+        {{ "pages.edition.moreSuggestions" | translate }}
       </div>
     }
     @if (_genreSuggestions.length >= 2 * _default_min_suggestions) {
       <div class="anime-genre less-suggestions" (click)="decreaseGenresSuggestions()">
-        Moins de suggestions
+        {{ "pages.edition.lessSuggestions" | translate }}
       </div>
     }
   </div>

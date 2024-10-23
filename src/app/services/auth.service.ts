@@ -31,7 +31,6 @@ export default class AuthService{
 
     // Get form errors from i18n in the current app language
     translate.stream("services.authentication.errors").subscribe((authErrors) => {
-      console.log(typeof authErrors);
       this._authErrors = authErrors;
     })
   }

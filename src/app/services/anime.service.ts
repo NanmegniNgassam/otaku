@@ -78,13 +78,14 @@ export class AnimeService {
    */
   async suggestAnimeGenres(userGenres: string[]): Promise<string[]> {
     const allGenres = (await this.getAnimeGenres()).map((genre) => genre.name);
+    // Withdraw forbidden & useless genres
+    const allowedandUsefullGenres = allGenres.filter((genre) => !userGenres.includes(genre) && !EXPLICIT_CONTENT_GENRES.includes(genre));
 
     // Generate suggestions from user favorite genres
-    const shuffleGenres = allGenres.sort(() => 0.5 - Math.random());
+    const shuffleGenres = allowedandUsefullGenres.sort(() => 0.5 - Math.random());
     const selectedGenres = shuffleGenres.slice(0, 20);
-    const suggestedGenres = selectedGenres.filter((genre) => !userGenres.includes(genre) && !EXPLICIT_CONTENT_GENRES.includes(genre));
 
-    return suggestedGenres;
+    return selectedGenres;
   }
 }
 

@@ -12,6 +12,10 @@ import { UserService } from '../../services/user.service';
 import { ToastComponent } from '../toast/toast.component';
 import { UtilsService } from '../../services/utils.service';
 
+const DEFAULT_MAX_ANIME_GENRES_SHOWN = 6;
+const DEFAULT_MAX_GENRES_SUGGESTION = 24;
+const ANIME_GENRE_STEP = 6;
+
 @Component({
   selector: 'app-user-form',
   standalone: true,
@@ -29,6 +33,9 @@ export class UserFormComponent implements OnInit {
   _editForm!:FormGroup;
   _isGenresUpdated!: boolean;
   _pseudoFieldStatus!: "invalid-pseudo" | "" | "pseudo-already-taken";
+  _max_anime_genres_shown!:number;
+  _default_max_anime_genres_shown!:number;
+  _default_max_genres_suggestion!:number;
 
   constructor(
     private user: UserService,
@@ -39,6 +46,9 @@ export class UserFormComponent implements OnInit {
   ) {
     this._isSavingData = false;
     this._isGenresUpdated = false;
+    this._max_anime_genres_shown = DEFAULT_MAX_ANIME_GENRES_SHOWN;
+    this._default_max_anime_genres_shown = DEFAULT_MAX_ANIME_GENRES_SHOWN;
+    this._default_max_genres_suggestion = DEFAULT_MAX_GENRES_SUGGESTION;
   }
 
   /**
@@ -125,6 +135,21 @@ export class UserFormComponent implements OnInit {
   }
 
   /**
+   * Increase/Decrease the number of preferences explicitly shown
+   * 
+   * @param action change to apply on Genre preferences number
+   */
+  modifyGenrePreferencesCount = (action: "more" | "less") => {
+    if(action === "more" && this._newFavoriteGenres.length >= this._max_anime_genres_shown) {
+      this._max_anime_genres_shown += ANIME_GENRE_STEP;
+    }
+    if(action === "less" && this._newFavoriteGenres.length > DEFAULT_MAX_ANIME_GENRES_SHOWN) {
+      this._max_anime_genres_shown -= ANIME_GENRE_STEP;
+    }
+    console.log("this._max_anime_genres_shown", this._max_anime_genres_shown);
+  }
+
+  /**
    * Add an anime genre in user favorites
    * 
    * @param selectedGenre Anime genre selected
@@ -133,7 +158,7 @@ export class UserFormComponent implements OnInit {
     // Check if the genre is in user favorites
     if(!this._newFavoriteGenres.includes(selectedGenre)) {
       // Add it to favorites
-      this._newFavoriteGenres.push(selectedGenre);
+      this._newFavoriteGenres.unshift(selectedGenre);
   
       // Remove it from suggestions
       this._genreSuggestions = this._genreSuggestions.filter((genre) => genre !== selectedGenre);

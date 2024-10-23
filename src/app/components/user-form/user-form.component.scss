@@ -34,6 +34,13 @@ form {
     gap: 5px;
     margin-bottom: 20px;
   }
+  .empty-message {
+    display: block;
+    text-align: center;
+    margin: 10px auto;
+    font-size: .9rem;
+    color: gray;
+  }
   span {
     display: block;
     margin-bottom: 5px;
@@ -54,14 +61,32 @@ form {
     background-color: var(--primary-color);
     transition: background-color 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     font-size: 14px;
+    &:hover {
+      background-color: var(--primary-accent-color);
+    }
     &.favorite {
       background-color: green;
       &:hover {
         background-color: darkgreen;
       }
     }
-    &:hover {
-      background-color: var(--primary-accent-color);
+    &.more-genres, &.less-genres {
+      background-color: #fff;
+      border-color: var(--box-container-color);
+      color: green;
+      &:hover {
+        background-color: var(--box-container-color);
+        color: darkgreen;
+      }
+    }
+    &.more-suggestions {
+      background-color: #fff;
+      border-color: var(--box-container-color);
+      color: var(--primary-color);
+      &:hover {
+        background-color: var(--box-container-color);
+        color: var(--primary-accent-color);
+      }
     }
     ion-icon {
       color: #fff;

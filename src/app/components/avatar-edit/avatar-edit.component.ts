@@ -148,3 +148,5 @@ export class AvatarEditComponent {
     return URL.createObjectURL(avatarBlob)
   }
 }
+
+// TODO: Réaliser un outil de scrapping qui permet de définir des images de profils en spécifiant un lien vers un fichier image (option + modale)

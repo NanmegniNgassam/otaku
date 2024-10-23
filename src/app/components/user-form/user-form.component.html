@@ -9,26 +9,51 @@
     formControlName="username"
     [className]="_pseudoFieldStatus"
   />
-  <label for="animeGenres">
+  <label>
     {{ "pages.edition.genreLabel" | translate }}
   </label>
   <span>
     {{ "pages.edition.favoriteLabel" | translate }}
   </span>
   <div class="animes-genres">
-    @for (genre of _newFavoriteGenres; track $index) {
+    @if (_newFavoriteGenres.length) { @for (genre of _newFavoriteGenres.slice(0, _max_anime_genres_shown); track
+    $index) {
     <div class="anime-genre favorite" (click)="removeAnimeGenre(genre)">
       {{ genre }} <ion-icon name="arrow-down-circle-sharp"></ion-icon>
     </div>
+    } 
+    @if (_newFavoriteGenres.length > _max_anime_genres_shown) {
+      <div class="anime-genre more-genres" (click)="modifyGenrePreferencesCount('more')">
+        + {{ _newFavoriteGenres.length - _max_anime_genres_shown }} autres genres
+      </div>
+    }
+    @if(_max_anime_genres_shown > _default_max_anime_genres_shown) {
+      <div class="anime-genre less-genres" (click)="modifyGenrePreferencesCount('less')">
+        Reduire
+      </div>
+    }
+    } @else {
+      <p class="empty-message">Aucun genre selectionné !</p>
     }
   </div>
 
   <span> {{ "pages.edition.suggestedLabel" | translate }} </span>
   <div class="animes-genres">
-    @for (genre of _genreSuggestions; track $index) {
+    @if (_genreSuggestions.length) { @for (genre of _genreSuggestions.slice(0, _default_max_genres_suggestion); track
+    $index) {
     <div class="anime-genre" (click)="addAnimeGenre(genre)">
       {{ genre }} <ion-icon name="arrow-up-circle-sharp"></ion-icon>
     </div>
+    }
+    } @else {
+      <p class="empty-message">
+        Aucune suggestion disponible !
+      </p>
+    }
+    @if (_genreSuggestions.length <= _default_max_genres_suggestion ) {
+      <div class="anime-genre more-suggestions" (click)="null">
+        Plus de suggestions
+      </div>
     }
   </div>
 

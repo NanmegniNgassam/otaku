@@ -71,3 +71,13 @@ export const routes: Routes = [
     title: 'otaku | 404'
   }
 ];
+
+// Commits to be made
+/**
+ * 1- Customize user genres selections
+ * 2- Create the settings page UI
+ * 3- Add every functionnalities
+ * 4- Add FireBase Transaction for more safety
+ * 5- Update firebase security rules on docs
+ * 6- Implements the complete
+ */

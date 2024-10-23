@@ -78,6 +78,7 @@ export class AnimeService {
    */
   async suggestAnimeGenres(userGenres: string[]): Promise<string[]> {
     const allGenres = (await this.getAnimeGenres()).map((genre) => genre.name);
+    
     // Withdraw forbidden & useless genres
     const allowedandUsefullGenres = allGenres.filter((genre) => !userGenres.includes(genre) && !EXPLICIT_CONTENT_GENRES.includes(genre));
 

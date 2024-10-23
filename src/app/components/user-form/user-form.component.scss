@@ -79,7 +79,7 @@ form {
         color: darkgreen;
       }
     }
-    &.more-suggestions {
+    &.more-suggestions, &.less-suggestions {
       background-color: #fff;
       border-color: var(--box-container-color);
       color: var(--primary-color);

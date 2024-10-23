@@ -13,6 +13,7 @@ import { ToastComponent } from '../toast/toast.component';
 import { UtilsService } from '../../services/utils.service';
 
 const DEFAULT_MAX_ANIME_GENRES_SHOWN = 6;
+const DEFAULT_MIN_SUGGESTIONS = 8;
 const DEFAULT_MAX_GENRES_SUGGESTION = 24;
 const ANIME_GENRE_STEP = 6;
 
@@ -36,6 +37,7 @@ export class UserFormComponent implements OnInit {
   _max_anime_genres_shown!:number;
   _default_max_anime_genres_shown!:number;
   _default_max_genres_suggestion!:number;
+  _default_min_suggestions!:number;
 
   constructor(
     private user: UserService,
@@ -49,6 +51,7 @@ export class UserFormComponent implements OnInit {
     this._max_anime_genres_shown = DEFAULT_MAX_ANIME_GENRES_SHOWN;
     this._default_max_anime_genres_shown = DEFAULT_MAX_ANIME_GENRES_SHOWN;
     this._default_max_genres_suggestion = DEFAULT_MAX_GENRES_SUGGESTION;
+    this._default_min_suggestions = DEFAULT_MIN_SUGGESTIONS;
   }
 
   /**
@@ -57,7 +60,7 @@ export class UserFormComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this._userData = await this.user.fetchUserData();
 
-    this._genreSuggestions = (await this.anime.suggestAnimeGenres(this._userData.favoriteGenres)).slice(0,8);
+    this._genreSuggestions = (await this.anime.suggestAnimeGenres(this._userData.favoriteGenres)).slice(0,DEFAULT_MIN_SUGGESTIONS);
 
     this._newFavoriteGenres = [...new Set(this._userData.favoriteGenres)];
 
@@ -146,7 +149,28 @@ export class UserFormComponent implements OnInit {
     if(action === "less" && this._newFavoriteGenres.length > DEFAULT_MAX_ANIME_GENRES_SHOWN) {
       this._max_anime_genres_shown -= ANIME_GENRE_STEP;
     }
-    console.log("this._max_anime_genres_shown", this._max_anime_genres_shown);
+  }
+
+  /**
+   * Adds more suggestions proposed to the user
+   */
+  increaseGenresSuggestions = async () => {
+    if(this._genreSuggestions.length < DEFAULT_MAX_GENRES_SUGGESTION) {
+      const alreadyKnownGenres = [...new Set<string>([...this._newFavoriteGenres, ...this._genreSuggestions])];
+      const newSuggestions = (await this.anime.suggestAnimeGenres(alreadyKnownGenres)).slice(0, ANIME_GENRE_STEP);
+
+      this._genreSuggestions.push(...newSuggestions);
+      this._genreSuggestions.slice(0, DEFAULT_MAX_GENRES_SUGGESTION);
+    }
+  }
+
+  /**
+   * Reduces the number of suggestions shown to the user
+   */
+  decreaseGenresSuggestions = async () => {
+    if(this._genreSuggestions.length >= 2 * DEFAULT_MIN_SUGGESTIONS) {
+      this._genreSuggestions = this._genreSuggestions.slice(0, this._genreSuggestions.length - DEFAULT_MIN_SUGGESTIONS);
+    }
   }
 
   /**

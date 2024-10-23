@@ -50,9 +50,14 @@
         Aucune suggestion disponible !
       </p>
     }
-    @if (_genreSuggestions.length <= _default_max_genres_suggestion ) {
-      <div class="anime-genre more-suggestions" (click)="null">
+    @if (_genreSuggestions.length < _default_max_genres_suggestion ) {
+      <div class="anime-genre more-suggestions" (click)="increaseGenresSuggestions()">
         Plus de suggestions
+      </div>
+    }
+    @if (_genreSuggestions.length >= 2 * _default_min_suggestions) {
+      <div class="anime-genre less-suggestions" (click)="decreaseGenresSuggestions()">
+        Moins de suggestions
       </div>
     }
   </div>

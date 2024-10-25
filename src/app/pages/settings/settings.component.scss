@@ -1,0 +1,183 @@
+.wrapper {
+    max-width: 750px;
+    margin: 100px auto;
+    padding: 20px 0;
+    border: 1px solid lightgray;
+    box-shadow: 4px 4px 2px gray;
+    h1 {
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .main-section {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: 100%;
+      .user-section {
+        width: 100%;
+        max-width: 450px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        img,
+        .container-initials {
+          width: 150px;
+          aspect-ratio: 1/1;
+          border-radius: 50%;
+        }
+        .container-initials {
+          border: 1px solid gray;
+          box-shadow: 2px 3px 5px lightgray;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2.5rem;
+          font-weight: 500;
+          background-color: #fff;
+          color: var(--primary-color);
+        }
+        .user-data {
+          .user-name {
+            font-size: 1.8rem;
+            color: var(--title-text-color);
+          }
+          .creation-date {
+            font-style: italic;
+            color: var(--normal-text-color);
+            margin-bottom: 15px;
+          }
+          .email-status {
+            padding: 5px 10px;
+            font-size: 14px;
+            line-height: 20px;
+            background-color: orange;
+            color: #fff;
+            border-radius: 15px;
+            width: fit-content;
+            &.verified {
+              background-color: #33b133;
+            }
+          }
+          .email {
+            font-size: .9rem;
+            font-style: italic;
+            color: var(--normal-text-color);
+            text-align: center;
+            margin-top: 5px;
+          }
+        }
+      }
+
+      .features-section {
+        width: 100%;
+        max-width: 450px;
+        margin: 0px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .feature {
+          width: 100%;
+          border: 1px solid gray;
+          padding: 15px 30px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          border-left: 10px solid;
+          transition: all .42s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          ion-icon {
+            font-size: 1.4rem;
+          }
+          span {
+            font-size: 1.2rem;
+          }
+          &:hover {
+            border-left-color: var(--primary-color);
+            box-shadow: 3px 3px 1px lightgray;
+            gap: 20px;
+            ion-icon {
+              color: var(--primary-color);
+            }
+          }
+          &.unavailable {
+            border: 1px solid grey;
+            border-left: 10px solid grey;
+            box-shadow: none;
+            cursor: not-allowed;
+            ion-icon {
+              color: gray;
+            }
+            span {
+              color: gray;
+            }
+            &:hover {
+              gap: 10px;
+            }
+          }
+        }
+        .hint {
+          font-size: .9rem;
+          line-height: 150%;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          ion-icon {
+            font-size: 2.5rem;
+            color: orange;
+          }
+        }
+        .explicit-content-box {
+          border: 1px dashed black;
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+          .save-button {
+            text-align: right;
+            padding: 10px 15px;
+            background-color: darkgreen;
+            color: #fff;
+            width: fit-content;
+          }
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+    .wrapper {
+      max-width: 90%;
+      h1 {
+        font-weight: 2rem;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .wrapper {
+      max-width: 95%;
+      .backward-group {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 320px) {
+    .wrapper {
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+    }
+  }
+  

@@ -1,4 +1,75 @@
-<p>settings works!</p>
-<!-- TODO: Include a deletion feature -->
+<div class="wrapper">
+    <div class="backward-group" routerLink="/account">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        {{ "others.navigation.backwardLabel" | translate }}
+      </div>
+    <h1>Paramètres</h1>
+    <div class="main-section">
+      @if (_user$ | async; as user) {
+        <div class="user-section">
+          @if (user.photoURL) {
+          <img [src]="user.photoURL" [alt]="user.displayName + '\'s avatar'" />
+          } @else {
+          <div class="container-initials">
+            {{ util.generateNameInitials(user.displayName!) }}
+          </div>
+          }
+          <div class="user-data">
+            <div class="user-name">{{user.displayName}}</div>
+            <div class="creation-date">3 septembre 2024</div>
+            <div [class]="'email-status ' +  (user.emailVerified ? 'verified' : '')">
+              {{ user.emailVerified ? 'Email vérifié' : 'Email en attente de vérification' }}
+            </div>
+            <div class="email"> {{ user.email }} </div>
+          </div>
+        </div>
+      
+        <div class="features-section">
+          <div class="feature">
+            <ion-icon name="person-outline"></ion-icon>
+            <span routerLink="/account/edit">Editer mon profil utilisateur</span>
+          </div>
+          <div class="feature">
+            <ion-icon name="apps-outline"></ion-icon>
+            <span>Retrait de genres</span>
+          </div>
+          <div class="explicit-content-box">
+            <p>Cochez les genres que vous souhaitez conserver.</p>
+            <div class="save-button">ENREGISTRER</div>
+          </div>
+          
+          @if (!(user.emailVerified)) {
+            <div class="feature">
+              <ion-icon name="mail-outline"></ion-icon>
+              <span>Vérifier votre adresse e-mail</span>
+            </div>
+          }
+          <div [class]="'feature ' + (!user.emailVerified ? 'unavailable' : '')">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <span>Modifier mon mot de passe</span>
+          </div>
+          @if (!user.emailVerified) {
+            <div class="hint">
+              <ion-icon name="alert-circle-outline"></ion-icon>
+              <span>Vous devez vérifier votre adresse e-mail afin de pouvoir éditer votre mot de passe !</span> 
+            </div>
+          }
+          <div class="feature">
+            <ion-icon name="trash-bin-outline"></ion-icon>
+            <span>Supprimer mon compte</span>
+          </div>
+        </div>
+      }
+    </div>
 
-<!-- TODO: Verify email address if needed, change password, allow explicit content,  -->
+    <!-- TODO: Rappel de quelques details par rapport au profil -->
+
+    <!-- TODO: Griser toutes les options qui ne sont pas utilisables -->
+
+    <!-- TODO: Include a deletion feature -->
+    <!-- TODO: Verify email address if needed, change password, allow explicit content,  -->
+
+    <!-- TODO: Faire un bouton reset plutôt qu'un bouton retour si besoin -->
+</div>
+
+<!-- TODO: Réaliser une modale de validation de certaines actions -->

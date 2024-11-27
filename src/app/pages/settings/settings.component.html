@@ -29,33 +29,35 @@
             <ion-icon name="person-outline"></ion-icon>
             <span routerLink="/account/edit">Editer mon profil utilisateur</span>
           </div>
-          <div class="feature">
+          <div class="feature" (click)="toggleGenresManagementBox()">
             <ion-icon name="apps-outline"></ion-icon>
             <span>Interdire des genres</span>
           </div>
-          <div class="explicit-content-box">
-            <p class="description">Cochez les genres que vous souhaitez conserver.</p>
-            <div class="animes-genres">
-              @for (genre of _safeGenres; track $index) {
-                <div class="anime-genre" (click)="updateGenres(genre, 'forbid')">
-                  {{ genre }} <ion-icon name="checkmark-circle"></ion-icon>
-                </div>
-              }
-              @for (genre of _forbiddenGenres; track $index) {
-                <div class="anime-genre forbidden" (click)="updateGenres(genre, 'authorize')">
-                  {{ genre }} <ion-icon name="close-circle"></ion-icon>
-                </div>
-              }
+          @if(_genresManagementBox) {
+            <div class="explicit-content-box">
+              <p class="description">Cochez les genres que vous souhaitez conserver.</p>
+              <div class="animes-genres">
+                @for (genre of _safeGenres; track $index) {
+                  <div class="anime-genre" (click)="updateGenres(genre, 'forbid')">
+                    {{ genre }} <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+                }
+                @for (genre of _forbiddenGenres; track $index) {
+                  <div class="anime-genre forbidden" (click)="updateGenres(genre, 'authorize')">
+                    {{ genre }} <ion-icon name="close-circle"></ion-icon>
+                  </div>
+                }
+              </div>
+              <div class="save-zone">
+                @if(_isWaitingSave) {
+                  <div class="save-button" (click)="saveChanges()">ENREGISTRER</div>
+                } @else {
+                  <p class="saved-status">Données à jour.</p>
+                }
+              </div>
             </div>
-            <div class="save-zone">
-              @if(_isWaitingSave) {
-                <div class="save-button" (click)="saveChanges()">ENREGISTRER</div>
-              } @else {
-                <p class="saved-status">Données à jour.</p>
-              }
-            </div>
-          </div>
-          
+          }
+
           @if (!user.emailVerified) {
             <div class="feature">
               <ion-icon name="mail-outline"></ion-icon>
@@ -81,4 +83,5 @@
     </div>
 </div>
 
+<!-- TODO: Réaliser une modale indiquant que certaines données n'ont pas été sauvegardées -->
 <!-- TODO: Réaliser une modale de validation de certaines actions -->

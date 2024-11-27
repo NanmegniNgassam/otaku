@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { UtilsService } from '../../services/utils.service';
 import AuthService from '../../services/auth.service';
@@ -22,17 +22,20 @@ export class SettingsComponent {
   _safeGenres: string[] = [];
   _userData!: UserData;
   _isWaitingSave: boolean = false;
+  _genresManagementBox: boolean = false;
 
   /**
    * 
    * @param auth auth service
    * @param translate translate service
    * @param user user/db service
+   * @param router router service
    */
   constructor(
     protected util:UtilsService,
     private auth:AuthService,
     private user:UserService,
+    private router: Router
   ) {
   }
 
@@ -86,6 +89,20 @@ export class SettingsComponent {
         console.error("Error while saving the forbidden list : ", error);
       }
     }
+  }
+
+  /**
+   * Toggles the genres management box
+   */
+  toggleGenresManagementBox = () => {
+    this._genresManagementBox = !this._genresManagementBox;
+  }
+
+  goToAccount = () => {
+    // Check if all changes are saved 
+    this.router.navigate(['/account']);
+
+    // Else, show a modal to let the user know that he has unsaved changes and give him the possibility to continue without saving or to save the changes
   }
 }
 // TODO: Mettre la fonctionnalité de photo de profil dans un composant à part.

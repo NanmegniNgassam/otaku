@@ -5,7 +5,7 @@ export interface UserData {
   favoriteGenres: string[];
   animeListIds: number[];
   streak: string[];
-  params: {};
+  params: {forbiddenGenres: string[]};
   position: number;
   playerName: string;
   notifications: Notification[];

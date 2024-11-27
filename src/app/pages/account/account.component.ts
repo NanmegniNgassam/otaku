@@ -29,7 +29,7 @@ export class AccountComponent implements OnInit {
     favoriteGenres: [],
     animeListIds: [],
     streak: [],
-    params: {},
+    params: { forbiddenGenres: [] },
     position: 0,
     playerName: this.auth.currentUser?.displayName!,
     notifications: []

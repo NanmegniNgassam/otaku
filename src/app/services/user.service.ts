@@ -3,6 +3,7 @@ import { Auth, updateProfile, User } from '@angular/fire/auth';
 import { doc, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { deleteObject, getDownloadURL, listAll, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import { Ranking, UserData } from '../models/user';
+import { EXPLICIT_CONTENT_GENRES } from './anime.service';
 
 const USERS_COLLECTION = "users";
 const OVERVIEW_COLLECTION = 'overview'
@@ -34,7 +35,7 @@ export class UserService {
         favoriteGenres: [],
         animeListIds: [],
         streak: [new Date().toLocaleDateString("en-EN")],
-        params: {},
+        params: { forbiddenGenres: EXPLICIT_CONTENT_GENRES },
         position: null,
         playerName: this.auth.currentUser?.displayName,
         notifications: ["Votre profil vient d'être creé !"]

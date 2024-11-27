@@ -72,7 +72,6 @@
           }
         }
       }
-
       .features-section {
         width: 100%;
         max-width: 450px;
@@ -83,6 +82,7 @@
         .feature {
           width: 100%;
           border: 1px solid gray;
+          border-radius: 5px;
           padding: 15px 30px;
           cursor: pointer;
           display: flex;
@@ -132,16 +132,69 @@
           }
         }
         .explicit-content-box {
-          border: 1px dashed black;
+          padding: 10px;
+          border: 1px solid black;
           display: flex;
           flex-direction: column;
           align-items: end;
-          .save-button {
-            text-align: right;
-            padding: 10px 15px;
-            background-color: darkgreen;
-            color: #fff;
+          .description {
+            font-size: 0.9rem;
+          }
+          .animes-genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 20px 0;
+          }
+          .anime-genre {
+            display: inline-block;
             width: fit-content;
+            padding: 10px;
+            height: 40px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid;
+            cursor: pointer;
+            color: #fff;
+            background-color: var(--primary-color);
+            transition: background-color 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 14px;
+            &:hover {
+              background-color: var(--primary-accent-color);
+            }
+            &.forbidden {
+              background-color: darkred;
+              &:hover {
+                background-color: darkred;
+              }
+            }
+            ion-icon {
+              color: #fff;
+              font-size: 20px;
+            }
+          }
+          .save-zone {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            .saved-status {
+              padding: 10px 0 10px 15px;
+              font-size: 1rem;
+              color: green;
+              font-weight: 500;
+            }
+            .save-button {
+              text-align: right;
+              padding: 10px 15px;
+              background-color: darkgreen;
+              color: #fff;
+              width: fit-content;
+              cursor: pointer;
+            }
           }
         }
       }

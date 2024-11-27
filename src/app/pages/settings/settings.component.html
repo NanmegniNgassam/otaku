@@ -31,17 +31,35 @@
           </div>
           <div class="feature">
             <ion-icon name="apps-outline"></ion-icon>
-            <span>Retrait de genres</span>
+            <span>Interdire des genres</span>
           </div>
           <div class="explicit-content-box">
-            <p>Cochez les genres que vous souhaitez conserver.</p>
-            <div class="save-button">ENREGISTRER</div>
+            <p class="description">Cochez les genres que vous souhaitez conserver.</p>
+            <div class="animes-genres">
+              @for (genre of _safeGenres; track $index) {
+                <div class="anime-genre" (click)="updateGenres(genre, 'forbid')">
+                  {{ genre }} <ion-icon name="checkmark-circle"></ion-icon>
+                </div>
+              }
+              @for (genre of _forbiddenGenres; track $index) {
+                <div class="anime-genre forbidden" (click)="updateGenres(genre, 'authorize')">
+                  {{ genre }} <ion-icon name="close-circle"></ion-icon>
+                </div>
+              }
+            </div>
+            <div class="save-zone">
+              @if(_isWaitingSave) {
+                <div class="save-button" (click)="saveChanges()">ENREGISTRER</div>
+              } @else {
+                <p class="saved-status">Données à jour.</p>
+              }
+            </div>
           </div>
           
-          @if (!(user.emailVerified)) {
+          @if (!user.emailVerified) {
             <div class="feature">
               <ion-icon name="mail-outline"></ion-icon>
-              <span>Vérifier votre adresse e-mail</span>
+              <span>Vérifier mon adresse e-mail</span>
             </div>
           }
           <div [class]="'feature ' + (!user.emailVerified ? 'unavailable' : '')">
@@ -61,15 +79,6 @@
         </div>
       }
     </div>
-
-    <!-- TODO: Rappel de quelques details par rapport au profil -->
-
-    <!-- TODO: Griser toutes les options qui ne sont pas utilisables -->
-
-    <!-- TODO: Include a deletion feature -->
-    <!-- TODO: Verify email address if needed, change password, allow explicit content,  -->
-
-    <!-- TODO: Faire un bouton reset plutôt qu'un bouton retour si besoin -->
 </div>
 
 <!-- TODO: Réaliser une modale de validation de certaines actions -->

@@ -38,7 +38,16 @@ export class UserService {
         params: { forbiddenGenres: EXPLICIT_CONTENT_GENRES },
         position: null,
         playerName: this.auth.currentUser?.displayName,
-        notifications: ["Votre profil vient d'être creé !"]
+        notifications: [
+          {
+            type: 'info',
+            title: 'Welcome !',
+            message: 'Your account has been successfully created !',
+            isUnread: true,
+            isPositive: true,
+            date: new Date().toLocaleString("en-EN")
+          }
+        ]
       })
     } catch (error) {
       console.error("Error while creating userDoc : ", error);

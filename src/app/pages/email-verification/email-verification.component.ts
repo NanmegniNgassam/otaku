@@ -85,6 +85,8 @@ export class EmailVerificationComponent implements OnInit {
         message: this.notificationMessages['success'],
       }
 
+      // When validation is successful, generate a notification to inform the user
+
       // Redirect the user to account page with a delay
       setTimeout(() => {
         this.router.navigateByUrl('/account');

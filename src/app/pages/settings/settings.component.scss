@@ -51,6 +51,13 @@
             color: var(--normal-text-color);
             margin-bottom: 15px;
           }
+          .email {
+            font-size: .9rem;
+            font-style: italic;
+            color: var(--normal-text-color);
+            text-align: center;
+            margin-bottom: 5px;
+          }
           .email-status {
             padding: 5px 10px;
             font-size: 14px;
@@ -63,13 +70,6 @@
               background-color: #33b133;
             }
           }
-          .email {
-            font-size: .9rem;
-            font-style: italic;
-            color: var(--normal-text-color);
-            text-align: center;
-            margin-top: 5px;
-          }
         }
       }
       .features-section {
@@ -81,14 +81,14 @@
         gap: 20px;
         .feature {
           width: 100%;
-          border: 1px solid gray;
+          border: 1px solid var(--primary-color);
           border-radius: 5px;
           padding: 15px 30px;
           cursor: pointer;
           display: flex;
           align-items: center;
           gap: 10px;
-          border-left: 10px solid;
+          border-left: 10px solid var(--primary-color);
           transition: all .42s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           ion-icon {
             font-size: 1.4rem;
@@ -97,7 +97,6 @@
             font-size: 1.2rem;
           }
           &:hover {
-            border-left-color: var(--primary-color);
             box-shadow: 3px 3px 1px lightgray;
             gap: 20px;
             ion-icon {

@@ -16,11 +16,12 @@
           }
           <div class="user-data">
             <div class="user-name">{{user.displayName}}</div>
+            <!-- TODO: Troncer l'affichage du nom sur une seule ligne -->
             <div class="creation-date">3 septembre 2024</div>
+            <div class="email"> {{ user.email }} </div>
             <div [class]="'email-status ' +  (user.emailVerified ? 'verified' : '')">
               {{ user.emailVerified ? 'Email vérifié' : 'Email en attente de vérification' }}
             </div>
-            <div class="email"> {{ user.email }} </div>
           </div>
         </div>
       
@@ -59,7 +60,7 @@
           }
 
           @if (!user.emailVerified) {
-            <div class="feature">
+            <div class="feature" (click)="sendVerificationEmail()">
               <ion-icon name="mail-outline"></ion-icon>
               <span>Vérifier mon adresse e-mail</span>
             </div>
@@ -81,6 +82,7 @@
         </div>
       }
     </div>
+    <app-toast [notification]="_notification" />
 </div>
 
 <!-- TODO: Réaliser une modale indiquant que certaines données n'ont pas été sauvegardées -->

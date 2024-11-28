@@ -25,6 +25,7 @@ export default class AuthService{
     private db: UserService,
     private translate: TranslateService
   ) {
+    // TODO: Refacto this snippet to use the new syntax (getAuth().cuurentUser)
     this.user$.subscribe((currentUser: User | null) => {
       this.currentUser = currentUser;
     })
@@ -143,8 +144,13 @@ export default class AuthService{
    * @param user currently logged in user
    */
   async sendVerificationEmail(user: User): Promise<void> {
-    // TODO: Production change to made : IMPORTANT
-    await sendEmailVerification(user, {url: "http://localhost:4200/account"});
+    // TODO: Production change to made (url) : IMPORTANT
+    try {
+      await sendEmailVerification(user, {url: "http://localhost:4200/account"});
+    } catch(error) {
+      console.error("Error occurs when sending verification email : ", error);
+      throw(error);
+    }
   }
 
   /**

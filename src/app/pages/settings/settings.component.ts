@@ -7,11 +7,14 @@ import { AsyncPipe } from '@angular/common';
 import { EXPLICIT_CONTENT_GENRES } from '../../services/anime.service';
 import { UserService } from '../../services/user.service';
 import { UserData } from '../../models/user';
+import { getAuth, User } from '@angular/fire/auth';
+import { Toast } from '../../models/toast';
+import { ToastComponent } from "../../components/toast/toast.component";
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [TranslateModule, RouterLink, AsyncPipe],
+  imports: [TranslateModule, RouterLink, AsyncPipe, ToastComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -23,6 +26,7 @@ export class SettingsComponent {
   _userData!: UserData;
   _isWaitingSave: boolean = false;
   _genresManagementBox: boolean = false;
+  _notification!: Toast | null;
 
   /**
    * 
@@ -103,6 +107,34 @@ export class SettingsComponent {
     this.router.navigate(['/account']);
 
     // Else, show a modal to let the user know that he has unsaved changes and give him the possibility to continue without saving or to save the changes
+  }
+
+  /**
+   * Sends a verification email to the user
+   */
+  sendVerificationEmail = async () => {
+    try {
+      const currentUser = getAuth().currentUser!;
+      await this.auth.sendVerificationEmail(currentUser);
+      // show a toast to give user a feed-back on its action
+      this._notification = {
+        type: 'info',
+        message: 'A verification email has been sent to your mailbox.',
+      }
+
+      setTimeout(() => {
+        this.router.navigate(['/email-verification']);
+        this._notification = null;
+      }, 5* 1000);
+    } catch (error) {
+      console.error("Error while sending the verification email : ", error);
+
+      // show a toast to give user a feed-back on its action
+      this._notification = {
+        type: 'fail',
+        message: 'An error occured while sending the verification email.',
+      }
+    }
   }
 }
 // TODO: Mettre la fonctionnalité de photo de profil dans un composant à part.

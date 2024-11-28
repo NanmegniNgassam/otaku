@@ -1,0 +1,9 @@
+<div>
+    @if (_user.photoURL) {
+        <img [src]="_user.photoURL" [alt]="_user.displayName + '\'s avatar'" />
+    } @else {
+        <div class="container-initials">
+          {{ util.generateNameInitials(_user.displayName!) }}
+        </div>
+    }
+</div>

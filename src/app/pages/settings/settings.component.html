@@ -7,17 +7,10 @@
     <div class="main-section">
       @if (_user$ | async; as user) {
         <div class="user-section">
-          @if (user.photoURL) {
-          <img [src]="user.photoURL" [alt]="user.displayName + '\'s avatar'" />
-          } @else {
-          <div class="container-initials">
-            {{ util.generateNameInitials(user.displayName!) }}
-          </div>
-          }
+          <app-avatar />
           <div class="user-data">
             <div class="user-name">{{user.displayName}}</div>
-            <!-- TODO: Troncer l'affichage du nom sur une seule ligne -->
-            <div class="creation-date">3 septembre 2024</div>
+            <div class="creation-date">{{ util.convertTimeStampInDate(user.metadata.creationTime!) }}</div>
             <div class="email"> {{ user.email }} </div>
             <div [class]="'email-status ' +  (user.emailVerified ? 'verified' : '')">
               {{ user.emailVerified ? 'Email vérifié' : 'Email en attente de vérification' }}

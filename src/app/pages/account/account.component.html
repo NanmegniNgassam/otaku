@@ -6,13 +6,7 @@
         <ion-icon name="pencil-outline"></ion-icon>
       </a>
 
-      @if (user.photoURL) {
-      <img [src]="user.photoURL" [alt]="user.displayName + '\'s avatar'" />
-      } @else {
-      <div class="container-initials">
-        {{ util.generateNameInitials(user.displayName!) }}
-      </div>
-      }
+      <app-avatar />
 
       <div class="user-infos">
         <p class="user-pseudo line-info">

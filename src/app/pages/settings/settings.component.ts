@@ -10,11 +10,12 @@ import { UserData } from '../../models/user';
 import { getAuth, User } from '@angular/fire/auth';
 import { Toast } from '../../models/toast';
 import { ToastComponent } from "../../components/toast/toast.component";
+import { AvatarComponent } from "../../components/avatar/avatar.component";
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [TranslateModule, RouterLink, AsyncPipe, ToastComponent],
+  imports: [TranslateModule, RouterLink, AsyncPipe, ToastComponent, AvatarComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -137,5 +138,4 @@ export class SettingsComponent {
     }
   }
 }
-// TODO: Mettre la fonctionnalité de photo de profil dans un composant à part.
 // TODO: Créer une modale pour la validation de la suppression de compte

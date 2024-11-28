@@ -39,24 +39,6 @@
           font-size: 1.5rem;
         }
       }
-      img,
-      .container-initials {
-        width: 150px;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-      }
-      .container-initials {
-        border: 1px solid gray;
-        box-shadow: 2px 3px 5px lightgray;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 3rem;
-        font-weight: 500;
-        background-color: #fff;
-        color: var(--primary-color);
-      }
       .user-infos {
         display: flex;
         flex-direction: column;
@@ -240,10 +222,6 @@
           top: 20px;
           right: 0px;
         }
-        img,
-        .container-initials {
-          width: 125px;
-        }
       }
     }
     .features {
@@ -265,9 +243,6 @@
       }
       .user-data {
         flex-direction: column;
-        img {
-          width: 100px;
-        }
         .user-infos {
           align-items: center;
           .user-pseudo {

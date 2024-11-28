@@ -1,0 +1,32 @@
+img,
+.container-initials {
+  width: 150px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.container-initials {
+  border: 1px solid gray;
+  box-shadow: 2px 3px 5px lightgray;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 500;
+  background-color: #fff;
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 800px) {
+    img,
+    .container-initials {
+      width: 125px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    img,
+    .container-initials {
+      width: 100px;
+    }
+}

@@ -8,11 +8,12 @@ import { Notification, UserData } from '../../models/user';
 import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils.service';
+import { AvatarComponent } from "../../components/avatar/avatar.component";
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [AsyncPipe, TranslateModule, ToastComponent, RouterLink],
+  imports: [AsyncPipe, TranslateModule, ToastComponent, RouterLink, AvatarComponent],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

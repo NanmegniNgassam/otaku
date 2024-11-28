@@ -23,46 +23,33 @@
         display: flex;
         align-items: center;
         gap: 15px;
-        img,
-        .container-initials {
-          width: 150px;
-          aspect-ratio: 1/1;
-          border-radius: 50%;
-        }
-        .container-initials {
-          border: 1px solid gray;
-          box-shadow: 2px 3px 5px lightgray;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 2.5rem;
-          font-weight: 500;
-          background-color: #fff;
-          color: var(--primary-color);
-        }
         .user-data {
           .user-name {
             font-size: 1.8rem;
             color: var(--title-text-color);
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+            overflow: hidden;
+            margin-bottom: 10px;
           }
           .creation-date {
             font-style: italic;
             color: var(--normal-text-color);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
           }
           .email {
             font-size: .9rem;
             font-style: italic;
             color: var(--normal-text-color);
-            text-align: center;
             margin-bottom: 5px;
           }
           .email-status {
             padding: 5px 10px;
             font-size: 14px;
             line-height: 20px;
-            background-color: orange;
+            background-color: darkorange;
             color: #fff;
             border-radius: 15px;
             width: fit-content;

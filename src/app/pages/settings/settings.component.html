@@ -23,7 +23,7 @@
             <ion-icon name="person-outline"></ion-icon>
             <span routerLink="/account/edit">Editer mon profil utilisateur</span>
           </div>
-          <div class="feature" (click)="toggleGenresManagementBox()">
+          <div [class]="_genresManagementBox ? 'feature active' : 'feature'" (click)="toggleGenresManagementBox()">
             <ion-icon name="apps-outline"></ion-icon>
             <span>Interdire des genres</span>
           </div>

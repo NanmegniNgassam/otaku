@@ -1,9 +1,13 @@
 .wrapper {
     max-width: 750px;
     margin: 100px auto;
-    padding: 20px 0;
+    padding: 40px 0;
     border: 1px solid lightgray;
     box-shadow: 4px 4px 2px gray;
+    .backward-group {
+      margin: 0 auto;
+      width: fit-content;
+    }
     h1 {
       color: var(--primary-color);
       font-size: 2.5rem;
@@ -14,7 +18,7 @@
     .main-section {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 50px;
       width: 100%;
       .user-section {
         width: 100%;
@@ -65,34 +69,32 @@
         margin: 0px auto;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 25px;
         .feature {
+          border-left: 5px solid transparent;
           width: 100%;
-          border: 1px solid var(--primary-color);
-          border-radius: 5px;
-          padding: 15px 30px;
+          padding: 5px 10px; 
           cursor: pointer;
           display: flex;
+          flex-direction: row-reverse;
+          justify-content: space-between;
           align-items: center;
           gap: 10px;
-          border-left: 10px solid var(--primary-color);
-          transition: all .42s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           ion-icon {
             font-size: 1.4rem;
+            transition: all .42s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           }
           span {
             font-size: 1.2rem;
           }
-          &:hover {
-            box-shadow: 3px 3px 1px lightgray;
-            gap: 20px;
+          &:hover, &.active {
+            border-left-color: var(--secondary-color);
             ion-icon {
-              color: var(--primary-color);
+              color: var(--secondary-color);
+              transform: scale(1.5);
             }
           }
           &.unavailable {
-            border: 1px solid grey;
-            border-left: 10px solid grey;
             box-shadow: none;
             cursor: not-allowed;
             ion-icon {
@@ -102,13 +104,16 @@
               color: gray;
             }
             &:hover {
-              gap: 10px;
+              ion-icon {
+                transform: scale(1);
+              }
             }
           }
         }
         .hint {
           font-size: .9rem;
           line-height: 150%;
+          padding: 5px 10px;
           display: flex;
           align-items: center;
           gap: 10px;
@@ -131,42 +136,38 @@
             flex-wrap: wrap;
             gap: 5px;
             margin: 20px 0;
-          }
-          .anime-genre {
-            display: inline-block;
-            width: fit-content;
-            padding: 10px;
-            height: 40px;
-            border-radius: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 5px;
-            border: 1px solid;
-            cursor: pointer;
-            color: #fff;
-            background-color: var(--primary-color);
-            transition: background-color 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-size: 14px;
-            &:hover {
-              background-color: var(--primary-accent-color);
-            }
-            &.forbidden {
-              background-color: darkred;
-              &:hover {
-                background-color: darkred;
-              }
-            }
-            ion-icon {
+            .anime-genre {
+              display: inline-block;
+              width: fit-content;
+              padding: 10px;
+              height: 40px;
+              border-radius: 20px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              gap: 5px;
+              border: 1px solid;
+              cursor: pointer;
               color: #fff;
-              font-size: 20px;
+              background-color: var(--primary-color);
+              transition: background-color 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+              font-size: 14px;
+              &:hover {
+                background-color: var(--primary-accent-color);
+              }
+              &.forbidden {
+                background-color: darkred;
+                &:hover {
+                  background-color: darkred;
+                }
+              }
+              ion-icon {
+                color: #fff;
+                font-size: 20px;
+              }
             }
           }
           .save-zone {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
             .saved-status {
               padding: 10px 0 10px 15px;
               font-size: 1rem;
@@ -174,12 +175,13 @@
               font-weight: 500;
             }
             .save-button {
-              text-align: right;
+              text-align: center;
               padding: 10px 15px;
               background-color: darkgreen;
               color: #fff;
               width: fit-content;
               cursor: pointer;
+              border: none;
             }
           }
         }
@@ -193,6 +195,17 @@
       h1 {
         font-weight: 2rem;
       }
+      .main-section {
+        .user-section {
+          padding: 0 10px;
+          .user-data {
+            .user-name {
+              font-size: 1.2rem;
+              font-weight: 500;
+            }
+          }
+        }
+      }
     }
   }
   
@@ -205,8 +218,68 @@
         margin: 0 auto;
       }
       h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         font-weight: 500;
+      }
+      .main-section {
+        .user-section {
+          flex-direction: column;
+          .user-name {
+            font-size: 1.2rem;
+            text-align: center;
+          }
+          .creation-date {
+            text-align: center;
+          }
+          .email {
+            text-align: center;
+          }
+          .email-status {
+            margin: 0 auto;
+          }
+        }
+        .features-section {
+          max-width: 95%;
+          gap: 15px;
+          .feature {
+            padding: 5px 10px;
+            gap: 5px;
+            ion-icon {
+              font-size: 1.2rem;
+            }
+            span {
+              font-size: 1rem;
+            }
+          }
+          .hint {
+            font-size: .9rem;
+          }
+          .explicit-content-box {
+            .animes-genres {
+              .anime-genre {
+                padding: 10px;
+                height: 30px;
+                border-radius: 15px;
+                ion-icon {
+                  font-size: 16px;
+                }
+              }
+            }
+            .save-zone {
+              .saved-status {
+                padding: 10px 0 10px 15px;
+                font-size: 0.9rem;
+                color: green;
+                font-weight: 500;
+              }
+              .save-button {
+                padding: 10px;
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+
       }
     }
   }

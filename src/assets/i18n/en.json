@@ -150,6 +150,20 @@
       "moreSuggestions": "More suggestions",
       "lessSuggestions": "Less suggestions",
       "noAvailableSuggestions": "No more suggestions available!"
+    },
+    "settings": {
+      "title": "Settings",
+      "verifiedEmailLabel": "Verified email",
+      "pendingVerificationLabel": "Email waiting for verification",
+      "editUserProfil": "Edit my user profile",
+      "forbidGenres": "Forbid anime genres",
+      "forbidGenresHint": "Check the genres you want to keep.",
+      "saveGenres": "Save",
+      "up-to-dateData": "up-to-date data.",
+      "verifyEmail": "Verify my email address",
+      "modifyPassword": "Modify my password",
+      "modifyPasswordHint": "You must verify your email address in order to edit your password!",
+      "deleteAccount": "Delete my account"
     }
   },
   "services": {

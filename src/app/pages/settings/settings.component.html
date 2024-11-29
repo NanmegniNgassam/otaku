@@ -3,7 +3,7 @@
         <ion-icon name="arrow-back-outline"></ion-icon>
         {{ "others.navigation.backwardLabel" | translate }}
       </div>
-    <h1>Paramètres</h1>
+    <h1> {{ "pages.settings.title" | translate }} </h1>
     <div class="main-section">
       @if (_user$ | async; as user) {
         <div class="user-section">
@@ -21,15 +21,15 @@
         <div class="features-section">
           <div class="feature">
             <ion-icon name="person-outline"></ion-icon>
-            <span routerLink="/account/edit">Editer mon profil utilisateur</span>
+            <span routerLink="/account/edit">{{ "pages.settings.editUserProfil" | translate }}</span>
           </div>
           <div [class]="_genresManagementBox ? 'feature active' : 'feature'" (click)="toggleGenresManagementBox()">
             <ion-icon name="apps-outline"></ion-icon>
-            <span>Interdire des genres</span>
+            <span>{{ "pages.settings.forbidGenres" | translate }}</span>
           </div>
           @if(_genresManagementBox) {
             <div class="explicit-content-box">
-              <p class="description">Cochez les genres que vous souhaitez conserver.</p>
+              <p class="description">{{ "pages.settings.forbidGenresHint" | translate }}</p>
               <div class="animes-genres">
                 @for (genre of _safeGenres; track $index) {
                   <div class="anime-genre" (click)="updateGenres(genre, 'forbid')">
@@ -44,9 +44,9 @@
               </div>
               <div class="save-zone">
                 @if(_isWaitingSave) {
-                  <div class="save-button" (click)="saveChanges()">ENREGISTRER</div>
+                  <div class="save-button" (click)="saveChanges()">{{ "pages.settings.saveGenres" | translate }}</div>
                 } @else {
-                  <p class="saved-status">Données à jour.</p>
+                  <p class="saved-status">{{ "pages.settings.up-to-dateData" | translate }}</p>
                 }
               </div>
             </div>
@@ -55,22 +55,22 @@
           @if (!user.emailVerified) {
             <div class="feature" (click)="sendVerificationEmail()">
               <ion-icon name="mail-outline"></ion-icon>
-              <span>Vérifier mon adresse e-mail</span>
+              <span>{{ "pages.settings.verifyEmail" | translate }}</span>
             </div>
           }
           <div [class]="'feature ' + (!user.emailVerified ? 'unavailable' : '')">
             <ion-icon name="lock-closed-outline"></ion-icon>
-            <span>Modifier mon mot de passe</span>
+            <span>{{ "pages.settings.modifyPassword" | translate }}</span>
           </div>
           @if (!user.emailVerified) {
             <div class="hint">
               <ion-icon name="alert-circle-outline"></ion-icon>
-              <span>Vous devez vérifier votre adresse e-mail afin de pouvoir éditer votre mot de passe !</span> 
+              <span>{{ "pages.settings.modifyPasswordHint" | translate }}</span> 
             </div>
           }
           <div class="feature">
             <ion-icon name="trash-bin-outline"></ion-icon>
-            <span>Supprimer mon compte</span>
+            <span>{{ "pages.settings.deleteAccount" | translate }}</span>
           </div>
         </div>
       }
@@ -80,3 +80,4 @@
 
 <!-- TODO: Réaliser une modale indiquant que certaines données n'ont pas été sauvegardées -->
 <!-- TODO: Réaliser une modale de validation de certaines actions -->
+<!-- TODO: Create dedicated loc for email-validation-labels -->

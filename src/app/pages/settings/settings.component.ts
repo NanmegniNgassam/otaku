@@ -15,7 +15,7 @@ import { AvatarComponent } from "../../components/avatar/avatar.component";
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [TranslateModule, RouterLink, AsyncPipe, ToastComponent, AvatarComponent],
+  imports: [TranslateModule, RouterLink, AsyncPipe, ToastComponent, AvatarComponent, TranslateModule],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

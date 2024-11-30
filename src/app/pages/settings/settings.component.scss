@@ -95,7 +95,7 @@
             }
           }
           &.unavailable {
-            box-shadow: none;
+            border-left-color: transparent;
             cursor: not-allowed;
             ion-icon {
               color: gray;

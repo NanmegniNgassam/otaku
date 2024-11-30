@@ -2,10 +2,10 @@ import { Injectable } from "@angular/core";
 import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVerification, signInWithPopup, signOut, updateProfile, User, user, UserCredential } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { signInWithEmailAndPassword } from "@firebase/auth";
+import { TranslateService } from "@ngx-translate/core";
 import { setPersistence } from "firebase/auth";
 import { LoginCredential, SigninCredential } from "../models/others";
 import { UserService } from "./user.service";
-import { TranslateService } from "@ngx-translate/core";
 
 // TODO: Define a allErrors enum may be useful
 
@@ -25,10 +25,7 @@ export default class AuthService{
     private db: UserService,
     private translate: TranslateService
   ) {
-    // TODO: Refacto this snippet to use the new syntax (getAuth().cuurentUser)
-    this.user$.subscribe((currentUser: User | null) => {
-      this.currentUser = currentUser;
-    })
+    this.currentUser = this.auth.currentUser;
 
     // Get form errors from i18n in the current app language
     translate.stream("services.authentication.errors").subscribe((authErrors) => {

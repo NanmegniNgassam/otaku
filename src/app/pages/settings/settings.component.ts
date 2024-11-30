@@ -1,16 +1,16 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
-import { UtilsService } from '../../services/utils.service';
-import AuthService from '../../services/auth.service';
 import { AsyncPipe } from '@angular/common';
-import { EXPLICIT_CONTENT_GENRES } from '../../services/anime.service';
-import { UserService } from '../../services/user.service';
-import { UserData } from '../../models/user';
-import { getAuth, User } from '@angular/fire/auth';
-import { Toast } from '../../models/toast';
-import { ToastComponent } from "../../components/toast/toast.component";
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { getAuth } from '@angular/fire/auth';
+import { Router, RouterLink } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AvatarComponent } from "../../components/avatar/avatar.component";
+import { ToastComponent } from "../../components/toast/toast.component";
+import { Toast } from '../../models/toast';
+import { UserData } from '../../models/user';
+import { EXPLICIT_CONTENT_GENRES } from '../../services/anime.service';
+import AuthService from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-settings',
@@ -28,6 +28,8 @@ export class SettingsComponent {
   _isWaitingSave: boolean = false;
   _genresManagementBox: boolean = false;
   _notification!: Toast | null;
+  _verifiedEmailStatus!: string;
+  _pendingEmailStatus!: string;
 
   /**
    * 
@@ -35,13 +37,19 @@ export class SettingsComponent {
    * @param translate translate service
    * @param user user/db service
    * @param router router service
+   * @param util utils service
    */
   constructor(
     protected util:UtilsService,
     private auth:AuthService,
     private user:UserService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
+    translate.stream("others.emailVerificationStatus").subscribe((emailStatus) => {
+      this._verifiedEmailStatus = emailStatus['verified'];
+      this._pendingEmailStatus = emailStatus['pending'];
+    });
   }
 
   /**
@@ -138,4 +146,3 @@ export class SettingsComponent {
     }
   }
 }
-// TODO: Créer une modale pour la validation de la suppression de compte

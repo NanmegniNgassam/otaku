@@ -153,8 +153,6 @@
     },
     "settings": {
       "title": "Paramètres",
-      "verifiedEmailLabel": "Email vérifié",
-      "pendingVerificationLabel": "Email en attente de vérification",
       "editUserProfil": "Editer mon profil utilisateur",
       "forbidGenres": "Interdire des genres d'animes",
       "forbidGenresHint": "Cochez les genres que vous souhaitez conserver.",
@@ -176,6 +174,10 @@
   "others": {
     "navigation": {
       "backwardLabel": "Retour"
+    },
+    "emailVerificationStatus": {
+      "verified": "Email vérifié",
+      "pending": "EEmail en attente de vérification"
     }
   }
 }

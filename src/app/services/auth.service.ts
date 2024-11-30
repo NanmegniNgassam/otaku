@@ -1,13 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVerification, signInWithPopup, signOut, updateProfile, User, user, UserCredential } from "@angular/fire/auth";
 import { Router } from "@angular/router";
-import { signInWithEmailAndPassword } from "@firebase/auth";
+import { sendPasswordResetEmail, signInWithEmailAndPassword } from "@firebase/auth";
 import { TranslateService } from "@ngx-translate/core";
 import { setPersistence } from "firebase/auth";
 import { LoginCredential, SigninCredential } from "../models/others";
 import { UserService } from "./user.service";
 
 // TODO: Define a allErrors enum may be useful
+// TODO: Production change to made (url) : IMPORTANT
+const MAIL_BOX_REDIRECT_URL = "http://localhost:4200/account";
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +27,9 @@ export default class AuthService{
     private db: UserService,
     private translate: TranslateService
   ) {
-    this.currentUser = this.auth.currentUser;
-
+    this.user$.subscribe((user) => {
+      this.currentUser = user;
+    });
     // Get form errors from i18n in the current app language
     translate.stream("services.authentication.errors").subscribe((authErrors) => {
       this._authErrors = authErrors;
@@ -141,11 +144,22 @@ export default class AuthService{
    * @param user currently logged in user
    */
   async sendVerificationEmail(user: User): Promise<void> {
-    // TODO: Production change to made (url) : IMPORTANT
     try {
-      await sendEmailVerification(user, {url: "http://localhost:4200/account"});
+      await sendEmailVerification(user, {url: MAIL_BOX_REDIRECT_URL});
     } catch(error) {
       console.error("Error occurs when sending verification email : ", error);
+      throw(error);
+    }
+  }
+
+  /**
+   * Reset the password of the user using its email
+   */
+  async resetPasswordUsingEmail(): Promise<void> {
+    try {
+      await sendPasswordResetEmail(this.auth, this.currentUser!.email!, {url: MAIL_BOX_REDIRECT_URL});
+    } catch(error) {
+      console.error("Error occurs when sending password reset email : ", error);
       throw(error);
     }
   }

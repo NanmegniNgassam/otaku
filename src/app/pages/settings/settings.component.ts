@@ -145,4 +145,27 @@ export class SettingsComponent {
       }
     }
   }
+
+  /**
+   * Modify the password of the user using its email
+   */
+  modifyPasswordByEmail = async () => {
+    try {
+      // send user an email to reset its password
+      await this.auth.resetPasswordUsingEmail();
+      // show a toast to give user a feed-back on its action
+      this._notification = {
+        type: 'info',
+        message: 'A password reset email has been sent to your mailbox.',
+      }
+    } catch (error) {
+      console.error("Error while sending the password reset email : ", error);
+
+      // show a toast to give user a feed-back on its action
+      this._notification = {
+        type: 'fail',
+        message: 'An error occured while sending the password reset email.',
+      }
+    }
+  }
 }

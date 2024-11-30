@@ -58,7 +58,10 @@
               <span>{{ "pages.settings.verifyEmail" | translate }}</span>
             </div>
           }
-          <div [class]="'feature ' + (!user.emailVerified ? 'unavailable' : '')">
+          <div 
+            [class]="'feature ' + (!user.emailVerified ? 'unavailable' : '')"
+            (click)="modifyPasswordByEmail()"
+          >
             <ion-icon name="lock-closed-outline"></ion-icon>
             <span>{{ "pages.settings.modifyPassword" | translate }}</span>
           </div>

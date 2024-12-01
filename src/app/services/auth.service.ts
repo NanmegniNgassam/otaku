@@ -211,3 +211,12 @@ export default class AuthService{
     return !playerNames.includes(pseudo.toLowerCase());
   }
 }
+
+// TODO: Dans la partie édition de profil, connexion, création de compte, ... : Ajouter du texte
+// en dessous des champs pour expliquer les critères de validité des champs
+
+// TODO: Trouver un trick dans les cas de connexion tierces pour garder le nom entre 8 et 25 caractères de manière intelligente
+// ie: Pseudo trop long, on essaye de voir s'il contient des espaces et on le coupe en tokens, le premier token valide est pris comme pseudo
+// ie: Pseudo trop court, on essaye de voir s'il contient des espaces et on le complète avec des chiffres caractérisques de la connexion
+// pseudo en un seul caractères, on essaie d'établir une correspondance entre le pseudo et le mail pour trouver un pseudo valide
+// sinon on prend les 15 premiers caractères.

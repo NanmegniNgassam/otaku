@@ -71,7 +71,7 @@
               <span>{{ "pages.settings.modifyPasswordHint" | translate }}</span> 
             </div>
           }
-          <div class="feature">
+          <div class="feature" (click)="showDeleteAccountModal()">
             <ion-icon name="trash-bin-outline"></ion-icon>
             <span>{{ "pages.settings.deleteAccount" | translate }}</span>
           </div>
@@ -79,6 +79,13 @@
       }
     </div>
     <app-toast [notification]="_notification" />
+    <app-modal 
+      cancelText="Annuler" 
+      confirmText="Confirmer" 
+      message="Liste des actions entreprises par l'utilisateur." 
+      title="Suppression de compte." 
+      [show]="_showModal"
+      [onCancel]="onDismissDeleteModal"
+      [onConfirm]="deleteAccount"
+    />
 </div>
-
-<!-- TODO: Réaliser une modale de validation de certaines actions -->

@@ -1,193 +1,193 @@
 .wrapper {
-    max-width: 750px;
-    margin: 100px auto;
-    padding: 40px 0;
-    border: 1px solid lightgray;
-    box-shadow: 4px 4px 2px gray;
-    .backward-group {
+  max-width: 750px;
+  margin: 100px auto;
+  padding: 40px 0;
+  border: 1px solid lightgray;
+  box-shadow: 4px 4px 2px gray;
+  .backward-group {
+    margin: 0 auto;
+    width: fit-content;
+  }
+  h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 15px 0 30px 0; 
+    text-align: center;
+  }
+  .main-section {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 100%;
+    .user-section {
+      width: 100%;
+      max-width: 450px;
       margin: 0 auto;
-      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      .user-data {
+        .user-name {
+          font-size: 1.8rem;
+          color: var(--title-text-color);
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+          line-clamp: 1;
+          overflow: hidden;
+          margin-bottom: 10px;
+        }
+        .creation-date {
+          font-style: italic;
+          color: var(--normal-text-color);
+          margin-bottom: 10px;
+        }
+        .email {
+          font-size: .9rem;
+          font-style: italic;
+          color: var(--normal-text-color);
+          margin-bottom: 5px;
+        }
+        .email-status {
+          padding: 5px 10px;
+          font-size: 14px;
+          line-height: 20px;
+          background-color: darkorange;
+          color: #fff;
+          border-radius: 15px;
+          width: fit-content;
+          &.verified {
+            background-color: #33b133;
+          }
+        }
+      }
     }
-    h1 {
-      color: var(--primary-color);
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin: 15px 0 30px 0; 
-      text-align: center;
-    }
-    .main-section {
+    .features-section {
+      width: 100%;
+      max-width: 450px;
+      margin: 0px auto;
       display: flex;
       flex-direction: column;
-      gap: 50px;
-      width: 100%;
-      .user-section {
+      gap: 25px;
+      .feature {
+        border-left: 5px solid transparent;
         width: 100%;
-        max-width: 450px;
-        margin: 0 auto;
+        padding: 5px 10px; 
+        cursor: pointer;
         display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
         align-items: center;
-        gap: 15px;
-        .user-data {
-          .user-name {
-            font-size: 1.8rem;
-            color: var(--title-text-color);
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            line-clamp: 1;
-            overflow: hidden;
-            margin-bottom: 10px;
+        gap: 10px;
+        ion-icon {
+          font-size: 1.4rem;
+          transition: all .42s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        span {
+          font-size: 1.2rem;
+        }
+        &:hover, &.active {
+          border-left-color: var(--secondary-color);
+          ion-icon {
+            color: var(--secondary-color);
+            transform: scale(1.5);
           }
-          .creation-date {
-            font-style: italic;
-            color: var(--normal-text-color);
-            margin-bottom: 10px;
+        }
+        &.unavailable {
+          border-left-color: transparent;
+          cursor: not-allowed;
+          ion-icon {
+            color: gray;
           }
-          .email {
-            font-size: .9rem;
-            font-style: italic;
-            color: var(--normal-text-color);
-            margin-bottom: 5px;
+          span {
+            color: gray;
           }
-          .email-status {
-            padding: 5px 10px;
-            font-size: 14px;
-            line-height: 20px;
-            background-color: darkorange;
-            color: #fff;
-            border-radius: 15px;
-            width: fit-content;
-            &.verified {
-              background-color: #33b133;
+          &:hover {
+            ion-icon {
+              transform: scale(1);
             }
           }
         }
       }
-      .features-section {
-        width: 100%;
-        max-width: 450px;
-        margin: 0px auto;
+      .hint {
+        font-size: .9rem;
+        line-height: 150%;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        ion-icon {
+          font-size: 2.5rem;
+          color: orange;
+        }
+      }
+      .explicit-content-box {
+        padding: 10px;
+        border: 1px solid black;
         display: flex;
         flex-direction: column;
-        gap: 25px;
-        .feature {
-          border-left: 5px solid transparent;
-          width: 100%;
-          padding: 5px 10px; 
-          cursor: pointer;
-          display: flex;
-          flex-direction: row-reverse;
-          justify-content: space-between;
-          align-items: center;
-          gap: 10px;
-          ion-icon {
-            font-size: 1.4rem;
-            transition: all .42s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          }
-          span {
-            font-size: 1.2rem;
-          }
-          &:hover, &.active {
-            border-left-color: var(--secondary-color);
-            ion-icon {
-              color: var(--secondary-color);
-              transform: scale(1.5);
-            }
-          }
-          &.unavailable {
-            border-left-color: transparent;
-            cursor: not-allowed;
-            ion-icon {
-              color: gray;
-            }
-            span {
-              color: gray;
-            }
-            &:hover {
-              ion-icon {
-                transform: scale(1);
-              }
-            }
-          }
+        align-items: end;
+        .description {
+          font-size: 0.9rem;
         }
-        .hint {
-          font-size: .9rem;
-          line-height: 150%;
-          padding: 5px 10px;
+        .animes-genres {
           display: flex;
-          align-items: center;
-          gap: 10px;
-          ion-icon {
-            font-size: 2.5rem;
-            color: orange;
-          }
-        }
-        .explicit-content-box {
-          padding: 10px;
-          border: 1px solid black;
-          display: flex;
-          flex-direction: column;
-          align-items: end;
-          .description {
-            font-size: 0.9rem;
-          }
-          .animes-genres {
+          flex-wrap: wrap;
+          gap: 5px;
+          margin: 20px 0;
+          .anime-genre {
+            display: inline-block;
+            width: fit-content;
+            padding: 10px;
+            height: 40px;
+            border-radius: 20px;
             display: flex;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
             gap: 5px;
-            margin: 20px 0;
-            .anime-genre {
-              display: inline-block;
-              width: fit-content;
-              padding: 10px;
-              height: 40px;
-              border-radius: 20px;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              gap: 5px;
-              border: 1px solid;
-              cursor: pointer;
-              color: #fff;
-              background-color: var(--primary-color);
-              transition: background-color 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-              font-size: 14px;
+            border: 1px solid;
+            cursor: pointer;
+            color: #fff;
+            background-color: var(--primary-color);
+            transition: background-color 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 14px;
+            &:hover {
+              background-color: var(--primary-accent-color);
+            }
+            &.forbidden {
+              background-color: darkred;
               &:hover {
-                background-color: var(--primary-accent-color);
-              }
-              &.forbidden {
                 background-color: darkred;
-                &:hover {
-                  background-color: darkred;
-                }
               }
-              ion-icon {
-                color: #fff;
-                font-size: 20px;
-              }
+            }
+            ion-icon {
+              color: #fff;
+              font-size: 20px;
             }
           }
-          .save-zone {
-            .saved-status {
-              padding: 10px 0 10px 15px;
-              font-size: 1rem;
-              color: green;
-              font-weight: 500;
-            }
-            .save-button {
-              text-align: center;
-              padding: 10px 15px;
-              background-color: darkgreen;
-              color: #fff;
-              width: fit-content;
-              cursor: pointer;
-              border: none;
-            }
+        }
+        .save-zone {
+          .saved-status {
+            padding: 10px 0 10px 15px;
+            font-size: 1rem;
+            color: green;
+            font-weight: 500;
+          }
+          .save-button {
+            text-align: center;
+            padding: 10px 15px;
+            background-color: darkgreen;
+            color: #fff;
+            width: fit-content;
+            cursor: pointer;
+            border: none;
           }
         }
       }
     }
   }
+}
   
   @media screen and (max-width: 800px) {
     .wrapper {

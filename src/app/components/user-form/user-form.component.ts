@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { updateProfile } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,8 +8,8 @@ import { UserData } from '../../models/user';
 import { AnimeService } from '../../services/anime.service';
 import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-import { ToastComponent } from '../toast/toast.component';
 import { UtilsService } from '../../services/utils.service';
+import { ToastComponent } from '../toast/toast.component';
 
 const DEFAULT_MAX_ANIME_GENRES_SHOWN = 6;
 const DEFAULT_MIN_SUGGESTIONS = 8;
@@ -20,7 +19,7 @@ const ANIME_GENRE_STEP = 6;
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [AsyncPipe, TranslateModule, ReactiveFormsModule, RouterModule, ToastComponent],
+  imports: [TranslateModule, ReactiveFormsModule, RouterModule, ToastComponent],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

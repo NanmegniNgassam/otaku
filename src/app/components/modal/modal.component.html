@@ -1,0 +1,13 @@
+@if (show || _isShown) {
+    <div class="dropDown">
+        <div class="wrapper">
+            <h1> {{ title }} </h1>
+            <p> {{ message }} </p>
+            <div class="actions">
+                <button class="secondary-button" (click)="onDismiss()"> {{ cancelText }} </button>
+                <button class="primary-button" (click)="onUserConfirm()"> {{ confirmText }} </button>
+            </div>
+            <ion-icon name="close-outline" class="dismiss-button" (click)="onDismiss()"></ion-icon>
+        </div>
+    </div>
+}

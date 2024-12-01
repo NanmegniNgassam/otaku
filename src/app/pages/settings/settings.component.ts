@@ -7,15 +7,16 @@ import { AvatarComponent } from "../../components/avatar/avatar.component";
 import { ToastComponent } from "../../components/toast/toast.component";
 import { Toast } from '../../models/toast';
 import { UserData } from '../../models/user';
-import { EXPLICIT_CONTENT_GENRES } from '../../services/anime.service';
+import { AnimeService, EXPLICIT_CONTENT_GENRES } from '../../services/anime.service';
 import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils.service';
+import { ModalComponent } from '../../components/modal/modal.component';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [TranslateModule, RouterLink, AsyncPipe, ToastComponent, AvatarComponent, TranslateModule],
+  imports: [TranslateModule, RouterLink, AsyncPipe, ToastComponent, AvatarComponent, ModalComponent, TranslateModule],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -30,6 +31,7 @@ export class SettingsComponent {
   _notification!: Toast | null;
   _verifiedEmailStatus!: string;
   _pendingEmailStatus!: string;
+  _showModal: boolean = false;
 
   /**
    * 
@@ -44,7 +46,8 @@ export class SettingsComponent {
     private auth:AuthService,
     private user:UserService,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private anime: AnimeService
   ) {
     translate.stream("others.emailVerificationStatus").subscribe((emailStatus) => {
       this._verifiedEmailStatus = emailStatus['verified'];
@@ -166,6 +169,30 @@ export class SettingsComponent {
         type: 'fail',
         message: 'An error occured while sending the password reset email.',
       }
+    }
+  }
+
+  /**
+   * Deletes the account of the user
+   */
+  showDeleteAccountModal = () => {
+    this._showModal = true;
+  }
+
+  onDismissDeleteModal = () => {
+    this._showModal = false;
+  }
+
+  /**
+   * Deletes the account of the user
+   */
+  deleteAccount = async () => {
+    try {
+      const anime = await this.anime.getRandomAnime();
+      console.log("Anime : ", anime);
+      this.router.navigate(['/']);
+    } catch (error) {
+      console.error("Error while deleting the account : ", error);
     }
   }
 }

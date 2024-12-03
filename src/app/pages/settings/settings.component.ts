@@ -12,6 +12,7 @@ import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils.service';
 import { ModalComponent } from '../../components/modal/modal.component';
+import { Modal } from '../../models/modal';
 
 @Component({
   selector: 'app-settings',
@@ -31,6 +32,7 @@ export class SettingsComponent {
   _notification!: Toast | null;
   _verifiedEmailStatus!: string;
   _pendingEmailStatus!: string;
+  _modal!: Modal;
   _showModal: boolean = false;
 
   /**
@@ -176,9 +178,21 @@ export class SettingsComponent {
    * Deletes the account of the user
    */
   showDeleteAccountModal = () => {
+    // Prepare the modal to be shown
+    this._modal = {
+      title: 'Delete Account',
+      message: 'Are you sure you want to delete your account ?',
+      onConfirm: this.deleteAccount,
+      onCancel: this.onDismissDeleteModal,
+      isInformative: true
+    };
+
     this._showModal = true;
   }
 
+  /**
+   * Dismiss the delete account modal
+   */
   onDismissDeleteModal = () => {
     this._showModal = false;
   }

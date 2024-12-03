@@ -39,6 +39,11 @@
         "unknowError": "Erreur inconnue. Veuillez réessayer plus tard !"
       }
     },
+    "modal": {
+      "confirmLabel": "Confirmer",
+      "cancelLabel": "Annuler",
+      "understoodLabel": "Compris !"
+    },
     "toast": {
       "success": "Félicitations !",
       "fail": "Désolé !",
@@ -177,7 +182,7 @@
     },
     "emailVerificationStatus": {
       "verified": "Email vérifié",
-      "pending": "EEmail en attente de vérification"
+      "pending": "Email en attente de vérification"
     }
   }
 }

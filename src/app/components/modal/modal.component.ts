@@ -1,21 +1,18 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import { Modal } from '../../models/modal';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ModalComponent {
-  @Input() title!: string;
-  @Input() message!: string;
+  @Input() modal!: Modal;
   @Input() show!: boolean;
-  @Input() onCancel!: Function;
-  @Input() onConfirm!: Function;
-  @Input() confirmText!: string;
-  @Input() cancelText!: string;
 
   _isShown!: boolean;
 
@@ -30,7 +27,7 @@ export class ModalComponent {
   async onDismiss() {
     try {
       // TODO: Add in onCancel logic a dismiss when the fonction goes wrong
-      await this.onCancel();
+      await this.modal.onCancel();
     } catch (error) {
       console.error(error);
     } finally {
@@ -43,7 +40,7 @@ export class ModalComponent {
    */
   async onUserConfirm() {
     try {
-      await this.onConfirm();
+      await this.modal.onConfirm();
     } catch (error) {
       console.error(error);
     } finally {

@@ -39,6 +39,11 @@
         "unknowError": "Unknow error happens. Try again later !"
       }
     },
+    "modal": {
+      "confirmLabel": "Confirm",
+      "cancelLabel": "Cancel",
+      "understoodLabel": "Understood!"
+    },
     "toast": {
       "success": "Congratulations!",
       "fail": "Sorry!",

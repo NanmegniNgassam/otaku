@@ -39,6 +39,11 @@
             color: var(--primary-color);
             font-size: 2rem;
             font-weight: 600;
+            line-height: 150%;
+        }
+        .message {
+            text-indent: 2rem;
+            line-height: 150%;
         }
         .actions {
             width: 100%;
@@ -66,7 +71,6 @@
                 &.secondary-button {
                     background-color: #fff;
                     color: var(--primary-color);
-                    
                     &:hover {
                         background-color: var(--primary-color);
                         color: #fff;
@@ -76,4 +80,43 @@
         }
     }
     // TODO: Design a modal that pops up or slides in.
+}
+
+@media screen and (max-width: 500px) {
+    .dropDown {
+        .wrapper {
+            padding: 20px;
+            border-width: 1px;
+            .dismiss-button {
+                right: 20px;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .actions {
+                gap: 10px;
+                button {
+                    padding: 10px 10px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .dropDown {
+        .wrapper {
+            padding: 20px;
+            .dismiss-button {
+                right: 20px;
+            }
+            .actions {
+                flex-direction: column;
+                gap: 10px;
+                button {
+                    padding: 7.5px;
+                }
+            }
+        }
+    }
 }

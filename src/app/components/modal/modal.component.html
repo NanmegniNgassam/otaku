@@ -1,11 +1,15 @@
 @if (show || _isShown) {
     <div class="dropDown">
         <div class="wrapper">
-            <h1> {{ title }} </h1>
-            <p> {{ message }} </p>
+            <h1> {{ modal.title }} </h1>
+            <p class="message"> {{ modal.message }} </p>
             <div class="actions">
-                <button class="secondary-button" (click)="onDismiss()"> {{ cancelText }} </button>
-                <button class="primary-button" (click)="onUserConfirm()"> {{ confirmText }} </button>
+                @if (modal.isInformative) {
+                    <button class="primary-button" (click)="onDismiss()"> {{ "components.modal.understoodLabel" | translate }} </button>
+                } @else {
+                    <button class="secondary-button" (click)="onDismiss()"> {{ "components.modal.cancelLabel" | translate }} </button>
+                    <button class="primary-button" (click)="onUserConfirm()"> {{ "components.modal.confirmLabel" | translate }} </button>
+                }
             </div>
             <ion-icon name="close-outline" class="dismiss-button" (click)="onDismiss()"></ion-icon>
         </div>

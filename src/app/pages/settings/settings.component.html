@@ -79,13 +79,8 @@
       }
     </div>
     <app-toast [notification]="_notification" />
-    <app-modal 
-      cancelText="Annuler" 
-      confirmText="Confirmer" 
-      message="Liste des actions entreprises par l'utilisateur." 
-      title="Suppression de compte." 
+    <app-modal
+      [modal]="_modal"
       [show]="_showModal"
-      [onCancel]="onDismissDeleteModal"
-      [onConfirm]="deleteAccount"
     />
 </div>

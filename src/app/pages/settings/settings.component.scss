@@ -189,107 +189,107 @@
   }
 }
   
-  @media screen and (max-width: 800px) {
-    .wrapper {
-      max-width: 90%;
-      h1 {
-        font-weight: 2rem;
-      }
-      .main-section {
-        .user-section {
-          padding: 0 10px;
-          .user-data {
-            .user-name {
-              font-size: 1.2rem;
-              font-weight: 500;
-            }
-          }
-        }
-      }
+@media screen and (max-width: 800px) {
+  .wrapper {
+    max-width: 90%;
+    h1 {
+      font-weight: 2rem;
     }
-  }
-  
-  @media screen and (max-width: 500px) {
-    .wrapper {
-      max-width: 95%;
-      .backward-group {
-        font-size: 0.9rem;
-        padding: 10px 20px;
-        margin: 0 auto;
-      }
-      h1 {
-        font-size: 1.6rem;
-        font-weight: 500;
-      }
-      .main-section {
-        .user-section {
-          flex-direction: column;
+    .main-section {
+      .user-section {
+        padding: 0 10px;
+        .user-data {
           .user-name {
             font-size: 1.2rem;
-            text-align: center;
-          }
-          .creation-date {
-            text-align: center;
-          }
-          .email {
-            text-align: center;
-          }
-          .email-status {
-            margin: 0 auto;
+            font-weight: 500;
           }
         }
-        .features-section {
-          max-width: 95%;
-          gap: 15px;
-          .feature {
-            padding: 5px 10px;
-            gap: 5px;
-            ion-icon {
-              font-size: 1.2rem;
-            }
-            span {
-              font-size: 1rem;
-            }
-          }
-          .hint {
-            font-size: .9rem;
-          }
-          .explicit-content-box {
-            .animes-genres {
-              .anime-genre {
-                padding: 10px;
-                height: 30px;
-                border-radius: 15px;
-                ion-icon {
-                  font-size: 16px;
-                }
-              }
-            }
-            .save-zone {
-              .saved-status {
-                padding: 10px 0 10px 15px;
-                font-size: 0.9rem;
-                color: green;
-                font-weight: 500;
-              }
-              .save-button {
-                padding: 10px;
-                font-size: 0.9rem;
-              }
-            }
-          }
-        }
-
       }
     }
   }
+}
   
-  @media screen and (max-width: 320px) {
-    .wrapper {
-      h1 {
-        font-size: 1.5rem;
-        font-weight: 500;
+@media screen and (max-width: 500px) {
+  .wrapper {
+    max-width: 95%;
+    .backward-group {
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+    .main-section {
+      .user-section {
+        flex-direction: column;
+        .user-name {
+          font-size: 1.2rem;
+          text-align: center;
+        }
+        .creation-date {
+          text-align: center;
+        }
+        .email {
+          text-align: center;
+        }
+        .email-status {
+          margin: 0 auto;
+        }
       }
+      .features-section {
+        max-width: 95%;
+        gap: 15px;
+        .feature {
+          padding: 5px 10px;
+          gap: 5px;
+          ion-icon {
+            font-size: 1.2rem;
+          }
+          span {
+            font-size: 1rem;
+          }
+        }
+        .hint {
+          font-size: .9rem;
+        }
+        .explicit-content-box {
+          .animes-genres {
+            .anime-genre {
+              padding: 10px;
+              height: 30px;
+              border-radius: 15px;
+              ion-icon {
+                font-size: 16px;
+              }
+            }
+          }
+          .save-zone {
+            .saved-status {
+              padding: 10px 0 10px 15px;
+              font-size: 0.9rem;
+              color: green;
+              font-weight: 500;
+            }
+            .save-button {
+              padding: 10px;
+              font-size: 0.9rem;
+            }
+          }
+        }
+      }
+
     }
   }
+}
+  
+@media screen and (max-width: 320px) {
+  .wrapper {
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+  }
+}
   

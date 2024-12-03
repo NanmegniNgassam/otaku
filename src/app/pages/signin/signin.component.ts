@@ -183,3 +183,5 @@ export class SigninComponent implements OnInit {
     this._showPasswordConfirm = !this._showPasswordConfirm;
   }
 }
+
+// TODO: Faire en sorte que le chargement des erreurs de formulaire se fasse en fonction de la langue de l'application (update au changement de la langue)

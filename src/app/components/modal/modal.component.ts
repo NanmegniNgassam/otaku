@@ -15,6 +15,8 @@ export class ModalComponent {
   @Input() show!: boolean;
 
   _isShown!: boolean;
+  _isConfirmLoading: boolean = false;
+  _isConfirmDone: boolean = false;
 
   constructor() {
     this._isShown = this.show;
@@ -26,7 +28,7 @@ export class ModalComponent {
   */
   async onDismiss() {
     try {
-      // TODO: Add in onCancel logic a dismiss when the fonction goes wrong
+      this._isConfirmDone = false;
       await this.modal.onCancel();
     } catch (error) {
       console.error(error);
@@ -40,11 +42,18 @@ export class ModalComponent {
    */
   async onUserConfirm() {
     try {
+      this._isConfirmLoading = true;
+      // Execute the main onConfirm action
       await this.modal.onConfirm();
+      this._isConfirmLoading = false;
+      this._isConfirmDone = true;
+
     } catch (error) {
       console.error(error);
-    } finally {
-      this._isShown = false;
+    } finally {      
+      setTimeout( async () => {
+        await this.onDismiss();
+      }, 5 * 1000);
     }
   }
 }

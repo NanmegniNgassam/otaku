@@ -7,11 +7,27 @@
                 @if (modal.isInformative) {
                     <button class="primary-button" (click)="onDismiss()"> {{ "components.modal.understoodLabel" | translate }} </button>
                 } @else {
-                    <button class="secondary-button" (click)="onDismiss()"> {{ "components.modal.cancelLabel" | translate }} </button>
-                    <button class="primary-button" (click)="onUserConfirm()"> {{ "components.modal.confirmLabel" | translate }} </button>
+                    @if (_isConfirmDone) {
+                        <button class="done-button">
+                            <ion-icon name="checkmark-circle"></ion-icon> <span>Action done</span>
+                        </button>
+                    } @else {
+                        @if (!_isConfirmLoading) {
+                            <button class="secondary-button" (click)="onDismiss()"> {{ "components.modal.cancelLabel" | translate }} </button>
+                        }
+                        <button class="primary-button" (click)="onUserConfirm()">
+                            @if( _isConfirmLoading) {
+                                <div class="spinner"></div>
+                            } @else {
+                                {{ "components.modal.confirmLabel" | translate }} 
+                            }
+                        </button>
+                    }   
                 }
             </div>
-            <ion-icon name="close-outline" class="dismiss-button" (click)="onDismiss()"></ion-icon>
+            @if (!_isConfirmLoading) {
+                <ion-icon name="close-outline" class="dismiss-button" (click)="onDismiss()"></ion-icon>
+            }
         </div>
     </div>
 }

@@ -184,7 +184,7 @@ export class SettingsComponent {
       message: 'Are you sure you want to delete your account ?',
       onConfirm: this.deleteAccount,
       onCancel: this.onDismissDeleteModal,
-      isInformative: true
+      isInformative: false
     };
 
     this._showModal = true;
@@ -204,9 +204,9 @@ export class SettingsComponent {
     try {
       const anime = await this.anime.getRandomAnime();
       console.log("Anime : ", anime);
-      this.router.navigate(['/']);
     } catch (error) {
       console.error("Error while deleting the account : ", error);
+      // TODO: Gérer les erreurs qui surviennent avec le toast
     }
   }
 }

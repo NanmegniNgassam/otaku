@@ -118,7 +118,7 @@
           color: orange;
         }
       }
-      .explicit-content-box {
+      .explicit-content-box, .password-box {
         padding: 10px;
         border: 1px solid black;
         display: flex;
@@ -182,21 +182,60 @@
             }
           }
         }
+        .password-content {
+          margin: 20px 0;
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 10px;
+          input {
+            border: 1px solid;
+            padding: 10px;
+            min-width: 250px;
+            width: 80%;
+            font-size: 1rem;
+            color: #333;
+            &:focus {
+              outline: none;
+            }
+          }
+          .password-visibility {
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            &:hover {
+              color: var(--secondary-color);
+              transform: scale(1.4);
+            }
+          }
+        }
         .save-zone {
+          display: flex;
+          align-items: center;
+          gap: 10px;
           .saved-status {
             padding: 10px 0 10px 15px;
             font-size: 1rem;
             color: green;
             font-weight: 500;
           }
-          .save-button {
+          .save-button, .cancel-button {
             text-align: center;
             padding: 10px 15px;
             background-color: darkgreen;
             color: #fff;
             width: fit-content;
             cursor: pointer;
-            border: none;
+            border: 1px solid darkgreen;
+          }
+          .confirm-button {
+            text-align: center;
+            border: 1px solid darkgreen;
+            padding: 10px 15px;
+            color: darkgreen;
+            width: fit-content;
+            cursor: pointer;
           }
         }
       }
@@ -278,6 +317,15 @@
               }
             }
           }
+          .password-content {
+            gap: 10px;
+            input {
+              padding: 5px 10px;
+            }
+            .password-visibility {
+              font-size: 1rem;
+            }
+          }
           .save-zone {
             .saved-status {
               padding: 10px 0 10px 15px;
@@ -285,7 +333,7 @@
               color: green;
               font-weight: 500;
             }
-            .save-button {
+            .save-button, .cancel-button, .confirm-button {
               padding: 10px;
               font-size: 0.9rem;
             }

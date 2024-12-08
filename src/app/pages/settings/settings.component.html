@@ -76,10 +76,32 @@
               <span>{{ "pages.settings.modifyPasswordHint" | translate }}</span> 
             </div>
           }
-          <div class="feature" (click)="showDeleteAccountModal()">
+          <div [class]="_passwordBox ? 'feature active' : 'feature'" (click)="togglePasswordBox()">
             <ion-icon name="trash-bin-outline"></ion-icon>
             <span>{{ "pages.settings.deleteAccount" | translate }}</span>
           </div>
+          @if (_passwordBox) {
+            <div class="password-box">
+              <div class="description">
+                <span>Veuillez entrez votre mot de passe pour valider l'opération</span>
+                <ion-icon name="close-outline" class="dismiss-button" (click)="togglePasswordBox()"></ion-icon>
+              </div>
+              <div class="password-content">
+                <input [type]="_isPasswordVisible ? 'text' : 'password'" placeholder="Entrez votre mot de passe">
+                <div class="visibility">
+                  @if (_isPasswordVisible) {
+                    <ion-icon name="eye-off-outline" class="password-visibility" (click)="togglePasswordVisibility()"></ion-icon>
+                  } @else {
+                    <ion-icon name="eye-outline" class="password-visibility" (click)="togglePasswordVisibility()"></ion-icon>
+                  }
+                </div>
+              </div>
+              <div class="save-zone">
+                <div class="confirm-button" (click)="showDeleteAccountModal()">Supprimer</div>
+                <div class="cancel-button" (click)="togglePasswordBox()">Annuler</div>
+              </div>
+            </div>
+          }
         </div>
       }
     </div>

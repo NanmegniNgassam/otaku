@@ -29,6 +29,8 @@ export class SettingsComponent {
   _userData!: UserData;
   _isWaitingSave: boolean = false;
   _genresManagementBox: boolean = false;
+  _passwordBox: boolean = false;
+  _isPasswordVisible: boolean = false;
   _notification!: Toast | null;
   _verifiedEmailStatus!: string;
   _pendingEmailStatus!: string;
@@ -114,6 +116,14 @@ export class SettingsComponent {
    */
   toggleGenresManagementBox = () => {
     this._genresManagementBox = !this._genresManagementBox;
+  }
+
+  togglePasswordBox = () => {
+    this._passwordBox = !this._passwordBox;
+  }
+
+  togglePasswordVisibility() {
+    this._isPasswordVisible = !this._isPasswordVisible;
   }
 
   goToAccount = () => {

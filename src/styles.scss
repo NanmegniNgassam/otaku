@@ -91,12 +91,14 @@ a {
 // Frequently used Widgets
 .backward-group {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   gap: 10px;
   font-size: 1.1rem;
   margin: 10px auto;
   max-width: 450px;
   cursor: pointer;
+  width: fit-content;
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   &:hover {
     color: var(--secondary-color);

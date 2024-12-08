@@ -11,7 +11,7 @@
           <div class="user-data">
             <div class="user-name">{{user.displayName}}</div>
             <div class="creation-date">{{ util.convertTimeStampInDate(user.metadata.creationTime!) }}</div>
-            <div class="email"> {{ user.email }} </div>
+            <div class="email">{{ user.email }}</div>
             <div [class]="'email-status ' +  (user.emailVerified ? 'verified' : '')">
               {{ user.emailVerified ? _verifiedEmailStatus : _pendingEmailStatus }}
             </div>
@@ -29,7 +29,12 @@
           </div>
           @if(_genresManagementBox) {
             <div class="explicit-content-box">
-              <p class="description">{{ "pages.settings.forbidGenresHint" | translate }}</p>
+              <p class="description">
+                <span>
+                  {{ "pages.settings.forbidGenresHint" | translate }}
+                </span>
+                <ion-icon name="close-outline" class="dismiss-button" (click)="toggleGenresManagementBox()"></ion-icon>
+              </p>
               <div class="animes-genres">
                 @for (genre of _safeGenres; track $index) {
                   <div class="anime-genre" (click)="updateGenres(genre, 'forbid')">

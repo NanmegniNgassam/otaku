@@ -4,10 +4,6 @@
   padding: 40px 0;
   border: 1px solid lightgray;
   box-shadow: 4px 4px 2px gray;
-  .backward-group {
-    margin: 0 auto;
-    width: fit-content;
-  }
   h1 {
     color: var(--primary-color);
     font-size: 2.5rem;
@@ -129,7 +125,26 @@
         flex-direction: column;
         align-items: end;
         .description {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
           font-size: 0.9rem;
+          width: 100%;
+          text-align: left;
+          gap: 5px;
+          span {
+            flex: 1;
+          }
+          .dismiss-button {
+            cursor: pointer;
+            font-size: 1.4rem;
+            color: grey;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            &:hover {
+              color: var(--secondary-color);
+              transform: scale(1.5);
+            }
+          }
         }
         .animes-genres {
           display: flex;
@@ -214,8 +229,6 @@
     max-width: 95%;
     .backward-group {
       font-size: 0.9rem;
-      padding: 10px 20px;
-      margin: 0 auto;
     }
     h1 {
       font-size: 1.6rem;

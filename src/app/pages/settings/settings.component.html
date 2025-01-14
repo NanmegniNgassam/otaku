@@ -87,7 +87,12 @@
                 <ion-icon name="close-outline" class="dismiss-button" (click)="togglePasswordBox()"></ion-icon>
               </div>
               <div class="password-content">
-                <input [type]="_isPasswordVisible ? 'text' : 'password'" placeholder="Entrez votre mot de passe">
+                <input 
+                  [type]="_isPasswordVisible ? 'text' : 'password'" 
+                  placeholder="Entrez votre mot de passe"
+                  (keyup)="captureEnteredPassword($event)"
+                  [value]="_userPasswordTrial"
+                />
                 <div class="visibility">
                   @if (_isPasswordVisible) {
                     <ion-icon name="eye-off-outline" class="password-visibility" (click)="togglePasswordVisibility()"></ion-icon>

@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { getAuth } from '@angular/fire/auth';
+import { deleteUser, getAuth } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AvatarComponent } from "../../components/avatar/avatar.component";
@@ -36,6 +36,8 @@ export class SettingsComponent {
   _pendingEmailStatus!: string;
   _modal!: Modal;
   _showModal: boolean = false;
+  _userPasswordTrial: string = '';
+  _loginErrors!: {[name: string] : string}
 
   /**
    * 
@@ -56,6 +58,9 @@ export class SettingsComponent {
     translate.stream("others.emailVerificationStatus").subscribe((emailStatus) => {
       this._verifiedEmailStatus = emailStatus['verified'];
       this._pendingEmailStatus = emailStatus['pending'];
+    });
+    translate.stream("components.login.messages").subscribe((loginErrors) => {
+      this._loginErrors = loginErrors;
     });
   }
 
@@ -208,15 +213,74 @@ export class SettingsComponent {
   }
 
   /**
+   * Capture the password entered by the user
+   * @param event the typing event
+   * @returns void
+   */
+  captureEnteredPassword = (event: Event): void => {
+    this._userPasswordTrial = (event.target as HTMLInputElement).value;
+  }
+
+  /**
    * Deletes the account of the user
    */
-  deleteAccount = async () => {
+  deleteAccount = async (): Promise<void> => {
     try {
-      const anime = await this.anime.getRandomAnime();
-      console.log("Anime : ", anime);
-    } catch (error) {
+      const password = this._userPasswordTrial;
+      const user = this.auth.currentUser;
+      const isPasswordValid = password.length >= 8 && password.length <= 25;
+
+      if(user && password && isPasswordValid) {
+        // Reauthenticate the user before deleting the account
+        await this.auth.login({ email: user.email!, password: this._userPasswordTrial });
+        
+        // Delete the account
+        await deleteUser(user);
+      } else {
+        
+        const invalidPasswordError: any = new Error("Not connected user or Invalid password");
+        invalidPasswordError.code = 'auth/invalid-password';
+        throw invalidPasswordError;
+      }
+      
+    } catch (error: any) {
       console.error("Error while deleting the account : ", error);
-      // TODO: Gérer les erreurs qui surviennent avec le toast
+      
+      switch (error.code) {
+        case 'auth/invalid-password':
+          // show a toast to give user a feed-back on its action
+          this._notification = {
+            type: 'warning',
+            message: this._loginErrors['invalidCredentials'],
+          }
+          break;
+        
+        case 'auth/invalid-credential':
+          // show a toast to give user a feed-back on its action
+          this._notification = {
+            type: 'fail',
+            message: this._loginErrors['invalidCredentials'],
+          }
+          break;
+
+        case 'auth/too-many-requests':
+          // show a toast to give user a feed-back on its action
+          this._notification = {
+            type: 'warning',
+            message: this._loginErrors['tooManyRequests'],
+          }
+          break;
+        
+        default:
+          // show a toast to give user a feed-back on its action
+          this._notification = {
+            type: 'fail',
+            message: 'An error occured while deleting the account.',
+          }
+      }
+      throw error;
     }
   }
+
+  // TODO: After the account deletion, show something to let the user know that the account has been deleted and redirect button to the home page
 }

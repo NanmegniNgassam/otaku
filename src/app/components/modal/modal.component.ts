@@ -38,20 +38,20 @@ export class ModalComponent {
   }
 
   /**
-   * 
+   * Handles the user confirmation action.
    */
   async onUserConfirm() {
     try {
       this._isConfirmLoading = true;
-      // Execute the main onConfirm action
       await this.modal.onConfirm();
-      this._isConfirmLoading = false;
+      
       this._isConfirmDone = true;
-
     } catch (error) {
-      console.error(error);
-    } finally {      
-      setTimeout( async () => {
+      console.error("Error while validating the modal: ", error);
+    } finally {
+      this._isConfirmLoading = false;
+
+      setTimeout(async () => {
         await this.onDismiss();
       }, 5 * 1000);
     }

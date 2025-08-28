@@ -10,12 +10,18 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
 import { SettingsComponent } from './pages/settings/settings.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
+import { AnimesComponent } from './pages/animes/animes.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: LandingComponent,
     title: `otaku | landing`
+  },
+  {
+    path: 'animes',
+    component: AnimesComponent,
+    title: 'otaku | landing',
   },
   {
     path: 'sign-in',

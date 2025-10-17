@@ -1,1 +1,5 @@
-<div class="wrapper"></div>
+<div class="wrapper">
+  @for (anime of animes; track $index) {
+    <app-anime-card [anime]="anime" />
+  }
+</div>

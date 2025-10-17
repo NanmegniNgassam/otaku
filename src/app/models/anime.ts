@@ -2,8 +2,16 @@ export interface Anime {
   mal_id: number;
   approved: boolean;
   images: {
-    smallFormat: string;
-    largeFormat: string;
+    jpg : {
+      image_url: string;
+      small_image_url: string;
+      large_image_url: string;
+    }
+    webp: {
+      image_url: string;
+      small_image_url: string;
+      large_image_url: string;
+    }
   }
   trailer: string;
   title: string;

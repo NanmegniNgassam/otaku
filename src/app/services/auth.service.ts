@@ -7,7 +7,6 @@ import { setPersistence } from "firebase/auth";
 import { LoginCredential, SigninCredential } from "../models/others";
 import { UserService } from "./user.service";
 
-// TODO: Define a allErrors enum may be useful
 // TODO: Production change to made (url) : IMPORTANT
 const MAIL_BOX_REDIRECT_URL = "http://localhost:4200/account";
 

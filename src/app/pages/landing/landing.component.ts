@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimesListComponent } from '../../components/animes-list/animes-list.component';
+import { Anime } from '../../models/anime';
 import { AnimeService } from '../../services/anime.service';
 import AuthService from '../../services/auth.service';
-import { Anime } from '../../models/anime';
-import { AnimeCardComponent } from '../../components/anime-card/anime-card.component';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [AnimeCardComponent],
+  imports: [AnimesListComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })

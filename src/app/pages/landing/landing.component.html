@@ -1,3 +1,7 @@
 <div class="wrapper">
-  <app-animes-list [animes]="animes" />
+  @if(animes) {
+    <app-animes-list [animes]="animes" />
+  } @else {
+    <p>Chargement des animes en cours ...</p>
+  }
 </div>

@@ -1,5 +1,9 @@
-<div class="container">
-  @for (anime of animes; track $index) {
-    <app-anime-card [anime]="anime" />
-  }
-</div>
+@if(animes.length) {
+  <div class="container">
+    @for (anime of animes; track $index) {
+      <app-anime-card [anime]="anime" />
+    }
+  </div>
+} @else {
+  <p>Aucun anime n'a été trouvé!</p>
+}

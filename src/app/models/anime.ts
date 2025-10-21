@@ -15,6 +15,7 @@ export interface Anime {
   }
   trailer: string;
   title: string;
+  title_english: string;
   duration: string;
   rating: string;
   score: number;

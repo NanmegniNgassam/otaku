@@ -21,7 +21,7 @@ export class LandingComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    const animes = await this.anime.getRandomAnimes(4);
+    const animes = await this.anime.getRandomAnimes(12);
     this.animes = animes;
 
     console.log("Randomly fetched animes : ", animes);

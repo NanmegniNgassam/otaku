@@ -1,8 +1,11 @@
 @if(anime) {
-  <div>
-    <img [src]="anime.images.jpg.image_url">
-    <p>{{ anime.title }}</p>
+  <div class="card-container">
+    <div class="image-container">
+      <img [src]="anime.images.jpg.large_image_url">
+    </div>
+    <div class="content">
+      <p>{{ anime.title }}</p>
+    </div>
   </div>
-  
 }
 

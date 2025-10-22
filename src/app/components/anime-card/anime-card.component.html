@@ -8,7 +8,7 @@
         {{ anime.title_english || anime.title }}
       </p>
       <div class="genres-container">
-        @for (genre of anime.genres; track $index) {
+        @for (genre of anime.genres.concat(anime.themes).slice(0,6); track $index) {
           <div class="anime-genre"> {{ genre.name }} </div>
         }
       </div>

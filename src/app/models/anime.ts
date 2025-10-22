@@ -22,10 +22,12 @@ export interface Anime {
   score_by: number;
   synopsis: string;
   genres: AnimeGenre[];
+  themes: AnimeTheme[];
 }
 
 export interface AnimeGenre {
   id: number, 
   name: string, 
-  count?: number
 }
+
+export type AnimeTheme = AnimeGenre;

@@ -26,5 +26,4 @@ export class LandingComponent implements OnInit {
 
     console.log("Randomly fetched animes : ", animes);
   }
-
 }

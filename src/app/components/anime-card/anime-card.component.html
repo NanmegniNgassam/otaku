@@ -5,6 +5,11 @@
     </div>
     <div class="content">
       <p class="title">{{ anime.title_english || anime.title }}</p>
+      <div class="genres-container">
+        @for (genre of anime.genres; track $index) {
+          <div class="anime-genre"> {{ genre.name }} </div>
+        }
+      </div>
     </div>
   </div>
 }

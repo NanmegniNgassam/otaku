@@ -67,14 +67,18 @@
   .additionnal-container {
     margin: 10px 0;
     display: flex;
+    gap: 10px;
     justify-content: space-between;
     .additionnal-section {
       flex: 1;
+      &.duration {
+        flex: 2;
+      }
       .label {
         color: grey;
+        margin-bottom: 5px;
       }
       .value {
-        font-size: 1.2rem;
         font-weight: 500;
       }
     }

@@ -11,15 +11,15 @@
       <div class="additionnal-container">
         <div class="additionnal-section">
           <div class="label"> Episodes </div>
-          <div class="value"> 24 </div>
+          <div class="value"> {{ anime.episodes || 'N/A' }} </div>
         </div>
-        <div class="additionnal-section">
+        <div class="additionnal-section duration">
           <div class="label"> Durée </div>
-          <div class="value"> 24 </div>
+          <div class="value"> {{ anime.duration || 'N/A' }} </div>
         </div>
         <div class="additionnal-section">
           <div class="label"> Score </div>
-          <div class="value"> 7.9 </div>
+          <div class="value"> {{ anime.score || 'N/A' }} </div>
         </div>
       </div>
 

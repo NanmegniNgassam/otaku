@@ -10,5 +10,5 @@ import { AnimeCardComponent } from '../anime-card/anime-card.component';
   styleUrl: './animes-list.component.scss'
 })
 export class AnimesListComponent {
-  @Input() animes!: Anime[];
+  @Input() animes!: Anime[] | undefined[];
 }

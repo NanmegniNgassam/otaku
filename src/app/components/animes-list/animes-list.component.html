@@ -1,7 +1,9 @@
 @if(animes.length) {
   <div class="container">
     @for (anime of animes; track $index) {
-      <app-anime-card [anime]="anime" />
+      @if (anime) {
+        <app-anime-card [anime]="anime" />
+      }
     }
   </div>
 } @else {

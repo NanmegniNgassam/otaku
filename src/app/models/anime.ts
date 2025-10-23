@@ -12,7 +12,8 @@ export interface Anime {
       small_image_url: string;
       large_image_url: string;
     }
-  }
+  };
+  episodes: number;
   trailer: string;
   title: string;
   title_english: string;

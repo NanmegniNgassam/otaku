@@ -2,7 +2,7 @@
   border: 1px solid black;
   box-shadow: 4px 2px 12px black;
   max-width: 400px;
-  padding: 10px 20px;
+  padding: 10px;
   height: 100%;
   margin: 0 auto;
   border-radius: 10px;
@@ -41,6 +41,13 @@
     flex-wrap: wrap;
     gap: 5px;
     margin-bottom: 20px;
+    .genres-container-label {
+      width: 100%;
+      color: gray;
+    }
+    .no-genres-found {
+      font-size: .9rem;
+    }
   }
 
   .anime-genre {

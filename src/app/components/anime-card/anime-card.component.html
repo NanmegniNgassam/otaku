@@ -7,9 +7,15 @@
       <p class="title" [title]="anime.title_english || anime.title">
         {{ anime.title_english || anime.title }}
       </p>
+
       <div class="genres-container">
-        @for (genre of anime.genres.concat(anime.themes).slice(0,6); track $index) {
-          <div class="anime-genre"> {{ genre.name }} </div>
+        <p class="genres-container-label">Genres & Thèmes</p> 
+        @if ( genresAndThemes.length ) {
+          @for (genre of genresAndThemes.slice(0,6); track $index) {
+            <div class="anime-genre"> {{ genre.name }} </div>
+          }
+        } @else {
+          <p class="no-genres-found">Cette production n'est associé à aucun genre ou thème.</p>
         }
       </div>
     </div>

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Anime } from '../../models/anime';
+import { Component, Input, OnInit } from '@angular/core';
+import { Anime, AnimeGenre } from '../../models/anime';
 
 @Component({
   selector: 'app-anime-card',
@@ -8,6 +8,11 @@ import { Anime } from '../../models/anime';
   templateUrl: './anime-card.component.html',
   styleUrl: './anime-card.component.scss'
 })
-export class AnimeCardComponent {
+export class AnimeCardComponent implements OnInit {
   @Input() anime!: Anime;
+  genresAndThemes: AnimeGenre[] = []; 
+
+  ngOnInit() {
+    this.genresAndThemes = this.anime.genres.concat(this.anime.themes);
+  }
 }

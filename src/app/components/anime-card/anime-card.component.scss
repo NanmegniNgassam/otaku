@@ -40,7 +40,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    margin-bottom: 20px;
     .genres-container-label {
       width: 100%;
       color: gray;
@@ -63,5 +62,21 @@
     background-color: var(--primary-color);
     transition: background-color 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     font-size: .9rem;
+  }
+
+  .additionnal-container {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    .additionnal-section {
+      flex: 1;
+      .label {
+        color: grey;
+      }
+      .value {
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+    }
   }
 }

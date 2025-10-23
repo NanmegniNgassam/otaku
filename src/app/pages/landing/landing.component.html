@@ -2,6 +2,6 @@
   @if(animes) {
     <app-animes-list [animes]="animes" />
   } @else {
-    <p>Chargement des animes en cours ...</p>
+    <app-animes-list [animes]="skeletons" />
   }
 </div>

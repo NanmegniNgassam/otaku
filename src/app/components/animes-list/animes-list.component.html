@@ -3,6 +3,8 @@
     @for (anime of animes; track $index) {
       @if (anime) {
         <app-anime-card [anime]="anime" />
+      } @else {
+        <app-anime-skeleton />
       }
     }
   </div>

@@ -13,6 +13,7 @@ import AuthService from '../../services/auth.service';
 })
 export class LandingComponent implements OnInit {
   protected animes:Anime[] | null = null;
+  protected skeletons: undefined[] = Array(18).fill(undefined);
 
   constructor(
     protected auth: AuthService,

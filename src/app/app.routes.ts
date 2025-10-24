@@ -11,6 +11,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
 import { AnimesComponent } from './pages/animes/animes.component';
+import path from 'path';
+import { AnimeComponent } from './pages/anime/anime.component';
 
 export const routes: Routes = [
   {
@@ -21,7 +23,12 @@ export const routes: Routes = [
   {
     path: 'animes',
     component: AnimesComponent,
-    title: 'otaku | landing',
+    title: 'otaku | Animes',
+  },
+  {
+    path: 'animes/:id',
+    component: AnimeComponent,
+    title: 'otaku | Anime'
   },
   {
     path: 'sign-in',

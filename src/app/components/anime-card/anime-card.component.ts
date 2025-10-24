@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Anime, AnimeGenre } from '../../models/anime';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-anime-card',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './anime-card.component.html',
   styleUrl: './anime-card.component.scss'
 })

@@ -11,20 +11,6 @@ import AuthService from '../../services/auth.service';
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
-export class LandingComponent implements OnInit {
-  protected animes:Anime[] | null = null;
-  protected skeletons: undefined[] = Array(18).fill(undefined);
+export class LandingComponent {
 
-  constructor(
-    protected auth: AuthService,
-    protected anime: AnimeService
-  ) {
-  }
-
-  async ngOnInit(): Promise<void> {
-    const animes = await this.anime.getRandomAnimes(8);
-    this.animes = animes;
-
-    console.log("Randomly fetched animes : ", animes);
-  }
 }

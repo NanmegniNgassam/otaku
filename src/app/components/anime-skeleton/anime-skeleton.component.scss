@@ -35,28 +35,46 @@
   }
 }
 
-/* Variants */
-.skeleton--rect { display: block; }
-.skeleton--circle { border-radius: 50%; }
-.skeleton--avatar { width: 50px; height: 50px; border-radius: 50%; }
-.skeleton--image { width: 100%; height: 180px; border-radius: 12px; }
-.skeleton--text { width: 100%; height: 16px; border-radius: 6px; margin: 6px 0; }
-
-/* === Multi-line text helper pour réalisme === */
-.skeleton-lines {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.card-container {
+  border: 1px solid black;
+  box-shadow: 4px 2px 12px black;
+  max-width: 400px;
+  padding: 10px;
+  height: 100%;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
-.skeleton-lines .line {
-  height: 14px;
+.image-container {
   width: 100%;
-  border-radius: 6px;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
 
-/* Largeurs variées pour plus de réalisme */
-.line.w-90 { width: 90%; }
-.line.w-75 { width: 75%; }
-.line.w-60 { width: 60%; }
-.line.w-50 { width: 50%; }
+.content {
+  .genres-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .additionnal-container {
+    margin: 10px 0;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    .additionnal-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      &.duration {
+        flex: 2;
+      }
+    }
+  }
+}

@@ -1,5 +1,21 @@
 <div class="wrapper">
-  <p>anime works!</p>
-  <p> {{ animeId }} </p>
+  @if (anime) {
+    <div class="container">
+      <div class="header">
+        <div class="image-container">
+          <img [src]="anime.images.jpg.large_image_url" [alt]="anime.title + '\'s cover image'">
+        </div>
+        <div class="details-container">
+          <div class="title-section">
+            <h1 class="title"> {{ anime.title }} </h1>
+            <p>Définir comme favori</p>
+          </div>
+          <div class="description">
+            {{ anime.synopsis }}
+          </div>
+        </div>
+      </div>
+    </div>
+  }
 </div>
 

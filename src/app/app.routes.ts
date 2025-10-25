@@ -13,6 +13,7 @@ import { RankingComponent } from './pages/ranking/ranking.component';
 import { AnimesComponent } from './pages/animes/animes.component';
 import path from 'path';
 import { AnimeComponent } from './pages/anime/anime.component';
+import { MyListComponent } from './pages/my-list/my-list.component';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,11 @@ export const routes: Routes = [
     path: 'animes/:id',
     component: AnimeComponent,
     title: 'otaku | Anime'
+  },
+  {
+    path: 'my-list',
+    component: MyListComponent,
+    title: 'otaku | Animes List'
   },
   {
     path: 'sign-in',

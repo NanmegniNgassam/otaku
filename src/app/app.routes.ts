@@ -14,6 +14,7 @@ import { AnimesComponent } from './pages/animes/animes.component';
 import path from 'path';
 import { AnimeComponent } from './pages/anime/anime.component';
 import { MyListComponent } from './pages/my-list/my-list.component';
+import { QuestsComponent } from './pages/quests/quests.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,11 @@ export const routes: Routes = [
     path: 'my-list',
     component: MyListComponent,
     title: 'otaku | Animes List'
+  },
+  {
+    path: 'quests',
+    component: QuestsComponent,
+    title: 'otaku | Quests'
   },
   {
     path: 'sign-in',

@@ -1,0 +1,51 @@
+name: 🚀 Déploiement sur Obambu
+
+on:
+  push:
+    branches:
+      - main # ou master selon ton repo
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Récupération du code
+      - name: 🧩 Checkout du dépôt
+        uses: actions/checkout@v4
+
+      # 2️⃣ Installation et build du projet
+      - name: 🏗️ Build du projet Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          npm ci
+          npm run build
+          cp -r dist package.json package-lock.json node_modules build/
+
+      # 3️⃣ Déploiement FTP vers Obambu
+      - name: 📤 Déploiement sur Obambu
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: build
+          server-dir: /otaku.gillesngassam.com
+          exclude: |
+            **/.git*
+            **/.github*
+            **/node_modules/.cache*
+
+      # 4️⃣ Redémarrage Passenger
+      - name: 🔁 Redémarrage de Passenger
+        run: |
+          sudo apt-get install -y lftp
+          lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }} <<EOF
+            set ssl:verify-certificate no
+            cd /otaku.gillesngassam.com/tmp
+            echo "" > restart.txt
+            put restart.txt -o restart.txt
+            bye
+          EOF

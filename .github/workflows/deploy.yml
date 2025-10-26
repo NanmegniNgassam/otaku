@@ -23,7 +23,7 @@ jobs:
           npm ci
           mkdir build
           npm run build
-          cp -r dist build/
+          cp -r dist/* build/
 
       # 3️⃣ Déploiement FTP vers Obambu
       - name: 📤 Déploiement sur Obambu
@@ -32,7 +32,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: build/dist
+          local-dir: build/
           server-dir: /otaku.gillesngassam.com
           exclude: |
             **/.git*

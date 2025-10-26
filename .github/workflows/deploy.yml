@@ -38,14 +38,3 @@ jobs:
             **/.git*
             **/.github*
             **/node_modules/.cache*
-
-      # 4️⃣ Redémarrage Passenger
-      - name: 🔁 Redémarrage de Passenger
-        run: |
-          sudo apt-get install -y lftp
-          lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }} <<EOF
-            set ssl:verify-certificate no
-            cd /otaku.gillesngassam.com/tmp
-            put /dev/null -o restart.txt
-            bye
-          EOF

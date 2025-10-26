@@ -25,6 +25,18 @@ jobs:
           npm run build
           cp -r dist/otaku/browser/* build/
 
+          # ✅ Ajout du .htaccess pour les routes SPA
+          cat <<'EOF' > build/.htaccess
+          <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteBase /
+            RewriteRule ^index\.html$ - [L]
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteRule . /index.html [L]
+          </IfModule>
+          EOF
+
       # 3️⃣ Déploiement FTP vers Obambu
       - name: 📤 Déploiement sur Obambu
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

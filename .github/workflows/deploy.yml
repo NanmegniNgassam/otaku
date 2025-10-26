@@ -23,7 +23,7 @@ jobs:
           npm ci
           mkdir build
           npm run build
-          cp -r dist/* build/
+          cp -r dist/browser/* build/
 
       # 3️⃣ Déploiement FTP vers Obambu
       - name: 📤 Déploiement sur Obambu
@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: build/
-          server-dir: /otaku.gillesngassam.com/
+          server-dir: /botaku.gillesngassam.com/
           exclude: |
             **/.git*
             **/.github*
@@ -46,7 +46,6 @@ jobs:
           lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }} <<EOF
             set ssl:verify-certificate no
             cd /otaku.gillesngassam.com/tmp
-            echo "" > restart.txt
-            put restart.txt -o restart.txt
+            put /dev/null -o restart.txt
             bye
           EOF

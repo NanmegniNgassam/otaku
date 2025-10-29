@@ -35,7 +35,7 @@ export const routes: Routes = [
   {
     path: 'my-list',
     component: MyListComponent,
-    title: 'otaku | Animes List'
+    title: 'otaku | My Animes List'
   },
   {
     path: 'quests',

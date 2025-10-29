@@ -20,7 +20,7 @@ export const routes: Routes = [
   {
     path: '',
     component: LandingComponent,
-    title: `otaku | landing`
+    title: `otaku | Landing`
   },
   {
     path: 'animes',
@@ -46,49 +46,49 @@ export const routes: Routes = [
     path: 'sign-in',
     canActivate: [NoAuthGuard],
     component: SigninComponent,
-    title: 'otaku | authentication'
+    title: 'otaku | Authentication'
   },
   {
     path: 'account',
     canActivate: [AuthGuard],
     component: AccountComponent,
-    title: 'otaku | account'
+    title: 'otaku | Account'
   },
   {
     path: 'account/notifications',
     canActivate: [AuthGuard],
     component: NotificationsComponent,
-    title: 'otaku | notifications'
+    title: 'otaku | Notifications'
   },
   {
     path: 'account/settings',
     canActivate: [AuthGuard],
     component: SettingsComponent,
-    title: 'otaku | settings'
+    title: 'otaku | Settings'
   },
   {
     path: 'account/edit',
     canActivate: [AuthGuard],
     component: EditComponent,
-    title: 'otaku | edition'
+    title: 'otaku | Edition'
   },
   {
     path: 'account/ranking',
     canActivate: [AuthGuard],
     component: RankingComponent,
-    title: 'otaku | ranking'
+    title: 'otaku | Ranking'
   },
   {
     path: 'email-verification',
     canActivate: [AuthGuard, EmailVerificationGuard],
     component: EmailVerificationComponent,
-    title: 'otaku | email verification'
+    title: 'otaku | Email verification'
   },
   {
     path: 'missing-permissions',
     canActivate: [NoAuthGuard],
     component: NotAllowedComponent,
-    title: "otaku | missing permissions"
+    title: "otaku | Missing permissions"
   },
   {
     path: '**',

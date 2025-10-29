@@ -34,6 +34,16 @@ export class AnimeService {
   }
 
   /**
+   * Retrieve all the animes with the best ratings
+   */
+  async getTopAnimes(): Promise<Anime[]> {
+    const res = await fetch('https://api.jikan.moe/v4/top/anime');
+    const animes = await res.json();
+
+    return animes.data as Anime[];
+  }
+
+  /**
    * return a random anime
    * 
    * @returns an anime

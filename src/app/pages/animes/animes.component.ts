@@ -22,7 +22,7 @@ export class AnimesComponent {
   }
 
   async ngOnInit(): Promise<void> {
-    const animes = await this.anime.getRandomAnimes(8);
+    const animes = await this.anime.getTopAnimes();
     this.animes = animes;
 
     console.log("Randomly fetched animes : ", animes);

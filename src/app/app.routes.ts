@@ -20,80 +20,80 @@ export const routes: Routes = [
   {
     path: '',
     component: LandingComponent,
-    title: `otaku | Landing`
+    title: `Otaku | Landing`
   },
   {
     path: 'animes',
     component: AnimesComponent,
-    title: 'otaku | Animes',
+    title: 'Otaku | Animes',
   },
   {
     path: 'animes/:id',
     component: AnimeComponent,
-    title: 'otaku | Anime'
+    title: 'Otaku | Anime'
   },
   {
     path: 'my-list',
     component: MyListComponent,
-    title: 'otaku | My Animes List'
+    title: 'Otaku | My Animes List'
   },
   {
     path: 'quests',
     component: QuestsComponent,
-    title: 'otaku | Quests'
+    title: 'Otaku | Quests'
   },
   {
     path: 'sign-in',
     canActivate: [NoAuthGuard],
     component: SigninComponent,
-    title: 'otaku | Authentication'
+    title: 'Otaku | Authentication'
   },
   {
     path: 'account',
     canActivate: [AuthGuard],
     component: AccountComponent,
-    title: 'otaku | Account'
+    title: 'Otaku | Account'
   },
   {
     path: 'account/notifications',
     canActivate: [AuthGuard],
     component: NotificationsComponent,
-    title: 'otaku | Notifications'
+    title: 'Otaku | Notifications'
   },
   {
     path: 'account/settings',
     canActivate: [AuthGuard],
     component: SettingsComponent,
-    title: 'otaku | Settings'
+    title: 'Otaku | Settings'
   },
   {
     path: 'account/edit',
     canActivate: [AuthGuard],
     component: EditComponent,
-    title: 'otaku | Edition'
+    title: 'Otaku | Edition'
   },
   {
     path: 'account/ranking',
     canActivate: [AuthGuard],
     component: RankingComponent,
-    title: 'otaku | Ranking'
+    title: 'Otaku | Ranking'
   },
   {
     path: 'email-verification',
     canActivate: [AuthGuard, EmailVerificationGuard],
     component: EmailVerificationComponent,
-    title: 'otaku | Email verification'
+    title: 'Otaku | Email verification'
   },
   {
     path: 'missing-permissions',
     canActivate: [NoAuthGuard],
     component: NotAllowedComponent,
-    title: "otaku | Missing permissions"
+    title: "Otaku | Missing permissions"
   },
   {
     path: '**',
     component: NotFoundComponent,
-    title: 'otaku | 404'
+    title: 'Otaku | 404'
   }
 ];
 

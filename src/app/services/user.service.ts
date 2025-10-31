@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, updateProfile, User } from '@angular/fire/auth';
+import { Auth, onAuthStateChanged, updateProfile, User } from '@angular/fire/auth';
 import { doc, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { deleteObject, getDownloadURL, listAll, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import { Ranking, UserData } from '../models/user';
@@ -62,13 +62,25 @@ export class UserService {
    */
   async fetchUserData(): Promise<UserData> {
     try {
-      const userDoc = await getDoc(doc(this.db, USERS_COLLECTION, this.auth.currentUser?.uid!))
-      const userData = userDoc.data() as UserData;
-      
-      return userData 
+      const user = await new Promise<User>((resolve, reject) => {
+        const unsub = onAuthStateChanged(this.auth, (u) => {
+          unsub(); // stop listening once we get an answer
+          if (u) resolve(u);
+          else reject(new Error("No authenticated user"));
+        });
+      });
+
+      const userDocRef = doc(this.db, USERS_COLLECTION, user.uid);
+      const userDoc = await getDoc(userDocRef);
+
+      if (!userDoc.exists()) {
+        throw new Error(`User document not found for uid ${user.uid}`);
+      }
+
+      return userDoc.data() as UserData;
     } catch (error) {
-      console.error("Error while trying to read document : ", error);
-      throw(error);
+      console.error("Error while trying to read document:", error);
+      throw error;
     }
   }
 

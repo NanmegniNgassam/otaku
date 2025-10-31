@@ -13,7 +13,7 @@ import { RouterLink } from "@angular/router";
 export class AnimeCardComponent implements OnInit {
   @Input() anime!: Anime;
   genresAndThemes: AnimeGenre[] = [];
-  @Input() isAnimeLiked:boolean = false;
+  @Input() isAnimeLiked!:boolean;
 
   ngOnInit() {
     this.genresAndThemes = this.anime.genres.concat(this.anime.themes);

@@ -2,7 +2,7 @@
   <div class="container">
     @for (anime of animes; track $index) {
       @if (anime) {
-        <app-anime-card [anime]="anime" />
+        <app-anime-card [anime]="anime" [isAnimeLiked]="likedAnimes.includes(anime.mal_id)" />
       } @else {
         <app-anime-skeleton />
       }

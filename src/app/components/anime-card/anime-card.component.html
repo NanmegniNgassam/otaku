@@ -5,9 +5,13 @@
         <img [src]="anime.images.jpg.large_image_url">
       </div>
       <div class="content">
-        <p class="title" [title]="anime.title_english || anime.title">
-          {{ anime.title_english || anime.title }}
-        </p>
+        <div class="header">
+          <p class="title" [title]="anime.title_english || anime.title">
+            {{ anime.title_english || anime.title }}
+          </p>
+          <ion-icon class="star-button" [name]="isAnimeLiked ? 'star' : 'star-outline'" style="color: #ffb800"></ion-icon>
+        </div>
+        
 
         <div class="additionnal-container">
           <div class="additionnal-section">

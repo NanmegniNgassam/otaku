@@ -14,7 +14,7 @@ import { RouterLink } from "@angular/router";
 export class AnimeCardComponent implements OnInit {
   @Input() anime!: Anime;
   genresAndThemes: AnimeGenre[] = [];
-  @Input() isAnimeFollowed!:boolean;
+  @Input() isFollowed!:boolean;
   @Output() toggle = new EventEmitter<number>();
 
   ngOnInit() {

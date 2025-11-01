@@ -4,7 +4,7 @@
       @if (anime) {
         <app-anime-card 
           [anime]="anime" 
-          [isAnimeFollowed]="followedAnimes.includes(anime.mal_id)"
+          [isFollowed]="followedAnimes.includes(anime.mal_id)"
           (toggle)="toggleAnimeFollowing($event)"
         />
       } @else {

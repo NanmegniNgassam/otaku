@@ -34,5 +34,8 @@ export class AnimesListComponent implements OnInit {
       this.followedAnimes = [...new Set(this.followedAnimes.filter((id) => id !== animeId))];
     else 
       this.followedAnimes = [...new Set([...this.followedAnimes, animeId])];
+
+    // Save changes on firestore
+    await this.userService.updateUserDoc({ animeListIds: this.followedAnimes });
   }
 }

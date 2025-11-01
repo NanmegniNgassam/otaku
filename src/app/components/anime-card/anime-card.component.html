@@ -14,8 +14,9 @@
         </a>
         <ion-icon 
           class="star-button" 
-          [name]="isAnimeLiked ? 'star' : 'star-outline'" 
+          [name]="isAnimeFollowed ? 'star' : 'star-outline'" 
           style="color: #ffb800"
+          (click)="this.toggle.emit(this.anime.mal_id)"
         >
         </ion-icon>
       </div>

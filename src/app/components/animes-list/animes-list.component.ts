@@ -15,12 +15,24 @@ import { UserService } from '../../services/user.service';
 export class AnimesListComponent implements OnInit {
   @Input() animes!: Anime[] | undefined[];
   currentUserDoc!: UserData;
-  likedAnimes: number[] = [];
+  followedAnimes: number[] = [];
 
   constructor(private userService: UserService) {}
 
   async ngOnInit() {
     this.currentUserDoc = await this.userService.fetchUserData();
-    this.likedAnimes = this.currentUserDoc.animeListIds;
+    this.followedAnimes = this.currentUserDoc.animeListIds || [];
+  }
+
+  /**
+   * Add or remove a specific anime on the user followed animes list
+   * 
+   * @param animeId animeId subject to modifications
+   */
+  async toggleAnimeFollowing(animeId: number) {
+    if (this.followedAnimes.includes(animeId))
+      this.followedAnimes = [...new Set(this.followedAnimes.filter((id) => id !== animeId))];
+    else 
+      this.followedAnimes = [...new Set([...this.followedAnimes, animeId])];
   }
 }

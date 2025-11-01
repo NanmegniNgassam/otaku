@@ -1,6 +1,7 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Anime, AnimeGenre } from '../../models/anime';
 import { RouterLink } from "@angular/router";
+
 
 @Component({
   selector: 'app-anime-card',
@@ -13,9 +14,14 @@ import { RouterLink } from "@angular/router";
 export class AnimeCardComponent implements OnInit {
   @Input() anime!: Anime;
   genresAndThemes: AnimeGenre[] = [];
-  @Input() isAnimeLiked!:boolean;
+  @Input() isAnimeFollowed!:boolean;
+  @Output() toggle = new EventEmitter<number>();
 
   ngOnInit() {
     this.genresAndThemes = this.anime.genres.concat(this.anime.themes);
+  }
+
+  onToggleFollow() {
+
   }
 }

@@ -1,45 +1,52 @@
 @if(anime) {
-  <a [routerLink]="['/animes', anime.mal_id]">
-    <div class="card-container">
+  <div class="card-container">
+    <a [routerLink]="['/animes', anime.mal_id]">
       <div class="image-container">
         <img [src]="anime.images.jpg.large_image_url">
       </div>
-      <div class="content">
-        <div class="header">
+    </a>
+    <div class="content">
+      <div class="header">
+        <a [routerLink]="['/animes', anime.mal_id]">
           <p class="title" [title]="anime.title_english || anime.title">
             {{ anime.title_english || anime.title }}
           </p>
-          <ion-icon class="star-button" [name]="isAnimeLiked ? 'star' : 'star-outline'" style="color: #ffb800"></ion-icon>
-        </div>
-        
+        </a>
+        <ion-icon 
+          class="star-button" 
+          [name]="isAnimeLiked ? 'star' : 'star-outline'" 
+          style="color: #ffb800"
+        >
+        </ion-icon>
+      </div>
+      
 
-        <div class="additionnal-container">
-          <div class="additionnal-section">
-            <div class="label"> Episodes </div>
-            <div class="value"> {{ anime.episodes || 'N/A' }} </div>
-          </div>
-          <div class="additionnal-section duration">
-            <div class="label"> Durée </div>
-            <div class="value"> {{ anime.duration || 'N/A' }} </div>
-          </div>
-          <div class="additionnal-section">
-            <div class="label"> Score </div>
-            <div class="value"> {{ anime.score || 'N/A' }} </div>
-          </div>
+      <div class="additionnal-container">
+        <div class="additionnal-section">
+          <div class="label"> Episodes </div>
+          <div class="value"> {{ anime.episodes || 'N/A' }} </div>
         </div>
-
-        <div class="genres-container">
-          <p class="genres-container-label">Genres & Thèmes</p> 
-          @if ( genresAndThemes.length ) {
-            @for (genre of genresAndThemes.slice(0,6); track $index) {
-              <div class="anime-genre"> {{ genre.name }} </div>
-            }
-          } @else {
-            <p class="no-genres-found">Cette production n'est associé à aucun genre ou thème.</p>
-          }
+        <div class="additionnal-section duration">
+          <div class="label"> Durée </div>
+          <div class="value"> {{ anime.duration || 'N/A' }} </div>
+        </div>
+        <div class="additionnal-section">
+          <div class="label"> Score </div>
+          <div class="value"> {{ anime.score || 'N/A' }} </div>
         </div>
       </div>
+
+      <div class="genres-container">
+        <p class="genres-container-label">Genres & Thèmes</p> 
+        @if ( genresAndThemes.length ) {
+          @for (genre of genresAndThemes.slice(0,6); track $index) {
+            <div class="anime-genre"> {{ genre.name }} </div>
+          }
+        } @else {
+          <p class="no-genres-found">Cette production n'est associé à aucun genre ou thème.</p>
+        }
+      </div>
     </div>
-  </a>
+  </div>
 }
 

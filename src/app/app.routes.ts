@@ -34,6 +34,7 @@ export const routes: Routes = [
   },
   {
     path: 'my-list',
+    canActivate: [AuthGuard],
     component: MyListComponent,
     title: 'Otaku | My Animes List'
   },

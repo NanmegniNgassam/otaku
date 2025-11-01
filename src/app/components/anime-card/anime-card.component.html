@@ -7,10 +7,8 @@
     </a>
     <div class="content">
       <div class="header">
-        <a [routerLink]="['/animes', anime.mal_id]">
-          <p class="title" [title]="anime.title_english || anime.title">
-            {{ anime.title_english || anime.title }}
-          </p>
+        <a class="title" [routerLink]="['/animes', anime.mal_id]" [title]="anime.title_english || anime.title">
+          {{ anime.title_english || anime.title }}
         </a>
         <ion-icon 
           class="star-button" 

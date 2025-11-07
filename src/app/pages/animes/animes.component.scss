@@ -1,0 +1,20 @@
+h1.page-title {
+  position: relative;
+  display: inline-block; /* pour que la ligne s’adapte à la largeur du texte */
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 45px;
+  color: #222; /* couleur du texte */
+  
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 25%;
+    height: 10px;
+    background-color: var(--primary-color);
+    clip-path: polygon(0% 0%, 100% 0%, 95% 100%, 0% 100%);
+  }
+}
+

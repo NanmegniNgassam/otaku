@@ -1,7 +1,7 @@
 @if(animes.length) {
   <div class="container">
     @for (anime of animes; track $index) {
-      @if (anime) {
+      @if (anime && followedAnimes) {
         <app-anime-card 
           [anime]="anime" 
           [isFollowed]="followedAnimes.includes(anime.mal_id)"

@@ -3,17 +3,19 @@ import { UserService } from '../../services/user.service';
 import { Anime } from '../../models/anime';
 import { AnimeService } from '../../services/anime.service';
 import { UserData } from '../../models/user';
+import { AnimesListComponent } from '../../components/animes-list/animes-list.component';
 
 @Component({
   selector: 'app-my-list',
   standalone: true,
-  imports: [],
+  imports: [AnimesListComponent],
   templateUrl: './my-list.component.html',
   styleUrl: './my-list.component.scss'
 })
 export class MyListComponent implements OnInit {
   animes: Anime[] = [];
   currentUser!:UserData;
+  protected skeletons: undefined[] = Array(18).fill(undefined);
 
   constructor(
     private user: UserService,
@@ -22,6 +24,9 @@ export class MyListComponent implements OnInit {
 
   async ngOnInit() {
     this.currentUser = await this.user.fetchUserData();
-    console.log("Liked animes : ", this.currentUser.animeListIds);
+
+    this.animes = await Promise.all(
+      [...this.currentUser.animeListIds.map(async (id) => await this.anime.getAnimeById(id))]
+    )
   }
 }

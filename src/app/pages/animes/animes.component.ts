@@ -13,7 +13,7 @@ import AuthService from '../../services/auth.service';
 })
 export class AnimesComponent {
   protected animes:Anime[] | null = null;
-  protected skeletons: undefined[] = Array(18).fill(undefined);
+  protected skeletons: undefined[] = Array(20).fill(undefined);
 
   constructor(
     protected auth: AuthService,

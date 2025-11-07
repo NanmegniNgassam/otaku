@@ -13,9 +13,9 @@ import { AnimesListComponent } from '../../components/animes-list/animes-list.co
   styleUrl: './my-list.component.scss'
 })
 export class MyListComponent implements OnInit {
-  animes: Anime[] = [];
+  animes: Anime[] | null = null;
   currentUser!:UserData;
-  protected skeletons: undefined[] = Array(18).fill(undefined);
+  protected skeletons: undefined[] = Array(10).fill(undefined);
 
   constructor(
     private user: UserService,

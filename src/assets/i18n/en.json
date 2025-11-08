@@ -56,6 +56,12 @@
     "landing": {
 
     },
+    "animes": {
+      "title": "Popular animes"
+    },
+    "myList": {
+      "title": "My anime list"
+    },
     "signin": {
       "title": "Create an account",
       "signinEmailLabel": "Type your email address",

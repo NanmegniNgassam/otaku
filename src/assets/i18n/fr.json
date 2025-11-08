@@ -56,6 +56,12 @@
     "landing": {
 
     },
+    "animes": {
+      "title": "Animes en vogue"
+    },
+    "myList": {
+      "title": "Ma liste d'animes"
+    },
     "signin": {
       "title": "Créez-vous un compte",
       "signinEmailLabel": "Entrez votre adresse e-mail",

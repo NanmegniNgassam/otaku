@@ -4,11 +4,12 @@ import { Anime } from '../../models/anime';
 import { AnimeService } from '../../services/anime.service';
 import { UserData } from '../../models/user';
 import { AnimesListComponent } from '../../components/animes-list/animes-list.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-my-list',
   standalone: true,
-  imports: [AnimesListComponent],
+  imports: [AnimesListComponent, TranslateModule],
   templateUrl: './my-list.component.html',
   styleUrl: './my-list.component.scss'
 })

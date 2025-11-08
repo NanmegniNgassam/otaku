@@ -3,11 +3,12 @@ import { AnimesListComponent } from '../../components/animes-list/animes-list.co
 import { Anime } from '../../models/anime';
 import { AnimeService } from '../../services/anime.service';
 import AuthService from '../../services/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [AnimesListComponent],
+  imports: [AnimesListComponent, TranslateModule],
   templateUrl: './animes.component.html',
   styleUrl: './animes.component.scss'
 })

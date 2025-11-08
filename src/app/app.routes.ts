@@ -40,6 +40,7 @@ export const routes: Routes = [
   },
   {
     path: 'quests',
+    canActivate: [AuthGuard],
     component: QuestsComponent,
     title: 'Otaku | Quests'
   },

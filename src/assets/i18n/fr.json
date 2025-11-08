@@ -5,7 +5,8 @@
     "header": {
       "links": {
         "animes": "Animes",
-        "discovery": "Découvertes",
+        "discovery": "Découvertes",        
+        "quests": "Quêtes",
         "signup": "Créer un compte",
         "animeList": "Ma liste" 
       }

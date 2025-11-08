@@ -19,11 +19,6 @@
           {{ "components.header.links.animes" | translate }}
         </a>
       </li>
-      <li routerLinkActive="active">
-        <a routerLink="/quests">
-          {{ "components.header.links.discovery" | translate }}
-        </a>
-      </li>
       @if (user$ | async; as user) {
       <app-sign-in-links [user]="user" />
       } @else {

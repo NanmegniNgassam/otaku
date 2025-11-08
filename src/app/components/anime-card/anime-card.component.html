@@ -23,21 +23,23 @@
 
       <div class="additionnal-container">
         <div class="additionnal-section">
-          <div class="label"> Episodes </div>
+          <div class="label"> {{ "components.animeCard.episodes" | translate }} </div>
           <div class="value"> {{ anime.episodes || 'N/A' }} </div>
         </div>
         <div class="additionnal-section duration">
-          <div class="label"> Durée </div>
+          <div class="label"> {{ "components.animeCard.duration" | translate }} </div>
           <div class="value"> {{ anime.duration || 'N/A' }} </div>
         </div>
         <div class="additionnal-section">
-          <div class="label"> Score </div>
+          <div class="label"> {{ "components.animeCard.score" | translate }} </div>
           <div class="value"> {{ anime.score || 'N/A' }} </div>
         </div>
       </div>
 
       <div class="genres-container">
-        <p class="genres-container-label">Genres & Thèmes</p> 
+        <p class="genres-container-label">
+          {{ "components.animeCard.genres" | translate }} & {{ "components.animeCard.themes" | translate }}
+        </p> 
         @if ( genresAndThemes.length ) {
           @for (genre of genresAndThemes.slice(0,6); track $index) {
             <div class="anime-genre"> {{ genre.name }} </div>

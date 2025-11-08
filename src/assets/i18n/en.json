@@ -2,6 +2,13 @@
   "general": {
   },
   "components": {
+    "animeCard": {
+      "episodes": "Episodes",
+      "duration": "Duration",
+      "score": "Score",
+      "themes": "Themes",
+      "genres": "Genres"
+    },
     "header": {
       "links": {
         "animes": "Animes",

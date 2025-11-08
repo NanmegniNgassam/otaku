@@ -1,12 +1,13 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Anime, AnimeGenre } from '../../models/anime';
 import { RouterLink } from "@angular/router";
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-anime-card',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TranslateModule],
   templateUrl: './anime-card.component.html',
   styleUrl: './anime-card.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

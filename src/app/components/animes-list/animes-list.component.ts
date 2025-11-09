@@ -15,7 +15,7 @@ import { UserService } from '../../services/user.service';
 export class AnimesListComponent implements OnInit {
   @Input() animes!: Anime[] | undefined[];
   currentUserDoc!: UserData;
-  followedAnimes!: number[];
+  followedAnimes: number[] = [];
 
   constructor(private userService: UserService) {}
 

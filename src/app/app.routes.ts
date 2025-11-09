@@ -15,6 +15,7 @@ import path from 'path';
 import { AnimeComponent } from './pages/anime/anime.component';
 import { MyListComponent } from './pages/my-list/my-list.component';
 import { QuestsComponent } from './pages/quests/quests.component';
+import { GamesHistoryComponent } from './pages/games-history/games-history.component';
 
 export const routes: Routes = [
   {
@@ -73,6 +74,12 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     component: EditComponent,
     title: 'Otaku | Edition'
+  },
+  {
+    path: 'account/games-history',
+    canActivate: [AuthGuard],
+    component: GamesHistoryComponent,
+    title: 'Otaku | Xp History'
   },
   {
     path: 'account/ranking',

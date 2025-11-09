@@ -33,6 +33,7 @@ export class AccountComponent implements OnInit {
     params: { forbiddenGenres: [] },
     position: 0,
     playerName: this.auth.currentUser?.displayName!,
+    games: [],
     notifications: []
   }; 
 

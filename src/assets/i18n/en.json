@@ -123,6 +123,7 @@
     "account": {
       "creationDateLabel": "Member since",
       "achievementsTitle": "Achievements",
+      "creditsCountLabel": "Credits",
       "QuestsCountLabel": "Quests",
       "chestRaceTitle": "Treasure hunt", 
       "chestRaceHint": "Once the chest is open, click on it to collect its content.",

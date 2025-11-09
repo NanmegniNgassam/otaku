@@ -123,6 +123,7 @@
     "account": {
       "creationDateLabel": "Membre depuis",
       "achievementsTitle": "Accomplissements",
+      "creditsCountLabel": "Crédits",
       "QuestsCountLabel": "Quêtes",
       "chestRaceTitle": "Chasse au trésor", 
       "chestRaceHint": "Une fois le coffre ouvert, cliquez dessus pour récupérer son contenu.",

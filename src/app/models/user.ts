@@ -1,3 +1,5 @@
+import { Game } from "./party";
+
 export interface UserData {
   level: 's'|'a'|'b'|'c'|'d'|'e'|'f';
   xp: number;
@@ -8,6 +10,7 @@ export interface UserData {
   params: {forbiddenGenres: string[]};
   position: number;
   playerName: string;
+  games: Game[];
   notifications: Notification[];
 }
 

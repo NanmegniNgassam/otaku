@@ -29,6 +29,7 @@ export class UserService {
    */
   async createUserDocument(userUID: string): Promise<void> {
     try {
+      // Create the basic document in users collection
       await setDoc(doc(this.db, USERS_COLLECTION, userUID), {
         level: 'f',
         xp: 0,
@@ -39,6 +40,7 @@ export class UserService {
         params: { forbiddenGenres: EXPLICIT_CONTENT_GENRES },
         position: null,
         playerName: this.auth.currentUser?.displayName,
+        games: [],
         notifications: [
           {
             type: 'info',
@@ -51,6 +53,7 @@ export class UserService {
         ]
       });
 
+      // Create the basic document in games collection
       await setDoc(doc(this.db, GAMES_COLLECTION, userUID), {
         games: [],
       });
@@ -71,7 +74,7 @@ export class UserService {
         const unsub = onAuthStateChanged(this.auth, (u) => {
           unsub(); // stop listening once we get an answer
           if (u) resolve(u);
-          else reject(new Error("No authenticated user"));
+          else reject(new Error("User not authenticated"));
         });
       });
 

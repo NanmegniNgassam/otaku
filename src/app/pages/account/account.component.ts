@@ -26,6 +26,7 @@ export class AccountComponent implements OnInit {
   _userData: UserData = {
     level: 'f',
     xp: 0,
+    credits: 0,
     quests: 0,
     favoriteGenres: [],
     animeListIds: [],

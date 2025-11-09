@@ -3,6 +3,7 @@ import { Game } from "./party";
 export interface UserData {
   level: 's'|'a'|'b'|'c'|'d'|'e'|'f';
   xp: number;
+  credits: number;
   quests: number;
   favoriteGenres: string[];
   animeListIds: number[];

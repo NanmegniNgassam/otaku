@@ -9,6 +9,7 @@ const USERS_COLLECTION = "users";
 const OVERVIEW_COLLECTION = 'overview'
 const RANKING_DOC = 'players-ranking'
 const GENERAL_USERS_DOC = 'users';
+const GAMES_COLLECTION = 'games';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +49,11 @@ export class UserService {
             date: new Date().toLocaleString("en-EN")
           }
         ]
-      })
+      });
+
+      await setDoc(doc(this.db, GAMES_COLLECTION, userUID), {
+        games: [],
+      });
     } catch (error) {
       console.error("Error while creating userDoc : ", error);
       throw(error);

@@ -38,9 +38,15 @@
               }
             </div>
           </div>
-          <div class="actions">
-            <p>Définir comme favori</p>
-            
+          <div class="actions row">
+            <p class="themes-meta meta">Actions</p>
+            <ion-icon 
+              class="star-button" 
+              [name]="isFollowed ? 'star' : 'star-outline'" 
+              style="color: #ffb800"
+              (click)="toggleAnimeFollowing(animeId)"
+            >
+            </ion-icon>
           </div>
           <div class="description row">
             <p class="description-meta meta">Description</p>

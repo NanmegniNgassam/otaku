@@ -2,5 +2,36 @@
   .header {
     display: flex;
     gap: 20px;
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+      .image-container {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .meta {
+        font-weight: 500;
+        font-size: 1.2rem;
+        color: rgb(75, 75, 75);
+      }
+      .data {
+        line-height: 150%;
+        text-align: justify;
+      }
+    }
+    .description-data {
+      text-indent: 3rem;
+    }
+
   }
 }

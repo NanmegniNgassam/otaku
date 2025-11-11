@@ -6,7 +6,7 @@
           <img [src]="anime.images.jpg.large_image_url" [alt]="anime.title + '\'s cover image'">
         </div>
         <div class="details-container">
-          <div class="title">
+          <div class="title row">
             <p class="title-meta meta">Title</p>
             <h1 class="title-data data"> {{ anime.title }} </h1>
           </div>
@@ -14,9 +14,9 @@
             <p>Définir comme favori</p>
             
           </div>
-          <div class="description">
+          <div class="description row">
             <p class="description-meta meta">Description</p>
-            <div class="description-data bar__data">
+            <div class="description-data data">
               {{ anime.synopsis }}
             </div>
           </div>

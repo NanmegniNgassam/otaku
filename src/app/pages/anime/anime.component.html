@@ -15,10 +15,26 @@
             <div class="genres-container data">
               @if ( anime.genres.length ) {
                 @for (genre of anime.genres; track $index) {
-                  <div class="anime-genre"> {{ genre.name }} </div>
+                  <div 
+                    [class]="'anime-genre ' + (favoriteGenres.includes(genre.name) ? 'favorite' : '') + ' ' + (forbiddenGenres.includes(genre.name) ? 'forbidden' : '') "
+                  > 
+                    {{ genre.name }} 
+                  </div>
                 }
               } @else {
                 <p class="no-genres-found">Cette production n'est associé à aucun genre.</p>
+              }
+            </div>
+          </div>
+          <div class="themes row">
+            <p class="themes-meta meta">Thèmes</p>
+            <div class="genres-container data">
+              @if ( anime.genres.length ) {
+                @for (genre of anime.genres; track $index) {
+                  <div class="anime-genre"> {{ genre.name }} </div>
+                }
+              } @else {
+                <p class="no-genres-found">Cette production n'est associé à aucun thème.</p>
               }
             </div>
           </div>

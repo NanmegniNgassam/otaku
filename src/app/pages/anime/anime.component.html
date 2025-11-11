@@ -6,9 +6,21 @@
           <img [src]="anime.images.jpg.large_image_url" [alt]="anime.title + '\'s cover image'">
         </div>
         <div class="details-container">
-          <div class="title row">
+          <div class="row">
             <p class="title-meta meta">Title</p>
             <h1 class="title-data data"> {{ anime.title }} </h1>
+          </div>
+          <div class="genres row">
+            <p class="genres-meta meta">Genres</p>
+            <div class="genres-container data">
+              @if ( anime.genres.length ) {
+                @for (genre of anime.genres; track $index) {
+                  <div class="anime-genre"> {{ genre.name }} </div>
+                }
+              } @else {
+                <p class="no-genres-found">Cette production n'est associé à aucun genre.</p>
+              }
+            </div>
           </div>
           <div class="actions">
             <p>Définir comme favori</p>

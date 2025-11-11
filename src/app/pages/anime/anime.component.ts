@@ -28,7 +28,7 @@ export class AnimeComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.animeId = this.route.snapshot.params['id'];
+      this.animeId = +this.route.snapshot.params['id'];
       this.anime = await this.animeService.getAnimeById(this.animeId);
       const currentUser = await this.userService.fetchUserData();
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Anime, AnimeGenre } from '../models/anime';
+import Bottleneck from 'bottleneck';
 
 export const EXPLICIT_CONTENT_GENRES = [
   "Ecchi", "Erotica", "Hentai", "Adult Cast", 
@@ -66,6 +67,22 @@ export class AnimeService {
     const anime = await res.json();
 
     return anime.data as Anime;
+  }
+
+  /**
+   * Get a specific anime using its id.
+   * 
+   * @param id the anime mal_id
+   * @returns the anime requested by its id
+   */
+  async getAnimeByIds(ids: number[]): Promise<Anime[]> {
+    const limiter = new Bottleneck({
+      minTime: 900,   // ~1 request / 900ms -> ≈ 2.8 req/s (safe under 3/s)
+      maxConcurrent: 3
+    });
+    const tasks = ids.map(id => limiter.schedule(() => this.getAnimeById(id)));
+
+    return Promise.all(tasks);
   }
 
   /**

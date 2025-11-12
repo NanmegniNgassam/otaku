@@ -26,8 +26,7 @@ export class MyListComponent implements OnInit {
   async ngOnInit() {
     this.currentUser = await this.user.fetchUserData();
 
-    this.animes = await Promise.all(
-      [...this.currentUser.animeListIds.map(async (id) => await this.anime.getAnimeById(id))]
-    )
+    const animeIds = [...this.currentUser.animeListIds];
+    this.animes = await this.anime.getAnimeByIds(animeIds);
   }
 }

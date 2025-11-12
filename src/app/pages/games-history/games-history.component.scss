@@ -1,0 +1,221 @@
+.wrapper {
+  max-width: 750px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  .title {
+    text-align: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+  }
+  .filters-box {
+    .indication {
+      text-align: center;
+      font-style: italic;
+    }
+    .filter-options {
+      max-width: fit-content;
+      margin: 10px auto;
+      display: flex;
+      gap: 20px;
+      .filter-option {
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.47, 0, 0.745, 0.715);
+        &:hover {
+          background-color: #ddd;
+        }
+        &.selected {
+          color: #fff;
+          &.action {
+            background-color: var(--error-color);
+            border-color: var(--error-color);
+          }
+          &.ranking {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+          }
+          &.info {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+          }
+        }
+      }
+    }
+  }
+  .notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .notification {
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      border-right: 10px solid var(--error-color);
+      min-height: 80px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      &:hover {
+        border-color: black;
+      }
+      &.action {
+        border-right-color: var(--error-color);
+        .notif-title {
+          color: var(--error-color);
+        }
+      }
+      &.info {
+        border-right-color: var(--primary-color);
+        .notif-title {
+          color: var(--primary-color);
+        }
+      }
+      &.ranking {
+        border-right-color: var(--secondary-color);
+        .notif-title {
+          color: var(--secondary-color);
+        }
+      }
+
+      .notif-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.3rem;
+        span {
+          font-weight: 500;
+        }
+      }
+      .actions {
+        max-width: fit-content;
+        align-self: last baseline;
+        a {
+          display: block;
+          padding: 10px 15px;
+          border: 1px solid #222;
+          color: #222;
+          border-radius: 5px;
+          transition: all 0.42s cubic-bezier(0.075, 0.82, 0.165, 1);
+          &:hover {
+            background-color: #222;
+            color: #fff;
+          }
+        }
+        .appreciations {
+          font-weight: 600;
+          &.good {
+            color: green;
+          }
+          &.medium {
+            color: darkorange;
+          }
+        }
+      }
+      .time {
+        font-size: 0.8rem;
+        font-style: italic;
+      }
+    }
+    .date-line-separation {
+      position: relative;
+      margin: 20px 0;
+      text-align: center;
+      z-index: 1;
+      &::after {
+        content: "";
+        position: absolute;
+        border: 1px solid grey;
+        width: 100%;
+        left: 0;
+        top: 50%;
+        z-index: -1;
+      }
+      .date {
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 0 20px;
+        color: grey;
+      }
+    }
+    .no-more-notifs {
+      text-align: center;
+      color: grey;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .wrapper {
+    width: 90%;
+    .title {
+      font-size: 2rem;
+    }
+    .notifications {
+      .date-line-separation {
+        margin: 15px 0;
+        &::after {
+          border: 0.5px solid grey;
+        }
+        .date {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    width: 95%;
+    gap: 20px;
+    .backward-group {
+      font-size: 0.9rem;
+    }
+    .title {
+      font-size: 1.6rem;
+      gap: 20px;
+    }
+    .filters-box {
+      .filter-options {
+        flex-wrap: wrap;
+        gap: 10px;
+        .filter-option {
+          padding: 8px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+    .notifications {
+      .notification {
+        .notif-title {
+          font-size: 1.1rem;
+        }
+        .notif-content {
+          font-size: 0.9rem;
+        }
+
+        .actions {
+          max-width: fit-content;
+          align-self: last baseline;
+          a {
+            padding: 8px;
+          }
+          .appreciations {
+            font-weight: 500;
+          }
+        }
+        .time {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

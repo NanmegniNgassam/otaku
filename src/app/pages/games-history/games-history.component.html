@@ -1,1 +1,60 @@
-<p>games-history works!</p>
+<div class="wrapper">
+  <div class="backward-group" routerLink="/account">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+    {{ "others.navigation.backwardLabel" | translate }}
+  </div>
+  <h1 class="title">Historique des récompenses</h1>
+  <div class="notifications">
+    @for (notificationsGroup of notificationsGroups; track $index) { @for (
+    notification of notificationsGroup; track $index) {
+    <div [class]="'notification ' + notification.type">
+      <span class="notif-title">
+        <span> {{ notification.title.toUpperCase() }} </span>
+        @if(notification.isUnread) {
+        <ion-icon name="mail-unread-outline"></ion-icon>
+        }
+      </span>
+      <p class="notif-content">
+        {{ notification.message }}
+      </p>
+      <div class="actions">
+        @if(notification.action) {
+        <a [routerLink]="notification.action">
+          {{ "pages.notifications.takeActionLabel" | translate }}
+        </a>
+        } @else if (notification.isPositive) {
+        <span class="appreciations good">
+          {{ "pages.notifications.congratsAppreciation" | translate }}
+        </span>
+        } @else {
+        <span class="appreciations medium">
+          {{ "pages.notifications.mediumAppreciation" | translate }}
+        </span>
+        }
+      </div>
+      <span class="time">
+        {{ "pages.notifications.receivedLabel" | translate }}
+        {{ notification.date.toLocaleDateString() }} |
+        {{ notification.date.toLocaleTimeString() }}
+      </span>
+    </div>
+    }
+    <!-- Set the date-line-separator -->
+    @if (notificationsGroup.length) { @if ($index == 0) {
+    <div class="date-line-separation">
+      <span class="date">
+        {{ "pages.notifications.unreadLabel" | translate }}
+      </span>
+    </div>
+    } @else {
+    <div class="date-line-separation">
+      <span class="date">
+        {{ notificationsGroup[0].date.toLocaleDateString() }}
+      </span>
+    </div>
+    } } }
+    <p class="no-more-notifs">
+      {{ "pages.notifications.noMoreNotifs" | translate }}
+    </p>
+  </div>
+</div>

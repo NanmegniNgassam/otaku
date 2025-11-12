@@ -29,9 +29,9 @@
           <div class="themes row">
             <p class="themes-meta meta">Thèmes</p>
             <div class="genres-container data">
-              @if ( anime.genres.length ) {
-                @for (genre of anime.genres; track $index) {
-                  <div class="anime-genre"> {{ genre.name }} </div>
+              @if ( anime.themes.length ) {
+                @for (theme of anime.themes; track $index) {
+                  <div class="anime-genre"> {{ theme.name }} </div>
                 }
               } @else {
                 <p class="no-genres-found">Cette production n'est associé à aucun thème.</p>

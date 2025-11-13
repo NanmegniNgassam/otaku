@@ -1,6 +1,7 @@
 import { Game } from "./party";
 
 export type UserLevel = 's'|'a'|'b'|'c'|'d'|'e'|'f';
+export type NotificationType = 'action' | 'ranking' | 'info';
 
 export interface UserData {
   level: UserLevel;
@@ -27,7 +28,7 @@ export interface Ranking {
 }
 
 export interface Notification {
-  type: 'action' | 'ranking' | 'info';
+  type: NotificationType;
   title: string;
   message: string;
   isUnread: boolean;

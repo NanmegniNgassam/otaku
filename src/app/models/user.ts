@@ -1,7 +1,9 @@
 import { Game } from "./party";
 
+export type UserLevel = 's'|'a'|'b'|'c'|'d'|'e'|'f';
+
 export interface UserData {
-  level: 's'|'a'|'b'|'c'|'d'|'e'|'f';
+  level: UserLevel;
   xp: number;
   credits: number;
   quests: number;
@@ -20,7 +22,7 @@ export interface Ranking {
   position: number;
   trend: "up" | "down" | "steady";
   xp: number;
-  level: 's'|'a'|'b'|'c'|'d'|'e'|'f';
+  level: UserLevel;
   decoration: "top-three" | "top-ten" | "top-fifty";
 }
 

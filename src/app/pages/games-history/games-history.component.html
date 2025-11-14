@@ -3,7 +3,9 @@
     <ion-icon name="arrow-back-outline"></ion-icon>
     {{ "others.navigation.backwardLabel" | translate }}
   </div>
-  <h1 class="title">Historique des récompenses</h1>
+  <h1 class="title">
+    {{ "pages.gamesHistory.title" | translate }}
+  </h1>
   <div class="notifications">
     @for (notificationsGroup of notificationsGroups; track $index) { @for (
     notification of notificationsGroup; track $index) {
@@ -54,7 +56,7 @@
     </div>
     } } }
     <p class="no-more-notifs">
-      {{ "pages.notifications.noMoreNotifs" | translate }}
+      {{ "pages.gamesHistory.noMoreHistory" | translate }}
     </p>
   </div>
 </div>

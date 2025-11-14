@@ -172,6 +172,13 @@
       "lessSuggestions": "Less suggestions",
       "noAvailableSuggestions": "No more suggestions available!"
     },
+    "gamesHistory": {
+      "title": "Rewards History",
+      "filterHintLabel": "Select a category",
+      "receivedLabel": "Received on",
+      "unreadLabel": "Unread",
+      "noMoreHistory": "Your reward history starts here!"
+    },
     "settings": {
       "title": "Settings",
       "editUserProfil": "Edit my user profile",

@@ -131,7 +131,7 @@
         "notifications": "Notifications",
         "settings": "Paramètres",
         "edition": "Edition",
-        "gamesHistory": "Historique de points",
+        "gamesHistory": "Historique de récompenses",
         "ranking": "Classement",
         "logout": "Deconnexion"
       }
@@ -171,6 +171,13 @@
       "moreSuggestions": "Plus de suggestions",
       "lessSuggestions": "Moins de suggestions",
       "noAvailableSuggestions": "Aucune suggestion disponible !"
+    },
+    "gamesHistory": {
+      "title": "Historique des récompenses",
+      "filterHintLabel": "Sélectionner une catégorie",
+      "receivedLabel": "Reçu le",
+      "unreadLabel": "Non lue(s)",
+      "noMoreHistory": "Votre historique de récompenses commence ici!"
     },
     "settings": {
       "title": "Paramètres",

@@ -20,7 +20,8 @@ import { GamesHistoryComponent } from './pages/games-history/games-history.compo
 export const routes: Routes = [
   {
     path: '',
-    component: LandingComponent,
+    // component: LandingComponent,
+    component: AnimesComponent,
     title: `Otaku | Landing`
   },
   {

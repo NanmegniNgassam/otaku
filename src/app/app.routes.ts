@@ -1,21 +1,19 @@
 import { Routes } from '@angular/router';
 import { AuthGuard, EmailVerificationGuard, NoAuthGuard } from './guards/auth.guard';
 import { AccountComponent } from './pages/account/account.component';
-import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
-import { LandingComponent } from './pages/landing/landing.component';
-import { SigninComponent } from './pages/signin/signin.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
-import { NotificationsComponent } from './pages/notifications/notifications.component';
-import { SettingsComponent } from './pages/settings/settings.component';
-import { EditComponent } from './pages/edit/edit.component';
-import { RankingComponent } from './pages/ranking/ranking.component';
-import { AnimesComponent } from './pages/animes/animes.component';
-import path from 'path';
 import { AnimeComponent } from './pages/anime/anime.component';
-import { MyListComponent } from './pages/my-list/my-list.component';
-import { QuestsComponent } from './pages/quests/quests.component';
+import { AnimesComponent } from './pages/animes/animes.component';
+import { EditComponent } from './pages/edit/edit.component';
+import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
 import { GamesHistoryComponent } from './pages/games-history/games-history.component';
+import { MyListComponent } from './pages/my-list/my-list.component';
+import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { QuestsComponent } from './pages/quests/quests.component';
+import { RankingComponent } from './pages/ranking/ranking.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { SigninComponent } from './pages/signin/signin.component';
 
 export const routes: Routes = [
   {

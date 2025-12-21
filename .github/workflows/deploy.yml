@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 20
       - run: |
-          npm ci
+          npm i
           mkdir build
           npm run build
           cp -r dist/otaku/browser/* build/

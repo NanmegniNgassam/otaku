@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { Toast, ToastType } from '../../models/toast';
+import { Toast, ToastType } from '../../../models/toast';
 
 @Component({
     selector: 'app-toast',

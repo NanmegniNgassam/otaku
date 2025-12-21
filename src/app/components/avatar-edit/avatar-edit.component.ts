@@ -7,7 +7,7 @@ import { UserData } from '../../models/user';
 import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils.service';
-import { ToastComponent } from '../toast/toast.component';
+import { ToastComponent } from '../../shared/components/toast/toast.component';
 
 @Component({
     selector: 'app-avatar-edit',

@@ -9,7 +9,7 @@ import { AnimeService } from '../../services/anime.service';
 import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils.service';
-import { ToastComponent } from '../toast/toast.component';
+import { ToastComponent } from '../../shared/components/toast/toast.component';
 
 const DEFAULT_MAX_ANIME_GENRES_SHOWN = 6;
 const DEFAULT_MIN_SUGGESTIONS = 8;

@@ -3,7 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnChanges, OnInit, SimpleChanges } f
 import { User } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
 import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ToastComponent } from '../../components/toast/toast.component';
+import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { Toast } from '../../models/toast';
 import AuthService from '../../services/auth.service';
 

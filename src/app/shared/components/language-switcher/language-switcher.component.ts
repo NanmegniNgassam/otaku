@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { AVAILABLE_LANGUAGES, DEFAULT_APP_LANGUAGE, DEVICE_CHOSEN_LANGUAGE_KEY } from '../../../configs/language';
+import { AVAILABLE_LANGUAGES, DEFAULT_APP_LANGUAGE, DEVICE_CHOSEN_LANGUAGE_KEY } from '../../../../configs/language';
 
 @Component({
     selector: 'app-language-switcher',

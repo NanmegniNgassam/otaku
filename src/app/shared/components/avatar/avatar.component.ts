@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { getAuth, User } from '@angular/fire/auth';
-import { UtilsService } from '../../services/utils.service';
+import { UtilsService } from '../../../services/utils.service';
 
 @Component({
     selector: 'app-avatar',

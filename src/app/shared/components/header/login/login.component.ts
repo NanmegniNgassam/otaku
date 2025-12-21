@@ -3,9 +3,9 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, OnInit } from '@angular/core
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { Toast } from '../../../models/toast';
-import AuthService from '../../../services/auth.service';
 import { ToastComponent } from '../../toast/toast.component';
+import { Toast } from '../../../../models/toast';
+import AuthService from '../../../../services/auth.service';
 
 @Component({
     selector: 'app-login',

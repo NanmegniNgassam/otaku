@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { ToastComponent } from '../../toast/toast.component';
 
 @Component({
     selector: 'app-login',
-    imports: [CommonModule, ToastComponent, ReactiveFormsModule, TranslatePipe],
+    imports: [ToastComponent, ReactiveFormsModule, TranslatePipe],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

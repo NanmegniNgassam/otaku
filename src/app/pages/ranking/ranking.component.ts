@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -9,7 +8,7 @@ import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'app-ranking',
-    imports: [CommonModule, RouterLink, TranslateModule, ReactiveFormsModule],
+    imports: [RouterLink, TranslateModule, ReactiveFormsModule],
     templateUrl: './ranking.component.html',
     styleUrl: './ranking.component.scss',
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

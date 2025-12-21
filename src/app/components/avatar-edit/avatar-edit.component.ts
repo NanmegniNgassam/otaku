@@ -2,7 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { updateProfile } from '@angular/fire/auth';
 import { TranslateModule } from '@ngx-translate/core';
-import { Toast } from '../../models/toast';
+import { Toast } from '../../shared/models/toast';
 import { UserData } from '../../models/user';
 import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';

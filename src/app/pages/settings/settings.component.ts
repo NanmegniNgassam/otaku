@@ -5,7 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AvatarComponent } from "../../shared/components/avatar/avatar.component";
 import { ToastComponent } from "../../shared/components/toast/toast.component";
-import { Toast } from '../../models/toast';
+import { Toast } from '../../shared/models/toast';
 import { UserData } from '../../models/user';
 import { AnimeService, EXPLICIT_CONTENT_GENRES } from '../../services/anime.service';
 import AuthService from '../../services/auth.service';

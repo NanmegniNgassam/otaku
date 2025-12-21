@@ -3,7 +3,7 @@ import { updateProfile } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { Toast } from '../../models/toast';
+import { Toast } from '../../shared/models/toast';
 import { UserData } from '../../models/user';
 import { AnimeService } from '../../services/anime.service';
 import AuthService from '../../services/auth.service';

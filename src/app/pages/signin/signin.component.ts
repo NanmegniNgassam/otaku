@@ -2,7 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastComponent } from "../../shared/components/toast/toast.component";
-import { Toast } from '../../models/toast';
+import { Toast } from '../../shared/models/toast';
 import AuthService from '../../services/auth.service';
 
 // TODO: All the errors should be handled by the services.

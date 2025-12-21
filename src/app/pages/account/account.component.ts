@@ -3,7 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
-import { Toast } from '../../models/toast';
+import { Toast } from '../../shared/models/toast';
 import { Notification, UserData } from '../../models/user';
 import AuthService from '../../services/auth.service';
 import { UserService } from '../../services/user.service';

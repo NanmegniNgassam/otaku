@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ToastComponent } from '../../toast/toast.component';
-import { Toast } from '../../../../models/toast';
+import { Toast } from '../../../models/toast';
 import AuthService from '../../../../services/auth.service';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVerification, signInWithPopup, signOut, updateProfile, User, user, UserCredential } from "@angular/fire/auth";
+import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, sendEmailVerification, signInWithPopup, signOut, updateProfile, user, UserCredential } from "@angular/fire/auth";
 import { Router } from "@angular/router";
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from "@firebase/auth";
+import { GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, User } from "@firebase/auth";
 import { TranslateService } from "@ngx-translate/core";
 import { setPersistence } from "firebase/auth";
 import { LoginCredential, SigninCredential } from "../models/others";

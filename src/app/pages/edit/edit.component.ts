@@ -5,12 +5,11 @@ import { UserFormComponent } from '../../components/user-form/user-form.componen
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-edit',
-  standalone: true,
-  imports: [ TranslateModule, UserFormComponent, AvatarEditComponent, RouterModule],
-  templateUrl: './edit.component.html',
-  styleUrl: './edit.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-edit',
+    imports: [TranslateModule, UserFormComponent, AvatarEditComponent, RouterModule],
+    templateUrl: './edit.component.html',
+    styleUrl: './edit.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EditComponent {
 }

@@ -5,12 +5,11 @@ import { Anime } from '../../models/anime';
 import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-anime',
-  standalone: true,
-  imports: [],
-  templateUrl: './anime.component.html',
-  styleUrl: './anime.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-anime',
+    imports: [],
+    templateUrl: './anime.component.html',
+    styleUrl: './anime.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AnimeComponent implements OnInit {
   protected animeId!: number;

@@ -9,12 +9,11 @@ import { SignInLinksComponent } from "./sign-in-links/sign-in-links.component";
 import { SignOutLinksComponent } from "./sign-out-links/sign-out-links.component";
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [AsyncPipe, SignInLinksComponent, SignOutLinksComponent, TranslateModule, LoginComponent, RouterLink, RouterLinkActive],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-header',
+    imports: [AsyncPipe, SignInLinksComponent, SignOutLinksComponent, TranslateModule, LoginComponent, RouterLink, RouterLinkActive],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HeaderComponent implements OnInit {
   isNavMenuOpen!:boolean;

@@ -8,12 +8,15 @@ import AuthService from '../../services/auth.service';
 // TODO: All the errors should be handled by the services.
 
 @Component({
-  selector: 'app-signin',
-  standalone: true,
-  imports: [TranslateModule, ReactiveFormsModule, ToastComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './signin.component.html',
-  styleUrl: './signin.component.scss'
+    selector: 'app-signin',
+    imports: [
+      TranslateModule, 
+      ToastComponent,
+      ReactiveFormsModule
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './signin.component.html',
+    styleUrl: './signin.component.scss'
 })
 export class SigninComponent implements OnInit {
   _signinForm!:FormGroup;

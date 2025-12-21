@@ -3,12 +3,11 @@ import { Modal } from '../../models/modal';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-modal',
-  standalone: true,
-  imports: [TranslateModule],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-modal',
+    imports: [TranslateModule],
+    templateUrl: './modal.component.html',
+    styleUrl: './modal.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ModalComponent {
   @Input() modal!: Modal;

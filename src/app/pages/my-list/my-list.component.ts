@@ -7,11 +7,10 @@ import { AnimesListComponent } from '../../components/animes-list/animes-list.co
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-my-list',
-  standalone: true,
-  imports: [AnimesListComponent, TranslateModule],
-  templateUrl: './my-list.component.html',
-  styleUrl: './my-list.component.scss'
+    selector: 'app-my-list',
+    imports: [AnimesListComponent, TranslateModule],
+    templateUrl: './my-list.component.html',
+    styleUrl: './my-list.component.scss'
 })
 export class MyListComponent implements OnInit {
   animes: Anime[] | null = null;

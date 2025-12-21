@@ -8,12 +8,11 @@ import { Toast } from '../../models/toast';
 import AuthService from '../../services/auth.service';
 
 @Component({
-  selector: 'app-email-verification',
-  standalone: true,
-  imports: [AsyncPipe, RouterLink, TranslateModule, ToastComponent],
-  templateUrl: './email-verification.component.html',
-  styleUrl: './email-verification.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-email-verification',
+    imports: [AsyncPipe, RouterLink, TranslateModule, ToastComponent],
+    templateUrl: './email-verification.component.html',
+    styleUrl: './email-verification.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EmailVerificationComponent implements OnInit {
   user$ = this.auth.user$;

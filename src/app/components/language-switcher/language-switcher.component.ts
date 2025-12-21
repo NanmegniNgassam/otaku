@@ -3,11 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { AVAILABLE_LANGUAGES, DEFAULT_APP_LANGUAGE, DEVICE_CHOSEN_LANGUAGE_KEY } from '../../../configs/language';
 
 @Component({
-  selector: 'app-language-switcher',
-  standalone: true,
-  imports: [],
-  templateUrl: './language-switcher.component.html',
-  styleUrl: './language-switcher.component.scss'
+    selector: 'app-language-switcher',
+    imports: [],
+    templateUrl: './language-switcher.component.html',
+    styleUrl: './language-switcher.component.scss'
 })
 export class LanguageSwitcherComponent implements OnInit {
   _chosenLanguage!:string|null;

@@ -11,12 +11,11 @@ import { UtilsService } from '../../services/utils.service';
 import { AvatarComponent } from "../../components/avatar/avatar.component";
 
 @Component({
-  selector: 'app-account',
-  standalone: true,
-  imports: [AsyncPipe, TranslateModule, ToastComponent, RouterLink, AvatarComponent],
-  templateUrl: './account.component.html',
-  styleUrl: './account.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-account',
+    imports: [AsyncPipe, TranslateModule, ToastComponent, RouterLink, AvatarComponent],
+    templateUrl: './account.component.html',
+    styleUrl: './account.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AccountComponent implements OnInit {
   user$ = this.auth.user$;

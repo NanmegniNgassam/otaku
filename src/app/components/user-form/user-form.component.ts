@@ -17,12 +17,11 @@ const DEFAULT_MAX_GENRES_SUGGESTION = 24;
 const ANIME_GENRE_STEP = 6;
 
 @Component({
-  selector: 'app-user-form',
-  standalone: true,
-  imports: [TranslateModule, ReactiveFormsModule, RouterModule, ToastComponent],
-  templateUrl: './user-form.component.html',
-  styleUrl: './user-form.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-user-form',
+    imports: [TranslateModule, ReactiveFormsModule, RouterModule, ToastComponent],
+    templateUrl: './user-form.component.html',
+    styleUrl: './user-form.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UserFormComponent implements OnInit {
   _userData!:UserData;

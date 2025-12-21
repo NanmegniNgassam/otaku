@@ -4,12 +4,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LanguageSwitcherComponent } from "../language-switcher/language-switcher.component";
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [LanguageSwitcherComponent, TranslateModule, RouterLink],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+    selector: 'app-footer',
+    imports: [LanguageSwitcherComponent, TranslateModule, RouterLink],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
 

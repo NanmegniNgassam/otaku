@@ -8,12 +8,11 @@ import { UserService } from '../../services/user.service';
 export const SELECTION_OPTIONS = ["ranking", "action", "info"]
 
 @Component({
-  selector: 'app-notifications',
-  standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule],
-  templateUrl: './notifications.component.html',
-  styleUrl: './notifications.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-notifications',
+    imports: [CommonModule, RouterLink, TranslateModule],
+    templateUrl: './notifications.component.html',
+    styleUrl: './notifications.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class NotificationsComponent implements OnInit {
   notifications!: Notification[];

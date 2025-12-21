@@ -4,12 +4,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Notification } from '../../models/user';
 
 @Component({
-  selector: 'app-games-history',
-  standalone: true,
-  imports: [TranslateModule, RouterLink],
-  templateUrl: './games-history.component.html',
-  styleUrl: './games-history.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-games-history',
+    imports: [TranslateModule, RouterLink],
+    templateUrl: './games-history.component.html',
+    styleUrl: './games-history.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GamesHistoryComponent {
   notificationsGroups!: Notification[][]

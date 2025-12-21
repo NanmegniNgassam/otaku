@@ -3,11 +3,10 @@ import { getAuth, User } from '@angular/fire/auth';
 import { UtilsService } from '../../services/utils.service';
 
 @Component({
-  selector: 'app-avatar',
-  standalone: true,
-  imports: [],
-  templateUrl: './avatar.component.html',
-  styleUrl: './avatar.component.scss'
+    selector: 'app-avatar',
+    imports: [],
+    templateUrl: './avatar.component.html',
+    styleUrl: './avatar.component.scss'
 })
 export class AvatarComponent {
   _user!: User;

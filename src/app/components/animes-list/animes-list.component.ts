@@ -6,11 +6,10 @@ import { UserData } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-animes-list',
-  standalone: true,
-  imports: [AnimeCardComponent, AnimeSkeletonComponent],
-  templateUrl: './animes-list.component.html',
-  styleUrl: './animes-list.component.scss'
+    selector: 'app-animes-list',
+    imports: [AnimeCardComponent, AnimeSkeletonComponent],
+    templateUrl: './animes-list.component.html',
+    styleUrl: './animes-list.component.scss'
 })
 export class AnimesListComponent implements OnInit {
   @Input() animes!: Anime[] | undefined[];

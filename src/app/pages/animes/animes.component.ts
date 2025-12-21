@@ -6,11 +6,10 @@ import AuthService from '../../services/auth.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-landing',
-  standalone: true,
-  imports: [AnimesListComponent, TranslateModule],
-  templateUrl: './animes.component.html',
-  styleUrl: './animes.component.scss'
+    selector: 'app-landing',
+    imports: [AnimesListComponent, TranslateModule],
+    templateUrl: './animes.component.html',
+    styleUrl: './animes.component.scss'
 })
 export class AnimesComponent {
   protected animes:Anime[] | null = null;

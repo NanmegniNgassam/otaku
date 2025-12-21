@@ -5,11 +5,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CircleAvatarComponent } from "../../circle-avatar/circle-avatar.component";
 
 @Component({
-  selector: 'app-sign-in-links',
-  standalone: true,
-  imports: [CircleAvatarComponent, TranslateModule, RouterLink, RouterLinkActive],
-  templateUrl: './sign-in-links.component.html',
-  styleUrl: './sign-in-links.component.scss'
+    selector: 'app-sign-in-links',
+    imports: [CircleAvatarComponent, TranslateModule, RouterLink, RouterLinkActive],
+    templateUrl: './sign-in-links.component.html',
+    styleUrl: './sign-in-links.component.scss'
 })
 export class SignInLinksComponent {
   @Input() user!: User;

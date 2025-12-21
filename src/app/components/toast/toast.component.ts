@@ -3,12 +3,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Toast, ToastType } from '../../models/toast';
 
 @Component({
-  selector: 'app-toast',
-  standalone: true,
-  imports: [TranslateModule],
-  templateUrl: './toast.component.html',
-  styleUrl: './toast.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-toast',
+    imports: [TranslateModule],
+    templateUrl: './toast.component.html',
+    styleUrl: './toast.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ToastComponent implements OnInit, OnChanges {
   @Input() notification!: Toast | null;

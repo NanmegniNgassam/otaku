@@ -5,12 +5,11 @@ import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-anime-card',
-  standalone: true,
-  imports: [RouterLink, TranslateModule],
-  templateUrl: './anime-card.component.html',
-  styleUrl: './anime-card.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-anime-card',
+    imports: [RouterLink, TranslateModule],
+    templateUrl: './anime-card.component.html',
+    styleUrl: './anime-card.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AnimeCardComponent implements OnInit {
   @Input() anime!: Anime;

@@ -8,12 +8,11 @@ import { Ranking, UserData } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-ranking',
-  standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule, ReactiveFormsModule],
-  templateUrl: './ranking.component.html',
-  styleUrl: './ranking.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-ranking',
+    imports: [CommonModule, RouterLink, TranslateModule, ReactiveFormsModule],
+    templateUrl: './ranking.component.html',
+    styleUrl: './ranking.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class RankingComponent implements OnInit {
   _isSearching:boolean = false;

@@ -10,12 +10,11 @@ import { UtilsService } from '../../services/utils.service';
 import { ToastComponent } from '../toast/toast.component';
 
 @Component({
-  selector: 'app-avatar-edit',
-  standalone: true,
-  imports: [AsyncPipe, TranslateModule, ToastComponent],
-  templateUrl: './avatar-edit.component.html',
-  styleUrl: './avatar-edit.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-avatar-edit',
+    imports: [AsyncPipe, TranslateModule, ToastComponent],
+    templateUrl: './avatar-edit.component.html',
+    styleUrl: './avatar-edit.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AvatarEditComponent {
   user$ = this.auth.user$;

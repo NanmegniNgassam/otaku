@@ -15,12 +15,11 @@ import { ModalComponent } from '../../components/modal/modal.component';
 import { Modal } from '../../models/modal';
 
 @Component({
-  selector: 'app-settings',
-  standalone: true,
-  imports: [TranslateModule, RouterLink, AsyncPipe, ToastComponent, AvatarComponent, ModalComponent, TranslateModule],
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-settings',
+    imports: [TranslateModule, RouterLink, AsyncPipe, ToastComponent, AvatarComponent, ModalComponent, TranslateModule],
+    templateUrl: './settings.component.html',
+    styleUrl: './settings.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SettingsComponent {
   _user$ = this.auth.user$;

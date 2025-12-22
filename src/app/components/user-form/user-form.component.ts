@@ -6,9 +6,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Toast } from '../../shared/models/toast';
 import { UserData } from '../../models/user';
 import { AnimeService } from '../../services/anime.service';
-import AuthService from '../../services/auth.service';
+import AuthService from '../../core/services/auth.service';
 import { UserService } from '../../services/user.service';
-import { UtilsService } from '../../services/utils.service';
+import { UtilsService } from '../../shared/services/utils.service';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 
 const DEFAULT_MAX_ANIME_GENRES_SHOWN = 6;

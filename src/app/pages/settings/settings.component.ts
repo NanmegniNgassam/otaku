@@ -8,9 +8,9 @@ import { ToastComponent } from "../../shared/components/toast/toast.component";
 import { Toast } from '../../shared/models/toast';
 import { UserData } from '../../models/user';
 import { AnimeService, EXPLICIT_CONTENT_GENRES } from '../../services/anime.service';
-import AuthService from '../../services/auth.service';
+import AuthService from '../../core/services/auth.service';
 import { UserService } from '../../services/user.service';
-import { UtilsService } from '../../services/utils.service';
+import { UtilsService } from '../../shared/services/utils.service';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { Modal } from '../../models/modal';
 

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastComponent } from "../../shared/components/toast/toast.component";
 import { Toast } from '../../shared/models/toast';
-import AuthService from '../../services/auth.service';
+import AuthService from '../../core/services/auth.service';
 
 // TODO: All the errors should be handled by the services.
 

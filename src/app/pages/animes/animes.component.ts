@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnimesListComponent } from '../../components/animes-list/animes-list.component';
 import { Anime } from '../../models/anime';
 import { AnimeService } from '../../services/anime.service';
-import AuthService from '../../services/auth.service';
+import AuthService from '../../core/services/auth.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({

@@ -1,11 +1,11 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
-import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import AuthService from '../../core/services/auth.service';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { Toast } from '../../shared/models/toast';
-import AuthService from '../../services/auth.service';
 
 @Component({
     selector: 'app-email-verification',

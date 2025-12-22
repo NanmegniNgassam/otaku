@@ -5,9 +5,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { Toast } from '../../shared/models/toast';
 import { Notification, UserData } from '../../models/user';
-import AuthService from '../../services/auth.service';
+import AuthService from '../../core/services/auth.service';
 import { UserService } from '../../services/user.service';
-import { UtilsService } from '../../services/utils.service';
+import { UtilsService } from '../../shared/services/utils.service';
 import { AvatarComponent } from "../../shared/components/avatar/avatar.component";
 
 @Component({

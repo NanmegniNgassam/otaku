@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ToastComponent } from '../../toast/toast.component';
 import { Toast } from '../../../models/toast';
-import AuthService from '../../../../services/auth.service';
+import AuthService from '../../../../core/services/auth.service';
 
 @Component({
     selector: 'app-login',

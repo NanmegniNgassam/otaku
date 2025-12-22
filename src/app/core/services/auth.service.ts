@@ -4,8 +4,8 @@ import { Router } from "@angular/router";
 import { GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, User } from "@firebase/auth";
 import { TranslateService } from "@ngx-translate/core";
 import { setPersistence } from "firebase/auth";
-import { LoginCredential, SigninCredential } from "../models/others";
-import { UserService } from "./user.service";
+import { LoginCredential, SigninCredential } from "../../models/others";
+import { UserService } from "../../services/user.service";
 
 // TODO: Production change to made (url) : IMPORTANT
 const MAIL_BOX_REDIRECT_URL = "http://localhost:4200/account";

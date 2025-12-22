@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LoginComponent } from './login/login.component';
 import { SignInLinksComponent } from "./sign-in-links/sign-in-links.component";
 import { SignOutLinksComponent } from "./sign-out-links/sign-out-links.component";
-import AuthService from '../../../services/auth.service';
+import AuthService from '../../../core/services/auth.service';
 import { MAX_MOBILE_SCREEN_WIDTH } from '../../../../configs/screen-sizes';
 
 @Component({

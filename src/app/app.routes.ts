@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AuthGuard, EmailVerificationGuard, NoAuthGuard } from './guards/auth.guard';
+import { AuthGuard, EmailVerificationGuard, NoAuthGuard } from './core/guards/auth.guard';
 import { AccountComponent } from './pages/account/account.component';
 import { AnimeComponent } from './pages/anime/anime.component';
 import { AnimesComponent } from './pages/animes/animes.component';

@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -15,6 +15,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes), 
     provideClientHydration(), 
     provideFirebaseApp(() => initializeApp(firebaseConfig)), 

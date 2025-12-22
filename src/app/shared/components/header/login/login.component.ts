@@ -1,11 +1,11 @@
 
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { ToastComponent } from '../../toast/toast.component';
-import { Toast } from '../../../models/toast';
 import AuthService from '../../../../core/services/auth.service';
+import { Toast } from '../../../models/toast';
+import { ToastComponent } from '../../toast/toast.component';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +15,6 @@ import AuthService from '../../../../core/services/auth.service';
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LoginComponent implements OnInit {
-  @Inject(FormBuilder) private formBuilder!:FormBuilder;
   _isLoginErrors!: boolean;
   _loginForm!: FormGroup;
   _isAuthLoading!:boolean;
@@ -23,6 +22,7 @@ export class LoginComponent implements OnInit {
   _errors!: { [name: string]: string };
 
   constructor(
+    private formBuilder: FormBuilder,
     protected auth: AuthService,
     private router: Router,
     private translate: TranslateService

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Anime, AnimeGenre } from '../features/animes/models/anime';
 import Bottleneck from 'bottleneck';
+import { Anime, AnimeGenre } from '../models/anime';
 
 export const EXPLICIT_CONTENT_GENRES = [
   "Ecchi", "Erotica", "Hentai", "Adult Cast", 

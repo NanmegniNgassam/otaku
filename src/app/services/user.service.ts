@@ -3,7 +3,7 @@ import { Auth, onAuthStateChanged, updateProfile, User } from '@angular/fire/aut
 import { doc, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { deleteObject, getDownloadURL, listAll, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import { Ranking, UserData } from '../models/user';
-import { EXPLICIT_CONTENT_GENRES } from './anime.service';
+import { EXPLICIT_CONTENT_GENRES } from '../features/animes/services/anime.service';
 
 const USERS_COLLECTION = "users";
 const OVERVIEW_COLLECTION = 'overview'

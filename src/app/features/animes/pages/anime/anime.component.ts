@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anime } from '../../models/anime';
-import { AnimeService } from '../../../../services/anime.service';
 import { UserService } from '../../../../services/user.service';
+import { AnimeService } from '../../services/anime.service';
 
 @Component({
     selector: 'app-anime',

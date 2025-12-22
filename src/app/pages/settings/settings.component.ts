@@ -7,12 +7,12 @@ import { AvatarComponent } from "../../shared/components/avatar/avatar.component
 import { ToastComponent } from "../../shared/components/toast/toast.component";
 import { Toast } from '../../shared/models/toast';
 import { UserData } from '../../models/user';
-import { AnimeService, EXPLICIT_CONTENT_GENRES } from '../../services/anime.service';
 import AuthService from '../../core/services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../shared/services/utils.service';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { Modal } from '../../models/modal';
+import { AnimeService, EXPLICIT_CONTENT_GENRES } from '../../features/animes/services/anime.service';
 
 @Component({
     selector: 'app-settings',

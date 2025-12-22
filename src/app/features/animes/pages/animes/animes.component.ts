@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Anime } from '../../models/anime';
-import { AnimeService } from '../../../../services/anime.service';
 import AuthService from '../../../../core/services/auth.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { AnimesListComponent } from '../../components/animes-list/animes-list.component';
+import { AnimeService } from '../../services/anime.service';
 
 @Component({
     selector: 'app-landing',

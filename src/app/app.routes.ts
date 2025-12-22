@@ -1,12 +1,11 @@
 import { Routes } from '@angular/router';
 import { AuthGuard, EmailVerificationGuard, NoAuthGuard } from './core/guards/auth.guard';
 import { AccountComponent } from './pages/account/account.component';
-import { AnimeComponent } from './pages/anime/anime.component';
-import { AnimesComponent } from './pages/animes/animes.component';
+import { AnimesComponent } from './features/animes/pages/animes/animes.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
 import { GamesHistoryComponent } from './pages/games-history/games-history.component';
-import { MyListComponent } from './pages/my-list/my-list.component';
+import { MyListComponent } from './features/animes/pages/my-list/my-list.component';
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
@@ -14,6 +13,7 @@ import { QuestsComponent } from './pages/quests/quests.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SigninComponent } from './pages/signin/signin.component';
+import { AnimeComponent } from './features/animes/pages/anime/anime.component';
 
 export const routes: Routes = [
   {

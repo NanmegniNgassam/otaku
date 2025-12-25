@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { Notification } from '../../models/user';
+import { Notification } from '../../../../models/user';
 
 @Component({
     selector: 'app-games-history',

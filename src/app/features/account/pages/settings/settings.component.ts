@@ -3,16 +3,17 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { deleteUser, getAuth } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { AvatarComponent } from "../../shared/components/avatar/avatar.component";
-import { ToastComponent } from "../../shared/components/toast/toast.component";
-import { Toast } from '../../shared/models/toast';
-import { UserData } from '../../models/user';
-import AuthService from '../../core/services/auth.service';
-import { UserService } from '../../services/user.service';
-import { UtilsService } from '../../shared/services/utils.service';
-import { ModalComponent } from '../../components/modal/modal.component';
-import { Modal } from '../../models/modal';
-import { AnimeService, EXPLICIT_CONTENT_GENRES } from '../../features/animes/services/anime.service';
+import { ModalComponent } from '../../../../components/modal/modal.component';
+import { Modal } from '../../../../models/modal';
+import { UtilsService } from '../../../../shared/services/utils.service';
+import AuthService from '../../../../core/services/auth.service';
+import { UserService } from '../../../../services/user.service';
+import { AnimeService, EXPLICIT_CONTENT_GENRES } from '../../../animes/services/anime.service';
+import { AvatarComponent } from '../../../../shared/components/avatar/avatar.component';
+import { UserData } from '../../../../models/user';
+import { Toast } from '../../../../shared/models/toast';
+import { ToastComponent } from '../../../../shared/components/toast/toast.component';
+
 
 @Component({
     selector: 'app-settings',

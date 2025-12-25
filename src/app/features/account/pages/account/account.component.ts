@@ -2,13 +2,13 @@ import { AsyncPipe } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { ToastComponent } from '../../shared/components/toast/toast.component';
-import { Toast } from '../../shared/models/toast';
-import { Notification, UserData } from '../../models/user';
-import AuthService from '../../core/services/auth.service';
-import { UserService } from '../../services/user.service';
-import { UtilsService } from '../../shared/services/utils.service';
-import { AvatarComponent } from "../../shared/components/avatar/avatar.component";
+import { UserData, Notification } from '../../../../models/user';
+import { ToastComponent } from '../../../../shared/components/toast/toast.component';
+import { Toast } from '../../../../shared/models/toast';
+import { AvatarComponent } from '../../../../shared/components/avatar/avatar.component';
+import { UtilsService } from '../../../../shared/services/utils.service';
+import { UserService } from '../../../../services/user.service';
+import AuthService from '../../../../core/services/auth.service';
 
 @Component({
     selector: 'app-account',

@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { Notification } from '../../models/user';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { UserService } from '../../services/user.service';
+import { Notification } from '../../../../models/user';
+import { UserService } from '../../../../services/user.service';
 
 export const SELECTION_OPTIONS = ["ranking", "action", "info"]
 

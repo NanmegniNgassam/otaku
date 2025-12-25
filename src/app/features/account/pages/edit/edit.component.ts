@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { AvatarEditComponent } from '../../components/avatar-edit/avatar-edit.component';
 import { UserFormComponent } from '../../components/user-form/user-form.component';
 import { RouterModule } from '@angular/router';
+import { AvatarEditComponent } from '../../components/avatar-edit/avatar-edit.component';
 
 @Component({
     selector: 'app-edit',

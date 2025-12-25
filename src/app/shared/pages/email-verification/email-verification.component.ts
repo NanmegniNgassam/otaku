@@ -3,9 +3,10 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import AuthService from '../../core/services/auth.service';
-import { ToastComponent } from '../../shared/components/toast/toast.component';
-import { Toast } from '../../shared/models/toast';
+import { ToastComponent } from '../../components/toast/toast.component';
+import { Toast } from '../../models/toast';
+import AuthService from '../../../core/services/auth.service';
+
 
 @Component({
     selector: 'app-email-verification',

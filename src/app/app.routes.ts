@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { AuthGuard, EmailVerificationGuard, NoAuthGuard } from './core/guards/auth.guard';
 import { AnimesComponent } from './features/animes/pages/animes/animes.component';
 import { EditComponent } from './features/account/pages/edit/edit.component';
-import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
 import { MyListComponent } from './features/animes/pages/my-list/my-list.component';
 import { NotAllowedComponent } from './shared/pages/not-allowed/not-allowed.component';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
@@ -14,6 +13,7 @@ import { AccountComponent } from './features/account/pages/account/account.compo
 import { NotificationsComponent } from './features/account/pages/notifications/notifications.component';
 import { SettingsComponent } from './features/account/pages/settings/settings.component';
 import { GamesHistoryComponent } from './features/account/pages/games-history/games-history.component';
+import { EmailVerificationComponent } from './shared/pages/email-verification/email-verification.component';
 
 export const routes: Routes = [
   {

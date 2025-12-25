@@ -2,7 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TimeCounter } from '../../models/others';
+import { TimeCounter } from '../../shared/models/others';
 import { Ranking, UserData } from '../../models/user';
 import { UserService } from '../../services/user.service';
 

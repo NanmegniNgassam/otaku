@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, User } from "@firebase/auth";
 import { TranslateService } from "@ngx-translate/core";
 import { setPersistence } from "firebase/auth";
-import { LoginCredential, SigninCredential } from "../../models/others";
+import { LoginCredential, SigninCredential } from "../../shared/models/others";
 import { UserService } from "../../services/user.service";
 import { getStorage, ref } from "@angular/fire/storage";
 

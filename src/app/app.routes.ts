@@ -1,19 +1,13 @@
 import { Routes } from '@angular/router';
 import { AuthGuard, EmailVerificationGuard, NoAuthGuard } from './core/guards/auth.guard';
+import { AnimeComponent } from './features/animes/pages/anime/anime.component';
 import { AnimesComponent } from './features/animes/pages/animes/animes.component';
-import { EditComponent } from './features/account/pages/edit/edit.component';
 import { MyListComponent } from './features/animes/pages/my-list/my-list.component';
+import { QuestsComponent } from './features/quests/pages/quests/quests.component';
+import { SigninComponent } from './pages/signin/signin.component';
+import { EmailVerificationComponent } from './shared/pages/email-verification/email-verification.component';
 import { NotAllowedComponent } from './shared/pages/not-allowed/not-allowed.component';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
-import { QuestsComponent } from './features/quests/pages/quests/quests.component';
-import { RankingComponent } from './features/account/pages/ranking/ranking.component';
-import { SigninComponent } from './pages/signin/signin.component';
-import { AnimeComponent } from './features/animes/pages/anime/anime.component';
-import { AccountComponent } from './features/account/pages/account/account.component';
-import { NotificationsComponent } from './features/account/pages/notifications/notifications.component';
-import { SettingsComponent } from './features/account/pages/settings/settings.component';
-import { GamesHistoryComponent } from './features/account/pages/games-history/games-history.component';
-import { EmailVerificationComponent } from './shared/pages/email-verification/email-verification.component';
 
 export const routes: Routes = [
   {
@@ -53,38 +47,8 @@ export const routes: Routes = [
   {
     path: 'account',
     canActivate: [AuthGuard],
-    component: AccountComponent,
+    loadChildren: () => import("./features/account/account.routes"),
     title: 'Otaku | Account'
-  },
-  {
-    path: 'account/notifications',
-    canActivate: [AuthGuard],
-    component: NotificationsComponent,
-    title: 'Otaku | Notifications'
-  },
-  {
-    path: 'account/settings',
-    canActivate: [AuthGuard],
-    component: SettingsComponent,
-    title: 'Otaku | Settings'
-  },
-  {
-    path: 'account/edit',
-    canActivate: [AuthGuard],
-    component: EditComponent,
-    title: 'Otaku | Edition'
-  },
-  {
-    path: 'account/games-history',
-    canActivate: [AuthGuard],
-    component: GamesHistoryComponent,
-    title: 'Otaku | Xp History'
-  },
-  {
-    path: 'account/ranking',
-    canActivate: [AuthGuard],
-    component: RankingComponent,
-    title: 'Otaku | Ranking'
   },
   {
     path: 'email-verification',

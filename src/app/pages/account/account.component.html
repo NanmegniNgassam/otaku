@@ -32,15 +32,15 @@
     <div class="user-stats">
       <h2 class="title">{{ "pages.account.achievementsTitle" | translate }}</h2>
       <div class="cards-container">
-        <div class="card user-level" [class]="_userData.level + '-grade'">
-          {{ _userData.level.toUpperCase() }}
+        <div class="card user-level" [class]="_userData().level + '-grade'">
+          {{ _userData().level.toUpperCase() }}
         </div>
         <div class="card user-xp">
-          <p class="insight-value">{{ _userData.xp.toLocaleString() }}</p>
+          <p class="insight-value">{{ _userData().xp.toLocaleString() }}</p>
           <div class="insight-label">XP</div>
         </div>
         <div class="card user-credits">
-          <p class="insight-value">{{ _userData.credits.toLocaleString() }}</p>
+          <p class="insight-value">{{ _userData().credits.toLocaleString() }}</p>
           <p class="insight-label">
             {{ "pages.account.creditsCountLabel" | translate }}
           </p>
@@ -101,7 +101,7 @@
         <div class="icon-container">
           <ion-icon class="option-icon" name="notifications-outline"></ion-icon>
           <span class="count">
-            {{ getUnreadNotificationsNumber(_userData.notifications) }}
+            {{ getUnreadNotificationsNumber(_userData().notifications) }}
           </span>
         </div>
       </a>

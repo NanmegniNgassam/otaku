@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
@@ -22,7 +22,7 @@ export class AccountComponent implements OnInit {
   STREAK_STEPS = [1, 2, 3, 4, 5, 6, 7]
   _streakDays!: number;
   _notification!: Toast | null;
-  _userData: UserData = {
+  _userData = signal<UserData>({
     level: 'f',
     xp: 0,
     credits: 0,
@@ -35,7 +35,7 @@ export class AccountComponent implements OnInit {
     playerName: this.auth.currentUser?.displayName!,
     games: [],
     notifications: []
-  }; 
+  }); 
 
   /**
    * 
@@ -47,15 +47,19 @@ export class AccountComponent implements OnInit {
     protected auth: AuthService,
     private user: UserService,
     protected util: UtilsService
-  ) {}
+  ) {
+    this.user$ = this.auth.user$;
+  }
 
   /**
    * Performs some general tasks right after construction
    */
   async ngOnInit(): Promise<void> {
-    this._userData = await this.user.fetchUserData();
-    console.log("Current user Data : ", this._userData);
-    const currentStreak = await this.user.updateUserStreak(this._userData.streak);
+    const userData = await this.user.fetchUserData();
+    this._userData.set(userData);
+
+    console.log("Current user Data : ", this._userData());
+    const currentStreak = await this.user.updateUserStreak(this._userData().streak);
     this._streakDays = this.user.getUserStreak(currentStreak);
   }
 
@@ -63,22 +67,23 @@ export class AccountComponent implements OnInit {
    * Collect the content of the treasure chest and keep it.
    */
   async collectTreasure(): Promise<void> {
-    const userStreak = this.user.getUserStreak(this._userData.streak);
+    const userStreak = this.user.getUserStreak(this._userData().streak);
     if(userStreak >= 7) {
       // Randomly generate a xp amount between a range
       const xpEarned = 500 + Math.ceil(Math.random() * 50) * 10;
   
       // update the player stats accordingly
       // Earn Xp and reinitialize the streak stat
-      this._userData = await this.user.updateUserDoc({xp: this._userData.xp + xpEarned, streak: [new Date().toLocaleDateString("en-EN")]})
-      
+      const userData = await this.user.updateUserDoc({xp: this._userData().xp + xpEarned, streak: [new Date().toLocaleDateString("en-EN")]})
+      this._userData.set(userData);
+
       // Show the toast notification
       this._notification = {
         type: 'success',
         message: `+ ${xpEarned} Points of experience !`
       }
       // Update local stats for UI refresh
-      this._streakDays = this.user.getUserStreak(this._userData.streak);
+      this._streakDays = this.user.getUserStreak(this._userData().streak);
     }
   }
 

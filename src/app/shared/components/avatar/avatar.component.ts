@@ -21,6 +21,3 @@ export class AvatarComponent {
     console.log("Utilisateur dans Avatar component : ", this._user);
   }
 }
-
-// TODO: A l'inscription via Google, télécharger et stocker la photo de l'utilisateur sur firebase storage.
-// Et mettre à jour l'url de l'image sous son profil. Ceci évitera les 429 à tout va.

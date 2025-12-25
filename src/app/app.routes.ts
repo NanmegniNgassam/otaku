@@ -6,7 +6,7 @@ import { MyListComponent } from './features/animes/pages/my-list/my-list.compone
 import { NotAllowedComponent } from './shared/pages/not-allowed/not-allowed.component';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
 import { QuestsComponent } from './features/quests/pages/quests/quests.component';
-import { RankingComponent } from './pages/ranking/ranking.component';
+import { RankingComponent } from './features/account/pages/ranking/ranking.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { AnimeComponent } from './features/animes/pages/anime/anime.component';
 import { AccountComponent } from './features/account/pages/account/account.component';

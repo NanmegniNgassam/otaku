@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, onAuthStateChanged, updateProfile, User } from '@angular/fire/auth';
-import { doc, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
+import { doc, DocumentData, Firestore, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { deleteObject, getDownloadURL, listAll, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import { Ranking, UserData } from '../models/user';
 import { EXPLICIT_CONTENT_GENRES } from '../features/animes/services/anime.service';
@@ -39,6 +39,7 @@ export class UserService {
         streak: [new Date().toLocaleDateString("en-EN")],
         params: { forbiddenGenres: EXPLICIT_CONTENT_GENRES },
         position: null,
+        credits: 0,
         playerName: this.auth.currentUser?.displayName,
         games: [],
         notifications: [

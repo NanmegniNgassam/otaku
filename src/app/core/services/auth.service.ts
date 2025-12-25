@@ -6,8 +6,10 @@ import { TranslateService } from "@ngx-translate/core";
 import { setPersistence } from "firebase/auth";
 import { LoginCredential, SigninCredential } from "../../models/others";
 import { UserService } from "../../services/user.service";
+import { getStorage, ref } from "@angular/fire/storage";
 
 // TODO: Production change to made (url) : IMPORTANT
+// TODO: Dépendance circulaire à patcher avec user service
 const MAIL_BOX_REDIRECT_URL = "http://localhost:4200/account";
 
 @Injectable({
@@ -24,7 +26,8 @@ export default class AuthService{
     private auth: Auth,
     private router: Router,
     private db: UserService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private userService: UserService
   ) {
     this.user$.subscribe((user) => {
       this.currentUser = user;
@@ -62,16 +65,63 @@ export default class AuthService{
     const result = await signInWithPopup(this.auth, this.googleProvider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
 
-    // Check if the account is newly created (created less than 1 minutes earlier)
+    // Check if the account is newly created (created less than 30 seconds earlier)
     const timeDiff = Date.now().valueOf() - new Date(result.user.metadata.creationTime!).valueOf();
     if(timeDiff < 30*1000) {
       // Create a user document to store all its data
       await this.db.createUserDocument(result.user.uid);
+
+      if (result.user.photoURL) {
+        const imageUrl = result.user.photoURL;
+
+        // Download the image from the URL
+        const response = await fetch(imageUrl);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to download image: ${response.statusText}`);
+        }
+
+        // Convert to blob
+        const blob = await response.blob();
+        
+        // Determine file extension from content-type or URL
+        const contentType = response.headers.get('content-type');
+        let fileExtension = this.getFileExtension(imageUrl, contentType);
+
+        await this.userService.storeNewAvatar(blob, fileExtension);
+      }
     }
 
     // Redirect the newly login user after login
     this.router.navigateByUrl('/');
     return credential;
+  }
+
+  /**
+   * Helper function to extract file extension from URL or content-type
+   * 
+   * @param url the image URL
+   * @param contentType the content-type header
+   * @returns file extension (without dot)
+   */
+  private getFileExtension(url: string, contentType: string | null): string {
+    // Try to get extension from URL first
+    const urlMatch = url.match(/\.([a-zA-Z0-9]+)(?:\?|#|$)/);
+    if (urlMatch) {
+      return urlMatch[1].toLowerCase();
+    }
+
+    // Fallback to content-type
+    const mimeToExt: { [key: string]: string } = {
+      'image/jpeg': 'jpg',
+      'image/jpg': 'jpg',
+      'image/png': 'png',
+      'image/gif': 'gif',
+      'image/webp': 'webp',
+      'image/svg+xml': 'svg'
+    };
+
+    return contentType ? (mimeToExt[contentType] || 'jpg') : 'jpg';
   }
 
   /**

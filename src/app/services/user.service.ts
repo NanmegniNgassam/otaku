@@ -271,7 +271,7 @@ export class UserService {
    * @param avatarFile the file to store
    * @param fileExtension file extension
    */
-  async storeNewAvatar(avatarFile: File, fileExtension: string): Promise<void> {
+  async storeNewAvatar(avatarFile: Blob, fileExtension: string): Promise<void> {
     // Delete all the file in the current avatar doc
     await this.deleteAvatarDocContent();
 

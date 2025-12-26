@@ -16,7 +16,7 @@
               @if ( anime().genres.length ) {
                 @for (genre of anime().genres; track $index) {
                   <div 
-                    [class]="'anime-genre ' + (favoriteGenres.includes(genre.name) ? 'favorite' : '') + ' ' + (forbiddenGenres.includes(genre.name) ? 'forbidden' : '') "
+                    [class]="'anime-genre ' + ((currentUser()?.favoriteGenres || []).includes(genre.name) ? 'favorite' : '') + ' ' + ((currentUser()?.params?.forbiddenGenres || []).includes(genre.name) ? 'forbidden' : '') "
                   > 
                     {{ genre.name }} 
                   </div>
@@ -44,7 +44,7 @@
               class="star-button" 
               [name]="isFollowed ? 'star' : 'star-outline'" 
               style="color: #ffb800"
-              (click)="toggleAnimeFollowing(animeId)"
+              (click)="toggleAnimeFollowing(anime().mal_id)"
             >
             </ion-icon>
           </div>

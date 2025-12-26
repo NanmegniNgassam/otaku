@@ -2,6 +2,7 @@ import { ActivatedRouteSnapshot, Routes } from "@angular/router";
 import { AuthGuard } from "../../core/guards/auth.guard";
 import { inject } from "@angular/core";
 import { AnimeService } from "./services/anime.service";
+import { UserService } from "../../services/user.service";
 
 export default [
   {
@@ -23,6 +24,7 @@ export default [
     title: "Otaku | Anime",
     resolve: {
       anime: (route: ActivatedRouteSnapshot) => inject(AnimeService).getAnimeObservableById(route.params['id']),
+      currentUser: () => inject(UserService).fetchUserData(),
     } 
   }
 ] satisfies Routes;

@@ -12,6 +12,8 @@ export const EXPLICIT_CONTENT_GENRES = [
   providedIn: 'root'
 })
 export class AnimeService {
+  apiBaseUrl = "https://api.jikan.moe/v4";
+
   constructor(
     private http: HttpClient
   ) {}
@@ -44,7 +46,7 @@ export class AnimeService {
    * Retrieve all the animes with the best ratings
    */
   async getTopAnimes(): Promise<Anime[]> {
-    const res = await fetch('https://api.jikan.moe/v4/top/anime');
+    const res = await fetch(this.apiBaseUrl + '/top/anime');
     const animes = await res.json();
 
     return animes.data as Anime[];
@@ -56,7 +58,7 @@ export class AnimeService {
    * @returns an anime
    */
   async getRandomAnime(): Promise<Anime> {
-    const res = await fetch('https://api.jikan.moe/v4/random/anime');
+    const res = await fetch(this.apiBaseUrl + '/random/anime');
     const anime = await res.json();
 
     return anime.data as Anime;
@@ -69,16 +71,11 @@ export class AnimeService {
    * @returns the anime requested by its id
    */
   getAnimeObservableById(id: number): Observable<Anime> {
-    return this.http.get<{ data : Anime}>(`https://api.jikan.moe/v4/anime/${id}/full`).pipe(
+    return this.http.get<{ data : Anime}>(`${this.apiBaseUrl}/anime/${id}/full`).pipe(
       map(response => {
         return response.data;
       })
     )
-
-    // const res = await fetch(`https://api.jikan.moe/v4/anime/${id}/full`);
-    // const anime = await res.json();
-
-    // return anime.data as Anime;
   }
 
   /**
@@ -88,7 +85,7 @@ export class AnimeService {
    * @returns the anime requested by its id
    */
   async getAnimeById(id: number): Promise<Anime> {
-    const res = await fetch(`https://api.jikan.moe/v4/anime/${id}/full`);
+    const res = await fetch(`${this.apiBaseUrl}/anime/${id}/full`);
     const anime = await res.json();
 
     return anime.data as Anime;
@@ -116,7 +113,7 @@ export class AnimeService {
    * @returns anime genres
    */
   async getAnimeGenres(): Promise<AnimeGenre[]> {
-    const response = await fetch('https://api.jikan.moe/v4/genres/anime');
+    const response = await fetch(this.apiBaseUrl + '/genres/anime');
     const genres = await response.json() as {data: AnimeGenre[]};
 
     return genres.data as AnimeGenre[];

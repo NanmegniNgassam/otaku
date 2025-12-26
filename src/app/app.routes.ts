@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard, EmailVerificationGuard, NoAuthGuard } from './core/guards/auth.guard';
 import { AnimesComponent } from './features/animes/pages/animes/animes.component';
-import { QuestsComponent } from './features/quests/pages/quests/quests.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { EmailVerificationComponent } from './shared/pages/email-verification/email-verification.component';
 import { NotAllowedComponent } from './shared/pages/not-allowed/not-allowed.component';
@@ -22,7 +21,7 @@ export const routes: Routes = [
   {
     path: 'quests',
     canActivate: [AuthGuard],
-    component: QuestsComponent,
+    loadChildren: () => import("./features/quests/quests.route"),
     title: 'Otaku | Quests'
   },
   {

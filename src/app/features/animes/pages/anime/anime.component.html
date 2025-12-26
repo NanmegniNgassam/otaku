@@ -1,20 +1,20 @@
 <div class="page-wrapper">
-  @if (anime) {
+  @if (anime()) {
     <div class="container">
       <div class="header">
         <div class="image-container">
-          <img [src]="anime.images.jpg.large_image_url" [alt]="anime.title + '\'s cover image'">
+          <img [src]="anime().images.jpg.large_image_url" [alt]="anime().title + '\'s cover image'">
         </div>
         <div class="details-container">
           <div class="row">
             <p class="title-meta meta">Title</p>
-            <h1 class="title-data data"> {{ anime.title }} </h1>
+            <h1 class="title-data data"> {{ anime().title }} </h1>
           </div>
           <div class="genres row">
             <p class="genres-meta meta">Genres</p>
             <div class="genres-container data">
-              @if ( anime.genres.length ) {
-                @for (genre of anime.genres; track $index) {
+              @if ( anime().genres.length ) {
+                @for (genre of anime().genres; track $index) {
                   <div 
                     [class]="'anime-genre ' + (favoriteGenres.includes(genre.name) ? 'favorite' : '') + ' ' + (forbiddenGenres.includes(genre.name) ? 'forbidden' : '') "
                   > 
@@ -29,8 +29,8 @@
           <div class="themes row">
             <p class="themes-meta meta">Thèmes</p>
             <div class="genres-container data">
-              @if ( anime.themes.length ) {
-                @for (theme of anime.themes; track $index) {
+              @if ( anime().themes.length ) {
+                @for (theme of anime().themes; track $index) {
                   <div class="anime-genre"> {{ theme.name }} </div>
                 }
               } @else {
@@ -51,7 +51,7 @@
           <div class="description row">
             <p class="description-meta meta">Description</p>
             <div class="description-data data">
-              {{ anime.synopsis }}
+              {{ anime().synopsis }}
             </div>
           </div>
         </div>

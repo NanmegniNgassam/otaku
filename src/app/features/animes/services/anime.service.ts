@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import Bottleneck from 'bottleneck';
 import { Anime, AnimeGenre } from '../models/anime';
+import { HttpClient } from '@angular/common/http';
+import { map, Observable } from 'rxjs';
 
 export const EXPLICIT_CONTENT_GENRES = [
-  "Ecchi", "Erotica", "Hentai", "Adult Cast", 
+  "Ecchi", "Erotica", "Hentai", "Adult Cast",
 ]
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnimeService {
+  constructor(
+    private http: HttpClient
+  ) {}
+
   /**
    * generate an array with the specified number of animes
    * 
@@ -54,6 +60,25 @@ export class AnimeService {
     const anime = await res.json();
 
     return anime.data as Anime;
+  }
+
+  /**
+   * Get a specific anime using its id.
+   * 
+   * @param id the anime mal_id
+   * @returns the anime requested by its id
+   */
+  getAnimeObservableById(id: number): Observable<Anime> {
+    return this.http.get<{ data : Anime}>(`https://api.jikan.moe/v4/anime/${id}/full`).pipe(
+      map(response => {
+        return response.data;
+      })
+    )
+
+    // const res = await fetch(`https://api.jikan.moe/v4/anime/${id}/full`);
+    // const anime = await res.json();
+
+    // return anime.data as Anime;
   }
 
   /**

@@ -1,5 +1,7 @@
-import { Routes } from "@angular/router";
+import { ActivatedRouteSnapshot, Routes } from "@angular/router";
 import { AuthGuard } from "../../core/guards/auth.guard";
+import { inject } from "@angular/core";
+import { AnimeService } from "./services/anime.service";
 
 export default [
   {
@@ -18,6 +20,9 @@ export default [
     path: ':id',
     loadComponent: () => import("./pages/anime/anime.component")
       .then(m => m.AnimeComponent),
-    title: "Otaku | Anime"
+    title: "Otaku | Anime",
+    resolve: {
+      anime: (route: ActivatedRouteSnapshot) => inject(AnimeService).getAnimeObservableById(route.params['id']),
+    } 
   }
 ] satisfies Routes;

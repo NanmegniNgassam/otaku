@@ -1,7 +1,7 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Anime } from '../../models/anime';
 import { UserService } from '../../../../services/user.service';
+import { Anime } from '../../models/anime';
 import { AnimeService } from '../../services/anime.service';
 
 @Component({
@@ -13,11 +13,11 @@ import { AnimeService } from '../../services/anime.service';
 })
 export class AnimeComponent implements OnInit {
   protected animeId!: number;
-  protected anime!: Anime;
   protected favoriteGenres: string[] = [];
   protected forbiddenGenres: string[] = [];
   followedAnimes: number[] = [];
   isFollowed: boolean = false;
+  anime = input.required<Anime>();
 
   constructor(
     private route: ActivatedRoute,
@@ -28,14 +28,12 @@ export class AnimeComponent implements OnInit {
   async ngOnInit() {
     try {
       this.animeId = +this.route.snapshot.params['id'];
-      this.anime = await this.animeService.getAnimeById(this.animeId);
       const currentUser = await this.userService.fetchUserData();
 
       this.followedAnimes = currentUser.animeListIds || [];
       this.isFollowed = this.followedAnimes.includes(this.animeId);
       this.favoriteGenres = currentUser?.favoriteGenres || [];
       this.forbiddenGenres = currentUser?.params?.forbiddenGenres || [];
-      console.log("Anime fetched : ", this.anime);
     } catch {
     }
   }

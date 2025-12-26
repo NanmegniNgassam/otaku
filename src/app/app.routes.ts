@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard, EmailVerificationGuard, NoAuthGuard } from './core/guards/auth.guard';
-import { AnimeComponent } from './features/animes/pages/anime/anime.component';
 import { AnimesComponent } from './features/animes/pages/animes/animes.component';
-import { MyListComponent } from './features/animes/pages/my-list/my-list.component';
 import { QuestsComponent } from './features/quests/pages/quests/quests.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { EmailVerificationComponent } from './shared/pages/email-verification/email-verification.component';
@@ -18,19 +16,8 @@ export const routes: Routes = [
   },
   {
     path: 'animes',
-    component: AnimesComponent,
+    loadChildren: () => import("./features/animes/animes.route"),
     title: 'Otaku | Animes',
-  },
-  {
-    path: 'animes/:id',
-    component: AnimeComponent,
-    title: 'Otaku | Anime'
-  },
-  {
-    path: 'my-list',
-    canActivate: [AuthGuard],
-    component: MyListComponent,
-    title: 'Otaku | My Animes List'
   },
   {
     path: 'quests',

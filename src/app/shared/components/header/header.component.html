@@ -15,7 +15,11 @@
     @if (isNavMenuOpen) {
     <ul class="links-container">
       <li>
-        <a routerLink="/animes" routerLinkActive="active">
+        <a 
+          routerLink="/animes" 
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           {{ "components.header.links.animes" | translate }}
         </a>
       </li>

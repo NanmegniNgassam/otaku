@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../../services/user.service';
-import { Anime } from '../../models/anime';
-import { UserData } from '../../../../models/user';
+import { Component, input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { AnimesListComponent } from '../../components/animes-list/animes-list.component';
-import { AnimeService } from '../../services/anime.service';
+import { Anime } from '../../models/anime';
 
 @Component({
     selector: 'app-my-list',
@@ -12,20 +9,9 @@ import { AnimeService } from '../../services/anime.service';
     templateUrl: './my-list.component.html',
     styleUrl: './my-list.component.scss'
 })
-export class MyListComponent implements OnInit {
-  animes: Anime[] | null = null;
-  currentUser!:UserData;
+export class MyListComponent {
+  animes = input.required<Anime[]>();
   protected skeletons: undefined[] = Array(10).fill(undefined);
 
-  constructor(
-    private user: UserService,
-    private anime: AnimeService
-  ) {}
-
-  async ngOnInit() {
-    this.currentUser = await this.user.fetchUserData();
-
-    const animeIds = [...this.currentUser.animeListIds];
-    this.animes = await this.anime.getAnimeByIds(animeIds);
-  }
+  constructor() {}
 }

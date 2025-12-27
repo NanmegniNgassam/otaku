@@ -3,11 +3,10 @@
     {{ "pages.myList.title" | translate }}
   </h1>
   <div class="animes-container">
-    @if(animes()) {
-      <app-animes-list [animes]="animes()" />
+    @if(animes) {
+      <app-animes-list [animes]="animes" />
     } @else {
       <app-animes-list [animes]="skeletons" />
     }
   </div>
-
 </div>

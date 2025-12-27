@@ -19,7 +19,6 @@ export class AnimesComponent {
   }
 
   async ngOnInit(): Promise<void> {
-    const animes = await this.anime.getTopAnimes();
-    this.animes = animes;
+    this.animes = await this.anime.getTopAnimes();
   }
 }

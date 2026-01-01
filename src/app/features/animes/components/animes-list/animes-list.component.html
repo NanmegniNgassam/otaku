@@ -1,5 +1,5 @@
 @if(animes.length) {
-  <div class="container">
+  <div data-testId="anime-cards-container" class="container">
     @for (anime of animes; track $index) {
       @if (anime && followedAnimes) {
         <app-anime-card 

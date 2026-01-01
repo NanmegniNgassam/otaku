@@ -17,6 +17,8 @@ export class AnimesListComponent implements OnInit {
   currentUserDoc!: UserData;
   followedAnimes: number[] = [];
 
+  // TODO: Envisager une centralisation des animes suivies à l'echelle de toute l'application.
+
   constructor(private userService: UserService) {}
 
   async ngOnInit() {

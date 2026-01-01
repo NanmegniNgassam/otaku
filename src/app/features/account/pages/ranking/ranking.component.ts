@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -17,7 +17,7 @@ export class RankingComponent implements OnInit {
   _isSearching:boolean = false;
   _ranking!: Ranking[];
   _stableRanking!: Ranking[];
-  _userData!:  UserData;
+  _userData = input.required<UserData>();
   _searchForm!: FormGroup;
   _playerNotFoundMessage!: string;
   _lastRankingUpdate!: string;
@@ -54,9 +54,6 @@ export class RankingComponent implements OnInit {
    * Performs some actions right after the constructor
    */
   async ngOnInit(): Promise<void> {
-    // Fetch user data
-    this._userData = await this.user.fetchUserData();
-
     // Get the last ranking update Date
     const lastUpdateDate = await this.user.getLastRankingUpdateDate()
     this._lastRankingUpdate = lastUpdateDate.toLocaleDateString();

@@ -3,16 +3,16 @@
     <ion-icon name="arrow-back-outline"></ion-icon>
     {{ "others.navigation.backwardLabel" | translate }}
   </div>
-  @if (_userData) {
+  @if (_userData()) {
   <a routerLink="/account" class="ranking for-you">
-    <span class="position"> {{ _userData.position || 0 }} </span>
+    <span class="position"> {{ _userData().position || 0 }} </span>
     <span class="player-name">Me</span>
-    <span class="experience">{{ _userData.xp.toLocaleString() }} Xp</span>
-    <span class="grade" [class]="_userData.level + '-grade'">
-      {{ _userData.level.toUpperCase() }}
+    <span class="experience">{{ _userData().xp.toLocaleString() }} Xp</span>
+    <span class="grade" [class]="_userData().level + '-grade'">
+      {{ _userData().level.toUpperCase() }}
     </span>
   </a>
-  @if(!_userData.position) {
+  @if(!_userData().position) {
   <p class="unfound-message">
     {{ "pages.ranking.noRanking" | translate }}
   </p>

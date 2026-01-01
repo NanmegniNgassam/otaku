@@ -1,4 +1,6 @@
+import { inject } from "@angular/core";
 import { Routes } from "@angular/router";
+import { UserService } from "../../services/user.service";
 
 export default [
   {
@@ -29,6 +31,9 @@ export default [
   {
     path: 'ranking',
     loadComponent: () => import("./pages/ranking/ranking.component")
-      .then(m => m.RankingComponent)
+      .then(m => m.RankingComponent),
+    resolve: {
+      _userData: () => inject(UserService).fetchUserData(), 
+    }
   }
 ] satisfies Routes;

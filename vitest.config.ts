@@ -12,16 +12,6 @@ export default defineConfig({
     reporters: ['default'],
   },
 
-  ssr: {
-    noExternal: [
-      'rxfire',
-      'rxfire/auth',
-      'rxfire/firestore',
-      'firebase',
-      '@firebase',
-    ],
-  },
-
   define: {
     'import.meta.vitest': false,
   },

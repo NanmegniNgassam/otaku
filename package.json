@@ -40,7 +40,7 @@
     "@angular/compiler-cli": "^21.0.6",
     "@playwright/test": "^1.57.0",
     "@types/express": "^4.17.17",
-    "@types/node": "^18.18.0",
+    "@types/node": "^22.19.3",
     "@vitest/ui": "^4.0.16",
     "jsdom": "^27.4.0",
     "typescript": "~5.9.3",

@@ -3,6 +3,7 @@ import Bottleneck from 'bottleneck';
 import { Anime, AnimeGenre } from '../models/anime';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
+import { Character } from '../models/character';
 
 export const EXPLICIT_CONTENT_GENRES = [
   "Ecchi", "Erotica", "Hentai", "Adult Cast",
@@ -105,6 +106,18 @@ export class AnimeService {
     const tasks = ids.map(id => limiter.schedule(() => this.getAnimeById(id)));
 
     return Promise.all(tasks);
+  }
+
+  /**
+   * Get all the anime characters 
+   * 
+   * @param id the anime mal_id
+   */
+  async getAnimeCharacters(id: number): Promise<Character[]> {
+    const response = await fetch(this.apiBaseUrl + '/anime/' + id + '/characters');
+    const characters = await response.json() as {data: Character[]};
+
+    return characters.data;
   }
 
   /**

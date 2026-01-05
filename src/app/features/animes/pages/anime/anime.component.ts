@@ -2,6 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, input, OnInit } from '@angular/core'
 import { UserData } from '../../../../models/user';
 import { UserService } from '../../../../services/user.service';
 import { Anime } from '../../models/anime';
+import { Character } from '../../models/character';
 
 @Component({
     selector: 'app-anime',
@@ -14,7 +15,9 @@ export class AnimeComponent implements OnInit {
   followedAnimes: number[] = [];
   isFollowed: boolean = false;
   anime = input.required<Anime>();
+  animeCharacters = input.required<Character[]>();
   currentUser = input<UserData>();
+
 
   constructor(
     private userService: UserService
@@ -24,6 +27,8 @@ export class AnimeComponent implements OnInit {
     try {
       this.followedAnimes = this.currentUser()?.animeListIds || [];
       this.isFollowed = this.followedAnimes.includes(this.anime().mal_id);
+      console.log("Anime", this.anime());
+      console.log("animeCharacters", this.animeCharacters());
     } catch {
     }
   }

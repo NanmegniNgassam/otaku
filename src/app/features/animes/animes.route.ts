@@ -36,6 +36,7 @@ export default [
     resolve: {
       anime: (route: ActivatedRouteSnapshot) => inject(AnimeService).getAnimeObservableById(route.params['id']),
       currentUser: () => inject(UserService).fetchUserData(),
+      animeCharacters: (route: ActivatedRouteSnapshot) => inject(AnimeService).getAnimeCharacters(route.params['id'])
     } 
   }
 ] satisfies Routes;

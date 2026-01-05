@@ -2,6 +2,7 @@
   .header {
     display: flex;
     gap: 20px;
+    margin-bottom: 40px;
     @media screen and (max-width: 500px) {
       flex-direction: column;
       .image-container {
@@ -28,9 +29,6 @@
         line-height: 150%;
         text-align: justify;
       }
-    }
-    .description-data {
-      text-indent: 3rem;
     }
 
     .genres-container {
@@ -66,5 +64,23 @@
         background-color: crimson;
       }
     }  
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .meta {
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: rgb(75, 75, 75);
+    }
+    .data {
+      line-height: 150%;
+      text-align: justify;
+    }
+    .description-data {
+      text-indent: 3rem;
+    }
   }
 }

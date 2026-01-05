@@ -12,4 +12,7 @@ export interface Character {
     }
   };
   name: string;
+  role: AnimeRole;
 }
+
+type AnimeRole = "Main" | "Supporting";

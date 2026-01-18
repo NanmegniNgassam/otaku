@@ -1,12 +1,13 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, input, OnInit } from '@angular/core';
 import { UserData } from '../../../../models/user';
 import { UserService } from '../../../../services/user.service';
+import { CharacterCardComponent } from "../../components/character-card/character-card.component";
 import { Anime } from '../../models/anime';
-import { Character } from '../../models/character';
+import { ExtendedCharacter } from '../../models/character';
 
 @Component({
     selector: 'app-anime',
-    imports: [],
+    imports: [CharacterCardComponent],
     templateUrl: './anime.component.html',
     styleUrl: './anime.component.scss',
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -15,7 +16,7 @@ export class AnimeComponent implements OnInit {
   followedAnimes: number[] = [];
   isFollowed: boolean = false;
   anime = input.required<Anime>();
-  animeCharacters = input.required<Character[]>();
+  animeCharacters = input.required<ExtendedCharacter[]>();
   currentUser = input<UserData>();
 
 
@@ -27,8 +28,6 @@ export class AnimeComponent implements OnInit {
     try {
       this.followedAnimes = this.currentUser()?.animeListIds || [];
       this.isFollowed = this.followedAnimes.includes(this.anime().mal_id);
-      console.log("Anime", this.anime());
-      console.log("animeCharacters", this.animeCharacters());
     } catch {
     }
   }

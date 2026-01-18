@@ -4,7 +4,7 @@ export interface Character {
   images: {
     jpg : {
       image_url: string;
-      small_image_url: string;
+      small_image_url?: string;
     }
     webp: {
       image_url: string;
@@ -12,6 +12,11 @@ export interface Character {
     }
   };
   name: string;
+}
+
+export interface ExtendedCharacter {
+  character: Character;
+  favorites: number;
   role: AnimeRole;
 }
 

@@ -66,10 +66,11 @@
     }  
   }
 
-  .description {
+  .description, .casting {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 40px;
     .meta {
       font-weight: 500;
       font-size: 1.2rem;
@@ -81,6 +82,16 @@
     }
     .description-data {
       text-indent: 3rem;
+    }
+    .casting-data {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      column-gap: 20px;
+      row-gap: 40px;
+      align-items: stretch;
+    }
+    .no-casting-found {
+      font-size: .9rem;
     }
   }
 }

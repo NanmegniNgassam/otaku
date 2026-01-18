@@ -3,7 +3,7 @@ import Bottleneck from 'bottleneck';
 import { Anime, AnimeGenre } from '../models/anime';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { Character } from '../models/character';
+import { Character, ExtendedCharacter } from '../models/character';
 
 export const EXPLICIT_CONTENT_GENRES = [
   "Ecchi", "Erotica", "Hentai", "Adult Cast",
@@ -73,9 +73,7 @@ export class AnimeService {
    */
   getAnimeObservableById(id: number): Observable<Anime> {
     return this.http.get<{ data : Anime}>(`${this.apiBaseUrl}/anime/${id}/full`).pipe(
-      map(response => {
-        return response.data;
-      })
+      map(response => response.data)
     )
   }
 
@@ -113,11 +111,10 @@ export class AnimeService {
    * 
    * @param id the anime mal_id
    */
-  async getAnimeCharacters(id: number): Promise<Character[]> {
-    const response = await fetch(this.apiBaseUrl + '/anime/' + id + '/characters');
-    const characters = await response.json() as {data: Character[]};
-
-    return characters.data;
+  getAnimeCharacters(id: number): Observable<ExtendedCharacter[]> {
+    return this.http.get<{data: ExtendedCharacter[]}>(this.apiBaseUrl + '/anime/' + id + '/characters').pipe(
+      map(response => response.data)
+    )
   }
 
   /**

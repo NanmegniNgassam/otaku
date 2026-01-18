@@ -57,6 +57,17 @@
           {{ anime().synopsis }}
         </div>
       </div>
+
+      <div class="casting row">
+        <p class="casting-meta meta">Distribution de personnages</p>
+        <div class="casting-data data">
+          @for (character of animeCharacters(); track character.character.mal_id) {
+            <app-character-card [extendedCharacter]="character" />
+          } @empty {
+            <p class="no-casting-found">Cette production ne contient aucune distribution de personnages.</p>
+          }
+        </div>
+      </div>
     </div>
   }
 </div>

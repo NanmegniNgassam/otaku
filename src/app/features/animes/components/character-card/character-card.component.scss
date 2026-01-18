@@ -1,0 +1,33 @@
+.animeWrapper {
+  box-shadow: 4px 2px 12px black;
+  max-width: 250px;
+  height: 100%;
+  margin: 0 auto;
+  cursor: pointer;
+  border: 1px solid black;
+  &:hover {
+    border: 1px solid transparent;
+  }
+  .imageContainer {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+  .details {
+    padding: 5px 10px;
+    .character-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgb(25, 25, 25);
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

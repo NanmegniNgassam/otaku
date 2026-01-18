@@ -1,3 +1,10 @@
 <div class="animeWrapper">
-  <p> {{ extendedCharacter().character.name }} </p>
+  <div class="imageContainer">
+    <img [src]="extendedCharacter().character.images.webp.image_url" alt="">
+  </div>
+  <div class="details">
+    <p class="character-name"> {{ extendedCharacter().character.name }} </p>
+    <p> {{ extendedCharacter().role }} </p>
+  </div>
+  
 </div>

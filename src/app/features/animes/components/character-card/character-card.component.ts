@@ -11,6 +11,5 @@ export class CharacterCardComponent implements OnInit {
   extendedCharacter = input.required<ExtendedCharacter>();
 
   async ngOnInit() {
-    console.log("Anime characters : ", this.extendedCharacter());
   }
 }

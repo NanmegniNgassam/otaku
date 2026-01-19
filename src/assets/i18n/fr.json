@@ -66,6 +66,19 @@
     "animes": {
       "title": "Animes en vogue"
     },
+    "anime": {
+      "animeDetails": {
+        "title": "Titre",
+        "actions": "Actions",
+        "noGenresLabel": "Cette production n'est associé à aucun genre.",
+        "noThemesLabel": "Cette production n'est associé à aucun thème."
+      },
+      "description": "Description",
+      "noDescription": "Aucune description n'est disponible pour cette production.",
+      "casting": "Distribution de personnages",
+      "noCasting": "Aucune distribution de personnage n'a été pourvue pour cette production.",
+      "recommandations": "Recommandations"
+    },
     "myList": {
       "title": "Ma liste d'animes"
     },

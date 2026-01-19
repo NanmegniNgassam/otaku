@@ -7,11 +7,11 @@
         </div>
         <div class="details-container">
           <div class="row">
-            <p class="title-meta meta">Title</p>
+            <p class="title-meta meta"> {{ "pages.anime.animeDetails.title" | translate }} </p>
             <h1 class="title-data data"> {{ anime().title }} </h1>
           </div>
           <div class="genres row">
-            <p class="genres-meta meta">Genres</p>
+            <p class="genres-meta meta"> {{ "components.animeCard.genres" | translate }} </p>
             <div class="genres-container data">
               @if ( anime().genres.length ) {
                 @for (genre of anime().genres; track $index) {
@@ -22,24 +22,24 @@
                   </div>
                 }
               } @else {
-                <p class="no-genres-found">Cette production n'est associé à aucun genre.</p>
+                <p class="no-genres-found"> {{ "pages.anime.animeDetails.noGenresLabel" | translate }} </p>
               }
             </div>
           </div>
           <div class="themes row">
-            <p class="themes-meta meta">Thèmes</p>
+            <p class="themes-meta meta"> {{ "components.animeCard.themes" | translate }} </p>
             <div class="genres-container data">
               @if ( anime().themes.length ) {
                 @for (theme of anime().themes; track $index) {
                   <div class="anime-genre"> {{ theme.name }} </div>
                 }
               } @else {
-                <p class="no-genres-found">Cette production n'est associé à aucun thème.</p>
+                <p class="no-genres-found"> {{ "pages.anime.animeDetails.noThemesLabel" | translate }} </p>
               }
             </div>
           </div>
           <div class="actions row">
-            <p class="themes-meta meta">Actions</p>
+            <p class="themes-meta meta"> {{ "pages.anime.animeDetails.actions" | translate }} </p>
             <ion-icon 
               class="star-button" 
               [name]="isFollowed ? 'star' : 'star-outline'" 
@@ -52,19 +52,19 @@
       </div>
 
       <div class="description row">
-        <p class="description-meta meta">Description</p>
+        <p class="description-meta meta"> {{ "pages.anime.description" | translate }} </p>
         <div class="description-data data">
           {{ anime().synopsis }}
         </div>
       </div>
 
       <div class="casting row">
-        <p class="casting-meta meta">Distribution de personnages</p>
+        <p class="casting-meta meta"> {{ "pages.anime.casting" | translate }} </p>
         <div class="casting-data data">
           @for (character of animeCharacters(); track character.character.mal_id) {
             <app-character-card [extendedCharacter]="character" />
           } @empty {
-            <p class="no-casting-found">Cette production ne contient aucune distribution de personnages.</p>
+            <p class="no-casting-found"> {{ "pages.anime.noCasting" | translate }} </p>
           }
         </div>
       </div>

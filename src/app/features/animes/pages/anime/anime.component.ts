@@ -4,10 +4,11 @@ import { UserService } from '../../../../services/user.service';
 import { CharacterCardComponent } from "../../components/character-card/character-card.component";
 import { Anime } from '../../models/anime';
 import { ExtendedCharacter } from '../../models/character';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-anime',
-    imports: [CharacterCardComponent],
+    imports: [CharacterCardComponent, TranslateModule],
     templateUrl: './anime.component.html',
     styleUrl: './anime.component.scss',
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

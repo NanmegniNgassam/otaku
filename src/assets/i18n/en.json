@@ -66,6 +66,19 @@
     "animes": {
       "title": "Popular animes"
     },
+    "anime": {
+      "animeDetails": {
+        "title": "Title",
+        "actions": "Actions",
+        "noGenresLabel": "No genre is associated to this production.",
+        "noThemesLabel": "No theme is associated to this production."
+      },
+      "description": "Description",
+      "noDescription": "No description was provided for this production.",
+      "casting": "Casting",
+      "noCasting": "No casting was provided for this production.",
+      "recommandations": "Recommendations"
+    },
     "myList": {
       "title": "My anime list"
     },

@@ -53,9 +53,16 @@
 
       <div class="description row">
         <p class="description-meta meta"> {{ "pages.anime.description" | translate }} </p>
-        <div class="description-data data">
-          {{ anime().synopsis }}
-        </div>
+        @if(anime().synopsis) {
+          <div class="description-data data">
+            {{ anime().synopsis }}
+          </div>
+        } @else {
+          <div class="description-data data">
+            {{ "pages.anime.noDescription" | translate }}
+          </div>
+        }
+
       </div>
 
       <div class="casting row">

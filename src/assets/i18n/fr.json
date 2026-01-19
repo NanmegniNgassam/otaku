@@ -18,6 +18,9 @@
         "animeList": "Ma liste" 
       }
     },
+    "animesList": {
+      "noAnime": "Aucun anime n'a été trouvé!"
+    },
     "footer": {
       "tributes": {
         "showcase": {

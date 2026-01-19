@@ -4,11 +4,12 @@ import { AnimeSkeletonComponent } from '../anime-skeleton/anime-skeleton.compone
 import { Anime } from '../../models/anime';
 import { UserData } from '../../../../models/user';
 import { UserService } from '../../../../services/user.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
     selector: 'app-animes-list',
-    imports: [AnimeCardComponent, AnimeSkeletonComponent],
+    imports: [AnimeCardComponent, AnimeSkeletonComponent, TranslateModule],
     templateUrl: './animes-list.component.html',
     styleUrl: './animes-list.component.scss'
 })

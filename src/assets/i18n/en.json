@@ -9,6 +9,9 @@
       "themes": "Themes",
       "genres": "Genres"
     },
+    "animesList": {
+      "noAnime": "No Anime found!"
+    },
     "header": {
       "links": {
         "animes": "Animes",

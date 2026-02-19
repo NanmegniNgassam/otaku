@@ -19,13 +19,6 @@ export default [
     resolve: {
       // TODO: Penser aux évènements de navigation pendant la résolution des routes
       currentUser: () => inject(UserService).fetchUserData(),
-      // animes: async () => {
-      //   const animeService = inject(AnimeService);
-      //   const userData = await inject(UserService).fetchUserData();
-      //   const animes = await animeService.getAnimeByIds(userData.animeListIds);
-
-      //   return animes;
-      // } 
     }
   },
   {
